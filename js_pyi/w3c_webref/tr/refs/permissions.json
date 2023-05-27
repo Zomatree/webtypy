@@ -1,0 +1,72 @@
+{
+  "spec": {
+    "title": "Permissions",
+    "url": "https://www.w3.org/TR/permissions/"
+  },
+  "refs": {
+    "normative": [
+      {
+        "name": "dom",
+        "url": "https://dom.spec.whatwg.org/"
+      },
+      {
+        "name": "ecmascript",
+        "url": "https://tc39.es/ecma262/multipage/"
+      },
+      {
+        "name": "HTML",
+        "url": "https://html.spec.whatwg.org/multipage/"
+      },
+      {
+        "name": "infra",
+        "url": "https://infra.spec.whatwg.org/"
+      },
+      {
+        "name": "Notifications",
+        "url": "https://notifications.spec.whatwg.org/"
+      },
+      {
+        "name": "Permissions-Policy",
+        "url": "https://www.w3.org/TR/permissions-policy-1/"
+      },
+      {
+        "name": "permissions-registry",
+        "url": "https://w3c.github.io/permissions-registry/"
+      },
+      {
+        "name": "RFC2119",
+        "url": "https://www.rfc-editor.org/rfc/rfc2119"
+      },
+      {
+        "name": "RFC8174",
+        "url": "https://www.rfc-editor.org/rfc/rfc8174"
+      },
+      {
+        "name": "WebDriver",
+        "url": "https://www.w3.org/TR/webdriver1/"
+      },
+      {
+        "name": "WEBIDL",
+        "url": "https://webidl.spec.whatwg.org/"
+      }
+    ],
+    "informative": [
+      {
+        "name": "appmanifest",
+        "url": "https://www.w3.org/TR/appmanifest/"
+      },
+      {
+        "name": "Geolocation",
+        "url": "https://www.w3.org/TR/geolocation/"
+      },
+      {
+        "name": "GETUSERMEDIA",
+        "url": "https://www.w3.org/TR/mediacapture-streams/"
+      },
+      {
+        "name": "push-api",
+        "url": "https://www.w3.org/TR/push-api/"
+      }
+    ]
+  }
+}

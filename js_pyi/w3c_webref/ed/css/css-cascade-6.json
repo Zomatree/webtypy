@@ -1,0 +1,28 @@
+{
+  "spec": {
+    "title": "CSS Cascading and Inheritance Level 6",
+    "url": "https://drafts.csswg.org/css-cascade-6/"
+  },
+  "properties": [],
+  "atrules": [
+    {
+      "name": "@scope",
+      "prose": "Scoped styles are described in CSS using the @scope block at-rule, which declares a scoping root and optional scoping limits associated with a set of style rules.",
+      "descriptors": [],
+      "value": "@scope [(<scope-start>)]? [to (<scope-end>)]? { <rule-list> }"
+    }
+  ],
+  "selectors": [],
+  "values": [
+    {
+      "name": "<scope-start>",
+      "prose": "<scope-start> is a <forgiving-selector-list> selector used to identify the scoping root(s).",
+      "type": "type"
+    },
+    {
+      "name": "<scope-end>",
+      "prose": "<scope-end> is a <forgiving-selector-list> selector used to identify any scoping limits.",
+      "type": "type"
+    }
+  ]
+}

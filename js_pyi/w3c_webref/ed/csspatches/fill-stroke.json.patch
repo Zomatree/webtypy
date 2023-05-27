@@ -1,0 +1,96 @@
+From 22d9e193325d717b776316124701e8f74236f961 Mon Sep 17 00:00:00 2001
+From: Francois Daoust <fd@tidoust.net>
+Date: Mon, 28 Nov 2022 16:00:13 +0100
+Subject: [PATCH] Patch not-yet-up-to-date fill-stroke spec properties
+
+The "<'background'> with modifications" value for the `fill` and `stroke`
+properties is not proper CSS grammar. Dropping the definitions means we'll fall
+back on the SVG ones for now. Tracked in:
+https://github.com/w3c/csswg-drafts/issues/7285
+
+The patch also fixed a regression since SVG Strokes or SVG2 for the
+`stroke-width`, `stroke-dasharray` and `stroke-dashoffset` properties that
+should accept unitless values. Tracked in:
+https://github.com/w3c/csswg-drafts/issues/3057
+---
+ ed/css/fill-stroke.json | 36 +++---------------------------------
+ 1 file changed, 3 insertions(+), 33 deletions(-)
+
+diff --git a/ed/css/fill-stroke.json b/ed/css/fill-stroke.json
+index aa402dfb9..b7ac25fc8 100644
+--- a/ed/css/fill-stroke.json
++++ b/ed/css/fill-stroke.json
+@@ -184,21 +184,6 @@
+         "fillRepeat"
+       ]
+     },
+-    {
+-      "name": "fill",
+-      "value": "<'background'> with modifications",
+-      "initial": "See individual properties",
+-      "appliesTo": "See individual properties",
+-      "inherited": "See individual properties",
+-      "percentages": "N/A",
+-      "computedValue": "See individual properties",
+-      "canonicalOrder": "per grammar",
+-      "media": "visual",
+-      "animatable": "See individual properties",
+-      "styleDeclaration": [
+-        "fill"
+-      ]
+-    },
+     {
+       "name": "fill-opacity",
+       "value": "<'opacity'>",
+@@ -217,7 +202,7 @@
+     },
+     {
+       "name": "stroke-width",
+-      "value": "<length-percentage>#",
++      "value": "[<length-percentage> | <number>]#",
+       "initial": "1px",
+       "appliesTo": "text and SVG shapes",
+       "inherited": "yes",
+@@ -398,7 +383,7 @@
+     },
+     {
+       "name": "stroke-dasharray",
+-      "value": "none | <length-percentage>+#",
++      "value": "none | [<length-percentage> | <number>]+#",
+       "initial": "none",
+       "appliesTo": "text and SVG shapes",
+       "inherited": "yes",
+@@ -428,7 +413,7 @@
+     },
+     {
+       "name": "stroke-dashoffset",
+-      "value": "<length-percentage>",
++      "value": "<length-percentage> | <number>",
+       "initial": "0",
+       "appliesTo": "text and SVG shapes",
+       "inherited": "yes",
+@@ -648,21 +633,6 @@
+         "strokeRepeat"
+       ]
+     },
+-    {
+-      "name": "stroke",
+-      "value": "<'background'> with modifications",
+-      "initial": "See individual properties",
+-      "appliesTo": "See individual properties",
+-      "inherited": "See individual properties",
+-      "percentages": "N/A",
+-      "computedValue": "See individual properties",
+-      "canonicalOrder": "per grammar",
+-      "media": "visual",
+-      "animatable": "See individual properties",
+-      "styleDeclaration": [
+-        "stroke"
+-      ]
+-    },
+     {
+       "name": "stroke-opacity",
+       "value": "<'opacity'>",
+-- 
+2.38.1.windows.1
+

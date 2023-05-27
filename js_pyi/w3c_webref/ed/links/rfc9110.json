@@ -1,0 +1,302 @@
+{
+  "spec": {
+    "title": "RFC 9110: HTTP Semantics",
+    "url": "https://www.rfc-editor.org/rfc/rfc9110"
+  },
+  "links": {
+    "http://arxiv.org/abs/cs.SE/0105018": {},
+    "http://breachattack.com/resources/BREACH%20-%20SSL,%20gone%20in%2030%20seconds.pdf": {},
+    "https://datatracker.ietf.org/doc/rfc9110": {},
+    "https://datatracker.ietf.org/ipr/search/?rfc=9110&submit=rfc": {},
+    "https://doi.org/10.1109/JPROC.2016.2637878": {},
+    "https://doi.org/10.1145/2382196.2382204": {},
+    "https://greenbytes.de/tech/webdav/": {},
+    "https://ieeexplore.ieee.org/document/1659158/": {},
+    "https://mimesniff.spec.whatwg.org/": {
+      "specShortname": "mimesniff"
+    },
+    "https://roy.gbiv.com/": {},
+    "https://roy.gbiv.com/pubs/dissertation/top.htm": {},
+    "https://trustee.ietf.org/license-info": {},
+    "https://www.iana.org/assignments/character-sets": {},
+    "https://www.iana.org/assignments/http-authschemes": {},
+    "https://www.iana.org/assignments/http-fields": {},
+    "https://www.iana.org/assignments/http-fields/": {},
+    "https://www.iana.org/assignments/http-methods": {},
+    "https://www.iana.org/assignments/http-parameters": {},
+    "https://www.iana.org/assignments/http-parameters/": {},
+    "https://www.iana.org/assignments/http-status-codes": {},
+    "https://www.iana.org/assignments/http-upgrade-tokens": {},
+    "https://www.iana.org/assignments/media-types": {},
+    "https://www.iana.org/assignments/message-headers/": {},
+    "https://www.iana.org/assignments/service-names-port-numbers/": {},
+    "https://www.iana.org/assignments/uri-schemes/": {},
+    "https://www.mnot.net/": {},
+    "https://www.owasp.org/": {},
+    "https://www.rfc-editor.org/errata/eid1912": {},
+    "https://www.rfc-editor.org/errata/eid5433": {},
+    "https://www.rfc-editor.org/errata/rfc9110": {},
+    "https://www.rfc-editor.org/info/bcp13": {},
+    "https://www.rfc-editor.org/info/bcp178": {},
+    "https://www.rfc-editor.org/info/bcp35": {},
+    "https://www.rfc-editor.org/info/rfc1919": {},
+    "https://www.rfc-editor.org/info/rfc1945": {},
+    "https://www.rfc-editor.org/info/rfc1950": {},
+    "https://www.rfc-editor.org/info/rfc1951": {},
+    "https://www.rfc-editor.org/info/rfc1952": {},
+    "https://www.rfc-editor.org/info/rfc2046": {},
+    "https://www.rfc-editor.org/info/rfc2047": {},
+    "https://www.rfc-editor.org/info/rfc2068": {},
+    "https://www.rfc-editor.org/info/rfc2119": {},
+    "https://www.rfc-editor.org/info/rfc2145": {},
+    "https://www.rfc-editor.org/info/rfc2295": {},
+    "https://www.rfc-editor.org/info/rfc2324": {},
+    "https://www.rfc-editor.org/info/rfc2557": {},
+    "https://www.rfc-editor.org/info/rfc2616": {},
+    "https://www.rfc-editor.org/info/rfc2617": {},
+    "https://www.rfc-editor.org/info/rfc2774": {},
+    "https://www.rfc-editor.org/info/rfc2818": {},
+    "https://www.rfc-editor.org/info/rfc2978": {},
+    "https://www.rfc-editor.org/info/rfc3040": {},
+    "https://www.rfc-editor.org/info/rfc3864": {},
+    "https://www.rfc-editor.org/info/rfc3875": {},
+    "https://www.rfc-editor.org/info/rfc3986": {},
+    "https://www.rfc-editor.org/info/rfc4033": {},
+    "https://www.rfc-editor.org/info/rfc4559": {},
+    "https://www.rfc-editor.org/info/rfc4647": {},
+    "https://www.rfc-editor.org/info/rfc4648": {},
+    "https://www.rfc-editor.org/info/rfc4918": {},
+    "https://www.rfc-editor.org/info/rfc5234": {},
+    "https://www.rfc-editor.org/info/rfc5280": {},
+    "https://www.rfc-editor.org/info/rfc5322": {},
+    "https://www.rfc-editor.org/info/rfc5646": {},
+    "https://www.rfc-editor.org/info/rfc5789": {},
+    "https://www.rfc-editor.org/info/rfc5905": {},
+    "https://www.rfc-editor.org/info/rfc6125": {},
+    "https://www.rfc-editor.org/info/rfc6265": {},
+    "https://www.rfc-editor.org/info/rfc6365": {},
+    "https://www.rfc-editor.org/info/rfc6454": {},
+    "https://www.rfc-editor.org/info/rfc6585": {},
+    "https://www.rfc-editor.org/info/rfc7230": {},
+    "https://www.rfc-editor.org/info/rfc7231": {},
+    "https://www.rfc-editor.org/info/rfc7232": {},
+    "https://www.rfc-editor.org/info/rfc7233": {},
+    "https://www.rfc-editor.org/info/rfc7234": {},
+    "https://www.rfc-editor.org/info/rfc7235": {},
+    "https://www.rfc-editor.org/info/rfc7405": {},
+    "https://www.rfc-editor.org/info/rfc7538": {},
+    "https://www.rfc-editor.org/info/rfc7540": {},
+    "https://www.rfc-editor.org/info/rfc7541": {},
+    "https://www.rfc-editor.org/info/rfc7578": {},
+    "https://www.rfc-editor.org/info/rfc7615": {},
+    "https://www.rfc-editor.org/info/rfc7616": {},
+    "https://www.rfc-editor.org/info/rfc7617": {},
+    "https://www.rfc-editor.org/info/rfc7694": {},
+    "https://www.rfc-editor.org/info/rfc7838": {},
+    "https://www.rfc-editor.org/info/rfc793": {},
+    "https://www.rfc-editor.org/info/rfc8126": {},
+    "https://www.rfc-editor.org/info/rfc8174": {},
+    "https://www.rfc-editor.org/info/rfc8187": {},
+    "https://www.rfc-editor.org/info/rfc8246": {},
+    "https://www.rfc-editor.org/info/rfc8288": {},
+    "https://www.rfc-editor.org/info/rfc8336": {},
+    "https://www.rfc-editor.org/info/rfc8446": {},
+    "https://www.rfc-editor.org/info/rfc8615": {},
+    "https://www.rfc-editor.org/info/rfc8941": {},
+    "https://www.rfc-editor.org/info/rfc9110": {},
+    "https://www.rfc-editor.org/info/rfc9111": {},
+    "https://www.rfc-editor.org/info/rfc9112": {},
+    "https://www.rfc-editor.org/info/rfc9113": {},
+    "https://www.rfc-editor.org/info/rfc9114": {},
+    "https://www.rfc-editor.org/rfc/rfc1945": {
+      "anchors": [
+        "section-9.3"
+      ]
+    },
+    "https://www.rfc-editor.org/rfc/rfc2046": {
+      "anchors": [
+        "section-4.5.1",
+        "section-4.1.2",
+        "section-5.1.1",
+        "section-5.1"
+      ]
+    },
+    "https://www.rfc-editor.org/rfc/rfc2068": {
+      "anchors": [
+        "section-19.7.1",
+        "section-10.3"
+      ]
+    },
+    "https://www.rfc-editor.org/rfc/rfc2557": {
+      "anchors": [
+        "section-4"
+      ]
+    },
+    "https://www.rfc-editor.org/rfc/rfc2616": {
+      "anchors": [
+        "section-3.11",
+        "section-14.4",
+        "section-14.15"
+      ]
+    },
+    "https://www.rfc-editor.org/rfc/rfc2818": {},
+    "https://www.rfc-editor.org/rfc/rfc2978": {
+      "anchors": [
+        "section-2",
+        "section-2.3"
+      ]
+    },
+    "https://www.rfc-editor.org/rfc/rfc3864": {},
+    "https://www.rfc-editor.org/rfc/rfc3875": {
+      "anchors": [
+        "section-4.1.18"
+      ]
+    },
+    "https://www.rfc-editor.org/rfc/rfc3986": {
+      "anchors": [
+        "section-3.2.2",
+        "section-3.2.3",
+        "section-6",
+        "section-6.2.3",
+        "section-2.1",
+        "section-2.2",
+        "section-6.2",
+        "section-3.2.1",
+        "section-3.5",
+        "section-4.3",
+        "section-5",
+        "section-1.2.2",
+        "section-4.2",
+        "section-7"
+      ]
+    },
+    "https://www.rfc-editor.org/rfc/rfc4647": {
+      "anchors": [
+        "section-2.3",
+        "section-3",
+        "section-3.3.1"
+      ]
+    },
+    "https://www.rfc-editor.org/rfc/rfc4918": {
+      "anchors": [
+        "section-10.4",
+        "section-11.2"
+      ]
+    },
+    "https://www.rfc-editor.org/rfc/rfc5234": {
+      "anchors": [
+        "appendix-B.1"
+      ]
+    },
+    "https://www.rfc-editor.org/rfc/rfc5280": {
+      "anchors": [
+        "section-4.2.1.6"
+      ]
+    },
+    "https://www.rfc-editor.org/rfc/rfc5322": {
+      "anchors": [
+        "section-3.3",
+        "section-3.6.1",
+        "section-3.6.7",
+        "section-3.4"
+      ]
+    },
+    "https://www.rfc-editor.org/rfc/rfc5789": {
+      "anchors": [
+        "section-3.1"
+      ]
+    },
+    "https://www.rfc-editor.org/rfc/rfc6125": {
+      "anchors": [
+        "section-6",
+        "section-6.2.1"
+      ]
+    },
+    "https://www.rfc-editor.org/rfc/rfc6365": {
+      "anchors": [
+        "section-2"
+      ]
+    },
+    "https://www.rfc-editor.org/rfc/rfc7230": {},
+    "https://www.rfc-editor.org/rfc/rfc7231": {
+      "anchors": [
+        "appendix-B"
+      ]
+    },
+    "https://www.rfc-editor.org/rfc/rfc7232": {},
+    "https://www.rfc-editor.org/rfc/rfc7233": {},
+    "https://www.rfc-editor.org/rfc/rfc7235": {},
+    "https://www.rfc-editor.org/rfc/rfc7538": {
+      "anchors": [
+        "section-4"
+      ]
+    },
+    "https://www.rfc-editor.org/rfc/rfc7540": {
+      "anchors": [
+        "section-9.1.2"
+      ]
+    },
+    "https://www.rfc-editor.org/rfc/rfc7615": {},
+    "https://www.rfc-editor.org/rfc/rfc7616": {
+      "anchors": [
+        "section-3.5"
+      ]
+    },
+    "https://www.rfc-editor.org/rfc/rfc7694": {},
+    "https://www.rfc-editor.org/rfc/rfc8126": {
+      "anchors": [
+        "section-4.8",
+        "section-4.6",
+        "section-4.4"
+      ]
+    },
+    "https://www.rfc-editor.org/rfc/rfc9110": {
+      "specShortname": "rfc9110"
+    },
+    "https://www.rfc-editor.org/rfc/rfc9111": {
+      "anchors": [
+        "section-4.2",
+        "section-5.2",
+        "section-5.2.2.6",
+        "section-4.3.5",
+        "section-4.2.1",
+        "section-4",
+        "section-4.4",
+        "section-3.5",
+        "section-4.1",
+        "section-4.3.2",
+        "section-4.2.2",
+        "section-4.3.4",
+        "section-5.2.3",
+        "section-5.2.2.7",
+        "section-7"
+      ],
+      "specShortname": "rfc9111"
+    },
+    "https://www.rfc-editor.org/rfc/rfc9112": {
+      "anchors": [
+        "section-11.2",
+        "section-6",
+        "section-7.1.2",
+        "section-3.3",
+        "section-9.5",
+        "appendix-C.2.2",
+        "section-6.1",
+        "section-3.2.1",
+        "section-3.2.4",
+        "section-7",
+        "section-6.2",
+        "section-10.1",
+        "section-9.6",
+        "section-11"
+      ],
+      "specShortname": "rfc9112"
+    },
+    "https://www.rfc-editor.org/rfc/rfc9113": {
+      "anchors": [
+        "section-6.4"
+      ],
+      "specShortname": "rfc9113"
+    }
+  }
+}

@@ -1,0 +1,312 @@
+{
+  "spec": {
+    "title": "Web MIDI API",
+    "url": "https://www.w3.org/TR/webmidi/"
+  },
+  "dfns": [
+    {
+      "id": "dfn-user-agent",
+      "href": "https://www.w3.org/TR/webmidi/#dfn-user-agent",
+      "linkingText": [
+        "user agent"
+      ],
+      "localLinkingText": [],
+      "type": "dfn",
+      "for": [],
+      "access": "public",
+      "informative": false,
+      "heading": {
+        "id": "conformance",
+        "href": "https://www.w3.org/TR/webmidi/#conformance",
+        "title": "Conformance",
+        "number": "2"
+      },
+      "definedIn": "prose"
+    },
+    {
+      "id": "WebAudio",
+      "href": "https://www.w3.org/TR/webmidi/#WebAudio",
+      "linkingText": [
+        "Web Audio API"
+      ],
+      "localLinkingText": [],
+      "type": "dfn",
+      "for": [],
+      "access": "public",
+      "informative": false,
+      "heading": {
+        "id": "terminology",
+        "href": "https://www.w3.org/TR/webmidi/#terminology",
+        "title": "Terminology",
+        "number": "3"
+      },
+      "definedIn": "prose"
+    },
+    {
+      "id": "dfn-event",
+      "href": "https://www.w3.org/TR/webmidi/#dfn-event",
+      "linkingText": [
+        "Event"
+      ],
+      "localLinkingText": [],
+      "type": "dfn",
+      "for": [],
+      "access": "public",
+      "informative": false,
+      "heading": {
+        "id": "terminology",
+        "href": "https://www.w3.org/TR/webmidi/#terminology",
+        "title": "Terminology",
+        "number": "3"
+      },
+      "definedIn": "prose"
+    },
+    {
+      "id": "dfn-domerror",
+      "href": "https://www.w3.org/TR/webmidi/#dfn-domerror",
+      "linkingText": [
+        "DOMError"
+      ],
+      "localLinkingText": [],
+      "type": "dfn",
+      "for": [],
+      "access": "public",
+      "informative": false,
+      "heading": {
+        "id": "terminology",
+        "href": "https://www.w3.org/TR/webmidi/#terminology",
+        "title": "Terminology",
+        "number": "3"
+      },
+      "definedIn": "prose"
+    },
+    {
+      "id": "dfn-midi",
+      "href": "https://www.w3.org/TR/webmidi/#dfn-midi",
+      "linkingText": [
+        "MIDI"
+      ],
+      "localLinkingText": [],
+      "type": "dfn",
+      "for": [],
+      "access": "public",
+      "informative": false,
+      "heading": {
+        "id": "terminology",
+        "href": "https://www.w3.org/TR/webmidi/#terminology",
+        "title": "Terminology",
+        "number": "3"
+      },
+      "definedIn": "prose"
+    },
+    {
+      "id": "dfn-midi-device",
+      "href": "https://www.w3.org/TR/webmidi/#dfn-midi-device",
+      "linkingText": [
+        "MIDI device"
+      ],
+      "localLinkingText": [],
+      "type": "dfn",
+      "for": [],
+      "access": "public",
+      "informative": false,
+      "heading": {
+        "id": "terminology",
+        "href": "https://www.w3.org/TR/webmidi/#terminology",
+        "title": "Terminology",
+        "number": "3"
+      },
+      "definedIn": "prose"
+    },
+    {
+      "id": "dfn-midi-input-port",
+      "href": "https://www.w3.org/TR/webmidi/#dfn-midi-input-port",
+      "linkingText": [
+        "MIDI input port"
+      ],
+      "localLinkingText": [],
+      "type": "dfn",
+      "for": [],
+      "access": "public",
+      "informative": false,
+      "heading": {
+        "id": "terminology",
+        "href": "https://www.w3.org/TR/webmidi/#terminology",
+        "title": "Terminology",
+        "number": "3"
+      },
+      "definedIn": "prose"
+    },
+    {
+      "id": "dfn-midi-output-port",
+      "href": "https://www.w3.org/TR/webmidi/#dfn-midi-output-port",
+      "linkingText": [
+        "MIDI output port"
+      ],
+      "localLinkingText": [],
+      "type": "dfn",
+      "for": [],
+      "access": "public",
+      "informative": false,
+      "heading": {
+        "id": "terminology",
+        "href": "https://www.w3.org/TR/webmidi/#terminology",
+        "title": "Terminology",
+        "number": "3"
+      },
+      "definedIn": "prose"
+    },
+    {
+      "id": "dfn-midi-interface",
+      "href": "https://www.w3.org/TR/webmidi/#dfn-midi-interface",
+      "linkingText": [
+        "MIDI interface"
+      ],
+      "localLinkingText": [],
+      "type": "dfn",
+      "for": [],
+      "access": "public",
+      "informative": false,
+      "heading": {
+        "id": "terminology",
+        "href": "https://www.w3.org/TR/webmidi/#terminology",
+        "title": "Terminology",
+        "number": "3"
+      },
+      "definedIn": "prose"
+    },
+    {
+      "id": "dfn-midi-message",
+      "href": "https://www.w3.org/TR/webmidi/#dfn-midi-message",
+      "linkingText": [
+        "MIDI message"
+      ],
+      "localLinkingText": [],
+      "type": "dfn",
+      "for": [],
+      "access": "public",
+      "informative": false,
+      "heading": {
+        "id": "terminology",
+        "href": "https://www.w3.org/TR/webmidi/#terminology",
+        "title": "Terminology",
+        "number": "3"
+      },
+      "definedIn": "prose"
+    },
+    {
+      "id": "dfn-midi-system-real-time-message",
+      "href": "https://www.w3.org/TR/webmidi/#dfn-midi-system-real-time-message",
+      "linkingText": [
+        "MIDI System Real-Time message"
+      ],
+      "localLinkingText": [],
+      "type": "dfn",
+      "for": [],
+      "access": "public",
+      "informative": false,
+      "heading": {
+        "id": "terminology",
+        "href": "https://www.w3.org/TR/webmidi/#terminology",
+        "title": "Terminology",
+        "number": "3"
+      },
+      "definedIn": "prose"
+    },
+    {
+      "id": "dfn-system-exclusive",
+      "href": "https://www.w3.org/TR/webmidi/#dfn-system-exclusive",
+      "linkingText": [
+        "system exclusive"
+      ],
+      "localLinkingText": [],
+      "type": "dfn",
+      "for": [],
+      "access": "public",
+      "informative": false,
+      "heading": {
+        "id": "terminology",
+        "href": "https://www.w3.org/TR/webmidi/#terminology",
+        "title": "Terminology",
+        "number": "3"
+      },
+      "definedIn": "prose"
+    },
+    {
+      "id": "dom-navigator-requestmidiaccess",
+      "href": "https://www.w3.org/TR/webmidi/#dom-navigator-requestmidiaccess",
+      "linkingText": [
+        "requestMIDIAccess"
+      ],
+      "localLinkingText": [],
+      "type": "dfn",
+      "for": [],
+      "access": "public",
+      "informative": false,
+      "heading": {
+        "id": "methods",
+        "href": "https://www.w3.org/TR/webmidi/#methods",
+        "title": "Methods",
+        "number": "4.1.1"
+      },
+      "definedIn": "prose"
+    },
+    {
+      "id": "dfn-algorithm-to-request-midi-access",
+      "href": "https://www.w3.org/TR/webmidi/#dfn-algorithm-to-request-midi-access",
+      "linkingText": [
+        "algorithm to request MIDI Access"
+      ],
+      "localLinkingText": [],
+      "type": "dfn",
+      "for": [],
+      "access": "public",
+      "informative": false,
+      "heading": {
+        "id": "methods",
+        "href": "https://www.w3.org/TR/webmidi/#methods",
+        "title": "Methods",
+        "number": "4.1.1"
+      },
+      "definedIn": "prose"
+    },
+    {
+      "id": "dfn-algorithm-to-close-a-midiport",
+      "href": "https://www.w3.org/TR/webmidi/#dfn-algorithm-to-close-a-midiport",
+      "linkingText": [
+        "algorithm to close a MIDIPort"
+      ],
+      "localLinkingText": [],
+      "type": "dfn",
+      "for": [],
+      "access": "public",
+      "informative": false,
+      "heading": {
+        "id": "methods-1",
+        "href": "https://www.w3.org/TR/webmidi/#methods-1",
+        "title": "Methods",
+        "number": "6.2"
+      },
+      "definedIn": "prose"
+    },
+    {
+      "id": "dfn-algorithm-to-open-a-midiport",
+      "href": "https://www.w3.org/TR/webmidi/#dfn-algorithm-to-open-a-midiport",
+      "linkingText": [
+        "algorithm to open a MIDIPort"
+      ],
+      "localLinkingText": [],
+      "type": "dfn",
+      "for": [],
+      "access": "public",
+      "informative": false,
+      "heading": {
+        "id": "methods-1",
+        "href": "https://www.w3.org/TR/webmidi/#methods-1",
+        "title": "Methods",
+        "number": "6.2"
+      },
+      "definedIn": "prose"
+    }
+  ]
+}

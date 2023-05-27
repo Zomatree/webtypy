@@ -1,0 +1,375 @@
+{
+  "spec": {
+    "title": "Scalable Video Coding (SVC) Extension for WebRTC",
+    "url": "https://w3c.github.io/webrtc-svc/"
+  },
+  "headings": [
+    {
+      "id": "title",
+      "href": "https://w3c.github.io/webrtc-svc/#title",
+      "level": 1,
+      "title": "Scalable Video Coding (SVC) Extension for WebRTC"
+    },
+    {
+      "id": "toc",
+      "href": "https://w3c.github.io/webrtc-svc/#toc",
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "id": "intro",
+      "href": "https://w3c.github.io/webrtc-svc/#intro",
+      "level": 2,
+      "title": "Introduction",
+      "number": "1"
+    },
+    {
+      "id": "conformance",
+      "href": "https://w3c.github.io/webrtc-svc/#conformance",
+      "level": 2,
+      "title": "Conformance",
+      "number": "2"
+    },
+    {
+      "id": "terminology",
+      "href": "https://w3c.github.io/webrtc-svc/#terminology",
+      "level": 2,
+      "title": "Terminology",
+      "number": "3"
+    },
+    {
+      "id": "configuration",
+      "href": "https://w3c.github.io/webrtc-svc/#configuration",
+      "level": 2,
+      "title": "Configuration",
+      "number": "4"
+    },
+    {
+      "id": "rtcrtpencodingparameters",
+      "href": "https://w3c.github.io/webrtc-svc/#rtcrtpencodingparameters",
+      "level": 3,
+      "title": "RTCRtpEncodingParameters Dictionary Extensions",
+      "number": "4.1"
+    },
+    {
+      "id": "dictionary-rtcrtpencodingparameters-members",
+      "href": "https://w3c.github.io/webrtc-svc/#dictionary-rtcrtpencodingparameters-members",
+      "level": 4,
+      "title": "Dictionary RTCRtpEncodingParameters Members"
+    },
+    {
+      "id": "behavior",
+      "href": "https://w3c.github.io/webrtc-svc/#behavior",
+      "level": 3,
+      "title": "Behavior",
+      "number": "4.2"
+    },
+    {
+      "id": "addTransceiver",
+      "href": "https://w3c.github.io/webrtc-svc/#addTransceiver",
+      "level": 4,
+      "title": "addTransceiver()",
+      "number": "4.2.1"
+    },
+    {
+      "id": "setparameters",
+      "href": "https://w3c.github.io/webrtc-svc/#setparameters",
+      "level": 4,
+      "title": "setParameters()",
+      "number": "4.2.2"
+    },
+    {
+      "id": "getparameters",
+      "href": "https://w3c.github.io/webrtc-svc/#getparameters",
+      "level": 4,
+      "title": "getParameters()",
+      "number": "4.2.3"
+    },
+    {
+      "id": "discovery",
+      "href": "https://w3c.github.io/webrtc-svc/#discovery",
+      "level": 2,
+      "title": "Discovery",
+      "number": "5"
+    },
+    {
+      "id": "sfmnegotiation",
+      "href": "https://w3c.github.io/webrtc-svc/#sfmnegotiation",
+      "level": 3,
+      "title": "Negotiation",
+      "number": "5.1"
+    },
+    {
+      "id": "scalabilitymodes*",
+      "href": "https://w3c.github.io/webrtc-svc/#scalabilitymodes*",
+      "level": 2,
+      "title": "Scalability modes",
+      "number": "6"
+    },
+    {
+      "id": "addingmodes*",
+      "href": "https://w3c.github.io/webrtc-svc/#addingmodes*",
+      "level": 3,
+      "title": "Guidelines for addition of scalabilityMode values",
+      "number": "6.1"
+    },
+    {
+      "id": "rtcrtpencodingparameters-example*",
+      "href": "https://w3c.github.io/webrtc-svc/#rtcrtpencodingparameters-example*",
+      "level": 2,
+      "title": "Examples",
+      "number": "7"
+    },
+    {
+      "id": "simulcasttemporal-example*",
+      "href": "https://w3c.github.io/webrtc-svc/#simulcasttemporal-example*",
+      "level": 3,
+      "title": "Spatial Simulcast and Temporal Scalability",
+      "number": "7.1"
+    },
+    {
+      "id": "media-capabilities-example*",
+      "href": "https://w3c.github.io/webrtc-svc/#media-capabilities-example*",
+      "level": 3,
+      "title": "SVC Encoder Capabilities",
+      "number": "7.2"
+    },
+    {
+      "id": "sfm-getcapabilities-example*",
+      "href": "https://w3c.github.io/webrtc-svc/#sfm-getcapabilities-example*",
+      "level": 3,
+      "title": "SFM Capabilities",
+      "number": "7.3"
+    },
+    {
+      "id": "privacy",
+      "href": "https://w3c.github.io/webrtc-svc/#privacy",
+      "level": 2,
+      "title": "Privacy Considerations",
+      "number": "8"
+    },
+    {
+      "id": "persistent-information",
+      "href": "https://w3c.github.io/webrtc-svc/#persistent-information",
+      "level": 3,
+      "title": "Persistent information",
+      "number": "8.1"
+    },
+    {
+      "id": "security",
+      "href": "https://w3c.github.io/webrtc-svc/#security",
+      "level": 2,
+      "title": "Security Considerations",
+      "number": "9"
+    },
+    {
+      "id": "dependencydiagrams*",
+      "href": "https://w3c.github.io/webrtc-svc/#dependencydiagrams*",
+      "level": 2,
+      "title": "10. Scalability Mode Dependency Diagrams"
+    },
+    {
+      "id": "L1T1*",
+      "href": "https://w3c.github.io/webrtc-svc/#L1T1*",
+      "level": 3,
+      "title": "L1T1",
+      "number": "10.1"
+    },
+    {
+      "id": "L1T2*",
+      "href": "https://w3c.github.io/webrtc-svc/#L1T2*",
+      "level": 3,
+      "title": "L1T2",
+      "number": "10.2"
+    },
+    {
+      "id": "L1T3*",
+      "href": "https://w3c.github.io/webrtc-svc/#L1T3*",
+      "level": 3,
+      "title": "L1T3",
+      "number": "10.3"
+    },
+    {
+      "id": "L2T1*",
+      "href": "https://w3c.github.io/webrtc-svc/#L2T1*",
+      "level": 3,
+      "title": "L2T1 and L2T1h",
+      "number": "10.4"
+    },
+    {
+      "id": "L2T1_KEY*",
+      "href": "https://w3c.github.io/webrtc-svc/#L2T1_KEY*",
+      "level": 3,
+      "title": "L2T1_KEY",
+      "number": "10.5"
+    },
+    {
+      "id": "L2T2*",
+      "href": "https://w3c.github.io/webrtc-svc/#L2T2*",
+      "level": 3,
+      "title": "L2T2 and L2T2h",
+      "number": "10.6"
+    },
+    {
+      "id": "L2T2_KEY*",
+      "href": "https://w3c.github.io/webrtc-svc/#L2T2_KEY*",
+      "level": 3,
+      "title": "L2T2_KEY",
+      "number": "10.7"
+    },
+    {
+      "id": "L2T2_KEY_SHIFT*",
+      "href": "https://w3c.github.io/webrtc-svc/#L2T2_KEY_SHIFT*",
+      "level": 3,
+      "title": "L2T2_KEY_SHIFT",
+      "number": "10.8"
+    },
+    {
+      "id": "L2T3*",
+      "href": "https://w3c.github.io/webrtc-svc/#L2T3*",
+      "level": 3,
+      "title": "L2T3 and L2T3h",
+      "number": "10.9"
+    },
+    {
+      "id": "L2T3_KEY*",
+      "href": "https://w3c.github.io/webrtc-svc/#L2T3_KEY*",
+      "level": 3,
+      "title": "L2T3_KEY",
+      "number": "10.10"
+    },
+    {
+      "id": "L2T3_KEY_SHIFT*",
+      "href": "https://w3c.github.io/webrtc-svc/#L2T3_KEY_SHIFT*",
+      "level": 3,
+      "title": "L2T3_KEY_SHIFT",
+      "number": "10.11"
+    },
+    {
+      "id": "L3T1*",
+      "href": "https://w3c.github.io/webrtc-svc/#L3T1*",
+      "level": 3,
+      "title": "L3T1 and L3T1h",
+      "number": "10.12"
+    },
+    {
+      "id": "L3T1_KEY*",
+      "href": "https://w3c.github.io/webrtc-svc/#L3T1_KEY*",
+      "level": 3,
+      "title": "L3T1_KEY",
+      "number": "10.13"
+    },
+    {
+      "id": "L3T2*",
+      "href": "https://w3c.github.io/webrtc-svc/#L3T2*",
+      "level": 3,
+      "title": "L3T2 and L3T2h",
+      "number": "10.14"
+    },
+    {
+      "id": "L3T2_KEY*",
+      "href": "https://w3c.github.io/webrtc-svc/#L3T2_KEY*",
+      "level": 3,
+      "title": "L3T2_KEY",
+      "number": "10.15"
+    },
+    {
+      "id": "L3T2_KEY_SHIFT*",
+      "href": "https://w3c.github.io/webrtc-svc/#L3T2_KEY_SHIFT*",
+      "level": 3,
+      "title": "L3T2_KEY_SHIFT",
+      "number": "10.16"
+    },
+    {
+      "id": "L3T3*",
+      "href": "https://w3c.github.io/webrtc-svc/#L3T3*",
+      "level": 3,
+      "title": "L3T3 and L3T3h",
+      "number": "10.17"
+    },
+    {
+      "id": "L3T3_KEY*",
+      "href": "https://w3c.github.io/webrtc-svc/#L3T3_KEY*",
+      "level": 3,
+      "title": "L3T3_KEY",
+      "number": "10.18"
+    },
+    {
+      "id": "L3T3_KEY_SHIFT*",
+      "href": "https://w3c.github.io/webrtc-svc/#L3T3_KEY_SHIFT*",
+      "level": 3,
+      "title": "L3T3_KEY_SHIFT",
+      "number": "10.19"
+    },
+    {
+      "id": "S2T1*",
+      "href": "https://w3c.github.io/webrtc-svc/#S2T1*",
+      "level": 3,
+      "title": "S2T1 and S2T1h",
+      "number": "10.20"
+    },
+    {
+      "id": "S2T2*",
+      "href": "https://w3c.github.io/webrtc-svc/#S2T2*",
+      "level": 3,
+      "title": "S2T2 and S2T2h",
+      "number": "10.21"
+    },
+    {
+      "id": "S2T3*",
+      "href": "https://w3c.github.io/webrtc-svc/#S2T3*",
+      "level": 3,
+      "title": "S2T3 and S2T3h",
+      "number": "10.22"
+    },
+    {
+      "id": "S3T1*",
+      "href": "https://w3c.github.io/webrtc-svc/#S3T1*",
+      "level": 3,
+      "title": "S3T1 and S3T1h",
+      "number": "10.23"
+    },
+    {
+      "id": "S3T2*",
+      "href": "https://w3c.github.io/webrtc-svc/#S3T2*",
+      "level": 3,
+      "title": "S3T2 and S3T2h",
+      "number": "10.24"
+    },
+    {
+      "id": "S3T3*",
+      "href": "https://w3c.github.io/webrtc-svc/#S3T3*",
+      "level": 3,
+      "title": "S3T3 and S3T3h",
+      "number": "10.25"
+    },
+    {
+      "id": "acknowledgements",
+      "href": "https://w3c.github.io/webrtc-svc/#acknowledgements",
+      "level": 2,
+      "title": "Acknowledgements",
+      "number": "A"
+    },
+    {
+      "id": "references",
+      "href": "https://w3c.github.io/webrtc-svc/#references",
+      "level": 2,
+      "title": "References",
+      "number": "B"
+    },
+    {
+      "id": "normative-references",
+      "href": "https://w3c.github.io/webrtc-svc/#normative-references",
+      "level": 3,
+      "title": "Normative references",
+      "number": "B.1"
+    },
+    {
+      "id": "informative-references",
+      "href": "https://w3c.github.io/webrtc-svc/#informative-references",
+      "level": 3,
+      "title": "Informative references",
+      "number": "B.2"
+    }
+  ]
+}

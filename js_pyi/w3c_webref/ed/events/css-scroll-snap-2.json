@@ -1,0 +1,22 @@
+{
+  "spec": {
+    "title": "CSS Scroll Snap Module Level 2",
+    "url": "https://drafts.csswg.org/css-scroll-snap-2/"
+  },
+  "events": [
+    {
+      "type": "snapChanged",
+      "src": {
+        "format": "dfn",
+        "href": "https://drafts.csswg.org/css-scroll-snap-2/#eventhandlers"
+      }
+    },
+    {
+      "type": "snapChanging",
+      "src": {
+        "format": "dfn",
+        "href": "https://drafts.csswg.org/css-scroll-snap-2/#eventhandlers"
+      }
+    }
+  ]
+}

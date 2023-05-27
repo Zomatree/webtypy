@@ -7,7 +7,7 @@ web_sys = self_folder / 'web-sys'
 
 
 def main():
-    svn_websys_crate()
+    # svn_websys_crate()
     copy_webidls()
 
 

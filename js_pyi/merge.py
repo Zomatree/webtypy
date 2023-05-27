@@ -43,7 +43,7 @@ def merge(statements: List[GStmt]) -> List[GStmt]:
             _mark_method_overload(mi)
             classes.append(mi)
         elif GEnum in by_type:
-            assert len(sts_for_name) == 1
+            # assert len(sts_for_name) == 1
             enums.append(sts_for_name[0])
         else:
             the_rest.extend(sts_for_name)

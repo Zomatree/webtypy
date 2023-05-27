@@ -1,0 +1,191 @@
+{
+  "spec": {
+    "title": "Payment Handler API",
+    "url": "https://www.w3.org/TR/payment-handler/"
+  },
+  "links": {
+    "https://datatracker.ietf.org/doc/html/bcp14": {},
+    "https://dom.spec.whatwg.org/": {
+      "anchors": [
+        "dom-event-istrusted",
+        "dispatch-flag",
+        "stop-propagation-flag",
+        "stop-immediate-propagation-flag"
+      ],
+      "specShortname": "dom"
+    },
+    "https://github.com/w3c/payment-handler/issues": {},
+    "https://github.com/w3c/payment-handler/issues/115": {},
+    "https://github.com/w3c/payment-handler/issues/117": {},
+    "https://github.com/w3c/payment-handler/issues/123": {},
+    "https://github.com/w3c/payment-request/issues/842": {},
+    "https://html.spec.whatwg.org/multipage/": {
+      "anchors": [
+        "structuredserialize",
+        "structureddeserialize",
+        "queue-a-microtask"
+      ]
+    },
+    "https://html.spec.whatwg.org/multipage/browsers.html": {
+      "anchors": [
+        "concept-origin",
+        "ascii-serialisation-of-an-origin"
+      ]
+    },
+    "https://html.spec.whatwg.org/multipage/browsing-the-web.html": {
+      "anchors": [
+        "navigate"
+      ]
+    },
+    "https://html.spec.whatwg.org/multipage/document-sequences.html": {
+      "anchors": [
+        "top-level-browsing-context"
+      ]
+    },
+    "https://html.spec.whatwg.org/multipage/webappapis.html": {
+      "anchors": [
+        "user-interaction-task-source",
+        "eventhandler",
+        "event-handlers",
+        "event-handler-event-type",
+        "concept-relevant-global"
+      ]
+    },
+    "https://tc39.es/ecma262/multipage/": {
+      "anchors": [
+        "sec-object-internal-methods-and-internal-slots",
+        "sec-json.stringify"
+      ],
+      "specShortname": "ecmascript"
+    },
+    "https://url.spec.whatwg.org/": {
+      "anchors": [
+        "concept-url-origin",
+        "concept-url-parser"
+      ],
+      "specShortname": "url"
+    },
+    "https://webidl.spec.whatwg.org/": {
+      "anchors": [
+        "SameObject",
+        "SecureContext",
+        "Exposed",
+        "idl-DOMString",
+        "idl-promise",
+        "idl-undefined",
+        "idl-sequence",
+        "idl-boolean",
+        "idl-object",
+        "idl-USVString",
+        "idl-frozen-array",
+        "invalidstateerror",
+        "idl-DOMException",
+        "operationerror",
+        "exceptiondef-typeerror",
+        "upon-rejection",
+        "upon-fulfillment",
+        "dfn-convert-ecmascript-to-idl-value",
+        "this"
+      ],
+      "specShortname": "webidl"
+    },
+    "https://www.rfc-editor.org/rfc/rfc2119": {},
+    "https://www.rfc-editor.org/rfc/rfc8174": {},
+    "https://www.w3.org/2021/Process-20211102/": {
+      "anchors": [
+        "recs-and-notes"
+      ]
+    },
+    "https://www.w3.org/Consortium/Patent-Policy/": {
+      "anchors": [
+        "def-essential",
+        "sec-Disclosure"
+      ],
+      "specShortname": "w3c-patent-policy"
+    },
+    "https://www.w3.org/TR/": {},
+    "https://www.w3.org/TR/WebCryptoAPI/": {
+      "specShortname": "WebCryptoAPI"
+    },
+    "https://www.w3.org/TR/payment-method-id/": {
+      "anchors": [
+        "dfn-url-based-payment-method-identifier",
+        "dfn-pmi"
+      ],
+      "specShortname": "payment-method-id"
+    },
+    "https://www.w3.org/TR/payment-method-manifest/": {
+      "anchors": [
+        "payment-method-manifest",
+        "ingest-payment-method-manifests",
+        "parsed-payment-method-manifest",
+        "parsed-payment-method-manifest-supported-origins"
+      ],
+      "specShortname": "payment-method-manifest"
+    },
+    "https://www.w3.org/TR/payment-request/": {
+      "anchors": [
+        "canmakepayment-method",
+        "show-method",
+        "dom-paymentresponse",
+        "dom-paymentrequest",
+        "paymentmethoddata-dictionary",
+        "paymentcurrencyamount-dictionary",
+        "paymentdetailsmodifier-dictionary",
+        "dom-paymentshippingoption",
+        "dom-addresserrors",
+        "dom-addressinit",
+        "dfn-details",
+        "id-attribute",
+        "dfn-payment-method",
+        "paymentdetailsinit-dictionary",
+        "dom-paymentoptions",
+        "dom-paymentdetailsbase-shippingoptions",
+        "paymentdetailsbase-dictionary",
+        "dom-paymentmethoddata-supportedmethods",
+        "dfn-json-serialize",
+        "payment-method-changed-algorithm",
+        "dom-paymentmethodchangeevent",
+        "updatewith-method",
+        "paymentrequest-updated-algorithm",
+        "dom-paymentrequestupdateevent",
+        "dom-paymentoptions-requestshipping",
+        "dom-paymentoptions-requestpayername",
+        "dom-paymentoptions-requestpayeremail",
+        "dom-paymentoptions-requestpayerphone",
+        "user-accepts-the-payment-request-algorithm",
+        "dom-paymentresponse-methodname",
+        "dom-paymentresponse-details",
+        "dom-paymentresponse-shippingaddress",
+        "dom-paymentresponse-shippingoption",
+        "dom-paymentresponse-payername",
+        "dom-paymentresponse-payeremail",
+        "dom-paymentresponse-payerphone"
+      ],
+      "specShortname": "payment-request-1.1"
+    },
+    "https://www.w3.org/TR/service-workers/": {
+      "anchors": [
+        "service-worker-concept",
+        "extendableevent-interface",
+        "service-worker-registration-concept",
+        "fire-functional-event-algorithm",
+        "serviceworkerglobalscope-interface",
+        "dictdef-extendableeventinit",
+        "extendableevent-extend-lifetime-promises",
+        "client-visibilitystate",
+        "dfn-service-worker-client",
+        "create-windowclient-algorithm",
+        "extendableevent-pending-promises-count",
+        "dfn-containing-service-worker-registration",
+        "try-activate-algorithm",
+        "security-considerations",
+        "try-clear-registration-algorithm",
+        "dfn-scope-url"
+      ],
+      "specShortname": "service-workers"
+    },
+    "https://www.w3.org/groups/wg/payments": {},
+    "https://www.w3.org/groups/wg/payments/ipr": {}
+  }
+}

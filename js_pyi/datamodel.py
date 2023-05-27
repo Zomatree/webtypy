@@ -1,10 +1,9 @@
 from __future__ import annotations
 
-import typing
 from dataclasses import dataclass, field
-from typing import List, Optional
+from typing import List, Optional, Union
 
-from js_pyi.stringify import s_method, s_attribute, s_class, s_unhandled, s_enum, s_arg, s_typedef, s_ignored, s_const
+from js_pyi.stringify import s_method, s_attribute, s_class, s_unhandled, s_enum, s_arg, s_typedef, s_ignored, s_const, s_callback
 
 
 class GPythonProducer:
@@ -60,13 +59,6 @@ class GUnhandledRoot(GUnhandled, GRootStmt):
 class GUnhandledNested(GUnhandled):
     pass
 
-
-@dataclass()
-class GGeneric:
-    type: str
-    gen_type: str
-
-
 @dataclass()
 class GNotRequired:
     annotation: 'GAnnotation'
@@ -80,8 +72,8 @@ class GClass(GRootStmt, GPythonProducer, GHasChildren, GHasName):
     def to_python(self): return s_class(self)
 
 
-GType = typing.Union[str, GGeneric]
-GAnnotation = typing.Union[GType, List[GType], GNotRequired]
+GType = Union[str, "GGeneric"]
+GAnnotation = Union[GType, List[GType], GNotRequired]
 
 
 @dataclass()
@@ -146,3 +138,11 @@ class GEnum(GRootStmt, GPythonProducer, GHasName):
     values: List[str]
 
     def to_python(self): return s_enum(self)
+
+@dataclass
+class GCallback(GRootStmt, GPythonProducer, GHasName):
+    arguments: List[GType | list[GType]]
+    return_type: GType | list[GType] | None
+
+    def to_python(self) -> str:
+        return s_callback(self)

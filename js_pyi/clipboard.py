@@ -15,6 +15,8 @@ def _process(cmd: str, data: str):
     args = shlex.split(cmd)
     from subprocess import Popen, PIPE, STDOUT
     p = Popen(args, stdout=PIPE, stdin=PIPE, stderr=STDOUT)
+    assert p.stdin
+
     p.stdin.write(data.encode())
 
 

@@ -13,13 +13,16 @@ _types_dict = {
     'double': 'float',
     'unrestricted double': 'float',
     'unrestricted float': 'float',
+    'byte': 'int',
+    'short': 'int',
+    'octet': 'int',
     # generics
     'sequence': 'Sequence',
     'Promise': 'Awaitable'
 }
 
 
-def to_py_type(s) -> str:
+def to_py_type(s: str) -> str:
     return _types_dict.get(s, s)
 
 
@@ -28,7 +31,7 @@ _values_dict = {
 }
 
 
-def to_py_value(s) -> str:
+def to_py_value(s: str) -> str:
     return _values_dict.get(s, s)
 
 
@@ -43,7 +46,7 @@ reserved_keywords = {
 }
 
 
-def to_py_name(s) -> str:
+def to_py_name(s: str) -> str:
     if s in reserved_keywords:
         return s + '_'
     return s

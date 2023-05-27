@@ -1,0 +1,271 @@
+{
+  "spec": {
+    "title": "Permissions",
+    "url": "https://www.w3.org/TR/permissions/"
+  },
+  "headings": [
+    {
+      "id": "title",
+      "href": "https://www.w3.org/TR/permissions/#title",
+      "level": 1,
+      "title": "Permissions"
+    },
+    {
+      "id": "subtitle",
+      "href": "https://www.w3.org/TR/permissions/#subtitle",
+      "level": 2,
+      "title": "Interacting with Permissions for Powerful Features"
+    },
+    {
+      "id": "toc",
+      "href": "https://www.w3.org/TR/permissions/#toc",
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "id": "introduction",
+      "href": "https://www.w3.org/TR/permissions/#introduction",
+      "level": 2,
+      "title": "Introduction",
+      "number": "1"
+    },
+    {
+      "id": "examples-of-usage",
+      "href": "https://www.w3.org/TR/permissions/#examples-of-usage",
+      "level": 2,
+      "title": "Examples of usage",
+      "number": "2"
+    },
+    {
+      "id": "model",
+      "href": "https://www.w3.org/TR/permissions/#model",
+      "level": 2,
+      "title": "Model",
+      "number": "3"
+    },
+    {
+      "id": "permissions",
+      "href": "https://www.w3.org/TR/permissions/#permissions",
+      "level": 3,
+      "title": "Permissions",
+      "number": "3.1"
+    },
+    {
+      "id": "permission-store",
+      "href": "https://www.w3.org/TR/permissions/#permission-store",
+      "level": 3,
+      "title": "Permission Store",
+      "number": "3.2"
+    },
+    {
+      "id": "powerful-features",
+      "href": "https://www.w3.org/TR/permissions/#powerful-features",
+      "level": 3,
+      "title": "Powerful features",
+      "number": "3.3"
+    },
+    {
+      "id": "aspects",
+      "href": "https://www.w3.org/TR/permissions/#aspects",
+      "level": 4,
+      "title": "Aspects",
+      "number": "3.3.1"
+    },
+    {
+      "id": "permissions-task-source",
+      "href": "https://www.w3.org/TR/permissions/#permissions-task-source",
+      "level": 3,
+      "title": "Permissions task source",
+      "number": "3.4"
+    },
+    {
+      "id": "specifying-a-powerful-feature",
+      "href": "https://www.w3.org/TR/permissions/#specifying-a-powerful-feature",
+      "level": 2,
+      "title": "Specifying a powerful feature",
+      "number": "4"
+    },
+    {
+      "id": "algorithms-to-interface-with-permissions",
+      "href": "https://www.w3.org/TR/permissions/#algorithms-to-interface-with-permissions",
+      "level": 2,
+      "title": "Algorithms to interface with permissions",
+      "number": "5"
+    },
+    {
+      "id": "reading-the-current-permission-state",
+      "href": "https://www.w3.org/TR/permissions/#reading-the-current-permission-state",
+      "level": 3,
+      "title": "Reading the current permission state",
+      "number": "5.1"
+    },
+    {
+      "id": "requesting-permission-to-use-a-powerful-feature",
+      "href": "https://www.w3.org/TR/permissions/#requesting-permission-to-use-a-powerful-feature",
+      "level": 3,
+      "title": "Requesting permission to use a powerful feature",
+      "number": "5.2"
+    },
+    {
+      "id": "prompt-the-user-to-choose",
+      "href": "https://www.w3.org/TR/permissions/#prompt-the-user-to-choose",
+      "level": 3,
+      "title": "Prompt the user to choose",
+      "number": "5.3"
+    },
+    {
+      "id": "reacting-to-users-revoking-permission",
+      "href": "https://www.w3.org/TR/permissions/#reacting-to-users-revoking-permission",
+      "level": 3,
+      "title": "Reacting to users revoking permission",
+      "number": "5.4"
+    },
+    {
+      "id": "permissions-api",
+      "href": "https://www.w3.org/TR/permissions/#permissions-api",
+      "level": 2,
+      "title": "Permissions API",
+      "number": "6"
+    },
+    {
+      "id": "extensions-to-the-navigator-and-workernavigator-interfaces",
+      "href": "https://www.w3.org/TR/permissions/#extensions-to-the-navigator-and-workernavigator-interfaces",
+      "level": 3,
+      "title": "Extensions to the Navigator and WorkerNavigator interfaces",
+      "number": "6.1"
+    },
+    {
+      "id": "permissions-interface-0",
+      "href": "https://www.w3.org/TR/permissions/#permissions-interface-0",
+      "level": 3,
+      "title": "Permissions interface",
+      "number": "6.2"
+    },
+    {
+      "id": "query-method-0",
+      "href": "https://www.w3.org/TR/permissions/#query-method-0",
+      "level": 4,
+      "title": "query() method",
+      "number": "6.2.1"
+    },
+    {
+      "id": "permissionstatus-interface-0",
+      "href": "https://www.w3.org/TR/permissions/#permissionstatus-interface-0",
+      "level": 3,
+      "title": "PermissionStatus interface",
+      "number": "6.3"
+    },
+    {
+      "id": "creating-instances",
+      "href": "https://www.w3.org/TR/permissions/#creating-instances",
+      "level": 4,
+      "title": "Creating instances",
+      "number": "6.3.1"
+    },
+    {
+      "id": "name-attribute",
+      "href": "https://www.w3.org/TR/permissions/#name-attribute",
+      "level": 4,
+      "title": "name attribute",
+      "number": "6.3.2"
+    },
+    {
+      "id": "state-attribute",
+      "href": "https://www.w3.org/TR/permissions/#state-attribute",
+      "level": 4,
+      "title": "state attribute",
+      "number": "6.3.3"
+    },
+    {
+      "id": "onchange-attribute",
+      "href": "https://www.w3.org/TR/permissions/#onchange-attribute",
+      "level": 4,
+      "title": "onchange attribute",
+      "number": "6.3.4"
+    },
+    {
+      "id": "garbage-collection",
+      "href": "https://www.w3.org/TR/permissions/#garbage-collection",
+      "level": 4,
+      "title": "Garbage collection",
+      "number": "6.3.5"
+    },
+    {
+      "id": "conformance",
+      "href": "https://www.w3.org/TR/permissions/#conformance",
+      "level": 2,
+      "title": "Conformance",
+      "number": "7"
+    },
+    {
+      "id": "relationship-to-the-permissions-policy-specification",
+      "href": "https://www.w3.org/TR/permissions/#relationship-to-the-permissions-policy-specification",
+      "level": 2,
+      "title": "Relationship to the Permissions Policy specification",
+      "number": "A"
+    },
+    {
+      "id": "automated-testing",
+      "href": "https://www.w3.org/TR/permissions/#automated-testing",
+      "level": 2,
+      "title": "Automated testing",
+      "number": "B"
+    },
+    {
+      "id": "set-permission",
+      "href": "https://www.w3.org/TR/permissions/#set-permission",
+      "level": 3,
+      "title": "Set Permission",
+      "number": "B.1"
+    },
+    {
+      "id": "privacy-considerations-0",
+      "href": "https://www.w3.org/TR/permissions/#privacy-considerations-0",
+      "level": 2,
+      "title": "Privacy considerations",
+      "number": "C"
+    },
+    {
+      "id": "security-considerations",
+      "href": "https://www.w3.org/TR/permissions/#security-considerations",
+      "level": 2,
+      "title": "Security considerations",
+      "number": "D"
+    },
+    {
+      "id": "idl-index",
+      "href": "https://www.w3.org/TR/permissions/#idl-index",
+      "level": 2,
+      "title": "IDL Index",
+      "number": "E"
+    },
+    {
+      "id": "acknowledgments",
+      "href": "https://www.w3.org/TR/permissions/#acknowledgments",
+      "level": 2,
+      "title": "Acknowledgments",
+      "number": "F"
+    },
+    {
+      "id": "references",
+      "href": "https://www.w3.org/TR/permissions/#references",
+      "level": 2,
+      "title": "References",
+      "number": "G"
+    },
+    {
+      "id": "normative-references",
+      "href": "https://www.w3.org/TR/permissions/#normative-references",
+      "level": 3,
+      "title": "Normative references",
+      "number": "G.1"
+    },
+    {
+      "id": "informative-references",
+      "href": "https://www.w3.org/TR/permissions/#informative-references",
+      "level": 3,
+      "title": "Informative references",
+      "number": "G.2"
+    }
+  ]
+}

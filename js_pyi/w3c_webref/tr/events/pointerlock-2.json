@@ -1,0 +1,28 @@
+{
+  "spec": {
+    "title": "Pointer Lock 2.0",
+    "url": "https://www.w3.org/TR/pointerlock-2/"
+  },
+  "events": [
+    {
+      "type": "pointerlockchange",
+      "targets": [
+        "Document"
+      ],
+      "src": {
+        "format": "IDL eventHandler"
+      },
+      "href": "https://www.w3.org/TR/pointerlock-2/#dfn-pointerlockchange"
+    },
+    {
+      "type": "pointerlockerror",
+      "targets": [
+        "Document"
+      ],
+      "src": {
+        "format": "IDL eventHandler"
+      },
+      "href": "https://www.w3.org/TR/pointerlock-2/#dfn-pointerlockerror"
+    }
+  ]
+}

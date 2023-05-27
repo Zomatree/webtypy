@@ -1,0 +1,220 @@
+{
+  "spec": {
+    "title": "CSS Generated Content for Paged Media Module",
+    "url": "https://www.w3.org/TR/css-gcpm-3/"
+  },
+  "properties": [
+    {
+      "name": "string-set",
+      "value": "[[ <custom-ident> <content-list>] [, <custom-ident> <content-list>]* ] | none",
+      "initial": "none",
+      "appliesTo": "all elements, but not pseudo-elements",
+      "inherited": "no",
+      "media": "all",
+      "computedValue": "specified value",
+      "percentages": "N/A",
+      "styleDeclaration": [
+        "string-set",
+        "stringSet"
+      ]
+    },
+    {
+      "name": "position",
+      "newValues": "running()",
+      "media": "paged",
+      "styleDeclaration": [
+        "position"
+      ]
+    },
+    {
+      "name": "content",
+      "newValues": "element() | leader()",
+      "media": "paged",
+      "styleDeclaration": [
+        "content"
+      ]
+    },
+    {
+      "name": "float",
+      "newValues": "footnote",
+      "media": "paged",
+      "values": [
+        {
+          "name": "footnote",
+          "prose": "each footnote element is placed in the footnote area of the page",
+          "type": "value",
+          "value": "footnote"
+        }
+      ],
+      "styleDeclaration": [
+        "float"
+      ]
+    },
+    {
+      "name": "footnote-display",
+      "value": "block | inline | compact",
+      "initial": "block",
+      "appliesTo": "elements",
+      "inherited": "no",
+      "media": "paged",
+      "computedValue": "specified value",
+      "percentages": "N/A",
+      "values": [
+        {
+          "name": "block",
+          "prose": "The footnote element is placed in the footnote area as a block element",
+          "type": "value",
+          "value": "block"
+        },
+        {
+          "name": "inline",
+          "prose": "The footnote element is placed in the footnote area as an inline element",
+          "type": "value",
+          "value": "inline"
+        },
+        {
+          "name": "compact",
+          "prose": "The user agent determines whether a given footnote element is placed as a block element or an inline element. If two or more footnotes could fit on the same line in the footnote area, they should be placed inline.",
+          "type": "value",
+          "value": "compact"
+        }
+      ],
+      "styleDeclaration": [
+        "footnote-display",
+        "footnoteDisplay"
+      ]
+    },
+    {
+      "name": "footnote-policy",
+      "value": "auto | line | block",
+      "initial": "auto",
+      "appliesTo": "elements",
+      "inherited": "no",
+      "media": "paged",
+      "computedValue": "specified value",
+      "percentages": "N/A",
+      "values": [
+        {
+          "name": "auto",
+          "prose": "The user agent chooses how to render footnotes, and may place the footnote body on a later page than the footnote reference. A footnote body must never be placed on a page before the footnote reference.",
+          "type": "value",
+          "value": "auto"
+        },
+        {
+          "name": "line",
+          "prose": "If a given footnote body cannot be placed on the current page due to lack of space, the user agent introduces a forced page break at the start of the line containing the footnote reference, so that both the reference and the footnote body fall on the next page. Note that the user agent must honor widow and orphan settings when doing this, and so may need to insert the page break on an earlier line.",
+          "type": "value",
+          "value": "line"
+        },
+        {
+          "name": "block",
+          "prose": "As with line, except a forced page break is introduced before the paragraph that contains the footnote.",
+          "type": "value",
+          "value": "block"
+        }
+      ],
+      "styleDeclaration": [
+        "footnote-policy",
+        "footnotePolicy"
+      ]
+    },
+    {
+      "name": "bookmark-level",
+      "value": "none | <integer>",
+      "initial": "none",
+      "appliesTo": "all elements",
+      "inherited": "no",
+      "media": "paged",
+      "computedValue": "specified value",
+      "percentages": "N/A",
+      "styleDeclaration": [
+        "bookmark-level",
+        "bookmarkLevel"
+      ]
+    },
+    {
+      "name": "bookmark-label",
+      "value": "<content-list> | none",
+      "initial": "none",
+      "appliesTo": "all elements",
+      "inherited": "no",
+      "media": "paged",
+      "computedValue": "specified value",
+      "percentages": "N/A",
+      "styleDeclaration": [
+        "bookmark-label",
+        "bookmarkLabel"
+      ]
+    },
+    {
+      "name": "bookmark-state",
+      "value": "open | closed",
+      "initial": "open",
+      "appliesTo": "block-level elements",
+      "inherited": "no",
+      "media": "paged",
+      "computedValue": "specified value",
+      "percentages": "N/A",
+      "styleDeclaration": [
+        "bookmark-state",
+        "bookmarkState"
+      ]
+    }
+  ],
+  "atrules": [],
+  "selectors": [],
+  "values": [
+    {
+      "name": "content()",
+      "type": "function",
+      "value": "content([text | before | after | first-letter ])"
+    },
+    {
+      "name": "string()",
+      "type": "function",
+      "value": "string( <custom-ident> [ , [ first | start | last | first-except] ]? )"
+    },
+    {
+      "name": "running()",
+      "type": "function",
+      "value": "string( <custom-ident> )"
+    },
+    {
+      "name": "element()",
+      "type": "function",
+      "value": "string( <custom-ident> [ , [ first | start | last | first-except] ]? )"
+    },
+    {
+      "name": "nth()",
+      "type": "function",
+      "value": "( An+B [of <custom-ident>]?)"
+    },
+    {
+      "name": "leader()",
+      "type": "function",
+      "value": "leader( [dotted | solid | space] | <string>);"
+    },
+    {
+      "name": "target-counter()",
+      "type": "function",
+      "value": "target-counter( <url> , <custom-ident> [ , <counter-style> ]? )"
+    },
+    {
+      "name": "target-counters()",
+      "type": "function",
+      "value": "target-counter( <url> , <custom-ident> , <string> [ , <counter-style> ]? )"
+    },
+    {
+      "name": "target-text()",
+      "type": "function",
+      "value": "target-counter( <url> [ , [ content | before | after | first-letter] ]? )"
+    }
+  ],
+  "warnings": [
+    {
+      "msg": "Missing definition",
+      "name": "content-list",
+      "value": "[ <string> | <counter()> | <counters()> | <content()> | attr(<identifier>) ]+"
+    }
+  ]
+}

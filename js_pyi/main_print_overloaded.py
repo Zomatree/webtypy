@@ -2,11 +2,11 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
-from typing import List
+from typing import Iterator, List
+from itertools import groupby
 
 from js_pyi.datamodel import GStmt, GClass, GMethod
 from js_pyi.ingest import ingest, keep_python_producer, keep_unhandled
-from js_pyi.itertools import groupby
 from js_pyi.stringify import s_statements
 from js_pyi.webidls import find_all
 

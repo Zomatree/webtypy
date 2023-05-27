@@ -14,7 +14,6 @@ console.log('partial interface CSSStyleDeclaration {\n' + Object.keys(document.b
 
 - copy the output and paste it below
 */
-
 partial interface CSSStyleDeclaration {
   attribute str accentColor;
   attribute str additiveSymbols;

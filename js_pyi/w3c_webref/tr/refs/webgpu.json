@@ -1,0 +1,52 @@
+{
+  "spec": {
+    "title": "WebGPU",
+    "url": "https://www.w3.org/TR/webgpu/"
+  },
+  "refs": {
+    "normative": [
+      {
+        "name": "DOM",
+        "url": "https://dom.spec.whatwg.org/"
+      },
+      {
+        "name": "ECMASCRIPT",
+        "url": "https://tc39.es/ecma262/multipage/"
+      },
+      {
+        "name": "HTML",
+        "url": "https://html.spec.whatwg.org/multipage/"
+      },
+      {
+        "name": "INFRA",
+        "url": "https://infra.spec.whatwg.org/"
+      },
+      {
+        "name": "RFC2119",
+        "url": "https://datatracker.ietf.org/doc/html/rfc2119"
+      },
+      {
+        "name": "WEBCODECS",
+        "url": "https://www.w3.org/TR/webcodecs/"
+      },
+      {
+        "name": "WEBGL-1",
+        "url": "https://www.khronos.org/registry/webgl/specs/latest/1.0/"
+      },
+      {
+        "name": "WEBIDL",
+        "url": "https://webidl.spec.whatwg.org/"
+      },
+      {
+        "name": "WGSL",
+        "url": "https://www.w3.org/TR/WGSL/"
+      }
+    ],
+    "informative": [
+      {
+        "name": "SourceMap",
+        "url": "https://sourcemaps.info/spec.html"
+      }
+    ]
+  }
+}

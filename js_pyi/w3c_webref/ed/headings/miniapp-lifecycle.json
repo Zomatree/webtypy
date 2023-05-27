@@ -1,0 +1,314 @@
+{
+  "spec": {
+    "title": "MiniApp Lifecycle",
+    "url": "https://w3c.github.io/miniapp-lifecycle/"
+  },
+  "headings": [
+    {
+      "id": "title",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#title",
+      "level": 1,
+      "title": "MiniApp Lifecycle"
+    },
+    {
+      "id": "toc",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#toc",
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "id": "background",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#background",
+      "level": 2,
+      "title": "Background",
+      "number": "1"
+    },
+    {
+      "id": "miniapp-global-application-lifecycle",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#miniapp-global-application-lifecycle",
+      "level": 2,
+      "title": "MiniApp Global Application Lifecycle",
+      "number": "2"
+    },
+    {
+      "id": "miniapp-global-application-lifecycle-events",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#miniapp-global-application-lifecycle-events",
+      "level": 3,
+      "title": "MiniApp Global Application Lifecycle Events",
+      "number": "2.1"
+    },
+    {
+      "id": "miniapp-global-application-lifecycle-states",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#miniapp-global-application-lifecycle-states",
+      "level": 3,
+      "title": "MiniApp Global Application Lifecycle States",
+      "number": "2.2"
+    },
+    {
+      "id": "globalstate-enum",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#globalstate-enum",
+      "level": 3,
+      "title": "GlobalState enum",
+      "number": "2.3"
+    },
+    {
+      "id": "miniapp-global-application-lifecycle-interface",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#miniapp-global-application-lifecycle-interface",
+      "level": 3,
+      "title": "MiniApp Global Application Lifecycle interface",
+      "number": "2.4"
+    },
+    {
+      "id": "globalstate-attribute",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#globalstate-attribute",
+      "level": 4,
+      "title": "globalState attribute",
+      "number": "2.4.1"
+    },
+    {
+      "id": "inputobject-attribute",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#inputobject-attribute",
+      "level": 4,
+      "title": "inputObject attribute",
+      "number": "2.4.2"
+    },
+    {
+      "id": "lifecycleerror-attribute",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#lifecycleerror-attribute",
+      "level": 4,
+      "title": "lifecycleError attribute",
+      "number": "2.4.3"
+    },
+    {
+      "id": "ongloballaunched-event-handler-attribute",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#ongloballaunched-event-handler-attribute",
+      "level": 4,
+      "title": "ongloballaunched event handler attribute",
+      "number": "2.4.4"
+    },
+    {
+      "id": "onglobalshown-event-handler-attribute",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#onglobalshown-event-handler-attribute",
+      "level": 4,
+      "title": "onglobalshown event handler attribute",
+      "number": "2.4.5"
+    },
+    {
+      "id": "onglobalhidden-event-handler-attribute",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#onglobalhidden-event-handler-attribute",
+      "level": 4,
+      "title": "onglobalhidden event handler attribute",
+      "number": "2.4.6"
+    },
+    {
+      "id": "onglobalerror-event-handler-attribute",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#onglobalerror-event-handler-attribute",
+      "level": 4,
+      "title": "onglobalerror event handler attribute",
+      "number": "2.4.7"
+    },
+    {
+      "id": "inputobject-interface",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#inputobject-interface",
+      "level": 3,
+      "title": "InputObject interface",
+      "number": "2.5"
+    },
+    {
+      "id": "pagepath-attribute",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#pagepath-attribute",
+      "level": 4,
+      "title": "pagePath attribute",
+      "number": "2.5.1"
+    },
+    {
+      "id": "referrerinfo-attribute",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#referrerinfo-attribute",
+      "level": 4,
+      "title": "referrerInfo attribute",
+      "number": "2.5.2"
+    },
+    {
+      "id": "lang-attribute",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#lang-attribute",
+      "level": 4,
+      "title": "lang attribute",
+      "number": "2.5.3"
+    },
+    {
+      "id": "dir-attribute",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#dir-attribute",
+      "level": 4,
+      "title": "dir attribute",
+      "number": "2.5.4"
+    },
+    {
+      "id": "lifecycleerror-interface",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#lifecycleerror-interface",
+      "level": 3,
+      "title": "LifecycleError interface",
+      "number": "2.6"
+    },
+    {
+      "id": "errordescription-attribute",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#errordescription-attribute",
+      "level": 4,
+      "title": "errorDescription attribute",
+      "number": "2.6.1"
+    },
+    {
+      "id": "lang-attribute-0",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#lang-attribute-0",
+      "level": 4,
+      "title": "lang attribute",
+      "number": "2.6.2"
+    },
+    {
+      "id": "dir-attribute-0",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#dir-attribute-0",
+      "level": 4,
+      "title": "dir attribute",
+      "number": "2.6.3"
+    },
+    {
+      "id": "miniapp-page-lifecycle",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#miniapp-page-lifecycle",
+      "level": 2,
+      "title": "MiniApp Page Lifecycle",
+      "number": "3"
+    },
+    {
+      "id": "miniapp-page-lifecycle-events",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#miniapp-page-lifecycle-events",
+      "level": 3,
+      "title": "MiniApp Page Lifecycle Events",
+      "number": "3.1"
+    },
+    {
+      "id": "miniapp-page-lifecycle-states",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#miniapp-page-lifecycle-states",
+      "level": 3,
+      "title": "MiniApp Page Lifecycle States",
+      "number": "3.2"
+    },
+    {
+      "id": "pagestate-enum",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#pagestate-enum",
+      "level": 3,
+      "title": "PageState enum",
+      "number": "3.3"
+    },
+    {
+      "id": "miniapp-page-lifecycle-interface",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#miniapp-page-lifecycle-interface",
+      "level": 3,
+      "title": "MiniApp Page Lifecycle interface",
+      "number": "3.4"
+    },
+    {
+      "id": "pagestate-attribute",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#pagestate-attribute",
+      "level": 4,
+      "title": "pageState attribute",
+      "number": "3.4.1"
+    },
+    {
+      "id": "pageinputobject-attribute",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#pageinputobject-attribute",
+      "level": 4,
+      "title": "pageInputObject attribute",
+      "number": "3.4.2"
+    },
+    {
+      "id": "onpageloaded-event-handler-attribute",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#onpageloaded-event-handler-attribute",
+      "level": 4,
+      "title": "onpageloaded event handler attribute",
+      "number": "3.4.3"
+    },
+    {
+      "id": "onpageready-event-handler-attribute",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#onpageready-event-handler-attribute",
+      "level": 4,
+      "title": "onpageready event handler attribute",
+      "number": "3.4.4"
+    },
+    {
+      "id": "onpageshown-event-handler-attribute",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#onpageshown-event-handler-attribute",
+      "level": 4,
+      "title": "onpageshown event handler attribute",
+      "number": "3.4.5"
+    },
+    {
+      "id": "onpagehidden-event-handler-attribute",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#onpagehidden-event-handler-attribute",
+      "level": 4,
+      "title": "onpagehidden event handler attribute",
+      "number": "3.4.6"
+    },
+    {
+      "id": "onpageunloaded-event-handler-attribute",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#onpageunloaded-event-handler-attribute",
+      "level": 4,
+      "title": "onpageunloaded event handler attribute",
+      "number": "3.4.7"
+    },
+    {
+      "id": "pageinputobject-interface",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#pageinputobject-interface",
+      "level": 3,
+      "title": "PageInputObject interface",
+      "number": "3.5"
+    },
+    {
+      "id": "pageinputquery-attribute",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#pageinputquery-attribute",
+      "level": 4,
+      "title": "pageInputQuery attribute",
+      "number": "3.5.1"
+    },
+    {
+      "id": "usage-example",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#usage-example",
+      "level": 2,
+      "title": "Usage example",
+      "number": "4"
+    },
+    {
+      "id": "security-considerations",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#security-considerations",
+      "level": 2,
+      "title": "Security Considerations",
+      "number": "5"
+    },
+    {
+      "id": "privacy-considerations",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#privacy-considerations",
+      "level": 2,
+      "title": "Privacy Considerations",
+      "number": "6"
+    },
+    {
+      "id": "accessibility-considerations",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#accessibility-considerations",
+      "level": 2,
+      "title": "Accessibility Considerations",
+      "number": "7"
+    },
+    {
+      "id": "references",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#references",
+      "level": 2,
+      "title": "References",
+      "number": "A"
+    },
+    {
+      "id": "informative-references",
+      "href": "https://w3c.github.io/miniapp-lifecycle/#informative-references",
+      "level": 3,
+      "title": "Informative references",
+      "number": "A.1"
+    }
+  ]
+}

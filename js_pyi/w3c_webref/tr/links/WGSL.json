@@ -1,0 +1,169 @@
+{
+  "spec": {
+    "title": "WebGPU Shading Language",
+    "url": "https://www.w3.org/TR/WGSL/"
+  },
+  "links": {
+    "http://ieeexplore.ieee.org/servlet/opac?punumber=4610933": {},
+    "http://publications.csail.mit.edu/lcs/pubs/pdf/MIT-LCS-TR-065.pdf": {},
+    "http://www.unicode.org/versions/Unicode14.0.0/": {},
+    "https://datatracker.ietf.org/doc/html/rfc2119": {},
+    "https://dl.acm.org/doi/10.1145/1289971.1289983": {},
+    "https://github.com/KhronosGroup/Vulkan-MemoryModel/blob/master/alloy/spirv.als": {},
+    "https://github.com/gpuweb/gpuweb/issues": {},
+    "https://gpuweb.github.io/gpuweb/": {
+      "anchors": [
+        "gpu-command",
+        "binding-resource-type",
+        "binding-type",
+        "binding-member",
+        "abstract-opdef-validating-gpuprogrammablestage",
+        "abstract-opdef-effective-buffer-binding-size",
+        "gpuwgsllanguagefeatures",
+        "dom-supported-limits-maxcomputeworkgroupstoragesize",
+        "rasterizationpoint",
+        "clip-position",
+        "ndc",
+        "rasterizationpoint-destination",
+        "fragmentdestination-position",
+        "rasterizationpoint-depth",
+        "rasterizationpoint-perspectivedivisor",
+        "framebuffer",
+        "front-facing",
+        "shader-output-mask",
+        "texture-format-caps"
+      ],
+      "specShortname": "webgpu"
+    },
+    "https://lists.w3.org/Archives/Public/public-gpu/": {},
+    "https://w3.org/TR/webgpu": {},
+    "https://www.ams.org/journals/mcom/2013-82-284/S0025-5718-2013-02679-8/S0025-5718-2013-02679-8.pdf": {},
+    "https://www.iana.org/assignments/media-types/": {},
+    "https://www.iana.org/assignments/media-types/text/wgsl": {},
+    "https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html": {
+      "anchors": [
+        "memory-model-memory-operation",
+        "memory-model-references",
+        "memory-model-atomic-operation",
+        "memory-model-scope",
+        "memory-model-memory-semantics",
+        "memory-model-non-private",
+        "memory-model"
+      ]
+    },
+    "https://www.unicode.org/Public/14.0.0/ucd/DerivedCoreProperties.txt": {
+      "anchors": [
+        "unicode-character-database-for-unicode-version-1400"
+      ]
+    },
+    "https://www.unicode.org/reports/tr14": {
+      "anchors": [
+        "BreakingRules",
+        "LB4",
+        "LB5"
+      ]
+    },
+    "https://www.unicode.org/reports/tr14/tr14-49.html": {},
+    "https://www.unicode.org/reports/tr31/tr31-35.html": {
+      "anchors": [
+        "unicode-standard-annex-31-for-unicode-version-1400",
+        "D1",
+        "Table_Lexical_Classes_for_Identifiers"
+      ]
+    },
+    "https://www.unicode.org/reports/tr31/tr31-37.html": {},
+    "https://www.unicode.org/versions/Unicode14.0.0/UnicodeStandard-14.0.pdf": {},
+    "https://www.w3.org/2021/Process-20211102/": {
+      "anchors": [
+        "recs-and-notes"
+      ]
+    },
+    "https://www.w3.org/Consortium/Patent-Policy/": {
+      "anchors": [
+        "def-essential",
+        "sec-Disclosure"
+      ],
+      "specShortname": "w3c-patent-policy"
+    },
+    "https://www.w3.org/TR/": {},
+    "https://www.w3.org/TR/WGSL/": {
+      "specShortname": "WGSL"
+    },
+    "https://www.w3.org/TR/charmod-norm/": {},
+    "https://www.w3.org/TR/css-tables-3/": {
+      "anchors": [
+        "originate"
+      ],
+      "specShortname": "css-tables-3"
+    },
+    "https://www.w3.org/TR/webgpu/": {
+      "anchors": [
+        "gpuprogrammablestage",
+        "dom-gpudevice-createshadermodule",
+        "dom-gpudevice-createcomputepipeline",
+        "dom-gpudevice-createrenderpipeline",
+        "dom-gpucompilationinfo-messages",
+        "gpucompilationinfo",
+        "limits",
+        "gpubuffer",
+        "gputexture",
+        "enumdef-gputextureviewdimension",
+        "gpusampler",
+        "enumdef-gpuaddressmode",
+        "enumdef-gpufiltermode",
+        "enumdef-gpucomparefunction",
+        "enumdef-gputextureformat",
+        "plain-color-formats",
+        "dom-gputextureusage-storage_binding",
+        "dom-gputexture-format",
+        "abstract-opdef-validating-shader-binding",
+        "dom-gputexturebindinglayout-sampletype",
+        "dom-gputextureviewdimension-1d",
+        "dom-gputextureviewdimension-2d",
+        "dom-gputextureviewdimension-2d-array",
+        "dom-gputextureviewdimension-3d",
+        "dom-gputextureviewdimension-cube",
+        "dom-gputextureviewdimension-cube-array",
+        "gpuexternaltexture",
+        "dictdef-gputexturebindinglayout",
+        "dom-gpudevice-createbindgrouplayout",
+        "gpupipelinelayout",
+        "dictdef-gpubufferbinding",
+        "dom-gpubindgrouplayoutentry-buffer",
+        "dom-gpubufferbindingtype-uniform",
+        "dom-gpubufferbindingtype-storage",
+        "dom-gpubufferbindingtype-read-only-storage",
+        "dom-gpubindgrouplayoutentry-sampler",
+        "dom-gpusamplerbindingtype-filtering",
+        "dom-gpusamplerbindingtype-non-filtering",
+        "dom-gpusamplerbindingtype-comparison",
+        "gputextureview",
+        "dom-gpubindgrouplayoutentry-texture",
+        "dom-gputexturesampletype-float",
+        "dom-gputexturesampletype-unfilterable-float",
+        "dom-gputexturesampletype-sint",
+        "dom-gputexturesampletype-uint",
+        "dom-gputexturesampletype-depth",
+        "dom-gpubindgrouplayoutentry-storagetexture",
+        "enumdef-gpustoragetextureaccess",
+        "dom-gpustoragetextureaccess-write-only",
+        "dom-gpubindgrouplayoutentry-externaltexture",
+        "gpufeaturename",
+        "gpudevice",
+        "gpu",
+        "fragment-processing",
+        "rasterization",
+        "coordinate-systems",
+        "primitive-clipping",
+        "dom-renderstate-viewport-slot",
+        "compute-pass-encoder-dispatch",
+        "dom-gpumultisamplestate-count",
+        "gpurenderpipeline",
+        "sample-masking"
+      ],
+      "specShortname": "webgpu"
+    },
+    "https://www.w3.org/groups/wg/gpu": {},
+    "https://www.w3.org/groups/wg/gpu/ipr": {}
+  }
+}

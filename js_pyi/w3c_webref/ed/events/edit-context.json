@@ -1,0 +1,65 @@
+{
+  "spec": {
+    "title": "EditContext API",
+    "url": "https://w3c.github.io/edit-context/"
+  },
+  "events": [
+    {
+      "src": {
+        "format": "fire an event phrasing",
+        "href": "https://w3c.github.io/edit-context/#update-the-editcontext"
+      },
+      "href": "https://w3c.github.io/edit-context/#update-the-editcontext",
+      "type": "compositionstart",
+      "interface": "Event",
+      "targets": [
+        "EditContext"
+      ]
+    },
+    {
+      "src": {
+        "format": "fire an event phrasing",
+        "href": "https://w3c.github.io/edit-context/#dispatch-text-update-event"
+      },
+      "href": "https://w3c.github.io/edit-context/#dispatch-text-update-event",
+      "type": "textupdate",
+      "interface": "Event",
+      "targets": [
+        "EditContext"
+      ]
+    },
+    {
+      "src": {
+        "format": "fire an event phrasing",
+        "href": "https://w3c.github.io/edit-context/#dispatch-text-format-update-event"
+      },
+      "href": "https://w3c.github.io/edit-context/#dispatch-text-format-update-event",
+      "type": "textformatupdate",
+      "interface": "TextFormatUpdateEvent",
+      "targets": [
+        "EditContext"
+      ]
+    },
+    {
+      "src": {
+        "format": "fire an event phrasing",
+        "href": "https://w3c.github.io/edit-context/#dispatch-character-bounds-update-event"
+      },
+      "href": "https://w3c.github.io/edit-context/#dispatch-character-bounds-update-event",
+      "type": "characterboundsupdate",
+      "interface": "Event",
+      "targets": [
+        "EditContext"
+      ]
+    },
+    {
+      "type": "compositionend",
+      "targets": [
+        "EditContext"
+      ],
+      "src": {
+        "format": "IDL eventHandler"
+      }
+    }
+  ]
+}

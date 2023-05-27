@@ -1,0 +1,83 @@
+{
+  "spec": {
+    "title": "Internationalization Glossary",
+    "url": "https://w3c.github.io/i18n-glossary/"
+  },
+  "headings": [
+    {
+      "id": "title",
+      "href": "https://w3c.github.io/i18n-glossary/#title",
+      "level": 1,
+      "title": "Internationalization Glossary"
+    },
+    {
+      "id": "toc",
+      "href": "https://w3c.github.io/i18n-glossary/#toc",
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "id": "introduction-0",
+      "href": "https://w3c.github.io/i18n-glossary/#introduction-0",
+      "level": 2,
+      "title": "Introduction",
+      "number": "1"
+    },
+    {
+      "id": "alphabetical-links",
+      "href": "https://w3c.github.io/i18n-glossary/#alphabetical-links",
+      "level": 2,
+      "title": "Alphabetical links",
+      "number": "2"
+    },
+    {
+      "id": "glossary",
+      "href": "https://w3c.github.io/i18n-glossary/#glossary",
+      "level": 2,
+      "title": "Glossary",
+      "number": "3"
+    },
+    {
+      "id": "how-to-use",
+      "href": "https://w3c.github.io/i18n-glossary/#how-to-use",
+      "level": 2,
+      "title": "How to use this glossary",
+      "number": "A"
+    },
+    {
+      "id": "infra-rel",
+      "href": "https://w3c.github.io/i18n-glossary/#infra-rel",
+      "level": 3,
+      "title": "Relationship to the Infra Standard",
+      "number": "A.1"
+    },
+    {
+      "id": "respec-how-to-use",
+      "href": "https://w3c.github.io/i18n-glossary/#respec-how-to-use",
+      "level": 3,
+      "title": "ReSpec",
+      "number": "A.2"
+    },
+    {
+      "id": "bikeshed-how",
+      "href": "https://w3c.github.io/i18n-glossary/#bikeshed-how",
+      "level": 3,
+      "title": "Bikeshed",
+      "number": "A.3"
+    },
+    {
+      "id": "references",
+      "href": "https://w3c.github.io/i18n-glossary/#references",
+      "level": 2,
+      "title": "References",
+      "number": "B"
+    },
+    {
+      "id": "informative-references",
+      "href": "https://w3c.github.io/i18n-glossary/#informative-references",
+      "level": 3,
+      "title": "Informative references",
+      "number": "B.1"
+    }
+  ]
+}

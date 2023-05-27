@@ -3,10 +3,9 @@
 // (https://github.com/w3c/webref)
 // Source: Ink API (https://wicg.github.io/ink-enhancement/)
 
-[Exposed=Window]
 interface Ink {
     Promise<InkPresenter> requestPresenter(
-        optional InkPresenterParam param = {});
+        optional InkPresenterParam? param = null);
 };
 
 dictionary InkPresenterParam {

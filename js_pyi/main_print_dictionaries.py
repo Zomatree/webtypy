@@ -8,7 +8,7 @@ from js_pyi.ingest import ingest, keep_unhandled
 from js_pyi.webidls import find_all
 
 
-def print_dictionaries(files: List[Path] | None = None) -> bool:
+def print_dictionaries(files: List[Path] | None = None):
     if files is None:
         files = find_all()
 

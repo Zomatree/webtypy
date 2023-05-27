@@ -1,0 +1,35 @@
+{
+  "spec": {
+    "title": "Geolocation API",
+    "url": "https://www.w3.org/TR/geolocation/"
+  },
+  "refs": {
+    "normative": [
+      {
+        "name": "RFC2119",
+        "url": "https://www.rfc-editor.org/rfc/rfc2119"
+      },
+      {
+        "name": "RFC8174",
+        "url": "https://www.rfc-editor.org/rfc/rfc8174"
+      },
+      {
+        "name": "webidl",
+        "url": "https://webidl.spec.whatwg.org/"
+      },
+      {
+        "name": "WGS84"
+      }
+    ],
+    "informative": [
+      {
+        "name": "Permissions",
+        "url": "https://www.w3.org/TR/permissions/"
+      },
+      {
+        "name": "Permissions-Policy",
+        "url": "https://www.w3.org/TR/permissions-policy-1/"
+      }
+    ]
+  }
+}

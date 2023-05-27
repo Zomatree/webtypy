@@ -1,0 +1,160 @@
+{
+  "spec": {
+    "title": "Touch Events",
+    "url": "https://www.w3.org/TR/touch-events/"
+  },
+  "dfns": [
+    {
+      "id": "dfn-user-agent",
+      "href": "https://www.w3.org/TR/touch-events/#dfn-user-agent",
+      "linkingText": [
+        "user agent"
+      ],
+      "localLinkingText": [],
+      "type": "dfn",
+      "for": [],
+      "access": "public",
+      "informative": false,
+      "heading": {
+        "id": "conformance",
+        "href": "https://www.w3.org/TR/touch-events/#conformance",
+        "title": "Conformance",
+        "number": "2"
+      },
+      "definedIn": "prose"
+    },
+    {
+      "id": "dfn-touchstart",
+      "href": "https://www.w3.org/TR/touch-events/#dfn-touchstart",
+      "linkingText": [
+        "touchstart"
+      ],
+      "localLinkingText": [],
+      "type": "dfn",
+      "for": [],
+      "access": "public",
+      "informative": false,
+      "heading": {
+        "id": "the-touchstart-event",
+        "href": "https://www.w3.org/TR/touch-events/#the-touchstart-event",
+        "title": "The touchstart event",
+        "number": "5.5"
+      },
+      "definedIn": "heading"
+    },
+    {
+      "id": "dfn-touchend",
+      "href": "https://www.w3.org/TR/touch-events/#dfn-touchend",
+      "linkingText": [
+        "touchend"
+      ],
+      "localLinkingText": [],
+      "type": "dfn",
+      "for": [],
+      "access": "public",
+      "informative": false,
+      "heading": {
+        "id": "the-touchend-event",
+        "href": "https://www.w3.org/TR/touch-events/#the-touchend-event",
+        "title": "The touchend event",
+        "number": "5.6"
+      },
+      "definedIn": "heading"
+    },
+    {
+      "id": "dfn-touchmove",
+      "href": "https://www.w3.org/TR/touch-events/#dfn-touchmove",
+      "linkingText": [
+        "touchmove"
+      ],
+      "localLinkingText": [],
+      "type": "dfn",
+      "for": [],
+      "access": "public",
+      "informative": false,
+      "heading": {
+        "id": "the-touchmove-event",
+        "href": "https://www.w3.org/TR/touch-events/#the-touchmove-event",
+        "title": "The touchmove event",
+        "number": "5.7"
+      },
+      "definedIn": "heading"
+    },
+    {
+      "id": "dfn-touchcancel",
+      "href": "https://www.w3.org/TR/touch-events/#dfn-touchcancel",
+      "linkingText": [
+        "touchcancel"
+      ],
+      "localLinkingText": [],
+      "type": "dfn",
+      "for": [],
+      "access": "public",
+      "informative": false,
+      "heading": {
+        "id": "the-touchcancel-event",
+        "href": "https://www.w3.org/TR/touch-events/#the-touchcancel-event",
+        "title": "The touchcancel event",
+        "number": "5.8"
+      },
+      "definedIn": "heading"
+    },
+    {
+      "id": "dfn-active-touch-point",
+      "href": "https://www.w3.org/TR/touch-events/#dfn-active-touch-point",
+      "linkingText": [
+        "active touch point"
+      ],
+      "localLinkingText": [],
+      "type": "dfn",
+      "for": [],
+      "access": "public",
+      "informative": false,
+      "heading": {
+        "id": "glossary",
+        "href": "https://www.w3.org/TR/touch-events/#glossary",
+        "title": "Glossary",
+        "number": "8"
+      },
+      "definedIn": "dt"
+    },
+    {
+      "id": "dfn-touch-point",
+      "href": "https://www.w3.org/TR/touch-events/#dfn-touch-point",
+      "linkingText": [
+        "touch point"
+      ],
+      "localLinkingText": [],
+      "type": "dfn",
+      "for": [],
+      "access": "public",
+      "informative": false,
+      "heading": {
+        "id": "glossary",
+        "href": "https://www.w3.org/TR/touch-events/#glossary",
+        "title": "Glossary",
+        "number": "8"
+      },
+      "definedIn": "dt"
+    },
+    {
+      "id": "dfn-preventdefault",
+      "href": "https://www.w3.org/TR/touch-events/#dfn-preventdefault",
+      "linkingText": [
+        "preventDefault"
+      ],
+      "localLinkingText": [],
+      "type": "dfn",
+      "for": [],
+      "access": "public",
+      "informative": false,
+      "heading": {
+        "id": "glossary",
+        "href": "https://www.w3.org/TR/touch-events/#glossary",
+        "title": "Glossary",
+        "number": "8"
+      },
+      "definedIn": "dt"
+    }
+  ]
+}

@@ -1,11 +1,11 @@
 from __future__ import annotations
+from typing import Any
 
-import widlparser
-from widlparser import Interface, InterfaceMember, Construct, TypeWithExtendedAttributes, Argument, UnionType, \
+from widlparser import Callback, Interface, InterfaceMember, Construct, TypeWithExtendedAttributes, Argument, UnionType, \
     Attribute, AttributeRest, SingleType, AnyType, NonAnyType, PrimitiveType, Symbol, TypeIdentifier, Default, Type, \
-    TypeSuffix, Operation, UnionMemberType, UnsignedIntegerType, UnrestrictedFloatType, Enum, EnumValue, \
+    TypeSuffix, Operation, UnionMemberType, Enum, EnumValue, \
     IncludesStatement, Typedef, ExtendedAttribute, Mixin, MixinMember, MixinAttribute, Constructor, Dictionary, \
-    DictionaryMember, Inheritance, Namespace, NamespaceMember, Stringifier, Const
+    DictionaryMember, Inheritance, Namespace, NamespaceMember, Stringifier, Const, Parser
 
 from js_pyi.assertions import unhandled, expect_isinstance
 from js_pyi.conversion import reserved_keywords
@@ -40,12 +40,8 @@ def i_primitive_type(primitive_type: PrimitiveType):
     t = primitive_type.type
     if isinstance(t, Symbol):
         return i_symbol(t)
-    if isinstance(t, UnsignedIntegerType) or \
-            isinstance(t, UnrestrictedFloatType):
-        s = str(t)
-        return s
-    unhandled(t)
-
+    else:
+        return str(t).strip()
 
 def _wrap_if_nullable(o, suffix: TypeSuffix | None):
     nullable = suffix is not None
@@ -190,11 +186,12 @@ def i_interface_member(member: InterfaceMember):
 
     if idl_type == 'method':
         return i_interface_member__type_method(member)
-    if idl_type == 'attribute':
+    elif idl_type == 'attribute':
         return i_interface_member__type_attribute(member)
-    if idl_type == 'const':
+    elif idl_type == 'const':
         return i_interface_member__type_const(member)
-    unhandled(idl_type)
+    else:
+        unhandled(idl_type)
 
 
 def i_interface(interface: Interface | Mixin, throw: bool):
@@ -282,6 +279,26 @@ def i_extended_attribute(construct: ExtendedAttribute):
     expect_isinstance(construct, ExtendedAttribute)
     return GIgnoredStmt(str(construct))
 
+def i_callback(cb: Callback):
+    expect_isinstance(cb, Callback)
+    arguments = cb.arguments
+    args: list[Any] = []
+    if arguments:
+        for arg in arguments.arguments:
+            ty = arg.type
+            if isinstance(ty, TypeWithExtendedAttributes):
+                args.append(i_type_with_extended_attributes(ty))
+            else:
+                args.append(i_type(ty))
+    else:
+        args = []
+
+    if cb.return_type:
+        rt = i_type(cb.return_type)
+    else:
+        rt = None
+
+    return GCallback(cb.name, args, rt)
 
 def i_construct(construct: Construct, throw: bool):
     expect_isinstance(construct, Construct)
@@ -300,6 +317,8 @@ def i_construct(construct: Construct, throw: bool):
         return i_extended_attribute(construct)
     if isinstance(construct, Namespace):
         return i_namespace(construct)
+    if isinstance(construct, Callback):
+        return i_callback(construct)
     if isinstance(construct, InterfaceMember) or isinstance(construct, MixinMember):
         if throw:
             res = i_interface_member(construct)
@@ -332,7 +351,7 @@ def i_union_type(union_type: UnionType):
 
 def ingest(idl: str, throw: bool = True) -> List[GStmt]:
     statements: List[GStmt] = []
-    parser = widlparser.Parser()
+    parser = Parser()
     parser.markup()
     parser.parse(idl)
     for c in parser.constructs:

@@ -34,7 +34,7 @@ def s_arg(a: GArg) -> str:
 def s_class(i: GClass) -> str:
     bases = ''
     if len(i.bases) > 0:
-        bases = '(' + ', '.join(i.bases) + ')'
+        bases = '(' + ', '.join(dict.fromkeys(i.bases)) + ')'
     name = i.name
     if i.is_namespace:
         name = name.capitalize() + 'Namespace'
@@ -59,6 +59,8 @@ def s_method(m: GMethod) -> str:
     returns = ''
     if m.returns is not None and m.returns != 'undefined':
         returns = ' -> ' + s_annotation(m.returns)
+    else:
+        returns = ' -> None'
 
     args_arr = ['self'] + [s_arg(a) for a in m.arguments]
     args_str = ', '.join(args_arr)
@@ -75,8 +77,7 @@ def s_annotation_named(a: GAnnotation) -> str:
         ann = ': ' + ann
     return ann
 
-
-def s_type(a: GType) -> str:
+def s_type(a: GType | GNotRequired) -> str:
     if isinstance(a, str):
         return to_py_type(a)
 
@@ -96,7 +97,8 @@ def s_type(a: GType) -> str:
 
 def s_annotation(a: GAnnotation) -> str:
     if isinstance(a, list):
-        return ' | '.join([s_annotation(e) for e in a])
+        values = ', '.join(['\'' + s_annotation(e).replace('\'', '"') + '\'' for e in a])
+        return f'Union[{values}]'
 
     return s_type(a)
 
@@ -134,3 +136,11 @@ def s_statements(statements: List[GStmt]) -> str:
         res.write(st.to_python() + '\n\n')
     getvalue = res.getvalue()
     return getvalue
+
+def s_callback(cb: GCallback) -> str:
+    if cb.return_type:
+        rt = s_annotation(cb.return_type)
+    else:
+        rt = "None"
+
+    return f"{cb.name} = Callable[[{','.join(s_annotation(t) for t in cb.arguments)}], {rt}]"

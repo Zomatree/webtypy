@@ -1,0 +1,161 @@
+{
+  "spec": {
+    "title": "CSS Scrollbars Styling Module Level 1",
+    "url": "https://drafts.csswg.org/css-scrollbars-1/"
+  },
+  "links": {
+    "http://www.howtocreate.co.uk/tutorials/scrlbar.html": {},
+    "https://datatracker.ietf.org/doc/html/rfc2119": {},
+    "https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-color": {},
+    "https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-width": {},
+    "https://drafts.csswg.org/css-cascade-5/": {
+      "anchors": [
+        "cascade-origin-user"
+      ],
+      "specShortname": "css-cascade-5"
+    },
+    "https://drafts.csswg.org/css-color-5/": {
+      "anchors": [
+        "typedef-color"
+      ],
+      "specShortname": "css-color-5"
+    },
+    "https://drafts.csswg.org/css-color-adjust-1/": {
+      "anchors": [
+        "propdef-color-scheme"
+      ],
+      "specShortname": "css-color-adjust-1"
+    },
+    "https://drafts.csswg.org/css-overflow-3/": {
+      "anchors": [
+        "scroll-container",
+        "propdef-overflow",
+        "overlay-scrollbars"
+      ],
+      "specShortname": "css-overflow-3"
+    },
+    "https://drafts.csswg.org/css-overflow/": {
+      "specShortname": "css-overflow-3"
+    },
+    "https://drafts.csswg.org/css-values-3/": {
+      "specShortname": "css-values-3"
+    },
+    "https://drafts.csswg.org/css-values-4/": {
+      "anchors": [
+        "css-wide-keywords",
+        "comb-one",
+        "mult-num"
+      ],
+      "specShortname": "css-values-4"
+    },
+    "https://drafts.csswg.org/css2/": {
+      "specShortname": "CSS22"
+    },
+    "https://drafts.csswg.org/web-animations-1/": {
+      "anchors": [
+        "discrete"
+      ],
+      "specShortname": "web-animations-1"
+    },
+    "https://github.com/w3c/csswg-drafts/issues": {},
+    "https://github.com/w3c/csswg-drafts/issues/1956": {},
+    "https://github.com/w3c/csswg-drafts/issues/3237": {},
+    "https://github.com/w3c/csswg-drafts/issues/3315": {},
+    "https://github.com/w3c/csswg-drafts/issues/4693": {},
+    "https://github.com/w3c/csswg-drafts/issues/6438": {},
+    "https://github.com/w3c/csswg-drafts/issues/6675": {},
+    "https://html.spec.whatwg.org/multipage/": {},
+    "https://html.spec.whatwg.org/multipage/sections.html": {
+      "anchors": [
+        "the-body-element"
+      ]
+    },
+    "https://lists.w3.org/Archives/Public/public-css-archive/": {},
+    "https://lists.w3.org/Archives/Public/public-css-testsuite": {},
+    "https://lists.w3.org/Archives/Public/www-style/": {},
+    "https://w3c.github.io/wcag/21/guidelines/": {},
+    "https://www.splintered.co.uk/": {},
+    "https://www.upsuper.org/": {},
+    "https://www.w3.org/2021/Process-20211102/": {},
+    "https://www.w3.org/Style/CSS/Test/": {},
+    "https://www.w3.org/Style/Examples/007/scrollbars.en.html": {},
+    "https://www.w3.org/TR/2018/WD-css-scrollbars-1-20180925/": {},
+    "https://www.w3.org/TR/2021/CR-css-scrollbars-1-20211206/": {},
+    "https://www.w3.org/TR/2021/WD-css-scrollbars-1-20210805/": {},
+    "https://www.w3.org/TR/CSS/": {
+      "anchors": [
+        "future-proofing",
+        "unstable",
+        "proprietary-extension"
+      ],
+      "specShortname": "CSS22"
+    },
+    "https://www.w3.org/TR/CSS2/about.html": {
+      "anchors": [
+        "property-defs"
+      ]
+    },
+    "https://www.w3.org/TR/CSS21/conform.html": {
+      "anchors": [
+        "style-sheet",
+        "user-agent",
+        "ignore"
+      ],
+      "specShortname": "CSS2"
+    },
+    "https://www.w3.org/TR/WCAG21/": {
+      "anchors": [
+        "non-text-contrast",
+        "target-size"
+      ]
+    },
+    "https://www.w3.org/TR/css-cascade/": {
+      "anchors": [
+        "initial-values",
+        "applies-to",
+        "inherited-property",
+        "computed"
+      ],
+      "specShortname": "css-cascade-4"
+    },
+    "https://www.w3.org/TR/css-scrollbars-1/": {
+      "specShortname": "css-scrollbars-1"
+    },
+    "https://www.w3.org/TR/css-values-3/": {
+      "anchors": [
+        "value-defs"
+      ],
+      "specShortname": "css-values-3"
+    },
+    "https://www.w3.org/TR/css-values/": {
+      "anchors": [
+        "value-defs",
+        "percentages"
+      ],
+      "specShortname": "css-values-4"
+    },
+    "https://www.w3.org/TR/cssom/": {
+      "anchors": [
+        "serializing-css-values"
+      ],
+      "specShortname": "cssom-1"
+    },
+    "https://www.w3.org/TR/security-privacy-questionnaire/": {
+      "anchors": [
+        "questions"
+      ]
+    },
+    "https://www.w3.org/TR/web-animations/": {
+      "anchors": [
+        "animation-type"
+      ],
+      "specShortname": "web-animations-1"
+    },
+    "https://www.w3.org/wiki/Css-scrollbars": {
+      "anchors": [
+        "Use-cases"
+      ]
+    },
+    "https://xanthir.com/": {}
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "spec": {
+    "title": "CSS Namespaces Module Level 3",
+    "url": "https://drafts.csswg.org/css-namespaces-3/"
+  },
+  "properties": [],
+  "atrules": [],
+  "selectors": [],
+  "values": [
+    {
+      "name": "<namespace-prefix>",
+      "type": "type",
+      "value": "<ident>"
+    }
+  ],
+  "warnings": [
+    {
+      "msg": "Missing definition",
+      "name": "@namespace",
+      "value": "@namespace <namespace-prefix>? [ <string> | <url> ] ;"
+    }
+  ]
+}

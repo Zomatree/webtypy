@@ -14,11 +14,12 @@ def main():
 
 _head = """# @formatter:off
 
-from typing import overload, Any, Awaitable, Sequence, Literal, TypedDict, NotRequired
+from typing import overload, Any, Awaitable, Sequence, Literal, TypedDict, NotRequired, ByteString, Union, Callable
+from .emcascript import *
+
 USVString = str
-
-
 """
+
 _tail = """
 
 document: Document
@@ -27,5 +28,6 @@ navigator: Navigator
 console: ConsoleNamespace
 
 """
+
 if __name__ == '__main__':
     main()
