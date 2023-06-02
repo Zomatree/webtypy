@@ -2,6 +2,7 @@ from __future__ import annotations
 
 _types_dict = {
     'undefined': 'None',
+    'void': 'None',
     'any': 'Any',
     'DOMString': 'str',
     'long': 'int',
@@ -16,6 +17,8 @@ _types_dict = {
     'byte': 'int',
     'short': 'int',
     'octet': 'int',
+    'false': 'False',
+    'true': 'True',
     # generics
     'sequence': 'Sequence',
     'Promise': 'Awaitable'
@@ -23,6 +26,9 @@ _types_dict = {
 
 
 def to_py_type(s: str) -> str:
+    if s == "false":
+        print("asdasdasdasdasd")
+
     return _types_dict.get(s, s)
 
 

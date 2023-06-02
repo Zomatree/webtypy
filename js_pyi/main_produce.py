@@ -15,7 +15,7 @@ def main():
 _head = """# @formatter:off
 
 from typing import overload, Any, Awaitable, Sequence, Literal, TypedDict, NotRequired, ByteString, Union, Callable
-from .emcascript import *
+from .ecmascript import *
 
 USVString = str
 """
