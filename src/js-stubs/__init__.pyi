@@ -1096,11 +1096,15 @@ FormDataEntryValue = Union['File', 'str']
 
 class ANGLE_instanced_arrays:
     VERTEX_ATTRIB_ARRAY_DIVISOR_ANGLE = 0x88FE
+
     def drawArraysInstancedANGLE(self, mode: GLenum, first: GLint, count: GLsizei, primcount: GLsizei) -> None: ...
+
     def drawElementsInstancedANGLE(self, mode: GLenum, count: GLsizei, type: GLenum, offset: GLintptr, primcount: GLsizei) -> None: ...
+
     def vertexAttribDivisorANGLE(self, index: GLuint, divisor: GLuint) -> None: ...
 
 class CSPViolationReportBody(ReportBody):
+
     def toJSON(self) -> object: ...
     documentURL: str
     referrer: Union['str', 'None']
@@ -1115,7 +1119,8 @@ class CSPViolationReportBody(ReportBody):
     columnNumber: Union['int', 'None']
 
 class SecurityPolicyViolationEvent(Event):
-    def New(self, type: str, eventInitDict: Union['SecurityPolicyViolationEventInit', 'None'] = {}) -> SecurityPolicyViolationEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['SecurityPolicyViolationEventInit', 'None'] = {}) -> SecurityPolicyViolationEvent: ...
     documentURI: str
     referrer: str
     blockedURI: str
@@ -1144,7 +1149,9 @@ class SecurityPolicyViolationEventInit(TypedDict, EventInit):
     columnNumber: NotRequired[int]
 
 class XMLSerializer:
-    def New(self) -> XMLSerializer: ...
+    @classmethod
+    def new(cls) -> XMLSerializer: ...
+
     def serializeToString(self, root: Node) -> str: ...
 
 class InnerHTML:
@@ -1152,16 +1159,26 @@ class InnerHTML:
 
 class Element(Node, InnerHTML, Region, GeometryUtils, ParentNode, NonDocumentTypeChildNode, ChildNode, Slottable, ARIAMixin, Animatable):
     outerHTML: str
+
     def insertAdjacentHTML(self, position: str, text: str) -> None: ...
+
     def getSpatialNavigationContainer(self) -> Node: ...
+
     def focusableAreas(self, option: Union['FocusableAreasOption', 'None'] = {}) -> Sequence[Node]: ...
+
     def spatialNavigationSearch(self, dir: SpatialNavigationDirection, options: Union['SpatialNavigationSearchOptions', 'None'] = {}) -> Union['Node', 'None']: ...
+
     def pseudo(self, type: str) -> Union['CSSPseudoElement', 'None']: ...
     part: DOMTokenList
+
     def computedStyleMap(self) -> StylePropertyMapReadOnly: ...
+
     def getClientRects(self) -> DOMRectList: ...
+
     def getBoundingClientRect(self) -> DOMRect: ...
+
     def checkVisibility(self, options: Union['CheckVisibilityOptions', 'None'] = {}) -> bool: ...
+
     def scrollIntoView(self, arg: Union['bool', 'ScrollIntoViewOptions', 'None'] = {}) -> None: ...
     @overload
     def scroll(self, options: Union['ScrollToOptions', 'None'] = {}) -> None: ...
@@ -1191,41 +1208,72 @@ class Element(Node, InnerHTML, Region, GeometryUtils, ParentNode, NonDocumentTyp
     className: str
     classList: DOMTokenList
     slot: str
+
     def hasAttributes(self) -> bool: ...
     attributes: NamedNodeMap
+
     def getAttributeNames(self) -> Sequence[str]: ...
+
     def getAttribute(self, qualifiedName: str) -> Union['str', 'None']: ...
+
     def getAttributeNS(self, namespace: Union['str', 'None'], localName: str) -> Union['str', 'None']: ...
+
     def setAttribute(self, qualifiedName: str, value: str) -> None: ...
+
     def setAttributeNS(self, namespace: Union['str', 'None'], qualifiedName: str, value: str) -> None: ...
+
     def removeAttribute(self, qualifiedName: str) -> None: ...
+
     def removeAttributeNS(self, namespace: Union['str', 'None'], localName: str) -> None: ...
+
     def toggleAttribute(self, qualifiedName: str, force: Union['bool', 'None'] = None) -> bool: ...
+
     def hasAttribute(self, qualifiedName: str) -> bool: ...
+
     def hasAttributeNS(self, namespace: Union['str', 'None'], localName: str) -> bool: ...
+
     def getAttributeNode(self, qualifiedName: str) -> Union['Attr', 'None']: ...
+
     def getAttributeNodeNS(self, namespace: Union['str', 'None'], localName: str) -> Union['Attr', 'None']: ...
+
     def setAttributeNode(self, attr: Attr) -> Union['Attr', 'None']: ...
+
     def setAttributeNodeNS(self, attr: Attr) -> Union['Attr', 'None']: ...
+
     def removeAttributeNode(self, attr: Attr) -> Attr: ...
+
     def attachShadow(self, init: ShadowRootInit) -> ShadowRoot: ...
     shadowRoot: Union['ShadowRoot', 'None']
+
     def closest(self, selectors: str) -> Union['Element', 'None']: ...
+
     def matches(self, selectors: str) -> bool: ...
+
     def webkitMatchesSelector(self, selectors: str) -> bool: ...
+
     def getElementsByTagName(self, qualifiedName: str) -> HTMLCollection: ...
+
     def getElementsByTagNameNS(self, namespace: Union['str', 'None'], localName: str) -> HTMLCollection: ...
+
     def getElementsByClassName(self, classNames: str) -> HTMLCollection: ...
+
     def insertAdjacentElement(self, where: str, element: Element) -> Union['Element', 'None']: ...
+
     def insertAdjacentText(self, where: str, data: str) -> None: ...
     elementTiming: str
+
     def requestFullscreen(self, options: Union['FullscreenOptions', 'None'] = {}) -> Awaitable[None]: ...
     onfullscreenchange: EventHandler
     onfullscreenerror: EventHandler
+
     def setPointerCapture(self, pointerId: int) -> None: ...
+
     def releasePointerCapture(self, pointerId: int) -> None: ...
+
     def hasPointerCapture(self, pointerId: int) -> bool: ...
+
     def requestPointerLock(self) -> None: ...
+
     def setHTML(self, input: str, options: Union['SetHTMLOptions', 'None'] = {}) -> None: ...
 
 class ShadowRoot(DocumentFragment, InnerHTML, DocumentOrShadowRoot):
@@ -1236,34 +1284,58 @@ class ShadowRoot(DocumentFragment, InnerHTML, DocumentOrShadowRoot):
     onslotchange: EventHandler
 
 class Range(AbstractRange):
-    def New(self) -> Range: ...
+    @classmethod
+    def new(cls) -> Range: ...
+
     def createContextualFragment(self, fragment: str) -> DocumentFragment: ...
+
     def getClientRects(self) -> DOMRectList: ...
+
     def getBoundingClientRect(self) -> DOMRect: ...
     commonAncestorContainer: Node
+
     def setStart(self, node: Node, offset: int) -> None: ...
+
     def setEnd(self, node: Node, offset: int) -> None: ...
+
     def setStartBefore(self, node: Node) -> None: ...
+
     def setStartAfter(self, node: Node) -> None: ...
+
     def setEndBefore(self, node: Node) -> None: ...
+
     def setEndAfter(self, node: Node) -> None: ...
+
     def collapse(self, toStart: Union['bool', 'None'] = False) -> None: ...
+
     def selectNode(self, node: Node) -> None: ...
+
     def selectNodeContents(self, node: Node) -> None: ...
     START_TO_START = 0
     START_TO_END = 1
     END_TO_END = 2
     END_TO_START = 3
+
     def compareBoundaryPoints(self, how: int, sourceRange: Range) -> int: ...
+
     def deleteContents(self) -> None: ...
+
     def extractContents(self) -> DocumentFragment: ...
+
     def cloneContents(self) -> DocumentFragment: ...
+
     def insertNode(self, node: Node) -> None: ...
+
     def surroundContents(self, newParent: Node) -> None: ...
+
     def cloneRange(self) -> Range: ...
+
     def detach(self) -> None: ...
+
     def isPointInRange(self, node: Node, offset: int) -> bool: ...
+
     def comparePoint(self, node: Node, offset: int) -> int: ...
+
     def intersectsNode(self, node: Node) -> bool: ...
 
 class StyleSheet:
@@ -1277,11 +1349,13 @@ class StyleSheet:
 
 class StyleSheetList:
     length: int
+
     def item(self, index: int) -> StyleSheet: ...
 
 class MediaList:
     mediaText: Union['str', 'str']
     length: int
+
     def item(self, index: int) -> str: ...
     @overload
     def deleteMedium(self, oldMedium: str) -> None: ...
@@ -1300,6 +1374,7 @@ class DocumentStyle:
 
 class CSSRuleList:
     length: int
+
     def item(self, index: int) -> CSSRule: ...
 
 class CSSRule:
@@ -1325,9 +1400,6 @@ class CSSRule:
 class CSSStyleRule(CSSRule, CSSGroupingRule):
     selectorText: Union['str', 'str']
     style: CSSStyleDeclaration
-    cssRules: CSSRuleList
-    def insertRule(self, rule: str, index: Union['int', 'None'] = 0) -> int: ...
-    def deleteRule(self, index: int) -> None: ...
     styleMap: StylePropertyMap
 
 class CSSFontFaceRule(CSSRule):
@@ -1348,6 +1420,7 @@ class CSSStyleDeclaration:
     def getPropertyValue(self, propertyName: str) -> str: ...
     @overload
     def getPropertyValue(self, property: str) -> str: ...
+
     def getPropertyCSSValue(self, propertyName: str) -> CSSValue: ...
     @overload
     def removeProperty(self, propertyName: str) -> str: ...
@@ -1362,6 +1435,7 @@ class CSSStyleDeclaration:
     @overload
     def setProperty(self, property: str, value: str, priority: Union['str', 'None'] = "") -> None: ...
     length: int
+
     def item(self, index: int) -> str: ...
     parentRule: Union['CSSRule', 'Union["CSSRule", "None"]']
     cssFloat: str
@@ -1838,16 +1912,24 @@ class CSSPrimitiveValue(CSSValue):
     CSS_RECT = 24
     CSS_RGBCOLOR = 25
     primitiveType: int
+
     def setFloatValue(self, unitType: int, floatValue: float) -> None: ...
+
     def getFloatValue(self, unitType: int) -> float: ...
+
     def setStringValue(self, stringType: int, stringValue: str) -> None: ...
+
     def getStringValue(self) -> str: ...
+
     def getCounterValue(self) -> Counter: ...
+
     def getRectValue(self) -> Rect: ...
+
     def getRGBColorValue(self) -> RGBColor: ...
 
 class CSSValueList(CSSValue):
     length: int
+
     def item(self, index: int) -> CSSValue: ...
 
 class RGBColor:
@@ -1867,6 +1949,7 @@ class Counter:
     separator: str
 
 class DOMImplementationCSS(DOMImplementation):
+
     def createCSSStyleSheet(self, title: str, media: str) -> CSSStyleSheet: ...
 
 class ElementCSSInlineStyle:
@@ -2019,13 +2102,21 @@ class EXT_disjoint_timer_query:
     TIME_ELAPSED_EXT = 0x88BF
     TIMESTAMP_EXT = 0x8E28
     GPU_DISJOINT_EXT = 0x8FBB
+
     def createQueryEXT(self) -> Union['WebGLTimerQueryEXT', 'None']: ...
+
     def deleteQueryEXT(self, query: Union['WebGLTimerQueryEXT', 'None']) -> None: ...
+
     def isQueryEXT(self, query: Union['WebGLTimerQueryEXT', 'None']) -> bool: ...
+
     def beginQueryEXT(self, target: GLenum, query: WebGLTimerQueryEXT) -> None: ...
+
     def endQueryEXT(self, target: GLenum) -> None: ...
+
     def queryCounterEXT(self, query: WebGLTimerQueryEXT, target: GLenum) -> None: ...
+
     def getQueryEXT(self, target: GLenum, pname: GLenum) -> Any: ...
+
     def getQueryObjectEXT(self, query: WebGLTimerQueryEXT, pname: GLenum) -> Any: ...
 
 class EXT_disjoint_timer_query_webgl2:
@@ -2033,6 +2124,7 @@ class EXT_disjoint_timer_query_webgl2:
     TIME_ELAPSED_EXT = 0x88BF
     TIMESTAMP_EXT = 0x8E28
     GPU_DISJOINT_EXT = 0x8FBB
+
     def queryCounterEXT(self, query: WebGLQuery, target: GLenum) -> None: ...
 
 class EXT_float_blend: ...
@@ -2142,12 +2234,17 @@ class IdentityUserInfo(TypedDict):
 class IdentityProvider: ...
 
 class Blob:
-    def New(self, blobParts: Union['Sequence[BlobPart]', 'None'] = None, options: Union['BlobPropertyBag', 'None'] = {}) -> Blob: ...
+    @classmethod
+    def new(cls, blobParts: Union['Sequence[BlobPart]', 'None'] = None, options: Union['BlobPropertyBag', 'None'] = {}) -> Blob: ...
     size: int
     type: str
+
     def slice(self, start: Union['int', 'None'] = None, end: Union['int', 'None'] = None, contentType: Union['str', 'None'] = None) -> Blob: ...
+
     def stream(self) -> ReadableStream: ...
+
     def text(self) -> Awaitable[str]: ...
+
     def arrayBuffer(self) -> Awaitable[ArrayBuffer]: ...
 
 class BlobPropertyBag(TypedDict):
@@ -2155,7 +2252,8 @@ class BlobPropertyBag(TypedDict):
     endings: NotRequired[EndingType]
 
 class File(Blob):
-    def New(self, fileBits: Sequence[BlobPart], fileName: str, options: Union['FilePropertyBag', 'None'] = {}) -> File: ...
+    @classmethod
+    def new(cls, fileBits: Sequence[BlobPart], fileName: str, options: Union['FilePropertyBag', 'None'] = {}) -> File: ...
     name: str
     lastModified: int
     webkitRelativePath: str
@@ -2167,11 +2265,17 @@ class FileList:
     length: int
 
 class FileReader(EventTarget):
-    def New(self) -> FileReader: ...
+    @classmethod
+    def new(cls) -> FileReader: ...
+
     def readAsArrayBuffer(self, blob: Blob) -> None: ...
+
     def readAsBinaryString(self, blob: Blob) -> None: ...
+
     def readAsText(self, blob: Blob, encoding: Union['str', 'None'] = None) -> None: ...
+
     def readAsDataURL(self, blob: Blob) -> None: ...
+
     def abort(self) -> None: ...
     EMPTY = 0
     LOADING = 1
@@ -2187,14 +2291,20 @@ class FileReader(EventTarget):
     onloadend: EventHandler
 
 class FileReaderSync:
-    def New(self) -> FileReaderSync: ...
+    @classmethod
+    def new(cls) -> FileReaderSync: ...
+
     def readAsArrayBuffer(self, blob: Blob) -> ArrayBuffer: ...
+
     def readAsBinaryString(self, blob: Blob) -> str: ...
+
     def readAsText(self, blob: Blob, encoding: Union['str', 'None'] = None) -> str: ...
+
     def readAsDataURL(self, blob: Blob) -> str: ...
 
 class URL:
-    def New(self, url: str, base: Union['str', 'None'] = None) -> URL: ...
+    @classmethod
+    def new(cls, url: str, base: Union['str', 'None'] = None) -> URL: ...
     href: str
     origin: str
     protocol: str
@@ -2207,6 +2317,7 @@ class URL:
     search: str
     searchParams: URLSearchParams
     hash: str
+
     def toJSON(self) -> str: ...
 
 class IDBRequest(EventTarget):
@@ -2223,7 +2334,8 @@ class IDBOpenDBRequest(IDBRequest):
     onupgradeneeded: EventHandler
 
 class IDBVersionChangeEvent(Event):
-    def New(self, type: str, eventInitDict: Union['IDBVersionChangeEventInit', 'None'] = {}) -> IDBVersionChangeEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['IDBVersionChangeEventInit', 'None'] = {}) -> IDBVersionChangeEvent: ...
     oldVersion: int
     newVersion: Union['int', 'None']
 
@@ -2234,32 +2346,46 @@ class IDBVersionChangeEventInit(TypedDict, EventInit):
 class WindowOrWorkerGlobalScope:
     indexedDB: IDBFactory
     crypto: Crypto
+
     def fetch(self, input: RequestInfo, init: Union['RequestInit', 'None'] = {}) -> Awaitable[Response]: ...
     performance: Performance
     origin: str
     isSecureContext: bool
     crossOriginIsolated: bool
+
     def reportError(self, e: Any) -> None: ...
+
     def btoa(self, data: str) -> str: ...
+
     def atob(self, data: str) -> ByteString: ...
+
     def setTimeout(self, handler: TimerHandler, timeout: Union['int', 'None'] = 0, *arguments: Any) -> int: ...
+
     def clearTimeout(self, id: Union['int', 'None'] = 0) -> None: ...
+
     def setInterval(self, handler: TimerHandler, timeout: Union['int', 'None'] = 0, *arguments: Any) -> int: ...
+
     def clearInterval(self, id: Union['int', 'None'] = 0) -> None: ...
+
     def queueMicrotask(self, callback: VoidFunction) -> None: ...
     @overload
     def createImageBitmap(self, image: ImageBitmapSource, options: Union['ImageBitmapOptions', 'None'] = {}) -> Awaitable[ImageBitmap]: ...
     @overload
     def createImageBitmap(self, image: ImageBitmapSource, sx: int, sy: int, sw: int, sh: int, options: Union['ImageBitmapOptions', 'None'] = {}) -> Awaitable[ImageBitmap]: ...
+
     def structuredClone(self, value: Any, options: Union['StructuredSerializeOptions', 'None'] = {}) -> Any: ...
     scheduler: Scheduler
     caches: CacheStorage
     trustedTypes: TrustedTypePolicyFactory
 
 class IDBFactory:
+
     def open(self, name: str, version: Union['int', 'None'] = None) -> IDBOpenDBRequest: ...
+
     def deleteDatabase(self, name: str) -> IDBOpenDBRequest: ...
+
     def databases(self) -> Awaitable[Sequence[IDBDatabaseInfo]]: ...
+
     def cmp(self, first: Any, second: Any) -> int: ...
 
 class IDBDatabaseInfo(TypedDict):
@@ -2270,9 +2396,13 @@ class IDBDatabase(EventTarget):
     name: str
     version: int
     objectStoreNames: DOMStringList
+
     def transaction(self, storeNames: Union['str', 'Sequence[str]'], mode: Union['IDBTransactionMode', 'None'] = "readonly", options: Union['IDBTransactionOptions', 'None'] = {}) -> IDBTransaction: ...
+
     def close(self) -> None: ...
+
     def createObjectStore(self, name: str, options: Union['IDBObjectStoreParameters', 'None'] = {}) -> IDBObjectStore: ...
+
     def deleteObjectStore(self, name: str) -> None: ...
     onabort: EventHandler
     onclose: EventHandler
@@ -2292,19 +2422,33 @@ class IDBObjectStore:
     indexNames: DOMStringList
     transaction: IDBTransaction
     autoIncrement: bool
+
     def put(self, value: Any, key: Union['Any', 'None'] = None) -> IDBRequest: ...
+
     def add(self, value: Any, key: Union['Any', 'None'] = None) -> IDBRequest: ...
+
     def delete(self, query: Any) -> IDBRequest: ...
+
     def clear(self) -> IDBRequest: ...
+
     def get(self, query: Any) -> IDBRequest: ...
+
     def getKey(self, query: Any) -> IDBRequest: ...
+
     def getAll(self, query: Union['Any', 'None'] = None, count: Union['int', 'None'] = None) -> IDBRequest: ...
+
     def getAllKeys(self, query: Union['Any', 'None'] = None, count: Union['int', 'None'] = None) -> IDBRequest: ...
+
     def count(self, query: Union['Any', 'None'] = None) -> IDBRequest: ...
+
     def openCursor(self, query: Union['Any', 'None'] = None, direction: Union['IDBCursorDirection', 'None'] = "next") -> IDBRequest: ...
+
     def openKeyCursor(self, query: Union['Any', 'None'] = None, direction: Union['IDBCursorDirection', 'None'] = "next") -> IDBRequest: ...
+
     def index(self, name: str) -> IDBIndex: ...
+
     def createIndex(self, name: str, keyPath: Union['str', 'Sequence[str]'], options: Union['IDBIndexParameters', 'None'] = {}) -> IDBIndex: ...
+
     def deleteIndex(self, name: str) -> None: ...
 
 class IDBIndexParameters(TypedDict):
@@ -2317,12 +2461,19 @@ class IDBIndex:
     keyPath: Any
     multiEntry: bool
     unique: bool
+
     def get(self, query: Any) -> IDBRequest: ...
+
     def getKey(self, query: Any) -> IDBRequest: ...
+
     def getAll(self, query: Union['Any', 'None'] = None, count: Union['int', 'None'] = None) -> IDBRequest: ...
+
     def getAllKeys(self, query: Union['Any', 'None'] = None, count: Union['int', 'None'] = None) -> IDBRequest: ...
+
     def count(self, query: Union['Any', 'None'] = None) -> IDBRequest: ...
+
     def openCursor(self, query: Union['Any', 'None'] = None, direction: Union['IDBCursorDirection', 'None'] = "next") -> IDBRequest: ...
+
     def openKeyCursor(self, query: Union['Any', 'None'] = None, direction: Union['IDBCursorDirection', 'None'] = "next") -> IDBRequest: ...
 
 class IDBKeyRange:
@@ -2330,6 +2481,7 @@ class IDBKeyRange:
     upper: Any
     lowerOpen: bool
     upperOpen: bool
+
     def includes(self, key: Any) -> bool: ...
 
 class IDBCursor:
@@ -2338,10 +2490,15 @@ class IDBCursor:
     key: Any
     primaryKey: Any
     request: IDBRequest
+
     def advance(self, count: int) -> None: ...
+
     def continue_(self, key: Union['Any', 'None'] = None) -> None: ...
+
     def continuePrimaryKey(self, key: Any, primaryKey: Any) -> None: ...
+
     def update(self, value: Any) -> IDBRequest: ...
+
     def delete(self) -> IDBRequest: ...
 
 class IDBCursorWithValue(IDBCursor):
@@ -2353,8 +2510,11 @@ class IDBTransaction(EventTarget):
     durability: IDBTransactionDurability
     db: IDBDatabase
     error: Union['DOMException', 'None']
+
     def objectStore(self, name: str) -> IDBObjectStore: ...
+
     def commit(self) -> None: ...
+
     def abort(self) -> None: ...
     onabort: EventHandler
     oncomplete: EventHandler
@@ -2364,12 +2524,19 @@ class KHR_parallel_shader_compile:
     COMPLETION_STATUS_KHR = 0x91B1
 
 class OES_draw_buffers_indexed:
+
     def enableiOES(self, target: GLenum, index: GLuint) -> None: ...
+
     def disableiOES(self, target: GLenum, index: GLuint) -> None: ...
+
     def blendEquationiOES(self, buf: GLuint, mode: GLenum) -> None: ...
+
     def blendEquationSeparateiOES(self, buf: GLuint, modeRGB: GLenum, modeAlpha: GLenum) -> None: ...
+
     def blendFunciOES(self, buf: GLuint, src: GLenum, dst: GLenum) -> None: ...
+
     def blendFuncSeparateiOES(self, buf: GLuint, srcRGB: GLenum, dstRGB: GLenum, srcAlpha: GLenum, dstAlpha: GLenum) -> None: ...
+
     def colorMaskiOES(self, buf: GLuint, r: GLboolean, g: GLboolean, b: GLboolean, a: GLboolean) -> None: ...
 
 class OES_element_index_uint: ...
@@ -2392,9 +2559,13 @@ class WebGLVertexArrayObjectOES(WebGLObject): ...
 
 class OES_vertex_array_object:
     VERTEX_ARRAY_BINDING_OES = 0x85B5
+
     def createVertexArrayOES(self) -> Union['WebGLVertexArrayObjectOES', 'None']: ...
+
     def deleteVertexArrayOES(self, arrayObject: Union['WebGLVertexArrayObjectOES', 'None']) -> None: ...
+
     def isVertexArrayOES(self, arrayObject: Union['WebGLVertexArrayObjectOES', 'None']) -> GLboolean: ...
+
     def bindVertexArrayOES(self, arrayObject: Union['WebGLVertexArrayObjectOES', 'None']) -> None: ...
 
 class OVR_multiview2:
@@ -2402,6 +2573,7 @@ class OVR_multiview2:
     FRAMEBUFFER_ATTACHMENT_TEXTURE_BASE_VIEW_INDEX_OVR = 0x9632
     MAX_VIEWS_OVR = 0x9631
     FRAMEBUFFER_INCOMPLETE_VIEW_TARGETS_OVR = 0x9633
+
     def framebufferTextureMultiviewOVR(self, target: GLenum, attachment: GLenum, texture: Union['WebGLTexture', 'None'], level: GLint, baseViewIndex: GLint, numViews: GLsizei) -> None: ...
 
 class SVGElement(Element, GlobalEventHandlers, DocumentAndElementEventHandlers, SVGElementInstance, HTMLOrSVGElement, ElementCSSInlineStyle):
@@ -2417,15 +2589,22 @@ class SVGBoundingBoxOptions(TypedDict):
 
 class SVGGraphicsElement(SVGElement, SVGTests):
     transform: SVGAnimatedTransformList
+
     def getBBox(self, options: Union['SVGBoundingBoxOptions', 'None'] = {}) -> DOMRect: ...
+
     def getCTM(self) -> Union['DOMMatrix', 'None']: ...
+
     def getScreenCTM(self) -> Union['DOMMatrix', 'None']: ...
 
 class SVGGeometryElement(SVGGraphicsElement):
     pathLength: SVGAnimatedNumber
+
     def isPointInFill(self, point: Union['DOMPointInit', 'None'] = {}) -> bool: ...
+
     def isPointInStroke(self, point: Union['DOMPointInit', 'None'] = {}) -> bool: ...
+
     def getTotalLength(self) -> float: ...
+
     def getPointAtLength(self, distance: float) -> DOMPoint: ...
 
 class SVGNumber:
@@ -2447,7 +2626,9 @@ class SVGLength:
     value: float
     valueInSpecifiedUnits: float
     valueAsString: str
+
     def newValueSpecifiedUnits(self, unitType: int, valueInSpecifiedUnits: float) -> None: ...
+
     def convertToSpecifiedUnits(self, unitType: int) -> None: ...
 
 class SVGAngle:
@@ -2460,37 +2641,57 @@ class SVGAngle:
     value: float
     valueInSpecifiedUnits: float
     valueAsString: str
+
     def newValueSpecifiedUnits(self, unitType: int, valueInSpecifiedUnits: float) -> None: ...
+
     def convertToSpecifiedUnits(self, unitType: int) -> None: ...
 
 class SVGNumberList:
     length: int
     numberOfItems: int
+
     def clear(self) -> None: ...
+
     def initialize(self, newItem: SVGNumber) -> SVGNumber: ...
+
     def insertItemBefore(self, newItem: SVGNumber, index: int) -> SVGNumber: ...
+
     def replaceItem(self, newItem: SVGNumber, index: int) -> SVGNumber: ...
+
     def removeItem(self, index: int) -> SVGNumber: ...
+
     def appendItem(self, newItem: SVGNumber) -> SVGNumber: ...
 
 class SVGLengthList:
     length: int
     numberOfItems: int
+
     def clear(self) -> None: ...
+
     def initialize(self, newItem: SVGLength) -> SVGLength: ...
+
     def insertItemBefore(self, newItem: SVGLength, index: int) -> SVGLength: ...
+
     def replaceItem(self, newItem: SVGLength, index: int) -> SVGLength: ...
+
     def removeItem(self, index: int) -> SVGLength: ...
+
     def appendItem(self, newItem: SVGLength) -> SVGLength: ...
 
 class SVGStringList:
     length: int
     numberOfItems: int
+
     def clear(self) -> None: ...
+
     def initialize(self, newItem: str) -> str: ...
+
     def insertItemBefore(self, newItem: str, index: int) -> str: ...
+
     def replaceItem(self, newItem: str, index: int) -> str: ...
+
     def removeItem(self, index: int) -> str: ...
+
     def appendItem(self, newItem: str) -> str: ...
 
 class SVGAnimatedBoolean:
@@ -2550,12 +2751,17 @@ class SVGURIReference:
     href: SVGAnimatedString
 
 class Document(Node, FontFaceSource, GeometryUtils, NonElementParentNode, DocumentOrShadowRoot, ParentNode, XPathEvaluatorBase, GlobalEventHandlers):
-    def New(self) -> Document: ...
+    @classmethod
+    def new(cls) -> Document: ...
     rootElement: Union['SVGSVGElement', 'None']
     namedFlows: NamedFlowMap
+
     def startViewTransition(self, updateCallback: Union['UpdateCallback', 'None'] = None) -> ViewTransition: ...
+
     def elementFromPoint(self, x: float, y: float) -> Union['Element', 'None']: ...
+
     def elementsFromPoint(self, x: float, y: float) -> Sequence[Element]: ...
+
     def caretPositionFromPoint(self, x: float, y: float) -> Union['CaretPosition', 'None']: ...
     scrollingElement: Union['Element', 'None']
     implementation: DOMImplementation
@@ -2568,28 +2774,49 @@ class Document(Node, FontFaceSource, GeometryUtils, NonElementParentNode, Docume
     contentType: str
     doctype: Union['DocumentType', 'None']
     documentElement: Union['Element', 'None']
+
     def getElementsByTagName(self, qualifiedName: str) -> HTMLCollection: ...
+
     def getElementsByTagNameNS(self, namespace: Union['str', 'None'], localName: str) -> HTMLCollection: ...
+
     def getElementsByClassName(self, classNames: str) -> HTMLCollection: ...
+
     def createElement(self, localName: str, options: Union['str', 'ElementCreationOptions', 'None'] = {}) -> Element: ...
+
     def createElementNS(self, namespace: Union['str', 'None'], qualifiedName: str, options: Union['str', 'ElementCreationOptions', 'None'] = {}) -> Element: ...
+
     def createDocumentFragment(self) -> DocumentFragment: ...
+
     def createTextNode(self, data: str) -> Text: ...
+
     def createCDATASection(self, data: str) -> CDATASection: ...
+
     def createComment(self, data: str) -> Comment: ...
+
     def createProcessingInstruction(self, target: str, data: str) -> ProcessingInstruction: ...
+
     def importNode(self, node: Node, deep: Union['bool', 'None'] = False) -> Node: ...
+
     def adoptNode(self, node: Node) -> Node: ...
+
     def createAttribute(self, localName: str) -> Attr: ...
+
     def createAttributeNS(self, namespace: Union['str', 'None'], qualifiedName: str) -> Attr: ...
+
     def createEvent(self, interface: str) -> Event: ...
+
     def createRange(self) -> Range: ...
+
     def createNodeIterator(self, root: Node, whatToShow: Union['int', 'None'] = 0xFFFFFFFF, filter: Union['NodeFilter', 'None'] = None) -> NodeIterator: ...
+
     def createTreeWalker(self, root: Node, whatToShow: Union['int', 'None'] = 0xFFFFFFFF, filter: Union['NodeFilter', 'None'] = None) -> TreeWalker: ...
+
     def measureElement(self, element: Element) -> FontMetrics: ...
+
     def measureText(self, text: str, styleMap: StylePropertyMapReadOnly) -> FontMetrics: ...
     fullscreenEnabled: bool
     fullscreen: bool
+
     def exitFullscreen(self) -> Awaitable[None]: ...
     onfullscreenchange: EventHandler
     onfullscreenerror: EventHandler
@@ -2609,23 +2836,34 @@ class Document(Node, FontFaceSource, GeometryUtils, NonElementParentNode, Docume
     links: HTMLCollection
     forms: HTMLCollection
     scripts: HTMLCollection
+
     def getElementsByName(self, elementName: str) -> NodeList: ...
     currentScript: Union['HTMLOrSVGScriptElement', 'None']
     @overload
     def open(self, unused1: Union['str', 'None'] = None, unused2: Union['str', 'None'] = None) -> Document: ...
     @overload
     def open(self, url: str, name: str, features: str) -> Union['WindowProxy', 'None']: ...
+
     def close(self) -> None: ...
+
     def write(self, *text: str) -> None: ...
+
     def writeln(self, *text: str) -> None: ...
     defaultView: Union['WindowProxy', 'None']
+
     def hasFocus(self) -> bool: ...
     designMode: str
+
     def execCommand(self, commandId: str, showUI: Union['bool', 'None'] = False, value: Union['str', 'None'] = "") -> bool: ...
+
     def queryCommandEnabled(self, commandId: str) -> bool: ...
+
     def queryCommandIndeterm(self, commandId: str) -> bool: ...
+
     def queryCommandState(self, commandId: str) -> bool: ...
+
     def queryCommandSupported(self, commandId: str) -> bool: ...
+
     def queryCommandValue(self, commandId: str) -> str: ...
     hidden: bool
     visibilityState: DocumentVisibilityState
@@ -2638,8 +2876,11 @@ class Document(Node, FontFaceSource, GeometryUtils, NonElementParentNode, Docume
     bgColor: str
     anchors: HTMLCollection
     applets: HTMLCollection
+
     def clear(self) -> None: ...
+
     def captureEvents(self) -> None: ...
+
     def releaseEvents(self) -> None: ...
     all: HTMLAllCollection
     onfreeze: EventHandler
@@ -2647,18 +2888,26 @@ class Document(Node, FontFaceSource, GeometryUtils, NonElementParentNode, Docume
     wasDiscarded: bool
     permissionsPolicy: PermissionsPolicy
     pictureInPictureEnabled: bool
+
     def exitPictureInPicture(self) -> Awaitable[None]: ...
     onpointerlockchange: EventHandler
     onpointerlockerror: EventHandler
+
     def exitPointerLock(self) -> None: ...
     prerendering: bool
     onprerenderingchange: EventHandler
+
     def requestStorageAccessFor(self, requestedOrigin: str) -> Awaitable[None]: ...
     fragmentDirective: FragmentDirective
+
     def getSelection(self) -> Union['Selection', 'None']: ...
+
     def hasStorageAccess(self) -> Awaitable[bool]: ...
+
     def requestStorageAccess(self) -> Awaitable[None]: ...
+
     def hasPrivateTokens(self, issuer: str) -> Awaitable[bool]: ...
+
     def hasRedemptionRecord(self, issuer: str) -> Awaitable[bool]: ...
     timeline: DocumentTimeline
 
@@ -2669,28 +2918,51 @@ class SVGSVGElement(SVGGraphicsElement, SVGFitToViewBox, WindowEventHandlers):
     height: SVGAnimatedLength
     currentScale: float
     currentTranslate: DOMPointReadOnly
+
     def getIntersectionList(self, rect: DOMRectReadOnly, referenceElement: Union['SVGElement', 'None']) -> NodeList: ...
+
     def getEnclosureList(self, rect: DOMRectReadOnly, referenceElement: Union['SVGElement', 'None']) -> NodeList: ...
+
     def checkIntersection(self, element: SVGElement, rect: DOMRectReadOnly) -> bool: ...
+
     def checkEnclosure(self, element: SVGElement, rect: DOMRectReadOnly) -> bool: ...
+
     def deselectAll(self) -> None: ...
+
     def createSVGNumber(self) -> SVGNumber: ...
+
     def createSVGLength(self) -> SVGLength: ...
+
     def createSVGAngle(self) -> SVGAngle: ...
+
     def createSVGPoint(self) -> DOMPoint: ...
+
     def createSVGMatrix(self) -> DOMMatrix: ...
+
     def createSVGRect(self) -> DOMRect: ...
+
     def createSVGTransform(self) -> SVGTransform: ...
+
     def createSVGTransformFromMatrix(self, matrix: Union['DOMMatrix2DInit', 'None'] = {}) -> SVGTransform: ...
+
     def getElementById(self, elementId: str) -> Element: ...
+
     def suspendRedraw(self, maxWaitMilliseconds: int) -> int: ...
+
     def unsuspendRedraw(self, suspendHandleID: int) -> None: ...
+
     def unsuspendRedrawAll(self) -> None: ...
+
     def forceRedraw(self) -> None: ...
+
     def pauseAnimations(self) -> None: ...
+
     def unpauseAnimations(self) -> None: ...
+
     def animationsPaused(self) -> bool: ...
+
     def getCurrentTime(self) -> float: ...
+
     def setCurrentTime(self, seconds: float) -> None: ...
 
 class SVGGElement(SVGGraphicsElement): ...
@@ -2720,12 +2992,14 @@ class SVGElementInstance:
     correspondingUseElement: Union['SVGUseElement', 'None']
 
 class ShadowAnimation(Animation):
-    def New(self, source: Animation, newTarget: Union['Element', 'CSSPseudoElement']) -> ShadowAnimation: ...
+    @classmethod
+    def new(cls, source: Animation, newTarget: Union['Element', 'CSSPseudoElement']) -> ShadowAnimation: ...
     sourceAnimation: Animation
 
 class SVGSwitchElement(SVGGraphicsElement): ...
 
 class GetSVGDocument:
+
     def getSVGDocument(self) -> Document: ...
 
 class SVGStyleElement(SVGElement, LinkStyle):
@@ -2744,23 +3018,37 @@ class SVGTransform:
     type: int
     matrix: DOMMatrix
     angle: float
+
     def setMatrix(self, matrix: Union['DOMMatrix2DInit', 'None'] = {}) -> None: ...
+
     def setTranslate(self, tx: float, ty: float) -> None: ...
+
     def setScale(self, sx: float, sy: float) -> None: ...
+
     def setRotate(self, angle: float, cx: float, cy: float) -> None: ...
+
     def setSkewX(self, angle: float) -> None: ...
+
     def setSkewY(self, angle: float) -> None: ...
 
 class SVGTransformList:
     length: int
     numberOfItems: int
+
     def clear(self) -> None: ...
+
     def initialize(self, newItem: SVGTransform) -> SVGTransform: ...
+
     def insertItemBefore(self, newItem: SVGTransform, index: int) -> SVGTransform: ...
+
     def replaceItem(self, newItem: SVGTransform, index: int) -> SVGTransform: ...
+
     def removeItem(self, index: int) -> SVGTransform: ...
+
     def appendItem(self, newItem: SVGTransform) -> SVGTransform: ...
+
     def createSVGTransformFromMatrix(self, matrix: Union['DOMMatrix2DInit', 'None'] = {}) -> SVGTransform: ...
+
     def consolidate(self) -> Union['SVGTransform', 'None']: ...
 
 class SVGAnimatedTransformList:
@@ -2823,11 +3111,17 @@ class SVGAnimatedPoints:
 class SVGPointList:
     length: int
     numberOfItems: int
+
     def clear(self) -> None: ...
+
     def initialize(self, newItem: DOMPoint) -> DOMPoint: ...
+
     def insertItemBefore(self, newItem: DOMPoint, index: int) -> DOMPoint: ...
+
     def replaceItem(self, newItem: DOMPoint, index: int) -> DOMPoint: ...
+
     def removeItem(self, index: int) -> DOMPoint: ...
+
     def appendItem(self, newItem: DOMPoint) -> DOMPoint: ...
 
 class SVGPolylineElement(SVGGeometryElement, SVGAnimatedPoints): ...
@@ -2840,14 +3134,23 @@ class SVGTextContentElement(SVGGraphicsElement):
     LENGTHADJUST_SPACINGANDGLYPHS = 2
     textLength: SVGAnimatedLength
     lengthAdjust: SVGAnimatedEnumeration
+
     def getNumberOfChars(self) -> int: ...
+
     def getComputedTextLength(self) -> float: ...
+
     def getSubStringLength(self, charnum: int, nchars: int) -> float: ...
+
     def getStartPositionOfChar(self, charnum: int) -> DOMPoint: ...
+
     def getEndPositionOfChar(self, charnum: int) -> DOMPoint: ...
+
     def getExtentOfChar(self, charnum: int) -> DOMRect: ...
+
     def getRotationOfChar(self, charnum: int) -> float: ...
+
     def getCharNumAtPosition(self, point: Union['DOMPointInit', 'None'] = {}) -> int: ...
+
     def selectSubString(self, charnum: int, nchars: int) -> None: ...
 
 class SVGTextPositioningElement(SVGTextContentElement):
@@ -2901,7 +3204,9 @@ class SVGMarkerElement(SVGElement, SVGFitToViewBox):
     orientType: SVGAnimatedEnumeration
     orientAngle: SVGAnimatedAngle
     orient: str
+
     def setOrientToAuto(self) -> None: ...
+
     def setOrientToAngle(self, angle: SVGAngle) -> None: ...
 
 class SVGGradientElement(SVGElement, SVGURIReference):
@@ -3020,6 +3325,7 @@ class WEBGL_compressed_texture_astc:
     COMPRESSED_SRGB8_ALPHA8_ASTC_10x10_KHR = 0x93DB
     COMPRESSED_SRGB8_ALPHA8_ASTC_12x10_KHR = 0x93DC
     COMPRESSED_SRGB8_ALPHA8_ASTC_12x12_KHR = 0x93DD
+
     def getSupportedProfiles(self) -> Sequence[str]: ...
 
 class WEBGL_compressed_texture_etc:
@@ -3060,6 +3366,7 @@ class WEBGL_debug_renderer_info:
     UNMASKED_RENDERER_WEBGL = 0x9246
 
 class WEBGL_debug_shaders:
+
     def getTranslatedShaderSource(self, shader: WebGLShader) -> str: ...
 
 class WEBGL_depth_texture:
@@ -3100,35 +3407,49 @@ class WEBGL_draw_buffers:
     DRAW_BUFFER15_WEBGL = 0x8834
     MAX_COLOR_ATTACHMENTS_WEBGL = 0x8CDF
     MAX_DRAW_BUFFERS_WEBGL = 0x8824
+
     def drawBuffersWEBGL(self, buffers: Sequence[GLenum]) -> None: ...
 
 class WEBGL_draw_instanced_base_vertex_base_instance:
+
     def drawArraysInstancedBaseInstanceWEBGL(self, mode: GLenum, first: GLint, count: GLsizei, instanceCount: GLsizei, baseInstance: GLuint) -> None: ...
+
     def drawElementsInstancedBaseVertexBaseInstanceWEBGL(self, mode: GLenum, count: GLsizei, type: GLenum, offset: GLintptr, instanceCount: GLsizei, baseVertex: GLint, baseInstance: GLuint) -> None: ...
 
 class WEBGL_lose_context:
+
     def loseContext(self) -> None: ...
+
     def restoreContext(self) -> None: ...
 
 class WEBGL_multi_draw:
+
     def multiDrawArraysWEBGL(self, mode: GLenum, firstsList: Union['Int32Array', 'Sequence[GLint]'], firstsOffset: GLuint, countsList: Union['Int32Array', 'Sequence[GLsizei]'], countsOffset: GLuint, drawcount: GLsizei) -> None: ...
+
     def multiDrawElementsWEBGL(self, mode: GLenum, countsList: Union['Int32Array', 'Sequence[GLsizei]'], countsOffset: GLuint, type: GLenum, offsetsList: Union['Int32Array', 'Sequence[GLsizei]'], offsetsOffset: GLuint, drawcount: GLsizei) -> None: ...
+
     def multiDrawArraysInstancedWEBGL(self, mode: GLenum, firstsList: Union['Int32Array', 'Sequence[GLint]'], firstsOffset: GLuint, countsList: Union['Int32Array', 'Sequence[GLsizei]'], countsOffset: GLuint, instanceCountsList: Union['Int32Array', 'Sequence[GLsizei]'], instanceCountsOffset: GLuint, drawcount: GLsizei) -> None: ...
+
     def multiDrawElementsInstancedWEBGL(self, mode: GLenum, countsList: Union['Int32Array', 'Sequence[GLsizei]'], countsOffset: GLuint, type: GLenum, offsetsList: Union['Int32Array', 'Sequence[GLsizei]'], offsetsOffset: GLuint, instanceCountsList: Union['Int32Array', 'Sequence[GLsizei]'], instanceCountsOffset: GLuint, drawcount: GLsizei) -> None: ...
 
 class WEBGL_multi_draw_instanced_base_vertex_base_instance:
+
     def multiDrawArraysInstancedBaseInstanceWEBGL(self, mode: GLenum, firstsList: Union['Int32Array', 'Sequence[GLint]'], firstsOffset: GLuint, countsList: Union['Int32Array', 'Sequence[GLsizei]'], countsOffset: GLuint, instanceCountsList: Union['Int32Array', 'Sequence[GLsizei]'], instanceCountsOffset: GLuint, baseInstancesList: Union['Uint32Array', 'Sequence[GLuint]'], baseInstancesOffset: GLuint, drawcount: GLsizei) -> None: ...
+
     def multiDrawElementsInstancedBaseVertexBaseInstanceWEBGL(self, mode: GLenum, countsList: Union['Int32Array', 'Sequence[GLsizei]'], countsOffset: GLuint, type: GLenum, offsetsList: Union['Int32Array', 'Sequence[GLsizei]'], offsetsOffset: GLuint, instanceCountsList: Union['Int32Array', 'Sequence[GLsizei]'], instanceCountsOffset: GLuint, baseVerticesList: Union['Int32Array', 'Sequence[GLint]'], baseVerticesOffset: GLuint, baseInstancesList: Union['Uint32Array', 'Sequence[GLuint]'], baseInstancesOffset: GLuint, drawcount: GLsizei) -> None: ...
 
 class WEBGL_provoking_vertex:
     FIRST_VERTEX_CONVENTION_WEBGL = 0x8E4D
     LAST_VERTEX_CONVENTION_WEBGL = 0x8E4E
     PROVOKING_VERTEX_WEBGL = 0x8E4F
+
     def provokingVertexWEBGL(self, provokeMode: GLenum) -> None: ...
 
 class Crypto:
     subtle: SubtleCrypto
+
     def getRandomValues(self, array: ArrayBufferView) -> ArrayBufferView: ...
+
     def randomUUID(self) -> str: ...
 
 class Algorithm(TypedDict):
@@ -3144,17 +3465,29 @@ class CryptoKey:
     usages: object
 
 class SubtleCrypto:
+
     def encrypt(self, algorithm: AlgorithmIdentifier, key: CryptoKey, data: BufferSource) -> Awaitable[Any]: ...
+
     def decrypt(self, algorithm: AlgorithmIdentifier, key: CryptoKey, data: BufferSource) -> Awaitable[Any]: ...
+
     def sign(self, algorithm: AlgorithmIdentifier, key: CryptoKey, data: BufferSource) -> Awaitable[Any]: ...
+
     def verify(self, algorithm: AlgorithmIdentifier, key: CryptoKey, signature: BufferSource, data: BufferSource) -> Awaitable[Any]: ...
+
     def digest(self, algorithm: AlgorithmIdentifier, data: BufferSource) -> Awaitable[Any]: ...
+
     def generateKey(self, algorithm: AlgorithmIdentifier, extractable: bool, keyUsages: Sequence[KeyUsage]) -> Awaitable[Any]: ...
+
     def deriveKey(self, algorithm: AlgorithmIdentifier, baseKey: CryptoKey, derivedKeyType: AlgorithmIdentifier, extractable: bool, keyUsages: Sequence[KeyUsage]) -> Awaitable[Any]: ...
+
     def deriveBits(self, algorithm: AlgorithmIdentifier, baseKey: CryptoKey, length: int) -> Awaitable[ArrayBuffer]: ...
+
     def importKey(self, format: KeyFormat, keyData: Union['BufferSource', 'JsonWebKey'], algorithm: AlgorithmIdentifier, extractable: bool, keyUsages: Sequence[KeyUsage]) -> Awaitable[CryptoKey]: ...
+
     def exportKey(self, format: KeyFormat, key: CryptoKey) -> Awaitable[Any]: ...
+
     def wrapKey(self, format: KeyFormat, key: CryptoKey, wrappingKey: CryptoKey, wrapAlgorithm: AlgorithmIdentifier) -> Awaitable[Any]: ...
+
     def unwrapKey(self, format: KeyFormat, wrappedKey: BufferSource, unwrappingKey: CryptoKey, unwrapAlgorithm: AlgorithmIdentifier, unwrappedKeyAlgorithm: AlgorithmIdentifier, extractable: bool, keyUsages: Sequence[KeyUsage]) -> Awaitable[CryptoKey]: ...
 
 class RsaOtherPrimesInfo(TypedDict):
@@ -3268,7 +3601,8 @@ class Pbkdf2Params(TypedDict, Algorithm):
     hash: HashAlgorithmIdentifier
 
 class Accelerometer(Sensor):
-    def New(self, options: Union['AccelerometerSensorOptions', 'None'] = {}) -> Accelerometer: ...
+    @classmethod
+    def new(cls, options: Union['AccelerometerSensorOptions', 'None'] = {}) -> Accelerometer: ...
     x: Union['float', 'None']
     y: Union['float', 'None']
     z: Union['float', 'None']
@@ -3277,10 +3611,12 @@ class AccelerometerSensorOptions(TypedDict, SensorOptions):
     referenceFrame: NotRequired[AccelerometerLocalCoordinateSystem]
 
 class LinearAccelerationSensor(Accelerometer):
-    def New(self, options: Union['AccelerometerSensorOptions', 'None'] = {}) -> LinearAccelerationSensor: ...
+    @classmethod
+    def new(cls, options: Union['AccelerometerSensorOptions', 'None'] = {}) -> LinearAccelerationSensor: ...
 
 class GravitySensor(Accelerometer):
-    def New(self, options: Union['AccelerometerSensorOptions', 'None'] = {}) -> GravitySensor: ...
+    @classmethod
+    def new(cls, options: Union['AccelerometerSensorOptions', 'None'] = {}) -> GravitySensor: ...
 
 class AccelerometerReadingValues(TypedDict):
     x: Union['float', 'None']
@@ -3292,7 +3628,8 @@ class LinearAccelerationReadingValues(TypedDict, AccelerometerReadingValues): ..
 class GravityReadingValues(TypedDict, AccelerometerReadingValues): ...
 
 class AmbientLightSensor(Sensor):
-    def New(self, sensorOptions: Union['SensorOptions', 'None'] = {}) -> AmbientLightSensor: ...
+    @classmethod
+    def new(cls, sensorOptions: Union['SensorOptions', 'None'] = {}) -> AmbientLightSensor: ...
     illuminance: Union['float', 'None']
 
 class AmbientLightReadingValues(TypedDict):
@@ -3300,36 +3637,53 @@ class AmbientLightReadingValues(TypedDict):
 
 class XRAnchor:
     anchorSpace: XRSpace
+
     def requestPersistentHandle(self) -> Awaitable[str]: ...
+
     def delete(self) -> None: ...
 
 class XRFrame:
+
     def createAnchor(self, pose: XRRigidTransform, space: XRSpace) -> Awaitable[XRAnchor]: ...
     trackedAnchors: XRAnchorSet
     detectedMeshs: XRMeshSet
+
     def getDepthInformation(self, view: XRView) -> Union['XRCPUDepthInformation', 'None']: ...
+
     def getJointPose(self, joint: XRJointSpace, baseSpace: XRSpace) -> Union['XRJointPose', 'None']: ...
+
     def fillJointRadii(self, jointSpaces: Sequence[XRJointSpace], radii: Float32Array) -> bool: ...
+
     def fillPoses(self, spaces: Sequence[XRSpace], baseSpace: XRSpace, transforms: Float32Array) -> bool: ...
+
     def getHitTestResults(self, hitTestSource: XRHitTestSource) -> Sequence[XRHitTestResult]: ...
+
     def getHitTestResultsForTransientInput(self, hitTestSource: XRTransientInputHitTestSource) -> Sequence[XRTransientInputHitTestResult]: ...
+
     def getLightEstimate(self, lightProbe: XRLightProbe) -> Union['XRLightEstimate', 'None']: ...
     session: XRSession
     predictedDisplayTime: DOMHighResTimeStamp
+
     def getViewerPose(self, referenceSpace: XRReferenceSpace) -> Union['XRViewerPose', 'None']: ...
+
     def getPose(self, space: XRSpace, baseSpace: XRSpace) -> Union['XRPose', 'None']: ...
 
 class XRSession(EventTarget):
     persistentAnchors: Sequence[str]
+
     def restorePersistentAnchor(self, uuid: str) -> Awaitable[XRAnchor]: ...
+
     def deletePersistentAnchor(self, uuid: str) -> Awaitable[None]: ...
     environmentBlendMode: XREnvironmentBlendMode
     interactionMode: XRInteractionMode
     depthUsage: XRDepthUsage
     depthDataFormat: XRDepthDataFormat
     domOverlayState: Union['XRDOMOverlayState', 'None']
+
     def requestHitTestSource(self, options: XRHitTestOptionsInit) -> Awaitable[XRHitTestSource]: ...
+
     def requestHitTestSourceForTransientInput(self, options: XRTransientInputHitTestOptionsInit) -> Awaitable[XRTransientInputHitTestSource]: ...
+
     def requestLightProbe(self, options: Union['XRLightProbeInit', 'None'] = {}) -> Awaitable[XRLightProbe]: ...
     preferredReflectionFormat: XRReflectionFormat
     visibilityState: XRVisibilityState
@@ -3339,11 +3693,17 @@ class XRSession(EventTarget):
     inputSources: XRInputSourceArray
     enabledFeatures: Sequence[str]
     isSystemKeyboardSupported: bool
+
     def updateRenderState(self, state: Union['XRRenderStateInit', 'None'] = {}) -> None: ...
+
     def updateTargetFrameRate(self, rate: float) -> Awaitable[None]: ...
+
     def requestReferenceSpace(self, type: XRReferenceSpaceType) -> Awaitable[XRReferenceSpace]: ...
+
     def requestAnimationFrame(self, callback: XRFrameRequestCallback) -> int: ...
+
     def cancelAnimationFrame(self, handle: int) -> None: ...
+
     def end(self) -> Awaitable[None]: ...
     onend: EventHandler
     oninputsourceschange: EventHandler
@@ -3357,7 +3717,9 @@ class XRSession(EventTarget):
     onframeratechange: EventHandler
 
 class XRHitTestResult:
+
     def createAnchor(self) -> Awaitable[XRAnchor]: ...
+
     def getPose(self, baseSpace: XRSpace) -> Union['XRPose', 'None']: ...
 
 class XRAnchorSet: ...
@@ -3366,7 +3728,8 @@ class HTMLAttributionSrcElementUtils:
     attributionSrc: str
 
 class HTMLAnchorElement(HTMLElement, HTMLAttributionSrcElementUtils, HTMLHyperlinkElementUtils):
-    def New(self) -> HTMLAnchorElement: ...
+    @classmethod
+    def new(cls) -> HTMLAnchorElement: ...
     target: str
     download: str
     ping: str
@@ -3385,7 +3748,8 @@ class HTMLAnchorElement(HTMLElement, HTMLAttributionSrcElementUtils, HTMLHyperli
     attributionDestination: str
 
 class HTMLImageElement(HTMLElement, HTMLAttributionSrcElementUtils):
-    def New(self) -> HTMLImageElement: ...
+    @classmethod
+    def new(cls) -> HTMLImageElement: ...
     x: int
     y: int
     alt: str
@@ -3405,6 +3769,7 @@ class HTMLImageElement(HTMLElement, HTMLAttributionSrcElementUtils):
     decoding: str
     loading: str
     fetchPriority: str
+
     def decode(self) -> Awaitable[None]: ...
     name: str
     lowsrc: str
@@ -3418,7 +3783,8 @@ class HTMLImageElement(HTMLElement, HTMLAttributionSrcElementUtils):
     """
 
 class HTMLScriptElement(HTMLElement, HTMLAttributionSrcElementUtils):
-    def New(self) -> HTMLScriptElement: ...
+    @classmethod
+    def new(cls) -> HTMLScriptElement: ...
     src: str
     type: str
     noModule: bool
@@ -3458,8 +3824,11 @@ class RequestInit(TypedDict):
     privateToken: NotRequired[PrivateToken]
 
 class XMLHttpRequest(XMLHttpRequestEventTarget):
-    def New(self) -> XMLHttpRequest: ...
+    @classmethod
+    def new(cls) -> XMLHttpRequest: ...
+
     def setAttributionReporting(self, options: AttributionReportingRequestOptions) -> None: ...
+
     def setPrivateToken(self, privateToken: PrivateToken) -> None: ...
     onreadystatechange: EventHandler
     UNSENT = 0
@@ -3472,17 +3841,23 @@ class XMLHttpRequest(XMLHttpRequestEventTarget):
     def open(self, method: ByteString, url: str) -> None: ...
     @overload
     def open(self, method: ByteString, url: str, async_: bool, username: Union['str', 'None'] = None, password: Union['str', 'None'] = None) -> None: ...
+
     def setRequestHeader(self, name: ByteString, value: ByteString) -> None: ...
     timeout: int
     withCredentials: bool
     upload: XMLHttpRequestUpload
+
     def send(self, body: Union['Document', 'XMLHttpRequestBodyInit', 'None'] = None) -> None: ...
+
     def abort(self) -> None: ...
     responseURL: str
     status: int
     statusText: ByteString
+
     def getResponseHeader(self, name: ByteString) -> Union['ByteString', 'None']: ...
+
     def getAllResponseHeaders(self) -> ByteString: ...
+
     def overrideMimeType(self, mime: str) -> None: ...
     responseType: XMLHttpRequestResponseType
     response: Any
@@ -3491,10 +3866,12 @@ class XMLHttpRequest(XMLHttpRequestEventTarget):
 
 class HTMLMediaElement(HTMLElement):
     sinkId: str
+
     def setSinkId(self, sinkId: str) -> Awaitable[None]: ...
     mediaKeys: Union['MediaKeys', 'None']
     onencrypted: EventHandler
     onwaitingforkey: EventHandler
+
     def setMediaKeys(self, mediaKeys: Union['MediaKeys', 'None']) -> Awaitable[None]: ...
     error: Union['MediaError', 'None']
     src: str
@@ -3508,7 +3885,9 @@ class HTMLMediaElement(HTMLElement):
     networkState: int
     preload: str
     buffered: TimeRanges
+
     def load(self) -> None: ...
+
     def canPlayType(self, type: str) -> CanPlayTypeResult: ...
     HAVE_NOTHING = 0
     HAVE_METADATA = 1
@@ -3518,8 +3897,10 @@ class HTMLMediaElement(HTMLElement):
     readyState: int
     seeking: bool
     currentTime: float
+
     def fastSeek(self, time: float) -> None: ...
     duration: float
+
     def getStartDate(self) -> object: ...
     paused: bool
     defaultPlaybackRate: float
@@ -3530,7 +3911,9 @@ class HTMLMediaElement(HTMLElement):
     ended: bool
     autoplay: bool
     loop: bool
+
     def play(self) -> Awaitable[None]: ...
+
     def pause(self) -> None: ...
     controls: bool
     volume: float
@@ -3539,21 +3922,31 @@ class HTMLMediaElement(HTMLElement):
     audioTracks: AudioTrackList
     videoTracks: VideoTrackList
     textTracks: TextTrackList
+
     def addTextTrack(self, kind: TextTrackKind, label: Union['str', 'None'] = "", language: Union['str', 'None'] = "") -> TextTrack: ...
+
     def captureStream(self) -> MediaStream: ...
     remote: RemotePlayback
     disableRemotePlayback: bool
 
 class MediaDevices(EventTarget):
+
     def selectAudioOutput(self, options: Union['AudioOutputOptions', 'None'] = {}) -> Awaitable[MediaDeviceInfo]: ...
+
     def setCaptureHandleConfig(self, config: Union['CaptureHandleConfig', 'None'] = {}) -> None: ...
+
     def setSupportedCaptureActions(self, actions: Sequence[str]) -> None: ...
     oncaptureaction: EventHandler
     ondevicechange: EventHandler
+
     def enumerateDevices(self) -> Awaitable[Sequence[MediaDeviceInfo]]: ...
+
     def getSupportedConstraints(self) -> MediaTrackSupportedConstraints: ...
+
     def getUserMedia(self, constraints: Union['MediaStreamConstraints', 'None'] = {}) -> Awaitable[MediaStream]: ...
+
     def getViewportMedia(self, constraints: Union['DisplayMediaStreamConstraints', 'None'] = {}) -> Awaitable[MediaStream]: ...
+
     def getDisplayMedia(self, options: Union['DisplayMediaStreamOptions', 'None'] = {}) -> Awaitable[MediaStream]: ...
 
 class AudioOutputOptions(TypedDict):
@@ -3566,16 +3959,21 @@ class Navigator(NavigatorBadge, NavigatorDeviceMemory, GlobalPrivacyControl, Nav
     def getAutoplayPolicy(self, element: HTMLMediaElement) -> AutoplayPolicy: ...
     @overload
     def getAutoplayPolicy(self, context: AudioContext) -> AutoplayPolicy: ...
+
     def getBattery(self) -> Awaitable[BatteryManager]: ...
+
     def sendBeacon(self, url: str, data: Union['BodyInit', 'None'] = None) -> bool: ...
     clipboard: Clipboard
     contacts: ContactsManager
     credentials: CredentialsContainer
     devicePosture: DevicePosture
+
     def requestMediaKeySystemAccess(self, keySystem: str, supportedConfigurations: Sequence[MediaKeySystemConfiguration]) -> Awaitable[MediaKeySystemAccess]: ...
     epubReadingSystem: EpubReadingSystem
+
     def getGamepads(self) -> Sequence[Union['Gamepad', 'None']]: ...
     geolocation: Geolocation
+
     def getInstalledRelatedApps(self) -> Awaitable[Sequence[RelatedApplication]]: ...
     userActivation: UserActivation
     ink: Ink
@@ -3583,6 +3981,7 @@ class Navigator(NavigatorBadge, NavigatorDeviceMemory, GlobalPrivacyControl, Nav
     keyboard: Keyboard
     mediaCapabilities: MediaCapabilities
     mediaDevices: MediaDevices
+
     def getUserMedia(self, constraints: MediaStreamConstraints, successCallback: NavigatorUserMediaSuccessCallback, errorCallback: NavigatorUserMediaErrorCallback) -> None: ...
     mediaSession: MediaSession
     permissions: Permissions
@@ -3591,16 +3990,24 @@ class Navigator(NavigatorBadge, NavigatorDeviceMemory, GlobalPrivacyControl, Nav
     wakeLock: WakeLock
     serial: Serial
     serviceWorker: ServiceWorkerContainer
+
     def joinAdInterestGroup(self, group: AuctionAdInterestGroup) -> Awaitable[None]: ...
+
     def leaveAdInterestGroup(self, group: Union['AuctionAdInterestGroupKey', 'None'] = {}) -> Awaitable[None]: ...
+
     def runAdAuction(self, config: AuctionAdConfig) -> Awaitable[Union['str', 'FencedFrameConfig', 'None']]: ...
+
     def updateAdInterestGroups(self) -> None: ...
+
     def vibrate(self, pattern: VibratePattern) -> bool: ...
     virtualKeyboard: VirtualKeyboard
     bluetooth: Bluetooth
+
     def share(self, data: Union['ShareData', 'None'] = {}) -> Awaitable[None]: ...
+
     def canShare(self, data: Union['ShareData', 'None'] = {}) -> bool: ...
     hid: HID
+
     def requestMIDIAccess(self, options: Union['MIDIOptions', 'None'] = {}) -> Awaitable[MIDIAccess]: ...
     usb: USB
     xr: XRSystem
@@ -3625,6 +4032,7 @@ class ServiceWorkerGlobalScope(WorkerGlobalScope):
     clients: Clients
     registration: ServiceWorkerRegistration
     serviceWorker: ServiceWorker
+
     def skipWaiting(self) -> Awaitable[None]: ...
     oninstall: EventHandler
     onactivate: EventHandler
@@ -3637,7 +4045,9 @@ class ServiceWorkerRegistration(EventTarget):
     sync: SyncManager
     index: ContentIndex
     cookies: CookieStoreManager
+
     def showNotification(self, title: str, options: Union['NotificationOptions', 'None'] = {}) -> Awaitable[None]: ...
+
     def getNotifications(self, filter: Union['GetNotificationOptions', 'None'] = {}) -> Awaitable[Sequence[Notification]]: ...
     paymentManager: PaymentManager
     periodicSync: PeriodicSyncManager
@@ -3648,13 +4058,18 @@ class ServiceWorkerRegistration(EventTarget):
     navigationPreload: NavigationPreloadManager
     scope: str
     updateViaCache: ServiceWorkerUpdateViaCache
+
     def update(self) -> Awaitable[None]: ...
+
     def unregister(self) -> Awaitable[bool]: ...
     onupdatefound: EventHandler
 
 class BackgroundFetchManager:
+
     def fetch(self, id: str, requests: Union['RequestInfo', 'Sequence[RequestInfo]'], options: Union['BackgroundFetchOptions', 'None'] = {}) -> Awaitable[BackgroundFetchRegistration]: ...
+
     def get(self, id: str) -> Awaitable[Union['BackgroundFetchRegistration', 'None']]: ...
+
     def getIds(self) -> Awaitable[Sequence[str]]: ...
 
 class BackgroundFetchUIOptions(TypedDict):
@@ -3674,8 +4089,11 @@ class BackgroundFetchRegistration(EventTarget):
     failureReason: BackgroundFetchFailureReason
     recordsAvailable: bool
     onprogress: EventHandler
+
     def abort(self) -> Awaitable[bool]: ...
+
     def match(self, request: RequestInfo, options: Union['CacheQueryOptions', 'None'] = {}) -> Awaitable[BackgroundFetchRecord]: ...
+
     def matchAll(self, request: Union['RequestInfo', 'None'] = None, options: Union['CacheQueryOptions', 'None'] = {}) -> Awaitable[Sequence[BackgroundFetchRecord]]: ...
 
 class BackgroundFetchRecord:
@@ -3683,22 +4101,28 @@ class BackgroundFetchRecord:
     responseReady: Awaitable[Response]
 
 class BackgroundFetchEvent(ExtendableEvent):
-    def New(self, type: str, init: BackgroundFetchEventInit) -> BackgroundFetchEvent: ...
+    @classmethod
+    def new(cls, type: str, init: BackgroundFetchEventInit) -> BackgroundFetchEvent: ...
     registration: BackgroundFetchRegistration
 
 class BackgroundFetchEventInit(TypedDict, ExtendableEventInit):
     registration: BackgroundFetchRegistration
 
 class BackgroundFetchUpdateUIEvent(BackgroundFetchEvent):
-    def New(self, type: str, init: BackgroundFetchEventInit) -> BackgroundFetchUpdateUIEvent: ...
+    @classmethod
+    def new(cls, type: str, init: BackgroundFetchEventInit) -> BackgroundFetchUpdateUIEvent: ...
+
     def updateUI(self, options: Union['BackgroundFetchUIOptions', 'None'] = {}) -> Awaitable[None]: ...
 
 class SyncManager:
+
     def register(self, tag: str) -> Awaitable[None]: ...
+
     def getTags(self) -> Awaitable[Sequence[str]]: ...
 
 class SyncEvent(ExtendableEvent):
-    def New(self, type: str, init: SyncEventInit) -> SyncEvent: ...
+    @classmethod
+    def new(cls, type: str, init: SyncEventInit) -> SyncEvent: ...
     tag: str
     lastChance: bool
 
@@ -3707,7 +4131,9 @@ class SyncEventInit(TypedDict, ExtendableEventInit):
     lastChance: NotRequired[bool]
 
 class NavigatorBadge:
+
     def setAppBadge(self, contents: Union['int', 'None'] = None) -> Awaitable[None]: ...
+
     def clearAppBadge(self) -> Awaitable[None]: ...
 
 class WorkerNavigator(NavigatorBadge, NavigatorDeviceMemory, GlobalPrivacyControl, NavigatorID, NavigatorLanguage, NavigatorOnLine, NavigatorConcurrentHardware, NavigatorNetworkInformation, NavigatorStorageBuckets, NavigatorStorage, NavigatorUA, NavigatorLocks, NavigatorGPU, NavigatorML):
@@ -3738,9 +4164,12 @@ class CaptureHandle(TypedDict):
     handle: NotRequired[str]
 
 class MediaStreamTrack(EventTarget):
+
     def getCaptureHandle(self) -> Union['CaptureHandle', 'None']: ...
     oncapturehandlechange: EventHandler
+
     def getSupportedCaptureActions(self) -> Sequence[str]: ...
+
     def sendCaptureAction(self, action: CaptureAction) -> Awaitable[None]: ...
     kind: str
     id: str
@@ -3751,18 +4180,25 @@ class MediaStreamTrack(EventTarget):
     onunmute: EventHandler
     readyState: MediaStreamTrackState
     onended: EventHandler
+
     def clone(self) -> MediaStreamTrack: ...
+
     def stop(self) -> None: ...
+
     def getCapabilities(self) -> MediaTrackCapabilities: ...
+
     def getConstraints(self) -> MediaTrackConstraints: ...
+
     def getSettings(self) -> MediaTrackSettings: ...
+
     def applyConstraints(self, constraints: Union['MediaTrackConstraints', 'None'] = {}) -> Awaitable[None]: ...
     contentHint: str
     isolated: bool
     onisolationchange: EventHandler
 
 class CapturedMouseEvent(Event):
-    def New(self, type: str, eventInitDict: Union['CapturedMouseEventInit', 'None'] = {}) -> CapturedMouseEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['CapturedMouseEventInit', 'None'] = {}) -> CapturedMouseEvent: ...
     surfaceX: int
     surfaceY: int
 
@@ -3771,38 +4207,50 @@ class CapturedMouseEventInit(TypedDict, EventInit):
     surfaceY: NotRequired[int]
 
 class CaptureController(EventTarget):
-    def New(self) -> CaptureController: ...
+    @classmethod
+    def new(cls) -> CaptureController: ...
     oncapturedmousechange: EventHandler
+
     def setFocusBehavior(self, focusBehavior: CaptureStartFocusBehavior) -> None: ...
 
 class ClipboardEventInit(TypedDict, EventInit):
     clipboardData: NotRequired[Union['DataTransfer', 'None']]
 
 class ClipboardEvent(Event):
-    def New(self, type: str, eventInitDict: Union['ClipboardEventInit', 'None'] = {}) -> ClipboardEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['ClipboardEventInit', 'None'] = {}) -> ClipboardEvent: ...
     clipboardData: Union['DataTransfer', 'None']
 
 class ClipboardItem:
-    def New(self, items: ClipboardItemData, options: Union['ClipboardItemOptions', 'None'] = {}) -> ClipboardItem: ...
+    @classmethod
+    def new(cls, items: ClipboardItemData, options: Union['ClipboardItemOptions', 'None'] = {}) -> ClipboardItem: ...
     presentationStyle: PresentationStyle
     types: Sequence[str]
+
     def getType(self, type: str) -> Awaitable[Blob]: ...
 
 class ClipboardItemOptions(TypedDict):
     presentationStyle: NotRequired[PresentationStyle]
 
 class Clipboard(EventTarget):
+
     def read(self) -> Awaitable[ClipboardItems]: ...
+
     def readText(self) -> Awaitable[str]: ...
+
     def write(self, data: ClipboardItems) -> Awaitable[None]: ...
+
     def writeText(self, data: str) -> Awaitable[None]: ...
 
 class ClipboardPermissionDescriptor(TypedDict, PermissionDescriptor):
     allowWithoutGesture: NotRequired[bool]
 
 class CloseWatcher(EventTarget):
-    def New(self, options: Union['CloseWatcherOptions', 'None'] = {}) -> CloseWatcher: ...
+    @classmethod
+    def new(cls, options: Union['CloseWatcherOptions', 'None'] = {}) -> CloseWatcher: ...
+
     def destroy(self) -> None: ...
+
     def close(self) -> None: ...
     oncancel: EventHandler
     onclose: EventHandler
@@ -3814,13 +4262,19 @@ class Window(EventTarget, GlobalEventHandlers, WindowEventHandlers, WindowOrWork
     orientation: int
     onorientationchange: EventHandler
     cookieStore: CookieStore
+
     def navigate(self, dir: SpatialNavigationDirection) -> None: ...
+
     def matchMedia(self, query: str) -> MediaQueryList: ...
     screen: Screen
     visualViewport: Union['VisualViewport', 'None']
+
     def moveTo(self, x: int, y: int) -> None: ...
+
     def moveBy(self, x: int, y: int) -> None: ...
+
     def resizeTo(self, width: int, height: int) -> None: ...
+
     def resizeBy(self, x: int, y: int) -> None: ...
     innerWidth: int
     innerHeight: int
@@ -3847,13 +4301,18 @@ class Window(EventTarget, GlobalEventHandlers, WindowEventHandlers, WindowOrWork
     outerWidth: int
     outerHeight: int
     devicePixelRatio: float
+
     def getComputedStyle(self, elt: Element, pseudoElt: Union['str', 'None'] = None) -> CSSStyleDeclaration: ...
+
     def getDigitalGoodsService(self, serviceProvider: str) -> Awaitable[DigitalGoodsService]: ...
     documentPictureInPicture: DocumentPictureInPicture
     event: Union['Event', 'None']
     fence: Union['Fence', 'None']
+
     def showOpenFilePicker(self, options: Union['OpenFilePickerOptions', 'None'] = {}) -> Awaitable[Sequence[FileSystemFileHandle]]: ...
+
     def showSaveFilePicker(self, options: Union['SaveFilePickerOptions', 'None'] = {}) -> Awaitable[FileSystemFileHandle]: ...
+
     def showDirectoryPicker(self, options: Union['DirectoryPickerOptions', 'None'] = {}) -> Awaitable[FileSystemDirectoryHandle]: ...
     window: WindowProxy
     self: WindowProxy
@@ -3870,10 +4329,14 @@ class Window(EventTarget, GlobalEventHandlers, WindowEventHandlers, WindowOrWork
     statusbar: BarProp
     toolbar: BarProp
     status: str
+
     def close(self) -> None: ...
     closed: bool
+
     def stop(self) -> None: ...
+
     def focus(self) -> None: ...
+
     def blur(self) -> None: ...
     frames: WindowProxy
     length: int
@@ -3881,6 +4344,7 @@ class Window(EventTarget, GlobalEventHandlers, WindowEventHandlers, WindowOrWork
     opener: Any
     parent: Union['WindowProxy', 'None']
     frameElement: Union['Element', 'None']
+
     def open(self, url: Union['str', 'None'] = "", target: Union['str', 'None'] = "_blank", features: Union['str', 'None'] = "") -> Union['WindowProxy', 'None']: ...
     navigator: Navigator
     clientInformation: Navigator
@@ -3889,16 +4353,22 @@ class Window(EventTarget, GlobalEventHandlers, WindowEventHandlers, WindowOrWork
     def alert(self) -> None: ...
     @overload
     def alert(self, message: str) -> None: ...
+
     def confirm(self, message: Union['str', 'None'] = "") -> bool: ...
+
     def prompt(self, message: Union['str', 'None'] = "", default: Union['str', 'None'] = "") -> Union['str', 'None']: ...
+
     def print(self) -> None: ...
     @overload
     def postMessage(self, message: Any, targetOrigin: str, transfer: Union['Sequence[object]', 'None'] = []) -> None: ...
     @overload
     def postMessage(self, message: Any, options: Union['WindowPostMessageOptions', 'None'] = {}) -> None: ...
+
     def captureEvents(self) -> None: ...
+
     def releaseEvents(self) -> None: ...
     external: External
+
     def queryLocalFonts(self, options: Union['QueryOptions', 'None'] = {}) -> Awaitable[Sequence[FontData]]: ...
     onappinstalled: EventHandler
     onbeforeinstallprompt: EventHandler
@@ -3906,15 +4376,20 @@ class Window(EventTarget, GlobalEventHandlers, WindowEventHandlers, WindowOrWork
     ondeviceorientationabsolute: EventHandler
     ondevicemotion: EventHandler
     portalHost: Union['PortalHost', 'None']
+
     def requestIdleCallback(self, callback: IdleRequestCallback, options: Union['IdleRequestOptions', 'None'] = {}) -> int: ...
+
     def cancelIdleCallback(self, handle: int) -> None: ...
+
     def getSelection(self) -> Union['Selection', 'None']: ...
     speechSynthesis: SpeechSynthesis
     launchQueue: LaunchQueue
+
     def getScreenDetails(self) -> Awaitable[ScreenDetails]: ...
 
 class HTMLBodyElement(HTMLElement, WindowEventHandlers):
-    def New(self) -> HTMLBodyElement: ...
+    @classmethod
+    def new(cls) -> HTMLBodyElement: ...
     onorientationchange: EventHandler
     text: str
     link: str
@@ -3924,49 +4399,77 @@ class HTMLBodyElement(HTMLElement, WindowEventHandlers):
     background: str
 
 class CompressionStream(GenericTransformStream):
-    def New(self, format: CompressionFormat) -> CompressionStream: ...
+    @classmethod
+    def new(cls, format: CompressionFormat) -> CompressionStream: ...
 
 class DecompressionStream(GenericTransformStream):
-    def New(self, format: CompressionFormat) -> DecompressionStream: ...
+    @classmethod
+    def new(cls, format: CompressionFormat) -> DecompressionStream: ...
 
 class PressureObserver:
-    def New(self, callback: PressureUpdateCallback, options: Union['PressureObserverOptions', 'None'] = {}) -> PressureObserver: ...
+    @classmethod
+    def new(cls, callback: PressureUpdateCallback, options: Union['PressureObserverOptions', 'None'] = {}) -> PressureObserver: ...
+
     def observe(self, source: PressureSource) -> Awaitable[None]: ...
+
     def unobserve(self, source: PressureSource) -> None: ...
+
     def disconnect(self) -> None: ...
+
     def takeRecords(self) -> Sequence[PressureRecord]: ...
 
 class PressureRecord:
     source: PressureSource
     state: PressureState
     time: DOMHighResTimeStamp
+
     def toJSON(self) -> object: ...
 
 class PressureObserverOptions(TypedDict):
     sampleRate: NotRequired[float]
 
 class ConsoleNamespace:
+
     def assert_(self, condition: Union['bool', 'None'] = False, *data: Any) -> None: ...
+
     def clear(self) -> None: ...
+
     def debug(self, *data: Any) -> None: ...
+
     def error(self, *data: Any) -> None: ...
+
     def info(self, *data: Any) -> None: ...
+
     def log(self, *data: Any) -> None: ...
+
     def table(self, tabularData: Union['Any', 'None'] = None, properties: Union['Sequence[str]', 'None'] = None) -> None: ...
+
     def trace(self, *data: Any) -> None: ...
+
     def warn(self, *data: Any) -> None: ...
+
     def dir(self, item: Union['Any', 'None'] = None, options: Union['object', 'None'] = None) -> None: ...
+
     def dirxml(self, *data: Any) -> None: ...
+
     def count(self, label: Union['str', 'None'] = "default") -> None: ...
+
     def countReset(self, label: Union['str', 'None'] = "default") -> None: ...
+
     def group(self, *data: Any) -> None: ...
+
     def groupCollapsed(self, *data: Any) -> None: ...
+
     def groupEnd(self) -> None: ...
+
     def time(self, label: Union['str', 'None'] = "default") -> None: ...
+
     def timeLog(self, label: Union['str', 'None'] = "default", *data: Any) -> None: ...
+
     def timeEnd(self, label: Union['str', 'None'] = "default") -> None: ...
 
 class ContactAddress:
+
     def toJSON(self) -> object: ...
     city: str
     country: str
@@ -3990,7 +4493,9 @@ class ContactsSelectOptions(TypedDict):
     multiple: NotRequired[bool]
 
 class ContactsManager:
+
     def getProperties(self) -> Awaitable[Sequence[ContactProperty]]: ...
+
     def select(self, properties: Sequence[ContactProperty], options: Union['ContactsSelectOptions', 'None'] = {}) -> Awaitable[Sequence[ContactInfo]]: ...
 
 class ContentDescription(TypedDict):
@@ -4002,15 +4507,19 @@ class ContentDescription(TypedDict):
     url: str
 
 class ContentIndex:
+
     def add(self, description: ContentDescription) -> Awaitable[None]: ...
+
     def delete(self, id: str) -> Awaitable[None]: ...
+
     def getAll(self) -> Awaitable[Sequence[ContentDescription]]: ...
 
 class ContentIndexEventInit(TypedDict, ExtendableEventInit):
     id: str
 
 class ContentIndexEvent(ExtendableEvent):
-    def New(self, type: str, init: ContentIndexEventInit) -> ContentIndexEvent: ...
+    @classmethod
+    def new(cls, type: str, init: ContentIndexEventInit) -> ContentIndexEvent: ...
     id: str
 
 class CookieStore(EventTarget):
@@ -4059,12 +4568,16 @@ class CookieListItem(TypedDict):
     sameSite: NotRequired[CookieSameSite]
 
 class CookieStoreManager:
+
     def subscribe(self, subscriptions: Sequence[CookieStoreGetOptions]) -> Awaitable[None]: ...
+
     def getSubscriptions(self) -> Awaitable[Sequence[CookieStoreGetOptions]]: ...
+
     def unsubscribe(self, subscriptions: Sequence[CookieStoreGetOptions]) -> Awaitable[None]: ...
 
 class CookieChangeEvent(Event):
-    def New(self, type: str, eventInitDict: Union['CookieChangeEventInit', 'None'] = {}) -> CookieChangeEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['CookieChangeEventInit', 'None'] = {}) -> CookieChangeEvent: ...
     changed: Sequence[CookieListItem]
     deleted: Sequence[CookieListItem]
 
@@ -4073,7 +4586,8 @@ class CookieChangeEventInit(TypedDict, EventInit):
     deleted: NotRequired[CookieList]
 
 class ExtendableCookieChangeEvent(ExtendableEvent):
-    def New(self, type: str, eventInitDict: Union['ExtendableCookieChangeEventInit', 'None'] = {}) -> ExtendableCookieChangeEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['ExtendableCookieChangeEventInit', 'None'] = {}) -> ExtendableCookieChangeEvent: ...
     changed: Sequence[CookieListItem]
     deleted: Sequence[CookieListItem]
 
@@ -4082,6 +4596,7 @@ class ExtendableCookieChangeEventInit(TypedDict, ExtendableEventInit):
     deleted: NotRequired[CookieList]
 
 class CrashReportBody(ReportBody):
+
     def toJSON(self) -> object: ...
     reason: Union['str', 'None']
 
@@ -4094,9 +4609,13 @@ class CredentialUserData:
     iconURL: str
 
 class CredentialsContainer:
+
     def get(self, options: Union['CredentialRequestOptions', 'None'] = {}) -> Awaitable[Union['Credential', 'None']]: ...
+
     def store(self, credential: Credential) -> Awaitable[None]: ...
+
     def create(self, options: Union['CredentialCreationOptions', 'None'] = {}) -> Awaitable[Union['Credential', 'None']]: ...
+
     def preventSilentAccess(self) -> Awaitable[None]: ...
 
 class CredentialData(TypedDict):
@@ -4110,9 +4629,11 @@ class CredentialCreationOptions(TypedDict):
 
 class PasswordCredential(Credential, CredentialUserData):
     @overload
-    def New(self, form: HTMLFormElement) -> PasswordCredential: ...
+    @classmethod
+    def new(cls, form: HTMLFormElement) -> PasswordCredential: ...
     @overload
-    def New(self, data: PasswordCredentialData) -> PasswordCredential: ...
+    @classmethod
+    def new(cls, data: PasswordCredentialData) -> PasswordCredential: ...
     password: str
 
 class PasswordCredentialData(TypedDict, CredentialData):
@@ -4122,7 +4643,8 @@ class PasswordCredentialData(TypedDict, CredentialData):
     password: str
 
 class FederatedCredential(Credential, CredentialUserData):
-    def New(self, data: FederatedCredentialInit) -> FederatedCredential: ...
+    @classmethod
+    def new(cls, data: FederatedCredentialInit) -> FederatedCredential: ...
     provider: str
     protocol: Union['str', 'None']
 
@@ -4138,7 +4660,8 @@ class FederatedCredentialInit(TypedDict, CredentialData):
     protocol: NotRequired[str]
 
 class HTMLIFrameElement(HTMLElement):
-    def New(self) -> HTMLIFrameElement: ...
+    @classmethod
+    def new(cls) -> HTMLIFrameElement: ...
     csp: str
     src: str
     srcdoc: str
@@ -4152,6 +4675,7 @@ class HTMLIFrameElement(HTMLElement):
     loading: str
     contentDocument: Union['Document', 'None']
     contentWindow: Union['WindowProxy', 'None']
+
     def getSVGDocument(self) -> Union['Document', 'None']: ...
     align: str
     scrolling: str
@@ -4163,6 +4687,7 @@ class HTMLIFrameElement(HTMLElement):
     privateToken: str
 
 class ScriptingPolicyReportBody(ReportBody):
+
     def toJSON(self) -> object: ...
     violationType: str
     violationURL: Union['str', 'None']
@@ -4177,25 +4702,31 @@ class CSSTryRule(CSSRule):
     style: CSSStyleDeclaration
 
 class AnimationWorkletGlobalScope(WorkletGlobalScope):
+
     def registerAnimator(self, name: str, animatorCtor: AnimatorInstanceConstructor) -> None: ...
 
 class WorkletAnimationEffect:
+
     def getTiming(self) -> EffectTiming: ...
+
     def getComputedTiming(self) -> ComputedEffectTiming: ...
     localTime: Union['float', 'None']
 
 class WorkletAnimation(Animation):
-    def New(self, animatorName: str, effects: Union['AnimationEffect', 'Sequence[AnimationEffect]', 'None'] = None, timeline: Union['AnimationTimeline', 'None'] = None, options: Union['Any', 'None'] = None) -> WorkletAnimation: ...
+    @classmethod
+    def new(cls, animatorName: str, effects: Union['AnimationEffect', 'Sequence[AnimationEffect]', 'None'] = None, timeline: Union['AnimationTimeline', 'None'] = None, options: Union['Any', 'None'] = None) -> WorkletAnimation: ...
     animatorName: str
 
 class WorkletGroupEffect:
+
     def getChildren(self) -> Sequence[WorkletAnimationEffect]: ...
 
 class CSSAnimation(Animation):
     animationName: str
 
 class AnimationEvent(Event):
-    def New(self, type: str, animationEventInitDict: Union['AnimationEventInit', 'None'] = {}) -> AnimationEvent: ...
+    @classmethod
+    def new(cls, type: str, animationEventInitDict: Union['AnimationEventInit', 'None'] = {}) -> AnimationEvent: ...
     animationName: str
     elapsedTime: float
     pseudoElement: str
@@ -4213,8 +4744,11 @@ class CSSKeyframesRule(CSSRule):
     name: str
     cssRules: CSSRuleList
     length: int
+
     def appendRule(self, rule: str) -> None: ...
+
     def deleteRule(self, select: str) -> None: ...
+
     def findRule(self, select: str) -> Union['CSSKeyframeRule', 'None']: ...
 
 class GlobalEventHandlers:
@@ -4349,73 +4883,141 @@ class CssNamespace:
     def supports(self, property: str, value: str) -> bool: ...
     @overload
     def supports(self, conditionText: str) -> bool: ...
+
     def parseStylesheet(self, css: CSSStringSource, options: Union['CSSParserOptions', 'None'] = {}) -> Awaitable[Sequence[CSSParserRule]]: ...
+
     def parseRuleList(self, css: CSSStringSource, options: Union['CSSParserOptions', 'None'] = {}) -> Awaitable[Sequence[CSSParserRule]]: ...
+
     def parseRule(self, css: CSSStringSource, options: Union['CSSParserOptions', 'None'] = {}) -> Awaitable[CSSParserRule]: ...
+
     def parseDeclarationList(self, css: CSSStringSource, options: Union['CSSParserOptions', 'None'] = {}) -> Awaitable[Sequence[CSSParserRule]]: ...
+
     def parseDeclaration(self, css: str, options: Union['CSSParserOptions', 'None'] = {}) -> CSSParserDeclaration: ...
+
     def parseValue(self, css: str) -> CSSToken: ...
+
     def parseValueList(self, css: str) -> Sequence[CSSToken]: ...
+
     def parseCommaValueList(self, css: str) -> Sequence[Sequence[CSSToken]]: ...
+
     def registerProperty(self, definition: PropertyDefinition) -> None: ...
+
     def number(self, value: float) -> CSSUnitValue: ...
+
     def percent(self, value: float) -> CSSUnitValue: ...
+
     def em(self, value: float) -> CSSUnitValue: ...
+
     def ex(self, value: float) -> CSSUnitValue: ...
+
     def ch(self, value: float) -> CSSUnitValue: ...
+
     def ic(self, value: float) -> CSSUnitValue: ...
+
     def rem(self, value: float) -> CSSUnitValue: ...
+
     def lh(self, value: float) -> CSSUnitValue: ...
+
     def rlh(self, value: float) -> CSSUnitValue: ...
+
     def vw(self, value: float) -> CSSUnitValue: ...
+
     def vh(self, value: float) -> CSSUnitValue: ...
+
     def vi(self, value: float) -> CSSUnitValue: ...
+
     def vb(self, value: float) -> CSSUnitValue: ...
+
     def vmin(self, value: float) -> CSSUnitValue: ...
+
     def vmax(self, value: float) -> CSSUnitValue: ...
+
     def svw(self, value: float) -> CSSUnitValue: ...
+
     def svh(self, value: float) -> CSSUnitValue: ...
+
     def svi(self, value: float) -> CSSUnitValue: ...
+
     def svb(self, value: float) -> CSSUnitValue: ...
+
     def svmin(self, value: float) -> CSSUnitValue: ...
+
     def svmax(self, value: float) -> CSSUnitValue: ...
+
     def lvw(self, value: float) -> CSSUnitValue: ...
+
     def lvh(self, value: float) -> CSSUnitValue: ...
+
     def lvi(self, value: float) -> CSSUnitValue: ...
+
     def lvb(self, value: float) -> CSSUnitValue: ...
+
     def lvmin(self, value: float) -> CSSUnitValue: ...
+
     def lvmax(self, value: float) -> CSSUnitValue: ...
+
     def dvw(self, value: float) -> CSSUnitValue: ...
+
     def dvh(self, value: float) -> CSSUnitValue: ...
+
     def dvi(self, value: float) -> CSSUnitValue: ...
+
     def dvb(self, value: float) -> CSSUnitValue: ...
+
     def dvmin(self, value: float) -> CSSUnitValue: ...
+
     def dvmax(self, value: float) -> CSSUnitValue: ...
+
     def cqw(self, value: float) -> CSSUnitValue: ...
+
     def cqh(self, value: float) -> CSSUnitValue: ...
+
     def cqi(self, value: float) -> CSSUnitValue: ...
+
     def cqb(self, value: float) -> CSSUnitValue: ...
+
     def cqmin(self, value: float) -> CSSUnitValue: ...
+
     def cqmax(self, value: float) -> CSSUnitValue: ...
+
     def cm(self, value: float) -> CSSUnitValue: ...
+
     def mm(self, value: float) -> CSSUnitValue: ...
+
     def Q(self, value: float) -> CSSUnitValue: ...
+
     def in_(self, value: float) -> CSSUnitValue: ...
+
     def pt(self, value: float) -> CSSUnitValue: ...
+
     def pc(self, value: float) -> CSSUnitValue: ...
+
     def px(self, value: float) -> CSSUnitValue: ...
+
     def deg(self, value: float) -> CSSUnitValue: ...
+
     def grad(self, value: float) -> CSSUnitValue: ...
+
     def rad(self, value: float) -> CSSUnitValue: ...
+
     def turn(self, value: float) -> CSSUnitValue: ...
+
     def s(self, value: float) -> CSSUnitValue: ...
+
     def ms(self, value: float) -> CSSUnitValue: ...
+
     def Hz(self, value: float) -> CSSUnitValue: ...
+
     def kHz(self, value: float) -> CSSUnitValue: ...
+
     def dpi(self, value: float) -> CSSUnitValue: ...
+
     def dpcm(self, value: float) -> CSSUnitValue: ...
+
     def dppx(self, value: float) -> CSSUnitValue: ...
+
     def fr(self, value: float) -> CSSUnitValue: ...
+
     def escape(self, ident: str) -> str: ...
 
 class CSSContainerRule(CSSConditionRule):
@@ -4423,7 +5025,8 @@ class CSSContainerRule(CSSConditionRule):
     containerQuery: str
 
 class ContentVisibilityAutoStateChangeEvent(Event):
-    def New(self, type: str, eventInitDict: Union['ContentVisibilityAutoStateChangeEventInit', 'None'] = {}) -> ContentVisibilityAutoStateChangeEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['ContentVisibilityAutoStateChangeEventInit', 'None'] = {}) -> ContentVisibilityAutoStateChangeEvent: ...
     skipped: bool
 
 class ContentVisibilityAutoStateChangeEventInit(TypedDict, EventInit):
@@ -4456,7 +5059,8 @@ class FontFaceDescriptors(TypedDict):
     lineGapOverride: NotRequired[str]
 
 class FontFace:
-    def New(self, family: str, source: Union['str', 'BinaryData'], descriptors: Union['FontFaceDescriptors', 'None'] = {}) -> FontFace: ...
+    @classmethod
+    def new(cls, family: str, source: Union['str', 'BinaryData'], descriptors: Union['FontFaceDescriptors', 'None'] = {}) -> FontFace: ...
     family: str
     style: str
     weight: str
@@ -4470,6 +5074,7 @@ class FontFace:
     descentOverride: str
     lineGapOverride: str
     status: FontFaceLoadStatus
+
     def load(self) -> Awaitable[FontFace]: ...
     loaded: Awaitable[FontFace]
     features: FontFaceFeatures
@@ -4499,18 +5104,25 @@ class FontFaceSetLoadEventInit(TypedDict, EventInit):
     fontfaces: NotRequired[Sequence[FontFace]]
 
 class FontFaceSetLoadEvent(Event):
-    def New(self, type: str, eventInitDict: Union['FontFaceSetLoadEventInit', 'None'] = {}) -> FontFaceSetLoadEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['FontFaceSetLoadEventInit', 'None'] = {}) -> FontFaceSetLoadEvent: ...
     fontfaces: Sequence[FontFace]
 
 class FontFaceSet(EventTarget):
-    def New(self, initialFaces: Sequence[FontFace]) -> FontFaceSet: ...
+    @classmethod
+    def new(cls, initialFaces: Sequence[FontFace]) -> FontFaceSet: ...
+
     def add(self, font: FontFace) -> FontFaceSet: ...
+
     def delete(self, font: FontFace) -> bool: ...
+
     def clear(self) -> None: ...
     onloading: EventHandler
     onloadingdone: EventHandler
     onloadingerror: EventHandler
+
     def load(self, font: str, text: Union['str', 'None'] = " ") -> Awaitable[Sequence[FontFace]]: ...
+
     def check(self, font: str, text: Union['str', 'None'] = " ") -> bool: ...
     ready: Awaitable[FontFaceSet]
     status: FontFaceSetLoadStatus
@@ -4522,6 +5134,7 @@ class WorkerGlobalScope(EventTarget, FontFaceSource, WindowOrWorkerGlobalScope):
     self: WorkerGlobalScope
     location: WorkerLocation
     navigator: WorkerNavigator
+
     def importScripts(self, *urls: str) -> None: ...
     onerror: OnErrorEventHandler
     onlanguagechange: EventHandler
@@ -4540,6 +5153,7 @@ class CSSFontFeatureValuesRule(CSSRule):
     styleset: CSSFontFeatureValuesMap
 
 class CSSFontFeatureValuesMap:
+
     def set(self, featureValueName: str, values: Union['int', 'Sequence[int]']) -> None: ...
 
 class CSSFontPaletteValuesRule(CSSRule):
@@ -4549,13 +5163,15 @@ class CSSFontPaletteValuesRule(CSSRule):
     overrideColors: str
 
 class Highlight:
-    def New(self, *initialRanges: AbstractRange) -> Highlight: ...
+    @classmethod
+    def new(cls, *initialRanges: AbstractRange) -> Highlight: ...
     priority: int
     type: HighlightType
 
 class HighlightRegistry: ...
 
 class LayoutWorkletGlobalScope(WorkletGlobalScope):
+
     def registerLayout(self, name: str, layoutCtor: VoidFunction) -> None: ...
 
 class LayoutOptions(TypedDict):
@@ -4564,7 +5180,9 @@ class LayoutOptions(TypedDict):
 
 class LayoutChild:
     styleMap: StylePropertyMapReadOnly
+
     def intrinsicSizes(self) -> Awaitable[IntrinsicSizes]: ...
+
     def layoutNextFragment(self, constraints: LayoutConstraintsOptions, breakToken: ChildBreakToken) -> Awaitable[LayoutFragment]: ...
 
 class LayoutFragment:
@@ -4630,7 +5248,8 @@ class FragmentResultOptions(TypedDict):
     breakToken: NotRequired[BreakTokenOptions]
 
 class FragmentResult:
-    def New(self, options: Union['FragmentResultOptions', 'None'] = {}) -> FragmentResult: ...
+    @classmethod
+    def new(cls, options: Union['FragmentResultOptions', 'None'] = {}) -> FragmentResult: ...
     inlineSize: float
     blockSize: float
 
@@ -4658,7 +5277,8 @@ class SpatialNavigationSearchOptions(TypedDict):
     container: NotRequired[Union['Node', 'None']]
 
 class NavigationEvent(UIEvent):
-    def New(self, type: str, eventInitDict: Union['NavigationEventInit', 'None'] = {}) -> NavigationEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['NavigationEventInit', 'None'] = {}) -> NavigationEvent: ...
     dir: SpatialNavigationDirection
     relatedTarget: Union['EventTarget', 'None']
 
@@ -4667,6 +5287,7 @@ class NavigationEventInit(TypedDict, UIEventInit):
     relatedTarget: NotRequired[Union['EventTarget', 'None']]
 
 class PaintWorkletGlobalScope(WorkletGlobalScope):
+
     def registerPaint(self, name: str, paintCtor: VoidFunction) -> None: ...
     devicePixelRatio: float
 
@@ -4685,30 +5306,35 @@ class CSSParserOptions(TypedDict):
 class CSSParserRule: ...
 
 class CSSParserAtRule(CSSParserRule):
-    def New(self, name: str, prelude: Sequence[CSSToken], body: Union['Sequence[CSSParserRule]', 'None'] = None) -> CSSParserAtRule: ...
+    @classmethod
+    def new(cls, name: str, prelude: Sequence[CSSToken], body: Union['Sequence[CSSParserRule]', 'None'] = None) -> CSSParserAtRule: ...
     name: str
     prelude: Sequence[CSSParserValue]
     body: Sequence[CSSParserRule]
 
 class CSSParserQualifiedRule(CSSParserRule):
-    def New(self, prelude: Sequence[CSSToken], body: Union['Sequence[CSSParserRule]', 'None'] = None) -> CSSParserQualifiedRule: ...
+    @classmethod
+    def new(cls, prelude: Sequence[CSSToken], body: Union['Sequence[CSSParserRule]', 'None'] = None) -> CSSParserQualifiedRule: ...
     prelude: Sequence[CSSParserValue]
     body: Sequence[CSSParserRule]
 
 class CSSParserDeclaration(CSSParserRule):
-    def New(self, name: str, body: Union['Sequence[CSSParserRule]', 'None'] = None) -> CSSParserDeclaration: ...
+    @classmethod
+    def new(cls, name: str, body: Union['Sequence[CSSParserRule]', 'None'] = None) -> CSSParserDeclaration: ...
     name: str
     body: Sequence[CSSParserValue]
 
 class CSSParserValue: ...
 
 class CSSParserBlock(CSSParserValue):
-    def New(self, name: str, body: Sequence[CSSParserValue]) -> CSSParserBlock: ...
+    @classmethod
+    def new(cls, name: str, body: Sequence[CSSParserValue]) -> CSSParserBlock: ...
     name: str
     body: Sequence[CSSParserValue]
 
 class CSSParserFunction(CSSParserValue):
-    def New(self, name: str, args: Sequence[Sequence[CSSParserValue]]) -> CSSParserFunction: ...
+    @classmethod
+    def new(cls, name: str, args: Sequence[Sequence[CSSParserValue]]) -> CSSParserFunction: ...
     name: str
     args: Sequence[Sequence[CSSParserValue]]
 
@@ -4728,6 +5354,7 @@ class CSSPseudoElement(EventTarget, GeometryUtils):
     type: str
     element: Element
     parent: Union['Element', 'CSSPseudoElement']
+
     def pseudo(self, type: str) -> Union['CSSPseudoElement', 'None']: ...
 
 class NamedFlowMap: ...
@@ -4735,13 +5362,17 @@ class NamedFlowMap: ...
 class NamedFlow(EventTarget):
     name: str
     overset: bool
+
     def getRegions(self) -> Sequence[Element]: ...
     firstEmptyRegionIndex: int
+
     def getContent(self) -> Sequence[Node]: ...
+
     def getRegionsByContent(self, node: Node) -> Sequence[Element]: ...
 
 class Region:
     regionOverset: str
+
     def getRegionFlowRanges(self) -> Sequence[Range]: ...
 
 class CSSStartingStyleRule(CSSGroupingRule): ...
@@ -4750,7 +5381,8 @@ class CSSTransition(Animation):
     transitionProperty: str
 
 class TransitionEvent(Event):
-    def New(self, type: str, transitionEventInitDict: Union['TransitionEventInit', 'None'] = {}) -> TransitionEvent: ...
+    @classmethod
+    def new(cls, type: str, transitionEventInitDict: Union['TransitionEventInit', 'None'] = {}) -> TransitionEvent: ...
     propertyName: str
     elapsedTime: float
     pseudoElement: str
@@ -4763,28 +5395,38 @@ class TransitionEventInit(TypedDict, EventInit):
 class CSSStyleValue: ...
 
 class StylePropertyMapReadOnly:
+
     def get(self, property: str) -> Union['None', 'CSSStyleValue']: ...
+
     def getAll(self, property: str) -> Sequence[CSSStyleValue]: ...
+
     def has(self, property: str) -> bool: ...
     size: int
 
 class StylePropertyMap(StylePropertyMapReadOnly):
+
     def set(self, property: str, *values: Union['CSSStyleValue', 'str']) -> None: ...
+
     def append(self, property: str, *values: Union['CSSStyleValue', 'str']) -> None: ...
+
     def delete(self, property: str) -> None: ...
+
     def clear(self) -> None: ...
 
 class CSSUnparsedValue(CSSStyleValue):
-    def New(self, members: Sequence[CSSUnparsedSegment]) -> CSSUnparsedValue: ...
+    @classmethod
+    def new(cls, members: Sequence[CSSUnparsedSegment]) -> CSSUnparsedValue: ...
     length: int
 
 class CSSVariableReferenceValue:
-    def New(self, variable: str, fallback: Union['CSSUnparsedValue', 'None'] = None) -> CSSVariableReferenceValue: ...
+    @classmethod
+    def new(cls, variable: str, fallback: Union['CSSUnparsedValue', 'None'] = None) -> CSSVariableReferenceValue: ...
     variable: str
     fallback: Union['CSSUnparsedValue', 'None']
 
 class CSSKeywordValue(CSSStyleValue):
-    def New(self, value: str) -> CSSKeywordValue: ...
+    @classmethod
+    def new(cls, value: str) -> CSSKeywordValue: ...
     value: str
 
 class CSSNumericType(TypedDict):
@@ -4798,19 +5440,30 @@ class CSSNumericType(TypedDict):
     percentHint: NotRequired[CSSNumericBaseType]
 
 class CSSNumericValue(CSSStyleValue):
+
     def add(self, *values: CSSNumberish) -> CSSNumericValue: ...
+
     def sub(self, *values: CSSNumberish) -> CSSNumericValue: ...
+
     def mul(self, *values: CSSNumberish) -> CSSNumericValue: ...
+
     def div(self, *values: CSSNumberish) -> CSSNumericValue: ...
+
     def min(self, *values: CSSNumberish) -> CSSNumericValue: ...
+
     def max(self, *values: CSSNumberish) -> CSSNumericValue: ...
+
     def equals(self, *value: CSSNumberish) -> bool: ...
+
     def to(self, unit: str) -> CSSUnitValue: ...
+
     def toSum(self, *units: str) -> CSSMathSum: ...
+
     def type(self) -> CSSNumericType: ...
 
 class CSSUnitValue(CSSNumericValue):
-    def New(self, value: float, unit: str) -> CSSUnitValue: ...
+    @classmethod
+    def new(cls, value: float, unit: str) -> CSSUnitValue: ...
     value: float
     unit: str
 
@@ -4818,31 +5471,38 @@ class CSSMathValue(CSSNumericValue):
     operator: CSSMathOperator
 
 class CSSMathSum(CSSMathValue):
-    def New(self, *args: CSSNumberish) -> CSSMathSum: ...
+    @classmethod
+    def new(cls, *args: CSSNumberish) -> CSSMathSum: ...
     values: CSSNumericArray
 
 class CSSMathProduct(CSSMathValue):
-    def New(self, *args: CSSNumberish) -> CSSMathProduct: ...
+    @classmethod
+    def new(cls, *args: CSSNumberish) -> CSSMathProduct: ...
     values: CSSNumericArray
 
 class CSSMathNegate(CSSMathValue):
-    def New(self, arg: CSSNumberish) -> CSSMathNegate: ...
+    @classmethod
+    def new(cls, arg: CSSNumberish) -> CSSMathNegate: ...
     value: CSSNumericValue
 
 class CSSMathInvert(CSSMathValue):
-    def New(self, arg: CSSNumberish) -> CSSMathInvert: ...
+    @classmethod
+    def new(cls, arg: CSSNumberish) -> CSSMathInvert: ...
     value: CSSNumericValue
 
 class CSSMathMin(CSSMathValue):
-    def New(self, *args: CSSNumberish) -> CSSMathMin: ...
+    @classmethod
+    def new(cls, *args: CSSNumberish) -> CSSMathMin: ...
     values: CSSNumericArray
 
 class CSSMathMax(CSSMathValue):
-    def New(self, *args: CSSNumberish) -> CSSMathMax: ...
+    @classmethod
+    def new(cls, *args: CSSNumberish) -> CSSMathMax: ...
     values: CSSNumericArray
 
 class CSSMathClamp(CSSMathValue):
-    def New(self, lower: CSSNumberish, value: CSSNumberish, upper: CSSNumberish) -> CSSMathClamp: ...
+    @classmethod
+    def new(cls, lower: CSSNumberish, value: CSSNumberish, upper: CSSNumberish) -> CSSMathClamp: ...
     lower: CSSNumericValue
     value: CSSNumericValue
     upper: CSSNumericValue
@@ -4851,56 +5511,68 @@ class CSSNumericArray:
     length: int
 
 class CSSTransformValue(CSSStyleValue):
-    def New(self, transforms: Sequence[CSSTransformComponent]) -> CSSTransformValue: ...
+    @classmethod
+    def new(cls, transforms: Sequence[CSSTransformComponent]) -> CSSTransformValue: ...
     length: int
     is2D: bool
+
     def toMatrix(self) -> DOMMatrix: ...
 
 class CSSTransformComponent:
     is2D: bool
+
     def toMatrix(self) -> DOMMatrix: ...
 
 class CSSTranslate(CSSTransformComponent):
-    def New(self, x: CSSNumericValue, y: CSSNumericValue, z: Union['CSSNumericValue', 'None'] = None) -> CSSTranslate: ...
+    @classmethod
+    def new(cls, x: CSSNumericValue, y: CSSNumericValue, z: Union['CSSNumericValue', 'None'] = None) -> CSSTranslate: ...
     x: CSSNumericValue
     y: CSSNumericValue
     z: CSSNumericValue
 
 class CSSRotate(CSSTransformComponent):
     @overload
-    def New(self, angle: CSSNumericValue) -> CSSRotate: ...
+    @classmethod
+    def new(cls, angle: CSSNumericValue) -> CSSRotate: ...
     @overload
-    def New(self, x: CSSNumberish, y: CSSNumberish, z: CSSNumberish, angle: CSSNumericValue) -> CSSRotate: ...
+    @classmethod
+    def new(cls, x: CSSNumberish, y: CSSNumberish, z: CSSNumberish, angle: CSSNumericValue) -> CSSRotate: ...
     x: CSSNumberish
     y: CSSNumberish
     z: CSSNumberish
     angle: CSSNumericValue
 
 class CSSScale(CSSTransformComponent):
-    def New(self, x: CSSNumberish, y: CSSNumberish, z: Union['CSSNumberish', 'None'] = None) -> CSSScale: ...
+    @classmethod
+    def new(cls, x: CSSNumberish, y: CSSNumberish, z: Union['CSSNumberish', 'None'] = None) -> CSSScale: ...
     x: CSSNumberish
     y: CSSNumberish
     z: CSSNumberish
 
 class CSSSkew(CSSTransformComponent):
-    def New(self, ax: CSSNumericValue, ay: CSSNumericValue) -> CSSSkew: ...
+    @classmethod
+    def new(cls, ax: CSSNumericValue, ay: CSSNumericValue) -> CSSSkew: ...
     ax: CSSNumericValue
     ay: CSSNumericValue
 
 class CSSSkewX(CSSTransformComponent):
-    def New(self, ax: CSSNumericValue) -> CSSSkewX: ...
+    @classmethod
+    def new(cls, ax: CSSNumericValue) -> CSSSkewX: ...
     ax: CSSNumericValue
 
 class CSSSkewY(CSSTransformComponent):
-    def New(self, ay: CSSNumericValue) -> CSSSkewY: ...
+    @classmethod
+    def new(cls, ay: CSSNumericValue) -> CSSSkewY: ...
     ay: CSSNumericValue
 
 class CSSPerspective(CSSTransformComponent):
-    def New(self, length: CSSPerspectiveValue) -> CSSPerspective: ...
+    @classmethod
+    def new(cls, length: CSSPerspectiveValue) -> CSSPerspective: ...
     length: CSSPerspectiveValue
 
 class CSSMatrixComponent(CSSTransformComponent):
-    def New(self, matrix: DOMMatrixReadOnly, options: Union['CSSMatrixComponentOptions', 'None'] = {}) -> CSSMatrixComponent: ...
+    @classmethod
+    def new(cls, matrix: DOMMatrixReadOnly, options: Union['CSSMatrixComponentOptions', 'None'] = {}) -> CSSMatrixComponent: ...
     matrix: DOMMatrix
 
 class CSSMatrixComponentOptions(TypedDict):
@@ -4911,56 +5583,64 @@ class CSSImageValue(CSSStyleValue): ...
 class CSSColorValue(CSSStyleValue): ...
 
 class CSSRGB(CSSColorValue):
-    def New(self, r: CSSColorRGBComp, g: CSSColorRGBComp, b: CSSColorRGBComp, alpha: Union['CSSColorPercent', 'None'] = 1) -> CSSRGB: ...
+    @classmethod
+    def new(cls, r: CSSColorRGBComp, g: CSSColorRGBComp, b: CSSColorRGBComp, alpha: Union['CSSColorPercent', 'None'] = 1) -> CSSRGB: ...
     r: CSSColorRGBComp
     g: CSSColorRGBComp
     b: CSSColorRGBComp
     alpha: CSSColorPercent
 
 class CSSHSL(CSSColorValue):
-    def New(self, h: CSSColorAngle, s: CSSColorPercent, l: CSSColorPercent, alpha: Union['CSSColorPercent', 'None'] = 1) -> CSSHSL: ...
+    @classmethod
+    def new(cls, h: CSSColorAngle, s: CSSColorPercent, l: CSSColorPercent, alpha: Union['CSSColorPercent', 'None'] = 1) -> CSSHSL: ...
     h: CSSColorAngle
     s: CSSColorPercent
     l: CSSColorPercent
     alpha: CSSColorPercent
 
 class CSSHWB(CSSColorValue):
-    def New(self, h: CSSNumericValue, w: CSSNumberish, b: CSSNumberish, alpha: Union['CSSNumberish', 'None'] = 1) -> CSSHWB: ...
+    @classmethod
+    def new(cls, h: CSSNumericValue, w: CSSNumberish, b: CSSNumberish, alpha: Union['CSSNumberish', 'None'] = 1) -> CSSHWB: ...
     h: CSSNumericValue
     w: CSSNumberish
     b: CSSNumberish
     alpha: CSSNumberish
 
 class CSSLab(CSSColorValue):
-    def New(self, l: CSSColorPercent, a: CSSColorNumber, b: CSSColorNumber, alpha: Union['CSSColorPercent', 'None'] = 1) -> CSSLab: ...
+    @classmethod
+    def new(cls, l: CSSColorPercent, a: CSSColorNumber, b: CSSColorNumber, alpha: Union['CSSColorPercent', 'None'] = 1) -> CSSLab: ...
     l: CSSColorPercent
     a: CSSColorNumber
     b: CSSColorNumber
     alpha: CSSColorPercent
 
 class CSSLCH(CSSColorValue):
-    def New(self, l: CSSColorPercent, c: CSSColorPercent, h: CSSColorAngle, alpha: Union['CSSColorPercent', 'None'] = 1) -> CSSLCH: ...
+    @classmethod
+    def new(cls, l: CSSColorPercent, c: CSSColorPercent, h: CSSColorAngle, alpha: Union['CSSColorPercent', 'None'] = 1) -> CSSLCH: ...
     l: CSSColorPercent
     c: CSSColorPercent
     h: CSSColorAngle
     alpha: CSSColorPercent
 
 class CSSOKLab(CSSColorValue):
-    def New(self, l: CSSColorPercent, a: CSSColorNumber, b: CSSColorNumber, alpha: Union['CSSColorPercent', 'None'] = 1) -> CSSOKLab: ...
+    @classmethod
+    def new(cls, l: CSSColorPercent, a: CSSColorNumber, b: CSSColorNumber, alpha: Union['CSSColorPercent', 'None'] = 1) -> CSSOKLab: ...
     l: CSSColorPercent
     a: CSSColorNumber
     b: CSSColorNumber
     alpha: CSSColorPercent
 
 class CSSOKLCH(CSSColorValue):
-    def New(self, l: CSSColorPercent, c: CSSColorPercent, h: CSSColorAngle, alpha: Union['CSSColorPercent', 'None'] = 1) -> CSSOKLCH: ...
+    @classmethod
+    def new(cls, l: CSSColorPercent, c: CSSColorPercent, h: CSSColorAngle, alpha: Union['CSSColorPercent', 'None'] = 1) -> CSSOKLCH: ...
     l: CSSColorPercent
     c: CSSColorPercent
     h: CSSColorAngle
     alpha: CSSColorPercent
 
 class CSSColor(CSSColorValue):
-    def New(self, colorSpace: CSSKeywordish, channels: Sequence[CSSColorPercent], alpha: Union['CSSNumberish', 'None'] = 1) -> CSSColor: ...
+    @classmethod
+    def new(cls, colorSpace: CSSKeywordish, channels: Sequence[CSSColorPercent], alpha: Union['CSSNumberish', 'None'] = 1) -> CSSColor: ...
     colorSpace: CSSKeywordish
     channels: Sequence[CSSColorPercent]
     alpha: CSSNumberish
@@ -4969,6 +5649,7 @@ class ViewTransition:
     updateCallbackDone: Awaitable[None]
     ready: Awaitable[None]
     finished: Awaitable[None]
+
     def skipTransition(self) -> None: ...
 
 class ScrollOptions(TypedDict):
@@ -4981,12 +5662,15 @@ class ScrollToOptions(TypedDict, ScrollOptions):
 class MediaQueryList(EventTarget):
     media: str
     matches: bool
+
     def addListener(self, callback: Union['EventListener', 'None']) -> None: ...
+
     def removeListener(self, callback: Union['EventListener', 'None']) -> None: ...
     onchange: EventHandler
 
 class MediaQueryListEvent(Event):
-    def New(self, type: str, eventInitDict: Union['MediaQueryListEventInit', 'None'] = {}) -> MediaQueryListEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['MediaQueryListEventInit', 'None'] = {}) -> MediaQueryListEvent: ...
     media: str
     matches: bool
 
@@ -5008,6 +5692,7 @@ class Screen:
 class CaretPosition:
     offsetNode: Node
     offset: int
+
     def getClientRect(self) -> Union['DOMRect', 'None']: ...
 
 class ScrollIntoViewOptions(TypedDict, ScrollOptions):
@@ -5019,7 +5704,8 @@ class CheckVisibilityOptions(TypedDict):
     checkVisibilityCSS: NotRequired[bool]
 
 class HTMLElement(Element, ElementCSSInlineStyle, GlobalEventHandlers, ElementContentEditable, HTMLOrSVGElement):
-    def New(self) -> HTMLElement: ...
+    @classmethod
+    def new(cls) -> HTMLElement: ...
     offsetParent: Union['Element', 'None']
     offsetTop: int
     offsetLeft: int
@@ -5032,6 +5718,7 @@ class HTMLElement(Element, ElementCSSInlineStyle, GlobalEventHandlers, ElementCo
     dir: str
     hidden: Union['bool', 'float', 'str', 'None']
     inert: bool
+
     def click(self) -> None: ...
     accessKey: str
     accessKeyLabel: str
@@ -5040,14 +5727,19 @@ class HTMLElement(Element, ElementCSSInlineStyle, GlobalEventHandlers, ElementCo
     autocapitalize: str
     innerText: str
     outerText: str
+
     def attachInternals(self) -> ElementInternals: ...
+
     def showPopover(self) -> None: ...
+
     def hidePopover(self) -> None: ...
+
     def togglePopover(self, force: Union['bool', 'None'] = None) -> bool: ...
     popover: Union['str', 'None']
 
 class MouseEvent(UIEvent):
-    def New(self, type: str, eventInitDict: Union['MouseEventInit', 'None'] = {}) -> MouseEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['MouseEventInit', 'None'] = {}) -> MouseEvent: ...
     screenX: Union['float', 'int']
     screenY: Union['float', 'int']
     pageX: float
@@ -5067,7 +5759,9 @@ class MouseEvent(UIEvent):
     button: int
     buttons: int
     relatedTarget: Union['EventTarget', 'None']
+
     def getModifierState(self, keyArg: str) -> bool: ...
+
     def initMouseEvent(self, typeArg: str, bubblesArg: Union['bool', 'None'] = False, cancelableArg: Union['bool', 'None'] = False, viewArg: Union['Window', 'None'] = None, detailArg: Union['int', 'None'] = 0, screenXArg: Union['int', 'None'] = 0, screenYArg: Union['int', 'None'] = 0, clientXArg: Union['int', 'None'] = 0, clientYArg: Union['int', 'None'] = 0, ctrlKeyArg: Union['bool', 'None'] = False, altKeyArg: Union['bool', 'None'] = False, shiftKeyArg: Union['bool', 'None'] = False, metaKeyArg: Union['bool', 'None'] = False, buttonArg: Union['int', 'None'] = 0, relatedTargetArg: Union['EventTarget', 'None'] = None) -> None: ...
 
 class MouseEventInit(TypedDict, EventModifierInit):
@@ -5090,13 +5784,19 @@ class ConvertCoordinateOptions(TypedDict):
     toBox: NotRequired[CSSBoxType]
 
 class GeometryUtils:
+
     def getBoxQuads(self, options: Union['BoxQuadOptions', 'None'] = {}) -> Sequence[DOMQuad]: ...
+
     def convertQuadFromNode(self, quad: DOMQuadInit, from_: GeometryNode, options: Union['ConvertCoordinateOptions', 'None'] = {}) -> DOMQuad: ...
+
     def convertRectFromNode(self, rect: DOMRectReadOnly, from_: GeometryNode, options: Union['ConvertCoordinateOptions', 'None'] = {}) -> DOMQuad: ...
+
     def convertPointFromNode(self, point: DOMPointInit, from_: GeometryNode, options: Union['ConvertCoordinateOptions', 'None'] = {}) -> DOMPoint: ...
 
 class Text(CharacterData, GeometryUtils, Slottable):
-    def New(self, data: Union['str', 'None'] = "") -> Text: ...
+    @classmethod
+    def new(cls, data: Union['str', 'None'] = "") -> Text: ...
+
     def splitText(self, offset: int) -> Text: ...
     wholeText: str
 
@@ -5113,15 +5813,22 @@ class VisualViewport(EventTarget):
     onscrollend: EventHandler
 
 class CSSStyleSheet(StyleSheet):
-    def New(self, options: Union['CSSStyleSheetInit', 'None'] = {}) -> CSSStyleSheet: ...
+    @classmethod
+    def new(cls, options: Union['CSSStyleSheetInit', 'None'] = {}) -> CSSStyleSheet: ...
     ownerRule: Union['CSSRule', 'None']
     cssRules: CSSRuleList
+
     def insertRule(self, rule: str, index: Union['int', 'None'] = 0) -> int: ...
+
     def deleteRule(self, index: int) -> None: ...
+
     def replace(self, text: str) -> Awaitable[CSSStyleSheet]: ...
+
     def replaceSync(self, text: str) -> None: ...
     rules: CSSRuleList
+
     def addRule(self, selector: Union['str', 'None'] = "undefined", style: Union['str', 'None'] = "undefined", index: Union['int', 'None'] = None) -> int: ...
+
     def removeRule(self, index: Union['int', 'None'] = 0) -> None: ...
 
 class CSSStyleSheetInit(TypedDict):
@@ -5136,6 +5843,7 @@ class DocumentOrShadowRoot:
     activeElement: Union['Element', 'None']
     pictureInPictureElement: Union['Element', 'None']
     pointerLockElement: Union['Element', 'None']
+
     def getAnimations(self) -> Sequence[Animation]: ...
 
 class ProcessingInstruction(CharacterData, LinkStyle):
@@ -5150,7 +5858,9 @@ class CSSImportRule(CSSRule):
 
 class CSSGroupingRule(CSSRule):
     cssRules: CSSRuleList
+
     def insertRule(self, rule: str, index: Union['int', 'None'] = 0) -> int: ...
+
     def deleteRule(self, index: int) -> None: ...
 
 class CSSMarginRule(CSSRule):
@@ -5166,25 +5876,32 @@ class MathMLElement(Element, ElementCSSInlineStyle, GlobalEventHandlers, HTMLOrF
 class ElementInternals(ARIAMixin):
     states: CustomStateSet
     shadowRoot: Union['ShadowRoot', 'None']
+
     def setFormValue(self, value: Union['File', 'str', 'FormData', 'None'], state: Union['File', 'str', 'FormData', 'None'] = None) -> None: ...
     form: Union['HTMLFormElement', 'None']
+
     def setValidity(self, flags: Union['ValidityStateFlags', 'None'] = {}, message: Union['str', 'None'] = None, anchor: Union['HTMLElement', 'None'] = None) -> None: ...
     willValidate: bool
     validity: ValidityState
     validationMessage: str
+
     def checkValidity(self) -> bool: ...
+
     def reportValidity(self) -> bool: ...
     labels: NodeList
 
 class CustomStateSet:
+
     def add(self, value: str) -> None: ...
 
 class DataCue(TextTrackCue):
-    def New(self, startTime: float, endTime: float, value: Any, type: Union['str', 'None'] = None) -> DataCue: ...
+    @classmethod
+    def new(cls, startTime: float, endTime: float, value: Any, type: Union['str', 'None'] = None) -> DataCue: ...
     value: Any
     type: str
 
 class DeprecationReportBody(ReportBody):
+
     def toJSON(self) -> object: ...
     id: str
     anticipatedRemoval: Union['object', 'None']
@@ -5201,9 +5918,13 @@ class DevicePosture(EventTarget):
     onchange: EventHandler
 
 class DigitalGoodsService:
+
     def getDetails(self, itemIds: Sequence[str]) -> Awaitable[Sequence[ItemDetails]]: ...
+
     def listPurchases(self) -> Awaitable[Sequence[PurchaseDetails]]: ...
+
     def listPurchaseHistory(self) -> Awaitable[Sequence[PurchaseDetails]]: ...
+
     def consume(self, purchaseToken: str) -> Awaitable[None]: ...
 
 class ItemDetails(TypedDict):
@@ -5224,9 +5945,11 @@ class PurchaseDetails(TypedDict):
     purchaseToken: str
 
 class TCPSocket:
-    def New(self, remoteAddress: str, remotePort: int, options: Union['TCPSocketOptions', 'None'] = {}) -> TCPSocket: ...
+    @classmethod
+    def new(cls, remoteAddress: str, remotePort: int, options: Union['TCPSocketOptions', 'None'] = {}) -> TCPSocket: ...
     opened: Awaitable[TCPSocketOpenInfo]
     closed: Awaitable[None]
+
     def close(self) -> Awaitable[None]: ...
 
 class TCPSocketOptions(TypedDict):
@@ -5245,9 +5968,11 @@ class TCPSocketOpenInfo(TypedDict):
     localPort: NotRequired[int]
 
 class UDPSocket:
-    def New(self, options: Union['UDPSocketOptions', 'None'] = {}) -> UDPSocket: ...
+    @classmethod
+    def new(cls, options: Union['UDPSocketOptions', 'None'] = {}) -> UDPSocket: ...
     opened: Awaitable[UDPSocketOpenInfo]
     closed: Awaitable[None]
+
     def close(self) -> Awaitable[None]: ...
 
 class UDPSocketOptions(TypedDict):
@@ -5275,9 +6000,11 @@ class UDPSocketOpenInfo(TypedDict):
     localPort: NotRequired[int]
 
 class TCPServerSocket:
-    def New(self, localAddress: str, options: Union['TCPServerSocketOptions', 'None'] = {}) -> TCPServerSocket: ...
+    @classmethod
+    def new(cls, localAddress: str, options: Union['TCPServerSocketOptions', 'None'] = {}) -> TCPServerSocket: ...
     opened: Awaitable[TCPServerSocketOpenInfo]
     closed: Awaitable[None]
+
     def close(self) -> Awaitable[None]: ...
 
 class TCPServerSocketOptions(TypedDict):
@@ -5291,6 +6018,7 @@ class TCPServerSocketOpenInfo(TypedDict):
     localPort: NotRequired[int]
 
 class DocumentPictureInPicture(EventTarget):
+
     def requestWindow(self, options: Union['DocumentPictureInPictureOptions', 'None'] = {}) -> Awaitable[Window]: ...
     window: Window
     onenter: EventHandler
@@ -5300,35 +6028,42 @@ class DocumentPictureInPictureOptions(TypedDict):
     height: NotRequired[int]
 
 class DocumentPictureInPictureEvent(Event):
-    def New(self, type: str, eventInitDict: DocumentPictureInPictureEventInit) -> DocumentPictureInPictureEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: DocumentPictureInPictureEventInit) -> DocumentPictureInPictureEvent: ...
     window: Window
 
 class DocumentPictureInPictureEventInit(TypedDict, EventInit):
     window: Window
 
 class Event:
-    def New(self, type: str, eventInitDict: Union['EventInit', 'None'] = {}) -> Event: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['EventInit', 'None'] = {}) -> Event: ...
     type: str
     target: Union['EventTarget', 'None']
     srcElement: Union['EventTarget', 'None']
     currentTarget: Union['EventTarget', 'None']
+
     def composedPath(self) -> Sequence[EventTarget]: ...
     NONE = 0
     CAPTURING_PHASE = 1
     AT_TARGET = 2
     BUBBLING_PHASE = 3
     eventPhase: int
+
     def stopPropagation(self) -> None: ...
     cancelBubble: bool
+
     def stopImmediatePropagation(self) -> None: ...
     bubbles: bool
     cancelable: bool
     returnValue: bool
+
     def preventDefault(self) -> None: ...
     defaultPrevented: bool
     composed: bool
     isTrusted: bool
     timeStamp: DOMHighResTimeStamp
+
     def initEvent(self, type: str, bubbles: Union['bool', 'None'] = False, cancelable: Union['bool', 'None'] = False) -> None: ...
 
 class EventInit(TypedDict):
@@ -5337,17 +6072,23 @@ class EventInit(TypedDict):
     composed: NotRequired[bool]
 
 class CustomEvent(Event):
-    def New(self, type: str, eventInitDict: Union['CustomEventInit', 'None'] = {}) -> CustomEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['CustomEventInit', 'None'] = {}) -> CustomEvent: ...
     detail: Any
+
     def initCustomEvent(self, type: str, bubbles: Union['bool', 'None'] = False, cancelable: Union['bool', 'None'] = False, detail: Union['Any', 'None'] = None) -> None: ...
 
 class CustomEventInit(TypedDict, EventInit):
     detail: NotRequired[Any]
 
 class EventTarget:
-    def New(self) -> EventTarget: ...
+    @classmethod
+    def new(cls) -> EventTarget: ...
+
     def addEventListener(self, type: str, callback: Union['EventListener', 'None'], options: Union['AddEventListenerOptions', 'bool', 'None'] = {}) -> None: ...
+
     def removeEventListener(self, type: str, callback: Union['EventListener', 'None'], options: Union['EventListenerOptions', 'bool', 'None'] = {}) -> None: ...
+
     def dispatchEvent(self, event: Event) -> bool: ...
 
 class EventListenerOptions(TypedDict):
@@ -5359,31 +6100,41 @@ class AddEventListenerOptions(TypedDict, EventListenerOptions):
     signal: NotRequired[AbortSignal]
 
 class AbortController:
-    def New(self) -> AbortController: ...
+    @classmethod
+    def new(cls) -> AbortController: ...
     signal: AbortSignal
+
     def abort(self, reason: Union['Any', 'None'] = None) -> None: ...
 
 class AbortSignal(EventTarget):
     aborted: bool
     reason: Any
+
     def throwIfAborted(self) -> None: ...
     onabort: EventHandler
 
 class NonElementParentNode:
+
     def getElementById(self, elementId: str) -> Union['Element', 'None']: ...
 
 class DocumentFragment(Node, NonElementParentNode, ParentNode):
-    def New(self) -> DocumentFragment: ...
+    @classmethod
+    def new(cls) -> DocumentFragment: ...
 
 class ParentNode:
     children: HTMLCollection
     firstElementChild: Union['Element', 'None']
     lastElementChild: Union['Element', 'None']
     childElementCount: int
+
     def prepend(self, *nodes: Union['Node', 'str']) -> None: ...
+
     def append(self, *nodes: Union['Node', 'str']) -> None: ...
+
     def replaceChildren(self, *nodes: Union['Node', 'str']) -> None: ...
+
     def querySelector(self, selectors: str) -> Union['Element', 'None']: ...
+
     def querySelectorAll(self, selectors: str) -> NodeList: ...
 
 class NonDocumentTypeChildNode:
@@ -5393,16 +6144,25 @@ class NonDocumentTypeChildNode:
 class CharacterData(Node, NonDocumentTypeChildNode, ChildNode):
     data: str
     length: int
+
     def substringData(self, offset: int, count: int) -> str: ...
+
     def appendData(self, data: str) -> None: ...
+
     def insertData(self, offset: int, data: str) -> None: ...
+
     def deleteData(self, offset: int, count: int) -> None: ...
+
     def replaceData(self, offset: int, count: int, data: str) -> None: ...
 
 class ChildNode:
+
     def before(self, *nodes: Union['Node', 'str']) -> None: ...
+
     def after(self, *nodes: Union['Node', 'str']) -> None: ...
+
     def replaceWith(self, *nodes: Union['Node', 'str']) -> None: ...
+
     def remove(self) -> None: ...
 
 class DocumentType(Node, ChildNode):
@@ -5420,9 +6180,13 @@ class HTMLCollection:
     length: int
 
 class MutationObserver:
-    def New(self, callback: MutationCallback) -> MutationObserver: ...
+    @classmethod
+    def new(cls, callback: MutationCallback) -> MutationObserver: ...
+
     def observe(self, target: Node, options: Union['MutationObserverInit', 'None'] = {}) -> None: ...
+
     def disconnect(self) -> None: ...
+
     def takeRecords(self) -> Sequence[MutationRecord]: ...
 
 class MutationObserverInit(TypedDict):
@@ -5463,9 +6227,11 @@ class Node(EventTarget):
     baseURI: str
     isConnected: bool
     ownerDocument: Union['Document', 'None']
+
     def getRootNode(self, options: Union['GetRootNodeOptions', 'None'] = {}) -> Node: ...
     parentNode: Union['Node', 'None']
     parentElement: Union['Element', 'None']
+
     def hasChildNodes(self) -> bool: ...
     childNodes: NodeList
     firstChild: Union['Node', 'None']
@@ -5474,9 +6240,13 @@ class Node(EventTarget):
     nextSibling: Union['Node', 'None']
     nodeValue: Union['str', 'None']
     textContent: Union['str', 'None']
+
     def normalize(self) -> None: ...
+
     def cloneNode(self, deep: Union['bool', 'None'] = False) -> Node: ...
+
     def isEqualNode(self, otherNode: Union['Node', 'None']) -> bool: ...
+
     def isSameNode(self, otherNode: Union['Node', 'None']) -> bool: ...
     DOCUMENT_POSITION_DISCONNECTED = 0x01
     DOCUMENT_POSITION_PRECEDING = 0x02
@@ -5484,14 +6254,23 @@ class Node(EventTarget):
     DOCUMENT_POSITION_CONTAINS = 0x08
     DOCUMENT_POSITION_CONTAINED_BY = 0x10
     DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC = 0x20
+
     def compareDocumentPosition(self, other: Node) -> int: ...
+
     def contains(self, other: Union['Node', 'None']) -> bool: ...
+
     def lookupPrefix(self, namespace: Union['str', 'None']) -> Union['str', 'None']: ...
+
     def lookupNamespaceURI(self, prefix: Union['str', 'None']) -> Union['str', 'None']: ...
+
     def isDefaultNamespace(self, namespace: Union['str', 'None']) -> bool: ...
+
     def insertBefore(self, node: Node, child: Union['Node', 'None']) -> Node: ...
+
     def appendChild(self, node: Node) -> Node: ...
+
     def replaceChild(self, node: Node, child: Node) -> Node: ...
+
     def removeChild(self, child: Node) -> Node: ...
 
 class GetRootNodeOptions(TypedDict):
@@ -5502,9 +6281,13 @@ class XMLDocument(Document): ...
 class ElementCreationOptions(TypedDict): ...
 
 class DOMImplementation:
+
     def createDocumentType(self, qualifiedName: str, publicId: str, systemId: str) -> DocumentType: ...
+
     def createDocument(self, namespace: Union['str', 'None'], qualifiedName: str, doctype: Union['DocumentType', 'None'] = None) -> XMLDocument: ...
+
     def createHTMLDocument(self, title: Union['str', 'None'] = None) -> Document: ...
+
     def hasFeature(self) -> bool: ...
 
 class ShadowRootInit(TypedDict):
@@ -5514,10 +6297,15 @@ class ShadowRootInit(TypedDict):
 
 class NamedNodeMap:
     length: int
+
     def getNamedItemNS(self, namespace: Union['str', 'None'], localName: str) -> Union['Attr', 'None']: ...
+
     def setNamedItem(self, attr: Attr) -> Union['Attr', 'None']: ...
+
     def setNamedItemNS(self, attr: Attr) -> Union['Attr', 'None']: ...
+
     def removeNamedItem(self, qualifiedName: str) -> Attr: ...
+
     def removeNamedItemNS(self, namespace: Union['str', 'None'], localName: str) -> Attr: ...
 
 class Attr(Node):
@@ -5532,7 +6320,8 @@ class Attr(Node):
 class CDATASection(Text): ...
 
 class Comment(CharacterData):
-    def New(self, data: Union['str', 'None'] = "") -> Comment: ...
+    @classmethod
+    def new(cls, data: Union['str', 'None'] = "") -> Comment: ...
 
 class AbstractRange:
     startContainer: Node
@@ -5548,7 +6337,8 @@ class StaticRangeInit(TypedDict):
     endOffset: int
 
 class StaticRange(AbstractRange):
-    def New(self, init: StaticRangeInit) -> StaticRange: ...
+    @classmethod
+    def new(cls, init: StaticRangeInit) -> StaticRange: ...
 
 class NodeIterator:
     root: Node
@@ -5556,8 +6346,11 @@ class NodeIterator:
     pointerBeforeReferenceNode: bool
     whatToShow: int
     filter: Union['NodeFilter', 'None']
+
     def nextNode(self) -> Union['Node', 'None']: ...
+
     def previousNode(self) -> Union['Node', 'None']: ...
+
     def detach(self) -> None: ...
 
 class TreeWalker:
@@ -5565,21 +6358,34 @@ class TreeWalker:
     whatToShow: int
     filter: Union['NodeFilter', 'None']
     currentNode: Node
+
     def parentNode(self) -> Union['Node', 'None']: ...
+
     def firstChild(self) -> Union['Node', 'None']: ...
+
     def lastChild(self) -> Union['Node', 'None']: ...
+
     def previousSibling(self) -> Union['Node', 'None']: ...
+
     def nextSibling(self) -> Union['Node', 'None']: ...
+
     def previousNode(self) -> Union['Node', 'None']: ...
+
     def nextNode(self) -> Union['Node', 'None']: ...
 
 class DOMTokenList:
     length: int
+
     def contains(self, token: str) -> bool: ...
+
     def add(self, *tokens: str) -> None: ...
+
     def remove(self, *tokens: str) -> None: ...
+
     def toggle(self, token: str, force: Union['bool', 'None'] = None) -> bool: ...
+
     def replace(self, token: str, newToken: str) -> bool: ...
+
     def supports(self, token: str) -> bool: ...
     value: str
 
@@ -5601,29 +6407,45 @@ class XPathResult:
     singleNodeValue: Union['Node', 'None']
     invalidIteratorState: bool
     snapshotLength: int
+
     def iterateNext(self) -> Union['Node', 'None']: ...
+
     def snapshotItem(self, index: int) -> Union['Node', 'None']: ...
 
 class XPathExpression:
+
     def evaluate(self, contextNode: Node, type: Union['int', 'None'] = 0, result: Union['XPathResult', 'None'] = None) -> XPathResult: ...
 
 class XPathEvaluatorBase:
+
     def createExpression(self, expression: str, resolver: Union['XPathNSResolver', 'None'] = None) -> XPathExpression: ...
+
     def createNSResolver(self, nodeResolver: Node) -> Node: ...
+
     def evaluate(self, expression: str, contextNode: Node, resolver: Union['XPathNSResolver', 'None'] = None, type: Union['int', 'None'] = 0, result: Union['XPathResult', 'None'] = None) -> XPathResult: ...
 
 class XPathEvaluator(XPathEvaluatorBase):
-    def New(self) -> XPathEvaluator: ...
+    @classmethod
+    def new(cls) -> XPathEvaluator: ...
 
 class XSLTProcessor:
-    def New(self) -> XSLTProcessor: ...
+    @classmethod
+    def new(cls) -> XSLTProcessor: ...
+
     def importStylesheet(self, style: Node) -> None: ...
+
     def transformToFragment(self, source: Node, output: Document) -> DocumentFragment: ...
+
     def transformToDocument(self, source: Node) -> Document: ...
+
     def setParameter(self, namespaceURI: str, localName: str, value: Any) -> None: ...
+
     def getParameter(self, namespaceURI: str, localName: str) -> Any: ...
+
     def removeParameter(self, namespaceURI: str, localName: str) -> None: ...
+
     def clearParameters(self) -> None: ...
+
     def reset(self) -> None: ...
 
 class EditContextInit(TypedDict):
@@ -5632,12 +6454,19 @@ class EditContextInit(TypedDict):
     selectionEnd: NotRequired[int]
 
 class EditContext(EventTarget):
-    def New(self, options: Union['EditContextInit', 'None'] = {}) -> EditContext: ...
+    @classmethod
+    def new(cls, options: Union['EditContextInit', 'None'] = {}) -> EditContext: ...
+
     def updateText(self, rangeStart: int, rangeEnd: int, text: str) -> None: ...
+
     def updateSelection(self, start: int, end: int) -> None: ...
+
     def updateControlBounds(self, controlBounds: DOMRect) -> None: ...
+
     def updateSelectionBounds(self, selectionBounds: DOMRect) -> None: ...
+
     def updateCharacterBounds(self, rangeStart: int, characterBounds: Sequence[DOMRect]) -> None: ...
+
     def attachedElements(self) -> Sequence[Element]: ...
     text: str
     selectionStart: int
@@ -5648,6 +6477,7 @@ class EditContext(EventTarget):
     controlBounds: DOMRect
     selectionBounds: DOMRect
     characterBoundsRangeStart: int
+
     def characterBounds(self) -> Sequence[DOMRect]: ...
     ontextupdate: EventHandler
     ontextformatupdate: EventHandler
@@ -5665,7 +6495,8 @@ class TextUpdateEventInit(TypedDict, EventInit):
     compositionEnd: NotRequired[int]
 
 class TextUpdateEvent(Event):
-    def New(self, type: str, options: Union['TextUpdateEventInit', 'None'] = {}) -> TextUpdateEvent: ...
+    @classmethod
+    def new(cls, type: str, options: Union['TextUpdateEventInit', 'None'] = {}) -> TextUpdateEvent: ...
     updateRangeStart: int
     updateRangeEnd: int
     text: str
@@ -5684,7 +6515,8 @@ class TextFormatInit(TypedDict):
     underlineColor: NotRequired[str]
 
 class TextFormat:
-    def New(self, options: Union['TextFormatInit', 'None'] = {}) -> TextFormat: ...
+    @classmethod
+    def new(cls, options: Union['TextFormatInit', 'None'] = {}) -> TextFormat: ...
     rangeStart: int
     rangeEnd: int
     textColor: str
@@ -5697,7 +6529,9 @@ class TextFormatUpdateEventInit(TypedDict, EventInit):
     textFormats: NotRequired[Sequence[TextFormat]]
 
 class TextFormatUpdateEvent(Event):
-    def New(self, type: str, options: Union['TextFormatUpdateEventInit', 'None'] = {}) -> TextFormatUpdateEvent: ...
+    @classmethod
+    def new(cls, type: str, options: Union['TextFormatUpdateEventInit', 'None'] = {}) -> TextFormatUpdateEvent: ...
+
     def getTextFormats(self) -> Sequence[TextFormat]: ...
 
 class CharacterBoundsUpdateEventInit(TypedDict, EventInit):
@@ -5705,13 +6539,17 @@ class CharacterBoundsUpdateEventInit(TypedDict, EventInit):
     rangeEnd: NotRequired[int]
 
 class CharacterBoundsUpdateEvent(Event):
-    def New(self, type: str, options: Union['CharacterBoundsUpdateEventInit', 'None'] = {}) -> CharacterBoundsUpdateEvent: ...
+    @classmethod
+    def new(cls, type: str, options: Union['CharacterBoundsUpdateEventInit', 'None'] = {}) -> CharacterBoundsUpdateEvent: ...
     rangeStart: int
     rangeEnd: int
 
 class BrowserCaptureMediaStreamTrack(MediaStreamTrack):
+
     def restrictTo(self, cropTarget: Union['CropTarget', 'None']) -> Awaitable[None]: ...
+
     def cropTo(self, cropTarget: Union['CropTarget', 'None']) -> Awaitable[None]: ...
+
     def clone(self) -> BrowserCaptureMediaStreamTrack: ...
 
 class PerformanceElementTiming(PerformanceEntry):
@@ -5724,6 +6562,7 @@ class PerformanceElementTiming(PerformanceEntry):
     id: str
     element: Union['Element', 'None']
     url: str
+
     def toJSON(self) -> object: ...
 
 class TextDecoderCommon:
@@ -5739,7 +6578,9 @@ class TextDecodeOptions(TypedDict):
     stream: NotRequired[bool]
 
 class TextDecoder(TextDecoderCommon):
-    def New(self, label: Union['str', 'None'] = "utf-8", options: Union['TextDecoderOptions', 'None'] = {}) -> TextDecoder: ...
+    @classmethod
+    def new(cls, label: Union['str', 'None'] = "utf-8", options: Union['TextDecoderOptions', 'None'] = {}) -> TextDecoder: ...
+
     def decode(self, input: Union['AllowSharedBufferSource', 'None'] = None, options: Union['TextDecodeOptions', 'None'] = {}) -> str: ...
 
 class TextEncoderCommon:
@@ -5750,15 +6591,20 @@ class TextEncoderEncodeIntoResult(TypedDict):
     written: NotRequired[int]
 
 class TextEncoder(TextEncoderCommon):
-    def New(self) -> TextEncoder: ...
+    @classmethod
+    def new(cls) -> TextEncoder: ...
+
     def encode(self, input: Union['str', 'None'] = "") -> Uint8Array: ...
+
     def encodeInto(self, source: str, destination: Uint8Array) -> TextEncoderEncodeIntoResult: ...
 
 class TextDecoderStream(TextDecoderCommon, GenericTransformStream):
-    def New(self, label: Union['str', 'None'] = "utf-8", options: Union['TextDecoderOptions', 'None'] = {}) -> TextDecoderStream: ...
+    @classmethod
+    def new(cls, label: Union['str', 'None'] = "utf-8", options: Union['TextDecoderOptions', 'None'] = {}) -> TextDecoderStream: ...
 
 class TextEncoderStream(TextEncoderCommon, GenericTransformStream):
-    def New(self) -> TextEncoderStream: ...
+    @classmethod
+    def new(cls) -> TextEncoderStream: ...
 
 class MediaKeySystemConfiguration(TypedDict):
     label: NotRequired[str]
@@ -5776,11 +6622,15 @@ class MediaKeySystemMediaCapability(TypedDict):
 
 class MediaKeySystemAccess:
     keySystem: str
+
     def getConfiguration(self) -> MediaKeySystemConfiguration: ...
+
     def createMediaKeys(self) -> Awaitable[MediaKeys]: ...
 
 class MediaKeys:
+
     def createSession(self, sessionType: Union['MediaKeySessionType', 'None'] = "temporary") -> MediaKeySession: ...
+
     def setServerCertificate(self, serverCertificate: BufferSource) -> Awaitable[bool]: ...
 
 class MediaKeySession(EventTarget):
@@ -5790,19 +6640,27 @@ class MediaKeySession(EventTarget):
     keyStatuses: MediaKeyStatusMap
     onkeystatuseschange: EventHandler
     onmessage: EventHandler
+
     def generateRequest(self, initDataType: str, initData: BufferSource) -> Awaitable[None]: ...
+
     def load(self, sessionId: str) -> Awaitable[bool]: ...
+
     def update(self, response: BufferSource) -> Awaitable[None]: ...
+
     def close(self) -> Awaitable[None]: ...
+
     def remove(self) -> Awaitable[None]: ...
 
 class MediaKeyStatusMap:
     size: int
+
     def has(self, keyId: BufferSource) -> bool: ...
+
     def get(self, keyId: BufferSource) -> Union['MediaKeyStatus', 'None']: ...
 
 class MediaKeyMessageEvent(Event):
-    def New(self, type: str, eventInitDict: MediaKeyMessageEventInit) -> MediaKeyMessageEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: MediaKeyMessageEventInit) -> MediaKeyMessageEvent: ...
     messageType: MediaKeyMessageType
     message: ArrayBuffer
 
@@ -5811,7 +6669,8 @@ class MediaKeyMessageEventInit(TypedDict, EventInit):
     message: ArrayBuffer
 
 class MediaEncryptedEvent(Event):
-    def New(self, type: str, eventInitDict: Union['MediaEncryptedEventInit', 'None'] = {}) -> MediaEncryptedEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['MediaEncryptedEventInit', 'None'] = {}) -> MediaEncryptedEvent: ...
     initDataType: str
     initData: ArrayBuffer
 
@@ -5820,7 +6679,8 @@ class MediaEncryptedEventInit(TypedDict, EventInit):
     initData: NotRequired[ArrayBuffer]
 
 class HTMLInputElement(HTMLElement, PopoverInvokerElement):
-    def New(self) -> HTMLInputElement: ...
+    @classmethod
+    def new(cls) -> HTMLInputElement: ...
     webkitdirectory: bool
     webkitEntries: Sequence[FileSystemEntry]
     capture: str
@@ -5860,15 +6720,21 @@ class HTMLInputElement(HTMLElement, PopoverInvokerElement):
     valueAsDate: Union['object', 'None']
     valueAsNumber: float
     width: int
+
     def stepUp(self, n: Union['int', 'None'] = 1) -> None: ...
+
     def stepDown(self, n: Union['int', 'None'] = 1) -> None: ...
     willValidate: bool
     validity: ValidityState
     validationMessage: str
+
     def checkValidity(self) -> bool: ...
+
     def reportValidity(self) -> bool: ...
+
     def setCustomValidity(self, error: str) -> None: ...
     labels: Union['NodeList', 'None']
+
     def select(self) -> None: ...
     selectionStart: Union['int', 'None']
     selectionEnd: Union['int', 'None']
@@ -5877,17 +6743,23 @@ class HTMLInputElement(HTMLElement, PopoverInvokerElement):
     def setRangeText(self, replacement: str) -> None: ...
     @overload
     def setRangeText(self, replacement: str, start: int, end: int, selectionMode: Union['SelectionMode', 'None'] = "preserve") -> None: ...
+
     def setSelectionRange(self, start: int, end: int, direction: Union['str', 'None'] = None) -> None: ...
+
     def showPicker(self) -> None: ...
     align: str
     useMap: str
 
 class DataTransferItem:
+
     def webkitGetAsEntry(self) -> Union['FileSystemEntry', 'None']: ...
+
     def getAsFileSystemHandle(self) -> Awaitable[Union['FileSystemHandle', 'None']]: ...
     kind: str
     type: str
+
     def getAsString(self, callback: Union['FunctionStringCallback', 'None']) -> None: ...
+
     def getAsFile(self) -> Union['File', 'None']: ...
 
 class FileSystemEntry:
@@ -5896,11 +6768,15 @@ class FileSystemEntry:
     name: str
     fullPath: str
     filesystem: FileSystem
+
     def getParent(self, successCallback: Union['FileSystemEntryCallback', 'None'] = None, errorCallback: Union['ErrorCallback', 'None'] = None) -> None: ...
 
 class FileSystemDirectoryEntry(FileSystemEntry):
+
     def createReader(self) -> FileSystemDirectoryReader: ...
+
     def getFile(self, path: Union['str', 'None'] = None, options: Union['FileSystemFlags', 'None'] = {}, successCallback: Union['FileSystemEntryCallback', 'None'] = None, errorCallback: Union['ErrorCallback', 'None'] = None) -> None: ...
+
     def getDirectory(self, path: Union['str', 'None'] = None, options: Union['FileSystemFlags', 'None'] = {}, successCallback: Union['FileSystemEntryCallback', 'None'] = None, errorCallback: Union['ErrorCallback', 'None'] = None) -> None: ...
 
 class FileSystemFlags(TypedDict):
@@ -5908,9 +6784,11 @@ class FileSystemFlags(TypedDict):
     exclusive: NotRequired[bool]
 
 class FileSystemDirectoryReader:
+
     def readEntries(self, successCallback: FileSystemEntriesCallback, errorCallback: Union['ErrorCallback', 'None'] = None) -> None: ...
 
 class FileSystemFileEntry(FileSystemEntry):
+
     def file(self, successCallback: FileCallback, errorCallback: Union['ErrorCallback', 'None'] = None) -> None: ...
 
 class FileSystem:
@@ -5918,6 +6796,7 @@ class FileSystem:
     root: FileSystemDirectoryEntry
 
 class EpubReadingSystem:
+
     def hasFeature(self, feature: str, version: Union['str', 'None'] = None) -> bool: ...
 
 class PerformanceEventTiming(PerformanceEntry):
@@ -5926,6 +6805,7 @@ class PerformanceEventTiming(PerformanceEntry):
     cancelable: bool
     target: Union['Node', 'None']
     interactionId: int
+
     def toJSON(self) -> object: ...
 
 class EventCounts: ...
@@ -5933,21 +6813,33 @@ class EventCounts: ...
 class Performance(EventTarget):
     eventCounts: EventCounts
     interactionCount: int
+
     def now(self) -> DOMHighResTimeStamp: ...
     timeOrigin: DOMHighResTimeStamp
+
     def toJSON(self) -> object: ...
     timing: PerformanceTiming
     navigation: PerformanceNavigation
+
     def measureUserAgentSpecificMemory(self) -> Awaitable[MemoryMeasurement]: ...
+
     def getEntries(self) -> PerformanceEntryList: ...
+
     def getEntriesByType(self, type: str) -> PerformanceEntryList: ...
+
     def getEntriesByName(self, name: str, type: Union['str', 'None'] = None) -> PerformanceEntryList: ...
+
     def clearResourceTimings(self) -> None: ...
+
     def setResourceTimingBufferSize(self, maxSize: int) -> None: ...
     onresourcetimingbufferfull: EventHandler
+
     def mark(self, markName: str, markOptions: Union['PerformanceMarkOptions', 'None'] = {}) -> PerformanceMark: ...
+
     def clearMarks(self, markName: Union['str', 'None'] = None) -> None: ...
+
     def measure(self, measureName: str, startOrMeasureOptions: Union['str', 'PerformanceMeasureOptions', 'None'] = {}, endMark: Union['str', 'None'] = None) -> PerformanceMeasure: ...
+
     def clearMeasures(self, measureName: Union['str', 'None'] = None) -> None: ...
 
 class PerformanceObserverInit(TypedDict):
@@ -5963,11 +6855,14 @@ class ColorSelectionOptions(TypedDict):
     signal: NotRequired[AbortSignal]
 
 class EyeDropper:
-    def New(self) -> EyeDropper: ...
+    @classmethod
+    def new(cls) -> EyeDropper: ...
+
     def open(self, options: Union['ColorSelectionOptions', 'None'] = {}) -> Awaitable[ColorSelectionResult]: ...
 
 class HTMLFencedFrameElement(HTMLElement):
-    def New(self) -> HTMLFencedFrameElement: ...
+    @classmethod
+    def new(cls) -> HTMLFencedFrameElement: ...
     config: Union['FencedFrameConfig', 'None']
     width: str
     height: str
@@ -5978,6 +6873,7 @@ class FencedFrameConfig:
     containerHeight: Union['FencedFrameConfigSize', 'None']
     contentWidth: Union['FencedFrameConfigSize', 'None']
     contentHeight: Union['FencedFrameConfigSize', 'None']
+
     def setSharedStorageContext(self, contextString: str) -> None: ...
 
 class FenceEvent(TypedDict):
@@ -5986,30 +6882,46 @@ class FenceEvent(TypedDict):
     destination: Sequence[FenceReportingDestination]
 
 class Fence:
+
     def reportEvent(self, event: ReportEventType) -> None: ...
+
     def setReportEventDataForAutomaticBeacons(self, event: FenceEvent) -> None: ...
+
     def getNestedConfigs(self) -> Sequence[FencedFrameConfig]: ...
 
 class Headers:
-    def New(self, init: Union['HeadersInit', 'None'] = None) -> Headers: ...
+    @classmethod
+    def new(cls, init: Union['HeadersInit', 'None'] = None) -> Headers: ...
+
     def append(self, name: ByteString, value: ByteString) -> None: ...
+
     def delete(self, name: ByteString) -> None: ...
+
     def get(self, name: ByteString) -> Union['ByteString', 'None']: ...
+
     def getSetCookie(self) -> Sequence[ByteString]: ...
+
     def has(self, name: ByteString) -> bool: ...
+
     def set(self, name: ByteString, value: ByteString) -> None: ...
 
 class Body:
     body: Union['ReadableStream', 'None']
     bodyUsed: bool
+
     def arrayBuffer(self) -> Awaitable[ArrayBuffer]: ...
+
     def blob(self) -> Awaitable[Blob]: ...
+
     def formData(self) -> Awaitable[FormData]: ...
+
     def json(self) -> Awaitable[Any]: ...
+
     def text(self) -> Awaitable[str]: ...
 
 class Request(Body):
-    def New(self, input: RequestInfo, init: Union['RequestInit', 'None'] = {}) -> Request: ...
+    @classmethod
+    def new(cls, input: RequestInfo, init: Union['RequestInit', 'None'] = {}) -> Request: ...
     method: ByteString
     url: str
     headers: Headers
@@ -6026,10 +6938,12 @@ class Request(Body):
     isHistoryNavigation: bool
     signal: AbortSignal
     duplex: RequestDuplex
+
     def clone(self) -> Request: ...
 
 class Response(Body):
-    def New(self, body: Union['BodyInit', 'None'] = None, init: Union['ResponseInit', 'None'] = {}) -> Response: ...
+    @classmethod
+    def new(cls, body: Union['BodyInit', 'None'] = None, init: Union['ResponseInit', 'None'] = {}) -> Response: ...
     type: ResponseType
     url: str
     redirected: bool
@@ -6037,6 +6951,7 @@ class Response(Body):
     ok: bool
     statusText: ByteString
     headers: Headers
+
     def clone(self) -> Response: ...
 
 class ResponseInit(TypedDict):
@@ -6088,10 +7003,13 @@ class FileSystemHandlePermissionDescriptor(TypedDict):
     mode: NotRequired[FileSystemPermissionMode]
 
 class FileSystemHandle:
+
     def queryPermission(self, descriptor: Union['FileSystemHandlePermissionDescriptor', 'None'] = {}) -> Awaitable[PermissionState]: ...
+
     def requestPermission(self, descriptor: Union['FileSystemHandlePermissionDescriptor', 'None'] = {}) -> Awaitable[PermissionState]: ...
     kind: FileSystemHandleKind
     name: str
+
     def isSameEntry(self, other: FileSystemHandle) -> Awaitable[bool]: ...
 
 class FilePickerAcceptType(TypedDict):
@@ -6266,6 +7184,7 @@ class SVGFEDropShadowElement(SVGElement, SVGFilterPrimitiveStandardAttributes):
     dy: SVGAnimatedNumber
     stdDeviationX: SVGAnimatedNumber
     stdDeviationY: SVGAnimatedNumber
+
     def setStdDeviation(self, stdDeviationX: float, stdDeviationY: float) -> None: ...
 
 class SVGFEFloodElement(SVGElement, SVGFilterPrimitiveStandardAttributes): ...
@@ -6279,6 +7198,7 @@ class SVGFEGaussianBlurElement(SVGElement, SVGFilterPrimitiveStandardAttributes)
     stdDeviationX: SVGAnimatedNumber
     stdDeviationY: SVGAnimatedNumber
     edgeMode: SVGAnimatedEnumeration
+
     def setStdDeviation(self, stdDeviationX: float, stdDeviationY: float) -> None: ...
 
 class SVGFEImageElement(SVGElement, SVGFilterPrimitiveStandardAttributes, SVGURIReference):
@@ -6357,8 +7277,11 @@ class FileSystemCreateWritableOptions(TypedDict):
     keepExistingData: NotRequired[bool]
 
 class FileSystemFileHandle(FileSystemHandle):
+
     def getFile(self) -> Awaitable[File]: ...
+
     def createWritable(self, options: Union['FileSystemCreateWritableOptions', 'None'] = {}) -> Awaitable[FileSystemWritableFileStream]: ...
+
     def createSyncAccessHandle(self) -> Awaitable[FileSystemSyncAccessHandle]: ...
 
 class FileSystemGetFileOptions(TypedDict):
@@ -6371,9 +7294,13 @@ class FileSystemRemoveOptions(TypedDict):
     recursive: NotRequired[bool]
 
 class FileSystemDirectoryHandle(FileSystemHandle):
+
     def getFileHandle(self, name: str, options: Union['FileSystemGetFileOptions', 'None'] = {}) -> Awaitable[FileSystemFileHandle]: ...
+
     def getDirectoryHandle(self, name: str, options: Union['FileSystemGetDirectoryOptions', 'None'] = {}) -> Awaitable[FileSystemDirectoryHandle]: ...
+
     def removeEntry(self, name: str, options: Union['FileSystemRemoveOptions', 'None'] = {}) -> Awaitable[None]: ...
+
     def resolve(self, possibleDescendant: FileSystemHandle) -> Awaitable[Sequence[str]]: ...
 
 class WriteParams(TypedDict):
@@ -6383,25 +7310,38 @@ class WriteParams(TypedDict):
     data: NotRequired[Union['BufferSource', 'Blob', 'str', 'None']]
 
 class FileSystemWritableFileStream(WritableStream):
+
     def write(self, data: FileSystemWriteChunkType) -> Awaitable[None]: ...
+
     def seek(self, position: int) -> Awaitable[None]: ...
+
     def truncate(self, size: int) -> Awaitable[None]: ...
 
 class FileSystemReadWriteOptions(TypedDict):
     at: NotRequired[int]
 
 class FileSystemSyncAccessHandle:
+
     def read(self, buffer: AllowSharedBufferSource, options: Union['FileSystemReadWriteOptions', 'None'] = {}) -> int: ...
+
     def write(self, buffer: AllowSharedBufferSource, options: Union['FileSystemReadWriteOptions', 'None'] = {}) -> int: ...
+
     def truncate(self, newSize: int) -> None: ...
+
     def getSize(self) -> int: ...
+
     def flush(self) -> None: ...
+
     def close(self) -> None: ...
 
 class StorageManager:
+
     def getDirectory(self) -> Awaitable[FileSystemDirectoryHandle]: ...
+
     def persisted(self) -> Awaitable[bool]: ...
+
     def persist(self) -> Awaitable[bool]: ...
+
     def estimate(self) -> Awaitable[StorageEstimate]: ...
 
 class FullscreenOptions(TypedDict):
@@ -6410,9 +7350,13 @@ class FullscreenOptions(TypedDict):
 
 class GamepadHapticActuator:
     type: GamepadHapticActuatorType
+
     def canPlayEffectType(self, type: GamepadHapticEffectType) -> bool: ...
+
     def playEffect(self, type: GamepadHapticEffectType, params: Union['GamepadEffectParameters', 'None'] = {}) -> Awaitable[GamepadHapticsResult]: ...
+
     def pulse(self, value: float, duration: float) -> Awaitable[bool]: ...
+
     def reset(self) -> Awaitable[GamepadHapticsResult]: ...
 
 class GamepadEffectParameters(TypedDict):
@@ -6457,7 +7401,8 @@ class GamepadButton:
     value: float
 
 class GamepadEvent(Event):
-    def New(self, type: str, eventInitDict: GamepadEventInit) -> GamepadEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: GamepadEventInit) -> GamepadEvent: ...
     gamepad: Gamepad
 
 class GamepadEventInit(TypedDict, EventInit):
@@ -6488,7 +7433,9 @@ class Sensor(EventTarget):
     activated: bool
     hasReading: bool
     timestamp: Union['DOMHighResTimeStamp', 'None']
+
     def start(self) -> None: ...
+
     def stop(self) -> None: ...
     onreading: EventHandler
     onactivate: EventHandler
@@ -6498,7 +7445,8 @@ class SensorOptions(TypedDict):
     frequency: NotRequired[float]
 
 class SensorErrorEvent(Event):
-    def New(self, type: str, errorEventInitDict: SensorErrorEventInit) -> SensorErrorEvent: ...
+    @classmethod
+    def new(cls, type: str, errorEventInitDict: SensorErrorEventInit) -> SensorErrorEvent: ...
     error: DOMException
 
 class SensorErrorEventInit(TypedDict, EventInit):
@@ -6518,7 +7466,8 @@ class MockSensor(TypedDict):
 class MockSensorReadingValues(TypedDict): ...
 
 class GeolocationSensor(Sensor):
-    def New(self, options: Union['GeolocationSensorOptions', 'None'] = {}) -> GeolocationSensor: ...
+    @classmethod
+    def new(cls, options: Union['GeolocationSensorOptions', 'None'] = {}) -> GeolocationSensor: ...
     latitude: Union['float', 'None']
     longitude: Union['float', 'None']
     altitude: Union['float', 'None']
@@ -6552,8 +7501,11 @@ class GeolocationReadingValues(TypedDict):
     speed: Union['float', 'None']
 
 class Geolocation:
+
     def getCurrentPosition(self, successCallback: PositionCallback, errorCallback: Union['PositionErrorCallback', 'None'] = None, options: Union['PositionOptions', 'None'] = {}) -> None: ...
+
     def watchPosition(self, successCallback: PositionCallback, errorCallback: Union['PositionErrorCallback', 'None'] = None, options: Union['PositionOptions', 'None'] = {}) -> int: ...
+
     def clearWatch(self, watchId: int) -> None: ...
 
 class PositionOptions(TypedDict):
@@ -6582,16 +7534,20 @@ class GeolocationPositionError:
     message: str
 
 class DOMPointReadOnly:
-    def New(self, x: Union['float', 'None'] = 0, y: Union['float', 'None'] = 0, z: Union['float', 'None'] = 0, w: Union['float', 'None'] = 1) -> DOMPointReadOnly: ...
+    @classmethod
+    def new(cls, x: Union['float', 'None'] = 0, y: Union['float', 'None'] = 0, z: Union['float', 'None'] = 0, w: Union['float', 'None'] = 1) -> DOMPointReadOnly: ...
     x: float
     y: float
     z: float
     w: float
+
     def matrixTransform(self, matrix: Union['DOMMatrixInit', 'None'] = {}) -> DOMPoint: ...
+
     def toJSON(self) -> object: ...
 
 class DOMPoint(DOMPointReadOnly):
-    def New(self, x: Union['float', 'None'] = 0, y: Union['float', 'None'] = 0, z: Union['float', 'None'] = 0, w: Union['float', 'None'] = 1) -> DOMPoint: ...
+    @classmethod
+    def new(cls, x: Union['float', 'None'] = 0, y: Union['float', 'None'] = 0, z: Union['float', 'None'] = 0, w: Union['float', 'None'] = 1) -> DOMPoint: ...
     x: float
     y: float
     z: float
@@ -6604,7 +7560,8 @@ class DOMPointInit(TypedDict):
     w: NotRequired[float]
 
 class DOMRectReadOnly:
-    def New(self, x: Union['float', 'None'] = 0, y: Union['float', 'None'] = 0, width: Union['float', 'None'] = 0, height: Union['float', 'None'] = 0) -> DOMRectReadOnly: ...
+    @classmethod
+    def new(cls, x: Union['float', 'None'] = 0, y: Union['float', 'None'] = 0, width: Union['float', 'None'] = 0, height: Union['float', 'None'] = 0) -> DOMRectReadOnly: ...
     x: float
     y: float
     width: float
@@ -6613,10 +7570,12 @@ class DOMRectReadOnly:
     right: float
     bottom: float
     left: float
+
     def toJSON(self) -> object: ...
 
 class DOMRect(DOMRectReadOnly):
-    def New(self, x: Union['float', 'None'] = 0, y: Union['float', 'None'] = 0, width: Union['float', 'None'] = 0, height: Union['float', 'None'] = 0) -> DOMRect: ...
+    @classmethod
+    def new(cls, x: Union['float', 'None'] = 0, y: Union['float', 'None'] = 0, width: Union['float', 'None'] = 0, height: Union['float', 'None'] = 0) -> DOMRect: ...
     x: float
     y: float
     width: float
@@ -6632,12 +7591,15 @@ class DOMRectList:
     length: int
 
 class DOMQuad:
-    def New(self, p1: Union['DOMPointInit', 'None'] = {}, p2: Union['DOMPointInit', 'None'] = {}, p3: Union['DOMPointInit', 'None'] = {}, p4: Union['DOMPointInit', 'None'] = {}) -> DOMQuad: ...
+    @classmethod
+    def new(cls, p1: Union['DOMPointInit', 'None'] = {}, p2: Union['DOMPointInit', 'None'] = {}, p3: Union['DOMPointInit', 'None'] = {}, p4: Union['DOMPointInit', 'None'] = {}) -> DOMQuad: ...
     p1: DOMPoint
     p2: DOMPoint
     p3: DOMPoint
     p4: DOMPoint
+
     def getBounds(self) -> DOMRect: ...
+
     def toJSON(self) -> object: ...
 
 class DOMQuadInit(TypedDict):
@@ -6647,7 +7609,8 @@ class DOMQuadInit(TypedDict):
     p4: NotRequired[DOMPointInit]
 
 class DOMMatrixReadOnly:
-    def New(self, init: Union['str', 'Sequence[float]', 'None'] = None) -> DOMMatrixReadOnly: ...
+    @classmethod
+    def new(cls, init: Union['str', 'Sequence[float]', 'None'] = None) -> DOMMatrixReadOnly: ...
     a: float
     b: float
     c: float
@@ -6672,26 +7635,44 @@ class DOMMatrixReadOnly:
     m44: float
     is2D: bool
     isIdentity: bool
+
     def translate(self, tx: Union['float', 'None'] = 0, ty: Union['float', 'None'] = 0, tz: Union['float', 'None'] = 0) -> DOMMatrix: ...
+
     def scale(self, scaleX: Union['float', 'None'] = 1, scaleY: Union['float', 'None'] = None, scaleZ: Union['float', 'None'] = 1, originX: Union['float', 'None'] = 0, originY: Union['float', 'None'] = 0, originZ: Union['float', 'None'] = 0) -> DOMMatrix: ...
+
     def scaleNonUniform(self, scaleX: Union['float', 'None'] = 1, scaleY: Union['float', 'None'] = 1) -> DOMMatrix: ...
+
     def scale3d(self, scale: Union['float', 'None'] = 1, originX: Union['float', 'None'] = 0, originY: Union['float', 'None'] = 0, originZ: Union['float', 'None'] = 0) -> DOMMatrix: ...
+
     def rotate(self, rotX: Union['float', 'None'] = 0, rotY: Union['float', 'None'] = None, rotZ: Union['float', 'None'] = None) -> DOMMatrix: ...
+
     def rotateFromVector(self, x: Union['float', 'None'] = 0, y: Union['float', 'None'] = 0) -> DOMMatrix: ...
+
     def rotateAxisAngle(self, x: Union['float', 'None'] = 0, y: Union['float', 'None'] = 0, z: Union['float', 'None'] = 0, angle: Union['float', 'None'] = 0) -> DOMMatrix: ...
+
     def skewX(self, sx: Union['float', 'None'] = 0) -> DOMMatrix: ...
+
     def skewY(self, sy: Union['float', 'None'] = 0) -> DOMMatrix: ...
+
     def multiply(self, other: Union['DOMMatrixInit', 'None'] = {}) -> DOMMatrix: ...
+
     def flipX(self) -> DOMMatrix: ...
+
     def flipY(self) -> DOMMatrix: ...
+
     def inverse(self) -> DOMMatrix: ...
+
     def transformPoint(self, point: Union['DOMPointInit', 'None'] = {}) -> DOMPoint: ...
+
     def toFloat32Array(self) -> Float32Array: ...
+
     def toFloat64Array(self) -> Float64Array: ...
+
     def toJSON(self) -> object: ...
 
 class DOMMatrix(DOMMatrixReadOnly):
-    def New(self, init: Union['str', 'Sequence[float]', 'None'] = None) -> DOMMatrix: ...
+    @classmethod
+    def new(cls, init: Union['str', 'Sequence[float]', 'None'] = None) -> DOMMatrix: ...
     a: float
     b: float
     c: float
@@ -6714,17 +7695,29 @@ class DOMMatrix(DOMMatrixReadOnly):
     m42: float
     m43: float
     m44: float
+
     def multiplySelf(self, other: Union['DOMMatrixInit', 'None'] = {}) -> DOMMatrix: ...
+
     def preMultiplySelf(self, other: Union['DOMMatrixInit', 'None'] = {}) -> DOMMatrix: ...
+
     def translateSelf(self, tx: Union['float', 'None'] = 0, ty: Union['float', 'None'] = 0, tz: Union['float', 'None'] = 0) -> DOMMatrix: ...
+
     def scaleSelf(self, scaleX: Union['float', 'None'] = 1, scaleY: Union['float', 'None'] = None, scaleZ: Union['float', 'None'] = 1, originX: Union['float', 'None'] = 0, originY: Union['float', 'None'] = 0, originZ: Union['float', 'None'] = 0) -> DOMMatrix: ...
+
     def scale3dSelf(self, scale: Union['float', 'None'] = 1, originX: Union['float', 'None'] = 0, originY: Union['float', 'None'] = 0, originZ: Union['float', 'None'] = 0) -> DOMMatrix: ...
+
     def rotateSelf(self, rotX: Union['float', 'None'] = 0, rotY: Union['float', 'None'] = None, rotZ: Union['float', 'None'] = None) -> DOMMatrix: ...
+
     def rotateFromVectorSelf(self, x: Union['float', 'None'] = 0, y: Union['float', 'None'] = 0) -> DOMMatrix: ...
+
     def rotateAxisAngleSelf(self, x: Union['float', 'None'] = 0, y: Union['float', 'None'] = 0, z: Union['float', 'None'] = 0, angle: Union['float', 'None'] = 0) -> DOMMatrix: ...
+
     def skewXSelf(self, sx: Union['float', 'None'] = 0) -> DOMMatrix: ...
+
     def skewYSelf(self, sy: Union['float', 'None'] = 0) -> DOMMatrix: ...
+
     def invertSelf(self) -> DOMMatrix: ...
+
     def setMatrixValue(self, transformList: str) -> DOMMatrix: ...
 
 class DOMMatrix2DInit(TypedDict):
@@ -6764,7 +7757,8 @@ class GlobalPrivacyControl:
     globalPrivacyControl: bool
 
 class Gyroscope(Sensor):
-    def New(self, sensorOptions: Union['GyroscopeSensorOptions', 'None'] = {}) -> Gyroscope: ...
+    @classmethod
+    def new(cls, sensorOptions: Union['GyroscopeSensorOptions', 'None'] = {}) -> Gyroscope: ...
     x: Union['float', 'None']
     y: Union['float', 'None']
     z: Union['float', 'None']
@@ -6779,6 +7773,7 @@ class GyroscopeReadingValues(TypedDict):
 
 class HTMLAllCollection:
     length: int
+
     def item(self, nameOrIndex: Union['str', 'None'] = None) -> Union['HTMLCollection', 'Element', 'None']: ...
 
 class HTMLFormControlsCollection(HTMLCollection): ...
@@ -6788,12 +7783,15 @@ class RadioNodeList(NodeList):
 
 class HTMLOptionsCollection(HTMLCollection):
     length: int
+
     def add(self, element: Union['HTMLOptionElement', 'HTMLOptGroupElement'], before: Union['HTMLElement', 'int', 'None'] = None) -> None: ...
+
     def remove(self, index: int) -> None: ...
     selectedIndex: int
 
 class DOMStringList:
     length: int
+
     def contains(self, string: str) -> bool: ...
 
 class HTMLUnknownElement(HTMLElement): ...
@@ -6803,29 +7801,36 @@ class HTMLOrSVGElement:
     nonce: str
     autofocus: bool
     tabIndex: int
+
     def focus(self, options: Union['FocusOptions', 'None'] = {}) -> None: ...
+
     def blur(self) -> None: ...
 
 class DOMStringMap: ...
 
 class HTMLHtmlElement(HTMLElement):
-    def New(self) -> HTMLHtmlElement: ...
+    @classmethod
+    def new(cls) -> HTMLHtmlElement: ...
     version: str
 
 class HTMLHeadElement(HTMLElement):
-    def New(self) -> HTMLHeadElement: ...
+    @classmethod
+    def new(cls) -> HTMLHeadElement: ...
 
 class HTMLTitleElement(HTMLElement):
-    def New(self) -> HTMLTitleElement: ...
+    @classmethod
+    def new(cls) -> HTMLTitleElement: ...
     text: str
 
 class HTMLBaseElement(HTMLElement):
-    def New(self) -> HTMLBaseElement: ...
+    @classmethod
+    def new(cls) -> HTMLBaseElement: ...
     href: str
     target: str
 
 class HTMLLinkElement(HTMLElement, LinkStyle):
-    def New(self) -> HTMLLinkElement: ...
+    @classmethod
+    def new(cls) -> HTMLLinkElement: ...
     href: str
     crossOrigin: Union['str', 'None']
     rel: str
@@ -6846,7 +7851,8 @@ class HTMLLinkElement(HTMLElement, LinkStyle):
     target: str
 
 class HTMLMetaElement(HTMLElement):
-    def New(self) -> HTMLMetaElement: ...
+    @classmethod
+    def new(cls) -> HTMLMetaElement: ...
     name: str
     httpEquiv: str
     content: str
@@ -6854,22 +7860,26 @@ class HTMLMetaElement(HTMLElement):
     scheme: str
 
 class HTMLStyleElement(HTMLElement, LinkStyle):
-    def New(self) -> HTMLStyleElement: ...
+    @classmethod
+    def new(cls) -> HTMLStyleElement: ...
     disabled: bool
     media: str
     blocking: DOMTokenList
     type: str
 
 class HTMLHeadingElement(HTMLElement):
-    def New(self) -> HTMLHeadingElement: ...
+    @classmethod
+    def new(cls) -> HTMLHeadingElement: ...
     align: str
 
 class HTMLParagraphElement(HTMLElement):
-    def New(self) -> HTMLParagraphElement: ...
+    @classmethod
+    def new(cls) -> HTMLParagraphElement: ...
     align: str
 
 class HTMLHRElement(HTMLElement):
-    def New(self) -> HTMLHRElement: ...
+    @classmethod
+    def new(cls) -> HTMLHRElement: ...
     align: str
     color: str
     noShade: bool
@@ -6877,55 +7887,67 @@ class HTMLHRElement(HTMLElement):
     width: str
 
 class HTMLPreElement(HTMLElement):
-    def New(self) -> HTMLPreElement: ...
+    @classmethod
+    def new(cls) -> HTMLPreElement: ...
     width: int
 
 class HTMLQuoteElement(HTMLElement):
-    def New(self) -> HTMLQuoteElement: ...
+    @classmethod
+    def new(cls) -> HTMLQuoteElement: ...
     cite: str
 
 class HTMLOListElement(HTMLElement):
-    def New(self) -> HTMLOListElement: ...
+    @classmethod
+    def new(cls) -> HTMLOListElement: ...
     reversed: bool
     start: int
     type: str
     compact: bool
 
 class HTMLUListElement(HTMLElement):
-    def New(self) -> HTMLUListElement: ...
+    @classmethod
+    def new(cls) -> HTMLUListElement: ...
     compact: bool
     type: str
 
 class HTMLMenuElement(HTMLElement):
-    def New(self) -> HTMLMenuElement: ...
+    @classmethod
+    def new(cls) -> HTMLMenuElement: ...
     compact: bool
 
 class HTMLLIElement(HTMLElement):
-    def New(self) -> HTMLLIElement: ...
+    @classmethod
+    def new(cls) -> HTMLLIElement: ...
     value: int
     type: str
 
 class HTMLDListElement(HTMLElement):
-    def New(self) -> HTMLDListElement: ...
+    @classmethod
+    def new(cls) -> HTMLDListElement: ...
     compact: bool
 
 class HTMLDivElement(HTMLElement):
-    def New(self) -> HTMLDivElement: ...
+    @classmethod
+    def new(cls) -> HTMLDivElement: ...
     align: str
 
 class HTMLDataElement(HTMLElement):
-    def New(self) -> HTMLDataElement: ...
+    @classmethod
+    def new(cls) -> HTMLDataElement: ...
     value: str
 
 class HTMLTimeElement(HTMLElement):
-    def New(self) -> HTMLTimeElement: ...
+    @classmethod
+    def new(cls) -> HTMLTimeElement: ...
     dateTime: str
 
 class HTMLSpanElement(HTMLElement):
-    def New(self) -> HTMLSpanElement: ...
+    @classmethod
+    def new(cls) -> HTMLSpanElement: ...
 
 class HTMLBRElement(HTMLElement):
-    def New(self) -> HTMLBRElement: ...
+    @classmethod
+    def new(cls) -> HTMLBRElement: ...
     clear: str
 
 class HTMLHyperlinkElementUtils:
@@ -6942,15 +7964,18 @@ class HTMLHyperlinkElementUtils:
     hash: str
 
 class HTMLModElement(HTMLElement):
-    def New(self) -> HTMLModElement: ...
+    @classmethod
+    def new(cls) -> HTMLModElement: ...
     cite: str
     dateTime: str
 
 class HTMLPictureElement(HTMLElement):
-    def New(self) -> HTMLPictureElement: ...
+    @classmethod
+    def new(cls) -> HTMLPictureElement: ...
 
 class HTMLSourceElement(HTMLElement):
-    def New(self) -> HTMLSourceElement: ...
+    @classmethod
+    def new(cls) -> HTMLSourceElement: ...
     src: str
     type: str
     srcset: str
@@ -6960,17 +7985,20 @@ class HTMLSourceElement(HTMLElement):
     height: int
 
 class HTMLEmbedElement(HTMLElement):
-    def New(self) -> HTMLEmbedElement: ...
+    @classmethod
+    def new(cls) -> HTMLEmbedElement: ...
     src: str
     type: str
     width: str
     height: str
+
     def getSVGDocument(self) -> Union['Document', 'None']: ...
     align: str
     name: str
 
 class HTMLObjectElement(HTMLElement):
-    def New(self) -> HTMLObjectElement: ...
+    @classmethod
+    def new(cls) -> HTMLObjectElement: ...
     data: str
     type: str
     name: str
@@ -6979,12 +8007,16 @@ class HTMLObjectElement(HTMLElement):
     height: str
     contentDocument: Union['Document', 'None']
     contentWindow: Union['WindowProxy', 'None']
+
     def getSVGDocument(self) -> Union['Document', 'None']: ...
     willValidate: bool
     validity: ValidityState
     validationMessage: str
+
     def checkValidity(self) -> bool: ...
+
     def reportValidity(self) -> bool: ...
+
     def setCustomValidity(self, error: str) -> None: ...
     align: str
     archive: str
@@ -6999,29 +8031,36 @@ class HTMLObjectElement(HTMLElement):
     border: str
 
 class HTMLVideoElement(HTMLMediaElement):
-    def New(self) -> HTMLVideoElement: ...
+    @classmethod
+    def new(cls) -> HTMLVideoElement: ...
     width: int
     height: int
     videoWidth: int
     videoHeight: int
     poster: str
     playsInline: bool
+
     def getVideoPlaybackQuality(self) -> VideoPlaybackQuality: ...
+
     def requestPictureInPicture(self) -> Awaitable[PictureInPictureWindow]: ...
     onenterpictureinpicture: EventHandler
     onleavepictureinpicture: EventHandler
     disablePictureInPicture: bool
+
     def requestVideoFrameCallback(self, callback: VideoFrameRequestCallback) -> int: ...
+
     def cancelVideoFrameCallback(self, handle: int) -> None: ...
 
 class HTMLAudioElement(HTMLMediaElement):
-    def New(self) -> HTMLAudioElement: ...
+    @classmethod
+    def new(cls) -> HTMLAudioElement: ...
     """ # GIgnoredStmt 
     LegacyFactoryFunction=Audio(optional DOMString src)
     """
 
 class HTMLTrackElement(HTMLElement):
-    def New(self) -> HTMLTrackElement: ...
+    @classmethod
+    def new(cls) -> HTMLTrackElement: ...
     kind: str
     src: str
     srclang: str
@@ -7044,6 +8083,7 @@ class MediaError:
 
 class AudioTrackList(EventTarget):
     length: int
+
     def getTrackById(self, id: str) -> Union['AudioTrack', 'None']: ...
     onchange: EventHandler
     onaddtrack: EventHandler
@@ -7059,6 +8099,7 @@ class AudioTrack:
 
 class VideoTrackList(EventTarget):
     length: int
+
     def getTrackById(self, id: str) -> Union['VideoTrack', 'None']: ...
     selectedIndex: int
     onchange: EventHandler
@@ -7075,6 +8116,7 @@ class VideoTrack:
 
 class TextTrackList(EventTarget):
     length: int
+
     def getTrackById(self, id: str) -> Union['TextTrack', 'None']: ...
     onchange: EventHandler
     onaddtrack: EventHandler
@@ -7089,13 +8131,16 @@ class TextTrack(EventTarget):
     mode: TextTrackMode
     cues: Union['TextTrackCueList', 'None']
     activeCues: Union['TextTrackCueList', 'None']
+
     def addCue(self, cue: TextTrackCue) -> None: ...
+
     def removeCue(self, cue: TextTrackCue) -> None: ...
     oncuechange: EventHandler
     sourceBuffer: Union['SourceBuffer', 'None']
 
 class TextTrackCueList:
     length: int
+
     def getCueById(self, id: str) -> Union['TextTrackCue', 'None']: ...
 
 class TextTrackCue(EventTarget):
@@ -7109,23 +8154,28 @@ class TextTrackCue(EventTarget):
 
 class TimeRanges:
     length: int
+
     def start(self, index: int) -> float: ...
+
     def end(self, index: int) -> float: ...
 
 class TrackEvent(Event):
-    def New(self, type: str, eventInitDict: Union['TrackEventInit', 'None'] = {}) -> TrackEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['TrackEventInit', 'None'] = {}) -> TrackEvent: ...
     track: Union['VideoTrack', 'AudioTrack', 'TextTrack', 'None']
 
 class TrackEventInit(TypedDict, EventInit):
     track: NotRequired[Union['VideoTrack', 'AudioTrack', 'TextTrack', 'None']]
 
 class HTMLMapElement(HTMLElement):
-    def New(self) -> HTMLMapElement: ...
+    @classmethod
+    def new(cls) -> HTMLMapElement: ...
     name: str
     areas: HTMLCollection
 
 class HTMLAreaElement(HTMLElement, HTMLHyperlinkElementUtils):
-    def New(self) -> HTMLAreaElement: ...
+    @classmethod
+    def new(cls) -> HTMLAreaElement: ...
     alt: str
     coords: str
     shape: str
@@ -7138,20 +8188,30 @@ class HTMLAreaElement(HTMLElement, HTMLHyperlinkElementUtils):
     noHref: bool
 
 class HTMLTableElement(HTMLElement):
-    def New(self) -> HTMLTableElement: ...
+    @classmethod
+    def new(cls) -> HTMLTableElement: ...
     caption: Union['HTMLTableCaptionElement', 'None']
+
     def createCaption(self) -> HTMLTableCaptionElement: ...
+
     def deleteCaption(self) -> None: ...
     tHead: Union['HTMLTableSectionElement', 'None']
+
     def createTHead(self) -> HTMLTableSectionElement: ...
+
     def deleteTHead(self) -> None: ...
     tFoot: Union['HTMLTableSectionElement', 'None']
+
     def createTFoot(self) -> HTMLTableSectionElement: ...
+
     def deleteTFoot(self) -> None: ...
     tBodies: HTMLCollection
+
     def createTBody(self) -> HTMLTableSectionElement: ...
     rows: HTMLCollection
+
     def insertRow(self, index: Union['int', 'None'] = -1) -> HTMLTableRowElement: ...
+
     def deleteRow(self, index: int) -> None: ...
     align: str
     border: str
@@ -7164,11 +8224,13 @@ class HTMLTableElement(HTMLElement):
     cellSpacing: str
 
 class HTMLTableCaptionElement(HTMLElement):
-    def New(self) -> HTMLTableCaptionElement: ...
+    @classmethod
+    def new(cls) -> HTMLTableCaptionElement: ...
     align: str
 
 class HTMLTableColElement(HTMLElement):
-    def New(self) -> HTMLTableColElement: ...
+    @classmethod
+    def new(cls) -> HTMLTableColElement: ...
     span: int
     align: str
     ch: str
@@ -7177,9 +8239,12 @@ class HTMLTableColElement(HTMLElement):
     width: str
 
 class HTMLTableSectionElement(HTMLElement):
-    def New(self) -> HTMLTableSectionElement: ...
+    @classmethod
+    def new(cls) -> HTMLTableSectionElement: ...
     rows: HTMLCollection
+
     def insertRow(self, index: Union['int', 'None'] = -1) -> HTMLTableRowElement: ...
+
     def deleteRow(self, index: int) -> None: ...
     align: str
     ch: str
@@ -7187,11 +8252,14 @@ class HTMLTableSectionElement(HTMLElement):
     vAlign: str
 
 class HTMLTableRowElement(HTMLElement):
-    def New(self) -> HTMLTableRowElement: ...
+    @classmethod
+    def new(cls) -> HTMLTableRowElement: ...
     rowIndex: int
     sectionRowIndex: int
     cells: HTMLCollection
+
     def insertCell(self, index: Union['int', 'None'] = -1) -> HTMLTableCellElement: ...
+
     def deleteCell(self, index: int) -> None: ...
     align: str
     ch: str
@@ -7200,7 +8268,8 @@ class HTMLTableRowElement(HTMLElement):
     bgColor: str
 
 class HTMLTableCellElement(HTMLElement):
-    def New(self) -> HTMLTableCellElement: ...
+    @classmethod
+    def new(cls) -> HTMLTableCellElement: ...
     colSpan: int
     rowSpan: int
     headers: str
@@ -7218,7 +8287,8 @@ class HTMLTableCellElement(HTMLElement):
     bgColor: str
 
 class HTMLFormElement(HTMLElement):
-    def New(self) -> HTMLFormElement: ...
+    @classmethod
+    def new(cls) -> HTMLFormElement: ...
     acceptCharset: str
     action: str
     autocomplete: str
@@ -7232,20 +8302,27 @@ class HTMLFormElement(HTMLElement):
     relList: DOMTokenList
     elements: HTMLFormControlsCollection
     length: int
+
     def submit(self) -> None: ...
+
     def requestSubmit(self, submitter: Union['HTMLElement', 'None'] = None) -> None: ...
+
     def reset(self) -> None: ...
+
     def checkValidity(self) -> bool: ...
+
     def reportValidity(self) -> bool: ...
 
 class HTMLLabelElement(HTMLElement):
-    def New(self) -> HTMLLabelElement: ...
+    @classmethod
+    def new(cls) -> HTMLLabelElement: ...
     form: Union['HTMLFormElement', 'None']
     htmlFor: str
     control: Union['HTMLElement', 'None']
 
 class HTMLButtonElement(HTMLElement, PopoverInvokerElement):
-    def New(self) -> HTMLButtonElement: ...
+    @classmethod
+    def new(cls) -> HTMLButtonElement: ...
     disabled: bool
     form: Union['HTMLFormElement', 'None']
     formAction: str
@@ -7259,13 +8336,17 @@ class HTMLButtonElement(HTMLElement, PopoverInvokerElement):
     willValidate: bool
     validity: ValidityState
     validationMessage: str
+
     def checkValidity(self) -> bool: ...
+
     def reportValidity(self) -> bool: ...
+
     def setCustomValidity(self, error: str) -> None: ...
     labels: NodeList
 
 class HTMLSelectElement(HTMLElement):
-    def New(self) -> HTMLSelectElement: ...
+    @classmethod
+    def new(cls) -> HTMLSelectElement: ...
     autocomplete: str
     disabled: bool
     form: Union['HTMLFormElement', 'None']
@@ -7276,7 +8357,9 @@ class HTMLSelectElement(HTMLElement):
     type: str
     options: HTMLOptionsCollection
     length: int
+
     def namedItem(self, name: str) -> Union['HTMLOptionElement', 'None']: ...
+
     def add(self, element: Union['HTMLOptionElement', 'HTMLOptGroupElement'], before: Union['HTMLElement', 'int', 'None'] = None) -> None: ...
     @overload
     def remove(self) -> None: ...
@@ -7288,22 +8371,28 @@ class HTMLSelectElement(HTMLElement):
     willValidate: bool
     validity: ValidityState
     validationMessage: str
+
     def checkValidity(self) -> bool: ...
+
     def reportValidity(self) -> bool: ...
+
     def setCustomValidity(self, error: str) -> None: ...
     labels: NodeList
 
 class HTMLDataListElement(HTMLElement):
-    def New(self) -> HTMLDataListElement: ...
+    @classmethod
+    def new(cls) -> HTMLDataListElement: ...
     options: HTMLCollection
 
 class HTMLOptGroupElement(HTMLElement):
-    def New(self) -> HTMLOptGroupElement: ...
+    @classmethod
+    def new(cls) -> HTMLOptGroupElement: ...
     disabled: bool
     label: str
 
 class HTMLOptionElement(HTMLElement):
-    def New(self) -> HTMLOptionElement: ...
+    @classmethod
+    def new(cls) -> HTMLOptionElement: ...
     disabled: bool
     form: Union['HTMLFormElement', 'None']
     label: str
@@ -7317,7 +8406,8 @@ class HTMLOptionElement(HTMLElement):
     """
 
 class HTMLTextAreaElement(HTMLElement):
-    def New(self) -> HTMLTextAreaElement: ...
+    @classmethod
+    def new(cls) -> HTMLTextAreaElement: ...
     autocomplete: str
     cols: int
     dirName: str
@@ -7338,10 +8428,14 @@ class HTMLTextAreaElement(HTMLElement):
     willValidate: bool
     validity: ValidityState
     validationMessage: str
+
     def checkValidity(self) -> bool: ...
+
     def reportValidity(self) -> bool: ...
+
     def setCustomValidity(self, error: str) -> None: ...
     labels: NodeList
+
     def select(self) -> None: ...
     selectionStart: int
     selectionEnd: int
@@ -7350,10 +8444,12 @@ class HTMLTextAreaElement(HTMLElement):
     def setRangeText(self, replacement: str) -> None: ...
     @overload
     def setRangeText(self, replacement: str, start: int, end: int, selectionMode: Union['SelectionMode', 'None'] = "preserve") -> None: ...
+
     def setSelectionRange(self, start: int, end: int, direction: Union['str', 'None'] = None) -> None: ...
 
 class HTMLOutputElement(HTMLElement):
-    def New(self) -> HTMLOutputElement: ...
+    @classmethod
+    def new(cls) -> HTMLOutputElement: ...
     htmlFor: DOMTokenList
     form: Union['HTMLFormElement', 'None']
     name: str
@@ -7363,20 +8459,25 @@ class HTMLOutputElement(HTMLElement):
     willValidate: bool
     validity: ValidityState
     validationMessage: str
+
     def checkValidity(self) -> bool: ...
+
     def reportValidity(self) -> bool: ...
+
     def setCustomValidity(self, error: str) -> None: ...
     labels: NodeList
 
 class HTMLProgressElement(HTMLElement):
-    def New(self) -> HTMLProgressElement: ...
+    @classmethod
+    def new(cls) -> HTMLProgressElement: ...
     value: float
     max: float
     position: float
     labels: NodeList
 
 class HTMLMeterElement(HTMLElement):
-    def New(self) -> HTMLMeterElement: ...
+    @classmethod
+    def new(cls) -> HTMLMeterElement: ...
     value: float
     min: float
     max: float
@@ -7386,7 +8487,8 @@ class HTMLMeterElement(HTMLElement):
     labels: NodeList
 
 class HTMLFieldSetElement(HTMLElement):
-    def New(self) -> HTMLFieldSetElement: ...
+    @classmethod
+    def new(cls) -> HTMLFieldSetElement: ...
     disabled: bool
     form: Union['HTMLFormElement', 'None']
     name: str
@@ -7395,12 +8497,16 @@ class HTMLFieldSetElement(HTMLElement):
     willValidate: bool
     validity: ValidityState
     validationMessage: str
+
     def checkValidity(self) -> bool: ...
+
     def reportValidity(self) -> bool: ...
+
     def setCustomValidity(self, error: str) -> None: ...
 
 class HTMLLegendElement(HTMLElement):
-    def New(self) -> HTMLLegendElement: ...
+    @classmethod
+    def new(cls) -> HTMLLegendElement: ...
     form: Union['HTMLFormElement', 'None']
     align: str
 
@@ -7418,53 +8524,71 @@ class ValidityState:
     valid: bool
 
 class SubmitEvent(Event):
-    def New(self, type: str, eventInitDict: Union['SubmitEventInit', 'None'] = {}) -> SubmitEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['SubmitEventInit', 'None'] = {}) -> SubmitEvent: ...
     submitter: Union['HTMLElement', 'None']
 
 class SubmitEventInit(TypedDict, EventInit):
     submitter: NotRequired[Union['HTMLElement', 'None']]
 
 class FormDataEvent(Event):
-    def New(self, type: str, eventInitDict: FormDataEventInit) -> FormDataEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: FormDataEventInit) -> FormDataEvent: ...
     formData: FormData
 
 class FormDataEventInit(TypedDict, EventInit):
     formData: FormData
 
 class HTMLDetailsElement(HTMLElement):
-    def New(self) -> HTMLDetailsElement: ...
+    @classmethod
+    def new(cls) -> HTMLDetailsElement: ...
     open: bool
 
 class HTMLDialogElement(HTMLElement):
-    def New(self) -> HTMLDialogElement: ...
+    @classmethod
+    def new(cls) -> HTMLDialogElement: ...
     open: bool
     returnValue: str
+
     def show(self) -> None: ...
+
     def showModal(self) -> None: ...
+
     def close(self, returnValue: Union['str', 'None'] = None) -> None: ...
 
 class HTMLTemplateElement(HTMLElement):
-    def New(self) -> HTMLTemplateElement: ...
+    @classmethod
+    def new(cls) -> HTMLTemplateElement: ...
     content: DocumentFragment
 
 class HTMLSlotElement(HTMLElement):
-    def New(self) -> HTMLSlotElement: ...
+    @classmethod
+    def new(cls) -> HTMLSlotElement: ...
     name: str
+
     def assignedNodes(self, options: Union['AssignedNodesOptions', 'None'] = {}) -> Sequence[Node]: ...
+
     def assignedElements(self, options: Union['AssignedNodesOptions', 'None'] = {}) -> Sequence[Element]: ...
+
     def assign(self, *nodes: Union['Element', 'Text']) -> None: ...
 
 class AssignedNodesOptions(TypedDict):
     flatten: NotRequired[bool]
 
 class HTMLCanvasElement(HTMLElement):
-    def New(self) -> HTMLCanvasElement: ...
+    @classmethod
+    def new(cls) -> HTMLCanvasElement: ...
     width: int
     height: int
+
     def getContext(self, contextId: str, options: Union['Any', 'None'] = None) -> Union['RenderingContext', 'None']: ...
+
     def toDataURL(self, type: Union['str', 'None'] = "image/png", quality: Union['Any', 'None'] = None) -> str: ...
+
     def toBlob(self, callback: BlobCallback, type: Union['str', 'None'] = "image/png", quality: Union['Any', 'None'] = None) -> None: ...
+
     def transferControlToOffscreen(self) -> OffscreenCanvas: ...
+
     def captureStream(self, frameRequestRate: Union['float', 'None'] = None) -> MediaStream: ...
 
 class CanvasRenderingContext2DSettings(TypedDict):
@@ -7475,24 +8599,35 @@ class CanvasRenderingContext2DSettings(TypedDict):
 
 class CanvasRenderingContext2D(CanvasState, CanvasTransform, CanvasCompositing, CanvasImageSmoothing, CanvasFillStrokeStyles, CanvasShadowStyles, CanvasFilters, CanvasRect, CanvasDrawPath, CanvasUserInterface, CanvasText, CanvasDrawImage, CanvasImageData, CanvasPathDrawingStyles, CanvasTextDrawingStyles, CanvasPath):
     canvas: HTMLCanvasElement
+
     def getContextAttributes(self) -> CanvasRenderingContext2DSettings: ...
 
 class CanvasState:
+
     def save(self) -> None: ...
+
     def restore(self) -> None: ...
+
     def reset(self) -> None: ...
+
     def isContextLost(self) -> bool: ...
 
 class CanvasTransform:
+
     def scale(self, x: float, y: float) -> None: ...
+
     def rotate(self, angle: float) -> None: ...
+
     def translate(self, x: float, y: float) -> None: ...
+
     def transform(self, a: float, b: float, c: float, d: float, e: float, f: float) -> None: ...
+
     def getTransform(self) -> DOMMatrix: ...
     @overload
     def setTransform(self, a: float, b: float, c: float, d: float, e: float, f: float) -> None: ...
     @overload
     def setTransform(self, transform: Union['DOMMatrix2DInit', 'None'] = {}) -> None: ...
+
     def resetTransform(self) -> None: ...
 
 class CanvasCompositing:
@@ -7506,9 +8641,13 @@ class CanvasImageSmoothing:
 class CanvasFillStrokeStyles:
     strokeStyle: Union['str', 'CanvasGradient', 'CanvasPattern']
     fillStyle: Union['str', 'CanvasGradient', 'CanvasPattern']
+
     def createLinearGradient(self, x0: float, y0: float, x1: float, y1: float) -> CanvasGradient: ...
+
     def createRadialGradient(self, x0: float, y0: float, r0: float, x1: float, y1: float, r1: float) -> CanvasGradient: ...
+
     def createConicGradient(self, startAngle: float, x: float, y: float) -> CanvasGradient: ...
+
     def createPattern(self, image: CanvasImageSource, repetition: str) -> Union['CanvasPattern', 'None']: ...
 
 class CanvasShadowStyles:
@@ -7521,11 +8660,15 @@ class CanvasFilters:
     filter: str
 
 class CanvasRect:
+
     def clearRect(self, x: float, y: float, w: float, h: float) -> None: ...
+
     def fillRect(self, x: float, y: float, w: float, h: float) -> None: ...
+
     def strokeRect(self, x: float, y: float, w: float, h: float) -> None: ...
 
 class CanvasDrawPath:
+
     def beginPath(self) -> None: ...
     @overload
     def fill(self, fillRule: Union['CanvasFillRule', 'None'] = "nonzero") -> None: ...
@@ -7559,8 +8702,11 @@ class CanvasUserInterface:
     def scrollPathIntoView(self, path: Path2D) -> None: ...
 
 class CanvasText:
+
     def fillText(self, text: str, x: float, y: float, maxWidth: Union['float', 'None'] = None) -> None: ...
+
     def strokeText(self, text: str, x: float, y: float, maxWidth: Union['float', 'None'] = None) -> None: ...
+
     def measureText(self, text: str) -> TextMetrics: ...
 
 class CanvasDrawImage:
@@ -7576,6 +8722,7 @@ class CanvasImageData:
     def createImageData(self, sw: int, sh: int, settings: Union['ImageDataSettings', 'None'] = {}) -> ImageData: ...
     @overload
     def createImageData(self, imagedata: ImageData) -> ImageData: ...
+
     def getImageData(self, sx: int, sy: int, sw: int, sh: int, settings: Union['ImageDataSettings', 'None'] = {}) -> ImageData: ...
     @overload
     def putImageData(self, imagedata: ImageData, dx: int, dy: int) -> None: ...
@@ -7587,7 +8734,9 @@ class CanvasPathDrawingStyles:
     lineCap: CanvasLineCap
     lineJoin: CanvasLineJoin
     miterLimit: float
+
     def setLineDash(self, segments: Sequence[float]) -> None: ...
+
     def getLineDash(self) -> Sequence[float]: ...
     lineDashOffset: float
 
@@ -7604,21 +8753,33 @@ class CanvasTextDrawingStyles:
     wordSpacing: str
 
 class CanvasPath:
+
     def closePath(self) -> None: ...
+
     def moveTo(self, x: float, y: float) -> None: ...
+
     def lineTo(self, x: float, y: float) -> None: ...
+
     def quadraticCurveTo(self, cpx: float, cpy: float, x: float, y: float) -> None: ...
+
     def bezierCurveTo(self, cp1x: float, cp1y: float, cp2x: float, cp2y: float, x: float, y: float) -> None: ...
+
     def arcTo(self, x1: float, y1: float, x2: float, y2: float, radius: float) -> None: ...
+
     def rect(self, x: float, y: float, w: float, h: float) -> None: ...
+
     def roundRect(self, x: float, y: float, w: float, h: float, radii: Union['float', 'DOMPointInit', 'Sequence[Union["float", "DOMPointInit"]]', 'None'] = 0) -> None: ...
+
     def arc(self, x: float, y: float, radius: float, startAngle: float, endAngle: float, counterclockwise: Union['bool', 'None'] = False) -> None: ...
+
     def ellipse(self, x: float, y: float, radiusX: float, radiusY: float, rotation: float, startAngle: float, endAngle: float, counterclockwise: Union['bool', 'None'] = False) -> None: ...
 
 class CanvasGradient:
+
     def addColorStop(self, offset: float, color: str) -> None: ...
 
 class CanvasPattern:
+
     def setTransform(self, transform: Union['DOMMatrix2DInit', 'None'] = {}) -> None: ...
 
 class TextMetrics:
@@ -7640,20 +8801,25 @@ class ImageDataSettings(TypedDict):
 
 class ImageData:
     @overload
-    def New(self, sw: int, sh: int, settings: Union['ImageDataSettings', 'None'] = {}) -> ImageData: ...
+    @classmethod
+    def new(cls, sw: int, sh: int, settings: Union['ImageDataSettings', 'None'] = {}) -> ImageData: ...
     @overload
-    def New(self, data: Uint8ClampedArray, sw: int, sh: Union['int', 'None'] = None, settings: Union['ImageDataSettings', 'None'] = {}) -> ImageData: ...
+    @classmethod
+    def new(cls, data: Uint8ClampedArray, sw: int, sh: Union['int', 'None'] = None, settings: Union['ImageDataSettings', 'None'] = {}) -> ImageData: ...
     width: int
     height: int
     data: Uint8ClampedArray
     colorSpace: PredefinedColorSpace
 
 class Path2D(CanvasPath):
-    def New(self, path: Union['Path2D', 'str', 'None'] = None) -> Path2D: ...
+    @classmethod
+    def new(cls, path: Union['Path2D', 'str', 'None'] = None) -> Path2D: ...
+
     def addPath(self, path: Path2D, transform: Union['DOMMatrix2DInit', 'None'] = {}) -> None: ...
 
 class ImageBitmapRenderingContext:
     canvas: Union['HTMLCanvasElement', 'OffscreenCanvas']
+
     def transferFromImageBitmap(self, bitmap: Union['ImageBitmap', 'None']) -> None: ...
 
 class ImageBitmapRenderingContextSettings(TypedDict):
@@ -7664,24 +8830,34 @@ class ImageEncodeOptions(TypedDict):
     quality: NotRequired[float]
 
 class OffscreenCanvas(EventTarget):
-    def New(self, width: int, height: int) -> OffscreenCanvas: ...
+    @classmethod
+    def new(cls, width: int, height: int) -> OffscreenCanvas: ...
     width: int
     height: int
+
     def getContext(self, contextId: OffscreenRenderingContextId, options: Union['Any', 'None'] = None) -> Union['OffscreenRenderingContext', 'None']: ...
+
     def transferToImageBitmap(self) -> ImageBitmap: ...
+
     def convertToBlob(self, options: Union['ImageEncodeOptions', 'None'] = {}) -> Awaitable[Blob]: ...
     oncontextlost: EventHandler
     oncontextrestored: EventHandler
 
 class OffscreenCanvasRenderingContext2D(CanvasState, CanvasTransform, CanvasCompositing, CanvasImageSmoothing, CanvasFillStrokeStyles, CanvasShadowStyles, CanvasFilters, CanvasRect, CanvasDrawPath, CanvasText, CanvasDrawImage, CanvasImageData, CanvasPathDrawingStyles, CanvasTextDrawingStyles, CanvasPath):
+
     def commit(self) -> None: ...
     canvas: OffscreenCanvas
 
 class CustomElementRegistry:
+
     def define(self, name: str, constructor: CustomElementConstructor, options: Union['ElementDefinitionOptions', 'None'] = {}) -> None: ...
+
     def get(self, name: str) -> Union['CustomElementConstructor', 'None']: ...
+
     def getName(self, constructor: CustomElementConstructor) -> Union['str', 'None']: ...
+
     def whenDefined(self, name: str) -> Awaitable[CustomElementConstructor]: ...
+
     def upgrade(self, root: Node) -> None: ...
 
 class ElementDefinitionOptions(TypedDict):
@@ -7721,14 +8897,19 @@ class ElementContentEditable:
     virtualKeyboardPolicy: str
 
 class DataTransfer:
-    def New(self) -> DataTransfer: ...
+    @classmethod
+    def new(cls) -> DataTransfer: ...
     dropEffect: str
     effectAllowed: str
     items: DataTransferItemList
+
     def setDragImage(self, image: Element, x: int, y: int) -> None: ...
     types: Sequence[str]
+
     def getData(self, format: str) -> str: ...
+
     def setData(self, format: str, data: str) -> None: ...
+
     def clearData(self, format: Union['str', 'None'] = None) -> None: ...
     files: FileList
 
@@ -7738,11 +8919,14 @@ class DataTransferItemList:
     def add(self, data: str, type: str) -> Union['DataTransferItem', 'None']: ...
     @overload
     def add(self, data: File) -> Union['DataTransferItem', 'None']: ...
+
     def remove(self, index: int) -> None: ...
+
     def clear(self) -> None: ...
 
 class DragEvent(MouseEvent):
-    def New(self, type: str, eventInitDict: Union['DragEventInit', 'None'] = {}) -> DragEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['DragEventInit', 'None'] = {}) -> DragEvent: ...
     dataTransfer: Union['DataTransfer', 'None']
 
 class DragEventInit(TypedDict, MouseEventInit):
@@ -7753,7 +8937,8 @@ class PopoverInvokerElement:
     popoverTargetAction: str
 
 class ToggleEvent(Event):
-    def New(self, type: str, eventInitDict: Union['ToggleEventInit', 'None'] = {}) -> ToggleEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['ToggleEventInit', 'None'] = {}) -> ToggleEvent: ...
     oldState: str
     newState: str
 
@@ -7777,8 +8962,11 @@ class Location:
     pathname: str
     search: str
     hash: str
+
     def assign(self, url: str) -> None: ...
+
     def replace(self, url: str) -> None: ...
+
     def reload(self) -> None: ...
     ancestorOrigins: DOMStringList
 
@@ -7786,23 +8974,35 @@ class History:
     length: int
     scrollRestoration: ScrollRestoration
     state: Any
+
     def go(self, delta: Union['int', 'None'] = 0) -> None: ...
+
     def back(self) -> None: ...
+
     def forward(self) -> None: ...
+
     def pushState(self, data: Any, unused: str, url: Union['str', 'None'] = None) -> None: ...
+
     def replaceState(self, data: Any, unused: str, url: Union['str', 'None'] = None) -> None: ...
 
 class Navigation(EventTarget):
+
     def entries(self) -> Sequence[NavigationHistoryEntry]: ...
     currentEntry: Union['NavigationHistoryEntry', 'None']
+
     def updateCurrentEntry(self, options: NavigationUpdateCurrentEntryOptions) -> None: ...
     transition: Union['NavigationTransition', 'None']
     canGoBack: bool
     canGoForward: bool
+
     def navigate(self, url: str, options: Union['NavigationNavigateOptions', 'None'] = {}) -> NavigationResult: ...
+
     def reload(self, options: Union['NavigationReloadOptions', 'None'] = {}) -> NavigationResult: ...
+
     def traverseTo(self, key: str, options: Union['NavigationOptions', 'None'] = {}) -> NavigationResult: ...
+
     def back(self, options: Union['NavigationOptions', 'None'] = {}) -> NavigationResult: ...
+
     def forward(self, options: Union['NavigationOptions', 'None'] = {}) -> NavigationResult: ...
     onnavigate: EventHandler
     onnavigatesuccess: EventHandler
@@ -7832,6 +9032,7 @@ class NavigationHistoryEntry(EventTarget):
     id: str
     index: int
     sameDocument: bool
+
     def getState(self) -> Any: ...
     ondispose: EventHandler
 
@@ -7841,7 +9042,8 @@ class NavigationTransition:
     finished: Awaitable[None]
 
 class NavigateEvent(Event):
-    def New(self, type: str, eventInitDict: NavigateEventInit) -> NavigateEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: NavigateEventInit) -> NavigateEvent: ...
     navigationType: NavigationType
     destination: NavigationDestination
     canIntercept: bool
@@ -7851,7 +9053,9 @@ class NavigateEvent(Event):
     formData: Union['FormData', 'None']
     downloadRequest: Union['str', 'None']
     info: Any
+
     def intercept(self, options: Union['NavigationInterceptOptions', 'None'] = {}) -> None: ...
+
     def scroll(self) -> None: ...
 
 class NavigateEventInit(TypedDict, EventInit):
@@ -7876,10 +9080,12 @@ class NavigationDestination:
     id: str
     index: int
     sameDocument: bool
+
     def getState(self) -> Any: ...
 
 class NavigationCurrentEntryChangeEvent(Event):
-    def New(self, type: str, eventInitDict: NavigationCurrentEntryChangeEventInit) -> NavigationCurrentEntryChangeEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: NavigationCurrentEntryChangeEventInit) -> NavigationCurrentEntryChangeEvent: ...
     navigationType: Union['NavigationType', 'None']
     from_: NavigationHistoryEntry
 
@@ -7887,14 +9093,16 @@ class NavigationCurrentEntryChangeEventInit(TypedDict, EventInit):
     navigationType: NotRequired[Union['NavigationType', 'None']]
 
 class PopStateEvent(Event):
-    def New(self, type: str, eventInitDict: Union['PopStateEventInit', 'None'] = {}) -> PopStateEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['PopStateEventInit', 'None'] = {}) -> PopStateEvent: ...
     state: Any
 
 class PopStateEventInit(TypedDict, EventInit):
     state: NotRequired[Any]
 
 class HashChangeEvent(Event):
-    def New(self, type: str, eventInitDict: Union['HashChangeEventInit', 'None'] = {}) -> HashChangeEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['HashChangeEventInit', 'None'] = {}) -> HashChangeEvent: ...
     oldURL: str
     newURL: str
 
@@ -7903,7 +9111,8 @@ class HashChangeEventInit(TypedDict, EventInit):
     newURL: NotRequired[str]
 
 class PageTransitionEvent(Event):
-    def New(self, type: str, eventInitDict: Union['PageTransitionEventInit', 'None'] = {}) -> PageTransitionEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['PageTransitionEventInit', 'None'] = {}) -> PageTransitionEvent: ...
     persisted: bool
 
 class PageTransitionEventInit(TypedDict, EventInit):
@@ -7913,7 +9122,8 @@ class BeforeUnloadEvent(Event):
     returnValue: str
 
 class ErrorEvent(Event):
-    def New(self, type: str, eventInitDict: Union['ErrorEventInit', 'None'] = {}) -> ErrorEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['ErrorEventInit', 'None'] = {}) -> ErrorEvent: ...
     message: str
     filename: str
     lineno: int
@@ -7928,7 +9138,8 @@ class ErrorEventInit(TypedDict, EventInit):
     error: NotRequired[Any]
 
 class PromiseRejectionEvent(Event):
-    def New(self, type: str, eventInitDict: PromiseRejectionEventInit) -> PromiseRejectionEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: PromiseRejectionEventInit) -> PromiseRejectionEvent: ...
     promise: Awaitable[Any]
     reason: Any
 
@@ -7937,7 +9148,9 @@ class PromiseRejectionEventInit(TypedDict, EventInit):
     reason: NotRequired[Any]
 
 class DOMParser:
-    def New(self) -> DOMParser: ...
+    @classmethod
+    def new(cls) -> DOMParser: ...
+
     def parseFromString(self, string: str, type: DOMParserSupportedType) -> Document: ...
 
 class NavigatorID:
@@ -7950,6 +9163,7 @@ class NavigatorID:
     userAgent: str
     vendor: str
     vendorSub: str
+
     def taintEnabled(self) -> bool: ...
     oscpu: str
 
@@ -7961,7 +9175,9 @@ class NavigatorOnLine:
     onLine: bool
 
 class NavigatorContentUtils:
+
     def registerProtocolHandler(self, scheme: str, url: str) -> None: ...
+
     def unregisterProtocolHandler(self, scheme: str, url: str) -> None: ...
 
 class NavigatorCookies:
@@ -7970,10 +9186,12 @@ class NavigatorCookies:
 class NavigatorPlugins:
     plugins: PluginArray
     mimeTypes: MimeTypeArray
+
     def javaEnabled(self) -> bool: ...
     pdfViewerEnabled: bool
 
 class PluginArray:
+
     def refresh(self) -> None: ...
     length: int
 
@@ -7995,6 +9213,7 @@ class MimeType:
 class ImageBitmap:
     width: int
     height: int
+
     def close(self) -> None: ...
 
 class ImageBitmapOptions(TypedDict):
@@ -8006,7 +9225,9 @@ class ImageBitmapOptions(TypedDict):
     resizeQuality: NotRequired[ResizeQuality]
 
 class AnimationFrameProvider:
+
     def requestAnimationFrame(self, callback: FrameRequestCallback) -> int: ...
+
     def cancelAnimationFrame(self, handle: int) -> None: ...
 
 class DedicatedWorkerGlobalScope(WorkerGlobalScope, AnimationFrameProvider):
@@ -8015,18 +9236,21 @@ class DedicatedWorkerGlobalScope(WorkerGlobalScope, AnimationFrameProvider):
     def postMessage(self, message: Any, transfer: Sequence[object]) -> None: ...
     @overload
     def postMessage(self, message: Any, options: Union['StructuredSerializeOptions', 'None'] = {}) -> None: ...
+
     def close(self) -> None: ...
     onmessage: EventHandler
     onmessageerror: EventHandler
     onrtctransform: EventHandler
 
 class MessageEvent(Event):
-    def New(self, type: str, eventInitDict: Union['MessageEventInit', 'None'] = {}) -> MessageEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['MessageEventInit', 'None'] = {}) -> MessageEvent: ...
     data: Any
     origin: str
     lastEventId: str
     source: Union['MessageEventSource', 'None']
     ports: Sequence[MessagePort]
+
     def initMessageEvent(self, type: str, bubbles: Union['bool', 'None'] = False, cancelable: Union['bool', 'None'] = False, data: Union['Any', 'None'] = None, origin: Union['str', 'None'] = "", lastEventId: Union['str', 'None'] = "", source: Union['MessageEventSource', 'None'] = None, ports: Union['Sequence[MessagePort]', 'None'] = []) -> None: ...
 
 class MessageEventInit(TypedDict, EventInit):
@@ -8037,7 +9261,8 @@ class MessageEventInit(TypedDict, EventInit):
     ports: NotRequired[Sequence[MessagePort]]
 
 class EventSource(EventTarget):
-    def New(self, url: str, eventSourceInitDict: Union['EventSourceInit', 'None'] = {}) -> EventSource: ...
+    @classmethod
+    def new(cls, url: str, eventSourceInitDict: Union['EventSourceInit', 'None'] = {}) -> EventSource: ...
     url: str
     withCredentials: bool
     CONNECTING = 0
@@ -8047,13 +9272,15 @@ class EventSource(EventTarget):
     onopen: EventHandler
     onmessage: EventHandler
     onerror: EventHandler
+
     def close(self) -> None: ...
 
 class EventSourceInit(TypedDict):
     withCredentials: NotRequired[bool]
 
 class MessageChannel:
-    def New(self) -> MessageChannel: ...
+    @classmethod
+    def new(cls) -> MessageChannel: ...
     port1: MessagePort
     port2: MessagePort
 
@@ -8062,7 +9289,9 @@ class MessagePort(EventTarget):
     def postMessage(self, message: Any, transfer: Sequence[object]) -> None: ...
     @overload
     def postMessage(self, message: Any, options: Union['StructuredSerializeOptions', 'None'] = {}) -> None: ...
+
     def start(self) -> None: ...
+
     def close(self) -> None: ...
     onmessage: EventHandler
     onmessageerror: EventHandler
@@ -8071,15 +9300,19 @@ class StructuredSerializeOptions(TypedDict):
     transfer: NotRequired[Sequence[object]]
 
 class BroadcastChannel(EventTarget):
-    def New(self, name: str) -> BroadcastChannel: ...
+    @classmethod
+    def new(cls, name: str) -> BroadcastChannel: ...
     name: str
+
     def postMessage(self, message: Any) -> None: ...
+
     def close(self) -> None: ...
     onmessage: EventHandler
     onmessageerror: EventHandler
 
 class SharedWorkerGlobalScope(WorkerGlobalScope):
     name: str
+
     def close(self) -> None: ...
     onconnect: EventHandler
 
@@ -8087,7 +9320,9 @@ class AbstractWorker:
     onerror: EventHandler
 
 class Worker(EventTarget, AbstractWorker):
-    def New(self, scriptURL: str, options: Union['WorkerOptions', 'None'] = {}) -> Worker: ...
+    @classmethod
+    def new(cls, scriptURL: str, options: Union['WorkerOptions', 'None'] = {}) -> Worker: ...
+
     def terminate(self) -> None: ...
     @overload
     def postMessage(self, message: Any, transfer: Sequence[object]) -> None: ...
@@ -8102,7 +9337,8 @@ class WorkerOptions(TypedDict):
     name: NotRequired[str]
 
 class SharedWorker(EventTarget, AbstractWorker):
-    def New(self, scriptURL: str, options: Union['str', 'WorkerOptions', 'None'] = {}) -> SharedWorker: ...
+    @classmethod
+    def new(cls, scriptURL: str, options: Union['str', 'WorkerOptions', 'None'] = {}) -> SharedWorker: ...
     port: MessagePort
 
 class NavigatorConcurrentHardware:
@@ -8122,6 +9358,7 @@ class WorkerLocation:
 class WorkletGlobalScope: ...
 
 class Worklet:
+
     def addModule(self, moduleURL: str, options: Union['WorkletOptions', 'None'] = {}) -> Awaitable[None]: ...
 
 class WorkletOptions(TypedDict):
@@ -8129,7 +9366,9 @@ class WorkletOptions(TypedDict):
 
 class Storage:
     length: int
+
     def key(self, index: int) -> Union['str', 'None']: ...
+
     def clear(self) -> None: ...
 
 class WindowSessionStorage:
@@ -8139,12 +9378,14 @@ class WindowLocalStorage:
     localStorage: Storage
 
 class StorageEvent(Event):
-    def New(self, type: str, eventInitDict: Union['StorageEventInit', 'None'] = {}) -> StorageEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['StorageEventInit', 'None'] = {}) -> StorageEvent: ...
     key: Union['str', 'None']
     oldValue: Union['str', 'None']
     newValue: Union['str', 'None']
     url: str
     storageArea: Union['Storage', 'None']
+
     def initStorageEvent(self, type: str, bubbles: Union['bool', 'None'] = False, cancelable: Union['bool', 'None'] = False, key: Union['str', 'None'] = None, oldValue: Union['str', 'None'] = None, newValue: Union['str', 'None'] = None, url: Union['str', 'None'] = "", storageArea: Union['Storage', 'None'] = None) -> None: ...
 
 class StorageEventInit(TypedDict, EventInit):
@@ -8155,7 +9396,8 @@ class StorageEventInit(TypedDict, EventInit):
     storageArea: NotRequired[Union['Storage', 'None']]
 
 class HTMLMarqueeElement(HTMLElement):
-    def New(self) -> HTMLMarqueeElement: ...
+    @classmethod
+    def new(cls) -> HTMLMarqueeElement: ...
     behavior: str
     bgColor: str
     direction: str
@@ -8167,16 +9409,20 @@ class HTMLMarqueeElement(HTMLElement):
     trueSpeed: bool
     vspace: int
     width: str
+
     def start(self) -> None: ...
+
     def stop(self) -> None: ...
 
 class HTMLFrameSetElement(HTMLElement, WindowEventHandlers):
-    def New(self) -> HTMLFrameSetElement: ...
+    @classmethod
+    def new(cls) -> HTMLFrameSetElement: ...
     cols: str
     rows: str
 
 class HTMLFrameElement(HTMLElement):
-    def New(self) -> HTMLFrameElement: ...
+    @classmethod
+    def new(cls) -> HTMLFrameElement: ...
     name: str
     scrolling: str
     src: str
@@ -8189,24 +9435,29 @@ class HTMLFrameElement(HTMLElement):
     marginWidth: str
 
 class HTMLDirectoryElement(HTMLElement):
-    def New(self) -> HTMLDirectoryElement: ...
+    @classmethod
+    def new(cls) -> HTMLDirectoryElement: ...
     compact: bool
 
 class HTMLFontElement(HTMLElement):
-    def New(self) -> HTMLFontElement: ...
+    @classmethod
+    def new(cls) -> HTMLFontElement: ...
     color: str
     face: str
     size: str
 
 class HTMLParamElement(HTMLElement):
-    def New(self) -> HTMLParamElement: ...
+    @classmethod
+    def new(cls) -> HTMLParamElement: ...
     name: str
     value: str
     type: str
     valueType: str
 
 class External:
+
     def AddSearchProvider(self) -> None: ...
+
     def IsSearchProviderInstalled(self) -> None: ...
 
 class IdleOptions(TypedDict):
@@ -8214,17 +9465,24 @@ class IdleOptions(TypedDict):
     signal: NotRequired[AbortSignal]
 
 class IdleDetector(EventTarget):
-    def New(self) -> IdleDetector: ...
+    @classmethod
+    def new(cls) -> IdleDetector: ...
     userState: Union['UserIdleState', 'None']
     screenState: Union['ScreenIdleState', 'None']
     onchange: EventHandler
+
     def start(self, options: Union['IdleOptions', 'None'] = {}) -> Awaitable[None]: ...
 
 class ImageCapture:
-    def New(self, videoTrack: MediaStreamTrack) -> ImageCapture: ...
+    @classmethod
+    def new(cls, videoTrack: MediaStreamTrack) -> ImageCapture: ...
+
     def takePhoto(self, photoSettings: Union['PhotoSettings', 'None'] = {}) -> Awaitable[Blob]: ...
+
     def getPhotoCapabilities(self) -> Awaitable[PhotoCapabilities]: ...
+
     def getPhotoSettings(self) -> Awaitable[PhotoSettings]: ...
+
     def grabFrame(self) -> Awaitable[ImageBitmap]: ...
     track: MediaStreamTrack
 
@@ -8413,6 +9671,7 @@ class ImageResource(TypedDict):
     label: NotRequired[str]
 
 class Ink:
+
     def requestPresenter(self, param: Union['InkPresenterParam', 'None'] = None) -> Awaitable[InkPresenter]: ...
 
 class InkPresenterParam(TypedDict):
@@ -8421,6 +9680,7 @@ class InkPresenterParam(TypedDict):
 class InkPresenter:
     presentationArea: Union['Element', 'None']
     expectedImprovement: int
+
     def updateInkTrailStartPoint(self, event: PointerEvent, style: InkTrailStyle) -> None: ...
 
 class InkTrailStyle(TypedDict):
@@ -8428,7 +9688,8 @@ class InkTrailStyle(TypedDict):
     diameter: float
 
 class InputDeviceCapabilities:
-    def New(self, deviceInitDict: Union['InputDeviceCapabilitiesInit', 'None'] = {}) -> InputDeviceCapabilities: ...
+    @classmethod
+    def new(cls, deviceInitDict: Union['InputDeviceCapabilitiesInit', 'None'] = {}) -> InputDeviceCapabilities: ...
     firesTouchEvents: bool
     pointerMovementScrolls: bool
 
@@ -8437,10 +9698,12 @@ class InputDeviceCapabilitiesInit(TypedDict):
     pointerMovementScrolls: NotRequired[bool]
 
 class UIEvent(Event):
-    def New(self, type: str, eventInitDict: Union['UIEventInit', 'None'] = {}) -> UIEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['UIEventInit', 'None'] = {}) -> UIEvent: ...
     sourceCapabilities: Union['InputDeviceCapabilities', 'None']
     view: Union['Window', 'None']
     detail: int
+
     def initUIEvent(self, typeArg: str, bubblesArg: Union['bool', 'None'] = False, cancelableArg: Union['bool', 'None'] = False, viewArg: Union['Window', 'None'] = None, detailArg: Union['int', 'None'] = 0) -> None: ...
     which: int
 
@@ -8451,8 +9714,10 @@ class UIEventInit(TypedDict, EventInit):
     which: NotRequired[int]
 
 class InputEvent(UIEvent):
-    def New(self, type: str, eventInitDict: Union['InputEventInit', 'None'] = {}) -> InputEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['InputEventInit', 'None'] = {}) -> InputEvent: ...
     dataTransfer: Union['DataTransfer', 'None']
+
     def getTargetRanges(self) -> Sequence[StaticRange]: ...
     data: Union['str', 'None']
     isComposing: bool
@@ -8466,17 +9731,23 @@ class InputEventInit(TypedDict, UIEventInit):
     inputType: NotRequired[str]
 
 class IntersectionObserver:
-    def New(self, callback: IntersectionObserverCallback, options: Union['IntersectionObserverInit', 'None'] = {}) -> IntersectionObserver: ...
+    @classmethod
+    def new(cls, callback: IntersectionObserverCallback, options: Union['IntersectionObserverInit', 'None'] = {}) -> IntersectionObserver: ...
     root: Union['Element', 'Document', 'None']
     rootMargin: str
     thresholds: Sequence[float]
+
     def observe(self, target: Element) -> None: ...
+
     def unobserve(self, target: Element) -> None: ...
+
     def disconnect(self) -> None: ...
+
     def takeRecords(self) -> Sequence[IntersectionObserverEntry]: ...
 
 class IntersectionObserverEntry:
-    def New(self, intersectionObserverEntryInit: IntersectionObserverEntryInit) -> IntersectionObserverEntry: ...
+    @classmethod
+    def new(cls, intersectionObserverEntryInit: IntersectionObserverEntryInit) -> IntersectionObserverEntry: ...
     time: DOMHighResTimeStamp
     rootBounds: Union['DOMRectReadOnly', 'None']
     boundingClientRect: DOMRectReadOnly
@@ -8500,6 +9771,7 @@ class IntersectionObserverInit(TypedDict):
     threshold: NotRequired[Union['float', 'Sequence[float]']]
 
 class InterventionReportBody(ReportBody):
+
     def toJSON(self) -> object: ...
     id: str
     message: str
@@ -8511,12 +9783,15 @@ class IsInputPendingOptions(TypedDict):
     includeContinuous: NotRequired[bool]
 
 class Scheduling:
+
     def isInputPending(self, isInputPendingOptions: Union['IsInputPendingOptions', 'None'] = {}) -> bool: ...
 
 class Profiler(EventTarget):
-    def New(self, options: ProfilerInitOptions) -> Profiler: ...
+    @classmethod
+    def new(cls, options: ProfilerInitOptions) -> Profiler: ...
     sampleInterval: DOMHighResTimeStamp
     stopped: bool
+
     def stop(self) -> Awaitable[ProfilerTrace]: ...
 
 class ProfilerTrace(TypedDict):
@@ -8546,25 +9821,32 @@ class ProfilerInitOptions(TypedDict):
 class JsonLd: ...
 
 class JsonLdProcessor:
-    def New(self) -> JsonLdProcessor: ...
+    @classmethod
+    def new(cls) -> JsonLdProcessor: ...
 
 class RdfDataset:
-    def New(self) -> RdfDataset: ...
+    @classmethod
+    def new(cls) -> RdfDataset: ...
     defaultGraph: RdfGraph
+
     def add(self, graphName: str, graph: RdfGraph) -> None: ...
 
 class RdfGraph:
-    def New(self) -> RdfGraph: ...
+    @classmethod
+    def new(cls) -> RdfGraph: ...
+
     def add(self, triple: RdfTriple) -> None: ...
 
 class RdfTriple:
-    def New(self) -> RdfTriple: ...
+    @classmethod
+    def new(cls) -> RdfTriple: ...
     subject: str
     predicate: str
     object: Union['str', 'RdfLiteral']
 
 class RdfLiteral:
-    def New(self) -> RdfLiteral: ...
+    @classmethod
+    def new(cls) -> RdfLiteral: ...
     value: str
     datatype: str
     language: Union['str', 'None']
@@ -8596,7 +9878,8 @@ class LoadDocumentOptions(TypedDict):
     requestProfile: NotRequired[Union['str', 'Sequence[str]']]
 
 class RemoteDocument:
-    def New(self) -> RemoteDocument: ...
+    @classmethod
+    def new(cls) -> RemoteDocument: ...
     contentType: str
     contextUrl: str
     document: Any
@@ -8612,8 +9895,11 @@ class JsonLdFramingError(TypedDict):
     message: NotRequired[Union['str', 'None']]
 
 class Keyboard(EventTarget):
+
     def lock(self, keyCodes: Union['Sequence[str]', 'None'] = []) -> Awaitable[None]: ...
+
     def unlock(self) -> None: ...
+
     def getLayoutMap(self) -> Awaitable[KeyboardLayoutMap]: ...
     onlayoutchange: EventHandler
 
@@ -8626,6 +9912,7 @@ class LargestContentfulPaint(PerformanceEntry):
     id: str
     url: str
     element: Union['Element', 'None']
+
     def toJSON(self) -> object: ...
 
 class LayoutShift(PerformanceEntry):
@@ -8633,6 +9920,7 @@ class LayoutShift(PerformanceEntry):
     hadRecentInput: bool
     lastInputTime: DOMHighResTimeStamp
     sources: Sequence[LayoutShiftAttribution]
+
     def toJSON(self) -> object: ...
 
 class LayoutShiftAttribution:
@@ -8644,6 +9932,7 @@ class QueryOptions(TypedDict):
     postscriptNames: NotRequired[Sequence[str]]
 
 class FontData:
+
     def blob(self) -> Awaitable[Blob]: ...
     postscriptName: str
     fullName: str
@@ -8652,6 +9941,7 @@ class FontData:
 
 class PerformanceLongTaskTiming(PerformanceEntry):
     attribution: Sequence[TaskAttributionTiming]
+
     def toJSON(self) -> object: ...
 
 class TaskAttributionTiming(PerformanceEntry):
@@ -8659,10 +9949,12 @@ class TaskAttributionTiming(PerformanceEntry):
     containerSrc: str
     containerId: str
     containerName: str
+
     def toJSON(self) -> object: ...
 
 class Magnetometer(Sensor):
-    def New(self, sensorOptions: Union['MagnetometerSensorOptions', 'None'] = {}) -> Magnetometer: ...
+    @classmethod
+    def new(cls, sensorOptions: Union['MagnetometerSensorOptions', 'None'] = {}) -> Magnetometer: ...
     x: Union['float', 'None']
     y: Union['float', 'None']
     z: Union['float', 'None']
@@ -8671,7 +9963,8 @@ class MagnetometerSensorOptions(TypedDict, SensorOptions):
     referenceFrame: NotRequired[MagnetometerLocalCoordinateSystem]
 
 class UncalibratedMagnetometer(Sensor):
-    def New(self, sensorOptions: Union['MagnetometerSensorOptions', 'None'] = {}) -> UncalibratedMagnetometer: ...
+    @classmethod
+    def new(cls, sensorOptions: Union['MagnetometerSensorOptions', 'None'] = {}) -> UncalibratedMagnetometer: ...
     x: Union['float', 'None']
     y: Union['float', 'None']
     z: Union['float', 'None']
@@ -8693,7 +9986,9 @@ class UncalibratedMagnetometerReadingValues(TypedDict):
     zBias: Union['float', 'None']
 
 class BeforeInstallPromptEvent(Event):
-    def New(self, type: str, eventInitDict: Union['EventInit', 'None'] = {}) -> BeforeInstallPromptEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['EventInit', 'None'] = {}) -> BeforeInstallPromptEvent: ...
+
     def prompt(self) -> Awaitable[PromptResponseObject]: ...
 
 class PromptResponseObject(TypedDict):
@@ -8756,7 +10051,9 @@ class MediaCapabilitiesEncodingInfo(TypedDict, MediaCapabilitiesInfo):
     configuration: NotRequired[MediaEncodingConfiguration]
 
 class MediaCapabilities:
+
     def decodingInfo(self, configuration: MediaDecodingConfiguration) -> Awaitable[MediaCapabilitiesDecodingInfo]: ...
+
     def encodingInfo(self, configuration: MediaEncodingConfiguration) -> Awaitable[MediaCapabilitiesEncodingInfo]: ...
 
 class VideoPlaybackQuality:
@@ -8766,7 +10063,8 @@ class VideoPlaybackQuality:
     corruptedVideoFrames: int
 
 class MediaSource(EventTarget):
-    def New(self) -> MediaSource: ...
+    @classmethod
+    def new(cls) -> MediaSource: ...
     handle: MediaSourceHandle
     sourceBuffers: SourceBufferList
     activeSourceBuffers: SourceBufferList
@@ -8775,10 +10073,15 @@ class MediaSource(EventTarget):
     onsourceopen: EventHandler
     onsourceended: EventHandler
     onsourceclose: EventHandler
+
     def addSourceBuffer(self, type: str) -> SourceBuffer: ...
+
     def removeSourceBuffer(self, sourceBuffer: SourceBuffer) -> None: ...
+
     def endOfStream(self, error: Union['EndOfStreamError', 'None'] = None) -> None: ...
+
     def setLiveSeekableRange(self, start: float, end: float) -> None: ...
+
     def clearLiveSeekableRange(self) -> None: ...
 
 class MediaSourceHandle: ...
@@ -8798,9 +10101,13 @@ class SourceBuffer(EventTarget):
     onupdateend: EventHandler
     onerror: EventHandler
     onabort: EventHandler
+
     def appendBuffer(self, data: BufferSource) -> None: ...
+
     def abort(self) -> None: ...
+
     def changeType(self, type: str) -> None: ...
+
     def remove(self, start: float, end: float) -> None: ...
 
 class SourceBufferList(EventTarget):
@@ -8826,10 +10133,12 @@ class MockMicrophoneConfiguration(TypedDict, MockCaptureDeviceConfiguration):
 
 class CanvasCaptureMediaStreamTrack(MediaStreamTrack):
     canvas: HTMLCanvasElement
+
     def requestFrame(self) -> None: ...
 
 class CaptureActionEvent(Event):
-    def New(self, init: Union['CaptureActionEventInit', 'None'] = {}) -> CaptureActionEvent: ...
+    @classmethod
+    def new(cls, init: Union['CaptureActionEventInit', 'None'] = {}) -> CaptureActionEvent: ...
     action: CaptureAction
 
 class CaptureActionEventInit(TypedDict, EventInit):
@@ -8839,18 +10148,28 @@ class CropTarget: ...
 
 class MediaStream(EventTarget):
     @overload
-    def New(self) -> MediaStream: ...
+    @classmethod
+    def new(cls) -> MediaStream: ...
     @overload
-    def New(self, stream: MediaStream) -> MediaStream: ...
+    @classmethod
+    def new(cls, stream: MediaStream) -> MediaStream: ...
     @overload
-    def New(self, tracks: Sequence[MediaStreamTrack]) -> MediaStream: ...
+    @classmethod
+    def new(cls, tracks: Sequence[MediaStreamTrack]) -> MediaStream: ...
     id: str
+
     def getAudioTracks(self) -> Sequence[MediaStreamTrack]: ...
+
     def getVideoTracks(self) -> Sequence[MediaStreamTrack]: ...
+
     def getTracks(self) -> Sequence[MediaStreamTrack]: ...
+
     def getTrackById(self, trackId: str) -> Union['MediaStreamTrack', 'None']: ...
+
     def addTrack(self, track: MediaStreamTrack) -> None: ...
+
     def removeTrack(self, track: MediaStreamTrack) -> None: ...
+
     def clone(self) -> MediaStream: ...
     active: bool
     onaddtrack: EventHandler
@@ -8860,14 +10179,16 @@ class MediaTrackConstraints(TypedDict, MediaTrackConstraintSet):
     advanced: NotRequired[Sequence[MediaTrackConstraintSet]]
 
 class MediaStreamTrackEvent(Event):
-    def New(self, type: str, eventInitDict: MediaStreamTrackEventInit) -> MediaStreamTrackEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: MediaStreamTrackEventInit) -> MediaStreamTrackEvent: ...
     track: MediaStreamTrack
 
 class MediaStreamTrackEventInit(TypedDict, EventInit):
     track: MediaStreamTrack
 
 class OverconstrainedError(DOMException):
-    def New(self, constraint: str, message: Union['str', 'None'] = "") -> OverconstrainedError: ...
+    @classmethod
+    def new(cls, constraint: str, message: Union['str', 'None'] = "") -> OverconstrainedError: ...
     constraint: str
 
 class MediaDeviceInfo:
@@ -8875,9 +10196,11 @@ class MediaDeviceInfo:
     kind: MediaDeviceKind
     label: str
     groupId: str
+
     def toJSON(self) -> object: ...
 
 class InputDeviceInfo(MediaDeviceInfo):
+
     def getCapabilities(self) -> MediaTrackCapabilities: ...
 
 class MediaStreamConstraints(TypedDict):
@@ -8917,7 +10240,8 @@ class CameraDevicePermissionDescriptor(TypedDict, DevicePermissionDescriptor):
     panTiltZoom: NotRequired[bool]
 
 class MediaStreamTrackProcessor:
-    def New(self, init: MediaStreamTrackProcessorInit) -> MediaStreamTrackProcessor: ...
+    @classmethod
+    def new(cls, init: MediaStreamTrackProcessorInit) -> MediaStreamTrackProcessor: ...
     readable: ReadableStream
 
 class MediaStreamTrackProcessorInit(TypedDict):
@@ -8925,7 +10249,8 @@ class MediaStreamTrackProcessorInit(TypedDict):
     maxBufferSize: NotRequired[int]
 
 class VideoTrackGenerator:
-    def New(self) -> VideoTrackGenerator: ...
+    @classmethod
+    def new(cls) -> VideoTrackGenerator: ...
     writable: WritableStream
     muted: bool
     track: MediaStreamTrack
@@ -8933,13 +10258,18 @@ class VideoTrackGenerator:
 class MediaSession:
     metadata: Union['MediaMetadata', 'None']
     playbackState: MediaSessionPlaybackState
+
     def setActionHandler(self, action: MediaSessionAction, handler: Union['MediaSessionActionHandler', 'None']) -> None: ...
+
     def setPositionState(self, state: Union['MediaPositionState', 'None'] = {}) -> None: ...
+
     def setMicrophoneActive(self, active: bool) -> None: ...
+
     def setCameraActive(self, active: bool) -> None: ...
 
 class MediaMetadata:
-    def New(self, init: Union['MediaMetadataInit', 'None'] = {}) -> MediaMetadata: ...
+    @classmethod
+    def new(cls, init: Union['MediaMetadataInit', 'None'] = {}) -> MediaMetadata: ...
     title: str
     artist: str
     album: str
@@ -8968,7 +10298,8 @@ class MediaSessionActionDetails(TypedDict):
     fastSeek: NotRequired[bool]
 
 class MediaRecorder(EventTarget):
-    def New(self, stream: MediaStream, options: Union['MediaRecorderOptions', 'None'] = {}) -> MediaRecorder: ...
+    @classmethod
+    def new(cls, stream: MediaStream, options: Union['MediaRecorderOptions', 'None'] = {}) -> MediaRecorder: ...
     stream: MediaStream
     mimeType: str
     state: RecordingState
@@ -8981,10 +10312,15 @@ class MediaRecorder(EventTarget):
     videoBitsPerSecond: int
     audioBitsPerSecond: int
     audioBitrateMode: BitrateMode
+
     def start(self, timeslice: Union['int', 'None'] = None) -> None: ...
+
     def stop(self) -> None: ...
+
     def pause(self) -> None: ...
+
     def resume(self) -> None: ...
+
     def requestData(self) -> None: ...
 
 class MediaRecorderOptions(TypedDict):
@@ -8997,7 +10333,8 @@ class MediaRecorderOptions(TypedDict):
     videoKeyFrameIntervalCount: NotRequired[int]
 
 class BlobEvent(Event):
-    def New(self, type: str, eventInitDict: BlobEventInit) -> BlobEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: BlobEventInit) -> BlobEvent: ...
     data: Blob
     timecode: DOMHighResTimeStamp
 
@@ -9024,6 +10361,7 @@ class PerformanceNavigationTiming(PerformanceResourceTiming):
     type: NavigationTimingType
     redirectCount: int
     criticalCHRestart: DOMHighResTimeStamp
+
     def toJSON(self) -> object: ...
     activationStart: DOMHighResTimeStamp
 
@@ -9049,6 +10387,7 @@ class PerformanceTiming:
     domComplete: int
     loadEventStart: int
     loadEventEnd: int
+
     def toJSON(self) -> object: ...
 
 class PerformanceNavigation:
@@ -9058,6 +10397,7 @@ class PerformanceNavigation:
     TYPE_RESERVED = 255
     type: int
     redirectCount: int
+
     def toJSON(self) -> object: ...
 
 class NavigatorNetworkInformation:
@@ -9072,7 +10412,8 @@ class NetworkInformation(EventTarget, NetworkInformationSaveData):
     onchange: EventHandler
 
 class Notification(EventTarget):
-    def New(self, title: str, options: Union['NotificationOptions', 'None'] = {}) -> Notification: ...
+    @classmethod
+    def new(cls, title: str, options: Union['NotificationOptions', 'None'] = {}) -> Notification: ...
     onclick: EventHandler
     onshow: EventHandler
     onerror: EventHandler
@@ -9092,6 +10433,7 @@ class Notification(EventTarget):
     requireInteraction: bool
     data: Any
     actions: Sequence[NotificationAction]
+
     def close(self) -> None: ...
 
 class NotificationOptions(TypedDict):
@@ -9119,7 +10461,8 @@ class GetNotificationOptions(TypedDict):
     tag: NotRequired[str]
 
 class NotificationEvent(ExtendableEvent):
-    def New(self, type: str, eventInitDict: NotificationEventInit) -> NotificationEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: NotificationEventInit) -> NotificationEvent: ...
     notification: Notification
     action: str
 
@@ -9128,7 +10471,8 @@ class NotificationEventInit(TypedDict, ExtendableEventInit):
     action: NotRequired[str]
 
 class DeviceOrientationEvent(Event):
-    def New(self, type: str, eventInitDict: Union['DeviceOrientationEventInit', 'None'] = {}) -> DeviceOrientationEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['DeviceOrientationEventInit', 'None'] = {}) -> DeviceOrientationEvent: ...
     alpha: Union['float', 'None']
     beta: Union['float', 'None']
     gamma: Union['float', 'None']
@@ -9151,7 +10495,8 @@ class DeviceMotionEventRotationRate:
     gamma: Union['float', 'None']
 
 class DeviceMotionEvent(Event):
-    def New(self, type: str, eventInitDict: Union['DeviceMotionEventInit', 'None'] = {}) -> DeviceMotionEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['DeviceMotionEventInit', 'None'] = {}) -> DeviceMotionEvent: ...
     acceleration: Union['DeviceMotionEventAcceleration', 'None']
     accelerationIncludingGravity: Union['DeviceMotionEventAcceleration', 'None']
     rotationRate: Union['DeviceMotionEventRotationRate', 'None']
@@ -9175,16 +10520,19 @@ class DeviceMotionEventInit(TypedDict, EventInit):
 
 class OrientationSensor(Sensor):
     quaternion: Sequence[float]
+
     def populateMatrix(self, targetMatrix: RotationMatrixType) -> None: ...
 
 class OrientationSensorOptions(TypedDict, SensorOptions):
     referenceFrame: NotRequired[OrientationSensorLocalCoordinateSystem]
 
 class AbsoluteOrientationSensor(OrientationSensor):
-    def New(self, sensorOptions: Union['OrientationSensorOptions', 'None'] = {}) -> AbsoluteOrientationSensor: ...
+    @classmethod
+    def new(cls, sensorOptions: Union['OrientationSensorOptions', 'None'] = {}) -> AbsoluteOrientationSensor: ...
 
 class RelativeOrientationSensor(OrientationSensor):
-    def New(self, sensorOptions: Union['OrientationSensorOptions', 'None'] = {}) -> RelativeOrientationSensor: ...
+    @classmethod
+    def new(cls, sensorOptions: Union['OrientationSensorOptions', 'None'] = {}) -> RelativeOrientationSensor: ...
 
 class AbsoluteOrientationReadingValues(TypedDict):
     quaternion: Sequence[float]
@@ -9206,10 +10554,13 @@ class PerformancePaintTiming(PerformanceEntry): ...
 
 class PaymentManager:
     userHint: str
+
     def enableDelegations(self, delegations: Sequence[PaymentDelegation]) -> Awaitable[None]: ...
 
 class CanMakePaymentEvent(ExtendableEvent):
-    def New(self, type: str) -> CanMakePaymentEvent: ...
+    @classmethod
+    def new(cls, type: str) -> CanMakePaymentEvent: ...
+
     def respondWith(self, canMakePaymentResponse: Awaitable[bool]) -> None: ...
 
 class PaymentRequestDetailsUpdate(TypedDict):
@@ -9221,7 +10572,8 @@ class PaymentRequestDetailsUpdate(TypedDict):
     shippingAddressErrors: NotRequired[AddressErrors]
 
 class PaymentRequestEvent(ExtendableEvent):
-    def New(self, type: str, eventInitDict: Union['PaymentRequestEventInit', 'None'] = {}) -> PaymentRequestEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['PaymentRequestEventInit', 'None'] = {}) -> PaymentRequestEvent: ...
     topOrigin: str
     paymentRequestOrigin: str
     paymentRequestId: str
@@ -9230,10 +10582,15 @@ class PaymentRequestEvent(ExtendableEvent):
     modifiers: Sequence[PaymentDetailsModifier]
     paymentOptions: Union['object', 'None']
     shippingOptions: Sequence[PaymentShippingOption]
+
     def openWindow(self, url: str) -> Awaitable[Union['WindowClient', 'None']]: ...
+
     def changePaymentMethod(self, methodName: str, methodDetails: Union['object', 'None'] = None) -> Awaitable[Union['PaymentRequestDetailsUpdate', 'None']]: ...
+
     def changeShippingAddress(self, shippingAddress: Union['AddressInit', 'None'] = {}) -> Awaitable[Union['PaymentRequestDetailsUpdate', 'None']]: ...
+
     def changeShippingOption(self, shippingOption: str) -> Awaitable[Union['PaymentRequestDetailsUpdate', 'None']]: ...
+
     def respondWith(self, handlerResponsePromise: Awaitable[PaymentHandlerResponse]) -> None: ...
 
 class PaymentRequestEventInit(TypedDict, ExtendableEventInit):
@@ -9256,9 +10613,13 @@ class PaymentHandlerResponse(TypedDict):
     shippingOption: NotRequired[Union['str', 'None']]
 
 class PaymentRequest(EventTarget):
-    def New(self, methodData: Sequence[PaymentMethodData], details: PaymentDetailsInit) -> PaymentRequest: ...
+    @classmethod
+    def new(cls, methodData: Sequence[PaymentMethodData], details: PaymentDetailsInit) -> PaymentRequest: ...
+
     def show(self, detailsPromise: Union['Awaitable[PaymentDetailsUpdate]', 'None'] = None) -> Awaitable[PaymentResponse]: ...
+
     def abort(self) -> Awaitable[None]: ...
+
     def canMakePayment(self) -> Awaitable[bool]: ...
     id: str
     onpaymentmethodchange: EventHandler
@@ -9298,11 +10659,14 @@ class PaymentCompleteDetails(TypedDict):
     data: NotRequired[Union['object', 'None']]
 
 class PaymentResponse(EventTarget):
+
     def toJSON(self) -> object: ...
     requestId: str
     methodName: str
     details: object
+
     def complete(self, result: Union['PaymentComplete', 'None'] = "unknown", details: Union['PaymentCompleteDetails', 'None'] = {}) -> Awaitable[None]: ...
+
     def retry(self, errorFields: Union['PaymentValidationErrors', 'None'] = {}) -> Awaitable[None]: ...
 
 class PaymentValidationErrors(TypedDict):
@@ -9310,7 +10674,8 @@ class PaymentValidationErrors(TypedDict):
     paymentMethod: NotRequired[object]
 
 class PaymentMethodChangeEvent(PaymentRequestUpdateEvent):
-    def New(self, type: str, eventInitDict: Union['PaymentMethodChangeEventInit', 'None'] = {}) -> PaymentMethodChangeEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['PaymentMethodChangeEventInit', 'None'] = {}) -> PaymentMethodChangeEvent: ...
     methodName: str
     methodDetails: Union['object', 'None']
 
@@ -9319,7 +10684,9 @@ class PaymentMethodChangeEventInit(TypedDict, PaymentRequestUpdateEventInit):
     methodDetails: NotRequired[Union['object', 'None']]
 
 class PaymentRequestUpdateEvent(Event):
-    def New(self, type: str, eventInitDict: Union['PaymentRequestUpdateEventInit', 'None'] = {}) -> PaymentRequestUpdateEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['PaymentRequestUpdateEventInit', 'None'] = {}) -> PaymentRequestUpdateEvent: ...
+
     def updateWith(self, detailsPromise: Awaitable[PaymentDetailsUpdate]) -> None: ...
 
 class PaymentRequestUpdateEventInit(TypedDict, EventInit): ...
@@ -9347,25 +10714,36 @@ class PerformanceEntry:
     entryType: str
     startTime: DOMHighResTimeStamp
     duration: DOMHighResTimeStamp
+
     def toJSON(self) -> object: ...
 
 class PerformanceObserver:
-    def New(self, callback: PerformanceObserverCallback) -> PerformanceObserver: ...
+    @classmethod
+    def new(cls, callback: PerformanceObserverCallback) -> PerformanceObserver: ...
+
     def observe(self, options: Union['PerformanceObserverInit', 'None'] = {}) -> None: ...
+
     def disconnect(self) -> None: ...
+
     def takeRecords(self) -> PerformanceEntryList: ...
 
 class PerformanceObserverCallbackOptions(TypedDict):
     droppedEntriesCount: NotRequired[int]
 
 class PerformanceObserverEntryList:
+
     def getEntries(self) -> PerformanceEntryList: ...
+
     def getEntriesByType(self, type: str) -> PerformanceEntryList: ...
+
     def getEntriesByName(self, name: str, type: Union['str', 'None'] = None) -> PerformanceEntryList: ...
 
 class PeriodicSyncManager:
+
     def register(self, tag: str, options: Union['BackgroundSyncOptions', 'None'] = {}) -> Awaitable[None]: ...
+
     def getTags(self) -> Awaitable[Sequence[str]]: ...
+
     def unregister(self, tag: str) -> Awaitable[None]: ...
 
 class BackgroundSyncOptions(TypedDict):
@@ -9375,13 +10753,18 @@ class PeriodicSyncEventInit(TypedDict, ExtendableEventInit):
     tag: str
 
 class PeriodicSyncEvent(ExtendableEvent):
-    def New(self, type: str, init: PeriodicSyncEventInit) -> PeriodicSyncEvent: ...
+    @classmethod
+    def new(cls, type: str, init: PeriodicSyncEventInit) -> PeriodicSyncEvent: ...
     tag: str
 
 class PermissionsPolicy:
+
     def allowsFeature(self, feature: str, origin: Union['str', 'None'] = None) -> bool: ...
+
     def features(self) -> Sequence[str]: ...
+
     def allowedFeatures(self) -> Sequence[str]: ...
+
     def getAllowlistForFeature(self, feature: str) -> Sequence[str]: ...
 
 class PermissionsPolicyViolationReportBody(ReportBody):
@@ -9392,8 +10775,11 @@ class PermissionsPolicyViolationReportBody(ReportBody):
     disposition: str
 
 class Permissions:
+
     def request(self, permissionDesc: object) -> Awaitable[PermissionStatus]: ...
+
     def revoke(self, permissionDesc: object) -> Awaitable[PermissionStatus]: ...
+
     def query(self, permissionDesc: object) -> Awaitable[PermissionStatus]: ...
 
 class PermissionDescriptor(TypedDict):
@@ -9414,7 +10800,8 @@ class PictureInPictureWindow(EventTarget):
     onresize: EventHandler
 
 class PictureInPictureEvent(Event):
-    def New(self, type: str, eventInitDict: PictureInPictureEventInit) -> PictureInPictureEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: PictureInPictureEventInit) -> PictureInPictureEvent: ...
     pictureInPictureWindow: PictureInPictureWindow
 
 class PictureInPictureEventInit(TypedDict, EventInit):
@@ -9437,7 +10824,8 @@ class PointerEventInit(TypedDict, MouseEventInit):
     predictedEvents: NotRequired[Sequence[PointerEvent]]
 
 class PointerEvent(MouseEvent):
-    def New(self, type: str, eventInitDict: Union['PointerEventInit', 'None'] = {}) -> PointerEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['PointerEventInit', 'None'] = {}) -> PointerEvent: ...
     pointerId: int
     width: float
     height: float
@@ -9450,14 +10838,19 @@ class PointerEvent(MouseEvent):
     azimuthAngle: float
     pointerType: str
     isPrimary: bool
+
     def getCoalescedEvents(self) -> Sequence[PointerEvent]: ...
+
     def getPredictedEvents(self) -> Sequence[PointerEvent]: ...
 
 class HTMLPortalElement(HTMLElement):
-    def New(self) -> HTMLPortalElement: ...
+    @classmethod
+    def new(cls) -> HTMLPortalElement: ...
     src: str
     referrerPolicy: str
+
     def activate(self, options: Union['PortalActivateOptions', 'None'] = {}) -> Awaitable[None]: ...
+
     def postMessage(self, message: Any, options: Union['PostMessageOptions', 'None'] = {}) -> None: ...
     onmessage: EventHandler
     onmessageerror: EventHandler
@@ -9466,13 +10859,16 @@ class PortalActivateOptions(TypedDict, PostMessageOptions):
     data: NotRequired[Any]
 
 class PortalHost(EventTarget):
+
     def postMessage(self, message: Any, options: Union['PostMessageOptions', 'None'] = {}) -> None: ...
     onmessage: EventHandler
     onmessageerror: EventHandler
 
 class PortalActivateEvent(Event):
-    def New(self, type: str, eventInitDict: Union['PortalActivateEventInit', 'None'] = {}) -> PortalActivateEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['PortalActivateEventInit', 'None'] = {}) -> PortalActivateEvent: ...
     data: Any
+
     def adoptPredecessor(self) -> HTMLPortalElement: ...
 
 class PortalActivateEventInit(TypedDict, EventInit):
@@ -9484,11 +10880,16 @@ class Presentation:
 
 class PresentationRequest(EventTarget):
     @overload
-    def New(self, url: str) -> PresentationRequest: ...
+    @classmethod
+    def new(cls, url: str) -> PresentationRequest: ...
     @overload
-    def New(self, urls: Sequence[str]) -> PresentationRequest: ...
+    @classmethod
+    def new(cls, urls: Sequence[str]) -> PresentationRequest: ...
+
     def start(self) -> Awaitable[PresentationConnection]: ...
+
     def reconnect(self, presentationId: str) -> Awaitable[PresentationConnection]: ...
+
     def getAvailability(self) -> Awaitable[PresentationAvailability]: ...
     onconnectionavailable: EventHandler
 
@@ -9497,7 +10898,8 @@ class PresentationAvailability(EventTarget):
     onchange: EventHandler
 
 class PresentationConnectionAvailableEvent(Event):
-    def New(self, type: str, eventInitDict: PresentationConnectionAvailableEventInit) -> PresentationConnectionAvailableEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: PresentationConnectionAvailableEventInit) -> PresentationConnectionAvailableEvent: ...
     connection: PresentationConnection
 
 class PresentationConnectionAvailableEventInit(TypedDict, EventInit):
@@ -9507,7 +10909,9 @@ class PresentationConnection(EventTarget):
     id: str
     url: str
     state: PresentationConnectionState
+
     def close(self) -> None: ...
+
     def terminate(self) -> None: ...
     onconnect: EventHandler
     onclose: EventHandler
@@ -9524,7 +10928,8 @@ class PresentationConnection(EventTarget):
     def send(self, data: ArrayBufferView) -> None: ...
 
 class PresentationConnectionCloseEvent(Event):
-    def New(self, type: str, eventInitDict: PresentationConnectionCloseEventInit) -> PresentationConnectionCloseEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: PresentationConnectionCloseEventInit) -> PresentationConnectionCloseEvent: ...
     reason: PresentationConnectionCloseReason
     message: str
 
@@ -9540,7 +10945,8 @@ class PresentationConnectionList(EventTarget):
     onconnectionavailable: EventHandler
 
 class ProximitySensor(Sensor):
-    def New(self, sensorOptions: Union['SensorOptions', 'None'] = {}) -> ProximitySensor: ...
+    @classmethod
+    def new(cls, sensorOptions: Union['SensorOptions', 'None'] = {}) -> ProximitySensor: ...
     distance: Union['float', 'None']
     max: Union['float', 'None']
     near: Union['bool', 'None']
@@ -9554,8 +10960,11 @@ class PushPermissionDescriptor(TypedDict, PermissionDescriptor):
     userVisibleOnly: NotRequired[bool]
 
 class PushManager:
+
     def subscribe(self, options: Union['PushSubscriptionOptionsInit', 'None'] = {}) -> Awaitable[PushSubscription]: ...
+
     def getSubscription(self) -> Awaitable[Union['PushSubscription', 'None']]: ...
+
     def permissionState(self, options: Union['PushSubscriptionOptionsInit', 'None'] = {}) -> Awaitable[PermissionState]: ...
 
 class PushSubscriptionOptions:
@@ -9570,8 +10979,11 @@ class PushSubscription:
     endpoint: str
     expirationTime: Union['EpochTimeStamp', 'None']
     options: PushSubscriptionOptions
+
     def getKey(self, name: PushEncryptionKeyName) -> ArrayBuffer: ...
+
     def unsubscribe(self) -> Awaitable[bool]: ...
+
     def toJSON(self) -> PushSubscriptionJSON: ...
 
 class PushSubscriptionJSON(TypedDict):
@@ -9580,20 +10992,26 @@ class PushSubscriptionJSON(TypedDict):
     keys: NotRequired[str]
 
 class PushMessageData:
+
     def arrayBuffer(self) -> ArrayBuffer: ...
+
     def blob(self) -> Blob: ...
+
     def json(self) -> Any: ...
+
     def text(self) -> str: ...
 
 class PushEvent(ExtendableEvent):
-    def New(self, type: str, eventInitDict: Union['PushEventInit', 'None'] = {}) -> PushEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['PushEventInit', 'None'] = {}) -> PushEvent: ...
     data: Union['PushMessageData', 'None']
 
 class PushEventInit(TypedDict, ExtendableEventInit):
     data: NotRequired[PushMessageDataInit]
 
 class PushSubscriptionChangeEvent(ExtendableEvent):
-    def New(self, type: str, eventInitDict: Union['PushSubscriptionChangeEventInit', 'None'] = {}) -> PushSubscriptionChangeEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['PushSubscriptionChangeEventInit', 'None'] = {}) -> PushSubscriptionChangeEvent: ...
     newSubscription: Union['PushSubscription', 'None']
     oldSubscription: Union['PushSubscription', 'None']
 
@@ -9608,6 +11026,7 @@ class XRView:
     projectionMatrix: Float32Array
     transform: XRRigidTransform
     recommendedViewportScale: Union['float', 'None']
+
     def requestViewportScale(self, scale: Union['float', 'None']) -> None: ...
 
 class XRCamera:
@@ -9615,18 +11034,29 @@ class XRCamera:
     height: int
 
 class XRWebGLBinding:
-    def New(self, session: XRSession, context: XRWebGLRenderingContext) -> XRWebGLBinding: ...
+    @classmethod
+    def new(cls, session: XRSession, context: XRWebGLRenderingContext) -> XRWebGLBinding: ...
+
     def getCameraImage(self, camera: XRCamera) -> Union['WebGLTexture', 'None']: ...
+
     def getDepthInformation(self, view: XRView) -> Union['XRWebGLDepthInformation', 'None']: ...
+
     def getReflectionCubeMap(self, lightProbe: XRLightProbe) -> Union['WebGLTexture', 'None']: ...
     nativeProjectionScaleFactor: float
     usesDepthValues: bool
+
     def createProjectionLayer(self, init: Union['XRProjectionLayerInit', 'None'] = {}) -> XRProjectionLayer: ...
+
     def createQuadLayer(self, init: Union['XRQuadLayerInit', 'None'] = {}) -> XRQuadLayer: ...
+
     def createCylinderLayer(self, init: Union['XRCylinderLayerInit', 'None'] = {}) -> XRCylinderLayer: ...
+
     def createEquirectLayer(self, init: Union['XREquirectLayerInit', 'None'] = {}) -> XREquirectLayer: ...
+
     def createCubeLayer(self, init: Union['XRCubeLayerInit', 'None'] = {}) -> XRCubeLayer: ...
+
     def getSubImage(self, layer: XRCompositionLayer, frame: XRFrame, eye: Union['XREye', 'None'] = "none") -> XRWebGLSubImage: ...
+
     def getViewSubImage(self, layer: XRProjectionLayer, view: XRView) -> XRWebGLSubImage: ...
 
 class XRMesh:
@@ -9639,27 +11069,36 @@ class XRMesh:
 class XRMeshSet: ...
 
 class RemotePlayback(EventTarget):
+
     def watchAvailability(self, callback: RemotePlaybackAvailabilityCallback) -> Awaitable[int]: ...
+
     def cancelWatchAvailability(self, id: Union['int', 'None'] = None) -> Awaitable[None]: ...
     state: RemotePlaybackState
     onconnecting: EventHandler
     onconnect: EventHandler
     ondisconnect: EventHandler
+
     def prompt(self) -> Awaitable[None]: ...
 
 class ReportBody:
+
     def toJSON(self) -> object: ...
 
 class Report:
+
     def toJSON(self) -> object: ...
     type: str
     url: str
     body: Union['ReportBody', 'None']
 
 class ReportingObserver:
-    def New(self, callback: ReportingObserverCallback, options: Union['ReportingObserverOptions', 'None'] = {}) -> ReportingObserver: ...
+    @classmethod
+    def new(cls, callback: ReportingObserverCallback, options: Union['ReportingObserverOptions', 'None'] = {}) -> ReportingObserver: ...
+
     def observe(self) -> None: ...
+
     def disconnect(self) -> None: ...
+
     def takeRecords(self) -> ReportList: ...
 
 class ReportingObserverOptions(TypedDict):
@@ -9677,6 +11116,7 @@ class IdleRequestOptions(TypedDict):
     timeout: NotRequired[int]
 
 class IdleDeadline:
+
     def timeRemaining(self) -> DOMHighResTimeStamp: ...
     didTimeout: bool
 
@@ -9684,9 +11124,13 @@ class ResizeObserverOptions(TypedDict):
     box: NotRequired[ResizeObserverBoxOptions]
 
 class ResizeObserver:
-    def New(self, callback: ResizeObserverCallback) -> ResizeObserver: ...
+    @classmethod
+    def new(cls, callback: ResizeObserverCallback) -> ResizeObserver: ...
+
     def observe(self, target: Element, options: Union['ResizeObserverOptions', 'None'] = {}) -> None: ...
+
     def unobserve(self, target: Element) -> None: ...
+
     def disconnect(self) -> None: ...
 
 class ResizeObserverEntry:
@@ -9723,13 +11167,18 @@ class PerformanceResourceTiming(PerformanceEntry):
     responseStatus: int
     renderBlockingStatus: RenderBlockingStatusType
     contentType: str
+
     def toJSON(self) -> object: ...
     serverTiming: Sequence[PerformanceServerTiming]
 
 class Sanitizer:
-    def New(self, config: Union['SanitizerConfig', 'None'] = {}) -> Sanitizer: ...
+    @classmethod
+    def new(cls, config: Union['SanitizerConfig', 'None'] = {}) -> Sanitizer: ...
+
     def sanitize(self, input: Union['Document', 'DocumentFragment']) -> DocumentFragment: ...
+
     def sanitizeFor(self, element: str, input: str) -> Union['Element', 'None']: ...
+
     def getConfiguration(self) -> SanitizerConfig: ...
 
 class SetHTMLOptions(TypedDict):
@@ -9754,10 +11203,12 @@ class SchedulerPostTaskOptions(TypedDict):
     delay: NotRequired[int]
 
 class Scheduler:
+
     def postTask(self, callback: SchedulerPostTaskCallback, options: Union['SchedulerPostTaskOptions', 'None'] = {}) -> Awaitable[Any]: ...
 
 class TaskPriorityChangeEvent(Event):
-    def New(self, type: str, priorityChangeEventInitDict: TaskPriorityChangeEventInit) -> TaskPriorityChangeEvent: ...
+    @classmethod
+    def new(cls, type: str, priorityChangeEventInitDict: TaskPriorityChangeEventInit) -> TaskPriorityChangeEvent: ...
     previousPriority: TaskPriority
 
 class TaskPriorityChangeEventInit(TypedDict, EventInit):
@@ -9767,7 +11218,9 @@ class TaskControllerInit(TypedDict):
     priority: NotRequired[TaskPriority]
 
 class TaskController(AbortController):
-    def New(self, init: Union['TaskControllerInit', 'None'] = {}) -> TaskController: ...
+    @classmethod
+    def new(cls, init: Union['TaskControllerInit', 'None'] = {}) -> TaskController: ...
+
     def setPriority(self, priority: TaskPriority) -> None: ...
 
 class TaskSignalAnyInit(TypedDict):
@@ -9786,18 +11239,22 @@ class DisplayMediaStreamOptions(TypedDict):
     surfaceSwitching: NotRequired[SurfaceSwitchingPreferenceEnum]
 
 class ScreenOrientation(EventTarget):
+
     def lock(self, orientation: OrientationLockType) -> Awaitable[None]: ...
+
     def unlock(self) -> None: ...
     type: OrientationType
     angle: int
     onchange: EventHandler
 
 class WakeLock:
+
     def request(self, type: Union['WakeLockType', 'None'] = "screen") -> Awaitable[WakeLockSentinel]: ...
 
 class WakeLockSentinel(EventTarget):
     released: bool
     type: WakeLockType
+
     def release(self) -> Awaitable[None]: ...
     onrelease: EventHandler
 
@@ -9806,7 +11263,8 @@ class ScrollTimelineOptions(TypedDict):
     axis: NotRequired[ScrollAxis]
 
 class ScrollTimeline(AnimationTimeline):
-    def New(self, options: Union['ScrollTimelineOptions', 'None'] = {}) -> ScrollTimeline: ...
+    @classmethod
+    def new(cls, options: Union['ScrollTimelineOptions', 'None'] = {}) -> ScrollTimeline: ...
     source: Union['Element', 'None']
     axis: ScrollAxis
 
@@ -9816,7 +11274,8 @@ class ViewTimelineOptions(TypedDict):
     inset: NotRequired[Union['str', 'Sequence[Union["CSSNumericValue", "CSSKeywordValue"]]']]
 
 class ViewTimeline(ScrollTimeline):
-    def New(self, options: Union['ViewTimelineOptions', 'None'] = {}) -> ViewTimeline: ...
+    @classmethod
+    def new(cls, options: Union['ViewTimelineOptions', 'None'] = {}) -> ViewTimeline: ...
     subject: Element
     startOffset: CSSNumericValue
     endOffset: CSSNumericValue
@@ -9869,27 +11328,45 @@ class Selection:
     rangeCount: int
     type: str
     direction: str
+
     def getRangeAt(self, index: int) -> Range: ...
+
     def addRange(self, range: Range) -> None: ...
+
     def removeRange(self, range: Range) -> None: ...
+
     def removeAllRanges(self) -> None: ...
+
     def empty(self) -> None: ...
+
     def getComposedRanges(self, *shadowRoots: ShadowRoot) -> Sequence[StaticRange]: ...
+
     def collapse(self, node: Union['Node', 'None'], offset: Union['int', 'None'] = 0) -> None: ...
+
     def setPosition(self, node: Union['Node', 'None'], offset: Union['int', 'None'] = 0) -> None: ...
+
     def collapseToStart(self) -> None: ...
+
     def collapseToEnd(self) -> None: ...
+
     def extend(self, node: Node, offset: Union['int', 'None'] = 0) -> None: ...
+
     def setBaseAndExtent(self, anchorNode: Node, anchorOffset: int, focusNode: Node, focusOffset: int) -> None: ...
+
     def selectAllChildren(self, node: Node) -> None: ...
+
     def modify(self, alter: Union['str', 'None'] = None, direction: Union['str', 'None'] = None, granularity: Union['str', 'None'] = None) -> None: ...
+
     def deleteFromDocument(self) -> None: ...
+
     def containsNode(self, node: Node, allowPartialContainment: Union['bool', 'None'] = False) -> bool: ...
 
 class Serial(EventTarget):
     onconnect: EventHandler
     ondisconnect: EventHandler
+
     def getPorts(self) -> Awaitable[Sequence[SerialPort]]: ...
+
     def requestPort(self, options: Union['SerialPortRequestOptions', 'None'] = {}) -> Awaitable[SerialPort]: ...
 
 class SerialPortRequestOptions(TypedDict):
@@ -9904,11 +11381,17 @@ class SerialPort(EventTarget):
     ondisconnect: EventHandler
     readable: ReadableStream
     writable: WritableStream
+
     def getInfo(self) -> SerialPortInfo: ...
+
     def open(self, options: SerialOptions) -> Awaitable[None]: ...
+
     def setSignals(self, signals: Union['SerialOutputSignals', 'None'] = {}) -> Awaitable[None]: ...
+
     def getSignals(self) -> Awaitable[SerialInputSignals]: ...
+
     def close(self) -> Awaitable[None]: ...
+
     def forget(self) -> Awaitable[None]: ...
 
 class SerialPortInfo(TypedDict):
@@ -9937,6 +11420,7 @@ class PerformanceServerTiming:
     name: str
     duration: DOMHighResTimeStamp
     description: str
+
     def toJSON(self) -> object: ...
 
 class ServiceWorker(EventTarget, AbstractWorker):
@@ -9951,9 +11435,13 @@ class ServiceWorker(EventTarget, AbstractWorker):
 class ServiceWorkerContainer(EventTarget):
     controller: Union['ServiceWorker', 'None']
     ready: Awaitable[ServiceWorkerRegistration]
+
     def register(self, scriptURL: str, options: Union['RegistrationOptions', 'None'] = {}) -> Awaitable[ServiceWorkerRegistration]: ...
+
     def getRegistration(self, clientURL: Union['str', 'None'] = "") -> Awaitable[Union['ServiceWorkerRegistration', 'None']]: ...
+
     def getRegistrations(self) -> Awaitable[Sequence[ServiceWorkerRegistration]]: ...
+
     def startMessages(self) -> None: ...
     oncontrollerchange: EventHandler
     onmessage: EventHandler
@@ -9965,9 +11453,13 @@ class RegistrationOptions(TypedDict):
     updateViaCache: NotRequired[ServiceWorkerUpdateViaCache]
 
 class NavigationPreloadManager:
+
     def enable(self) -> Awaitable[None]: ...
+
     def disable(self) -> Awaitable[None]: ...
+
     def setHeaderValue(self, value: ByteString) -> Awaitable[None]: ...
+
     def getState(self) -> Awaitable[NavigationPreloadState]: ...
 
 class NavigationPreloadState(TypedDict):
@@ -9978,13 +11470,19 @@ class WindowClient(Client):
     visibilityState: VisibilityState
     focused: bool
     ancestorOrigins: Sequence[str]
+
     def focus(self) -> Awaitable[WindowClient]: ...
+
     def navigate(self, url: str) -> Awaitable[Union['WindowClient', 'None']]: ...
 
 class Clients:
+
     def get(self, id: str) -> Awaitable[Union['Client', 'None']]: ...
+
     def matchAll(self, options: Union['ClientQueryOptions', 'None'] = {}) -> Awaitable[Sequence[Client]]: ...
+
     def openWindow(self, url: str) -> Awaitable[Union['WindowClient', 'None']]: ...
+
     def claim(self) -> Awaitable[None]: ...
 
 class ClientQueryOptions(TypedDict):
@@ -9992,19 +11490,23 @@ class ClientQueryOptions(TypedDict):
     type: NotRequired[ClientType]
 
 class ExtendableEvent(Event):
-    def New(self, type: str, eventInitDict: Union['ExtendableEventInit', 'None'] = {}) -> ExtendableEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['ExtendableEventInit', 'None'] = {}) -> ExtendableEvent: ...
+
     def waitUntil(self, f: Awaitable[Any]) -> None: ...
 
 class ExtendableEventInit(TypedDict, EventInit): ...
 
 class FetchEvent(ExtendableEvent):
-    def New(self, type: str, eventInitDict: FetchEventInit) -> FetchEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: FetchEventInit) -> FetchEvent: ...
     request: Request
     preloadResponse: Awaitable[Any]
     clientId: str
     resultingClientId: str
     replacesClientId: str
     handled: Awaitable[None]
+
     def respondWith(self, r: Awaitable[Response]) -> None: ...
 
 class FetchEventInit(TypedDict, ExtendableEventInit):
@@ -10016,7 +11518,8 @@ class FetchEventInit(TypedDict, ExtendableEventInit):
     handled: NotRequired[Awaitable[None]]
 
 class ExtendableMessageEvent(ExtendableEvent):
-    def New(self, type: str, eventInitDict: Union['ExtendableMessageEventInit', 'None'] = {}) -> ExtendableMessageEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['ExtendableMessageEventInit', 'None'] = {}) -> ExtendableMessageEvent: ...
     data: Any
     origin: str
     lastEventId: str
@@ -10031,12 +11534,19 @@ class ExtendableMessageEventInit(TypedDict, ExtendableEventInit):
     ports: NotRequired[Sequence[MessagePort]]
 
 class Cache:
+
     def match(self, request: RequestInfo, options: Union['CacheQueryOptions', 'None'] = {}) -> Awaitable[Union['Response', 'None']]: ...
+
     def matchAll(self, request: Union['RequestInfo', 'None'] = None, options: Union['CacheQueryOptions', 'None'] = {}) -> Awaitable[Sequence[Response]]: ...
+
     def add(self, request: RequestInfo) -> Awaitable[None]: ...
+
     def addAll(self, requests: Sequence[RequestInfo]) -> Awaitable[None]: ...
+
     def put(self, request: RequestInfo, response: Response) -> Awaitable[None]: ...
+
     def delete(self, request: RequestInfo, options: Union['CacheQueryOptions', 'None'] = {}) -> Awaitable[bool]: ...
+
     def keys(self, request: Union['RequestInfo', 'None'] = None, options: Union['CacheQueryOptions', 'None'] = {}) -> Awaitable[Sequence[Request]]: ...
 
 class CacheQueryOptions(TypedDict):
@@ -10045,17 +11555,24 @@ class CacheQueryOptions(TypedDict):
     ignoreVary: NotRequired[bool]
 
 class CacheStorage:
+
     def match(self, request: RequestInfo, options: Union['MultiCacheQueryOptions', 'None'] = {}) -> Awaitable[Union['Response', 'None']]: ...
+
     def has(self, cacheName: str) -> Awaitable[bool]: ...
+
     def open(self, cacheName: str) -> Awaitable[Cache]: ...
+
     def delete(self, cacheName: str) -> Awaitable[bool]: ...
+
     def keys(self) -> Awaitable[Sequence[str]]: ...
 
 class MultiCacheQueryOptions(TypedDict, CacheQueryOptions):
     cacheName: NotRequired[str]
 
 class FaceDetector:
-    def New(self, faceDetectorOptions: Union['FaceDetectorOptions', 'None'] = {}) -> FaceDetector: ...
+    @classmethod
+    def new(cls, faceDetectorOptions: Union['FaceDetectorOptions', 'None'] = {}) -> FaceDetector: ...
+
     def detect(self, image: ImageBitmapSource) -> Awaitable[Sequence[DetectedFace]]: ...
 
 class FaceDetectorOptions(TypedDict):
@@ -10071,7 +11588,9 @@ class Landmark(TypedDict):
     type: NotRequired[LandmarkType]
 
 class BarcodeDetector:
-    def New(self, barcodeDetectorOptions: Union['BarcodeDetectorOptions', 'None'] = {}) -> BarcodeDetector: ...
+    @classmethod
+    def new(cls, barcodeDetectorOptions: Union['BarcodeDetectorOptions', 'None'] = {}) -> BarcodeDetector: ...
+
     def detect(self, image: ImageBitmapSource) -> Awaitable[Sequence[DetectedBarcode]]: ...
 
 class BarcodeDetectorOptions(TypedDict):
@@ -10086,6 +11605,7 @@ class DetectedBarcode(TypedDict):
 class SharedStorageWorklet(Worklet): ...
 
 class SharedStorageWorkletGlobalScope(WorkletGlobalScope):
+
     def register(self, name: str, operationCtor: SharedStorageOperationConstructor) -> None: ...
 
 class SharedStorageOperation: ...
@@ -10096,22 +11616,30 @@ class SharedStorageRunOperationMethodOptions(TypedDict):
     keepAlive: NotRequired[bool]
 
 class SharedStorageRunOperation(SharedStorageOperation):
+
     def run(self, data: object) -> Awaitable[None]: ...
 
 class SharedStorageSelectURLOperation(SharedStorageOperation):
+
     def run(self, data: object, urls: Sequence[SharedStorageUrlWithMetadata]) -> Awaitable[int]: ...
 
 class SharedStorage:
+
     def set(self, key: str, value: str, options: Union['SharedStorageSetMethodOptions', 'None'] = {}) -> Awaitable[Any]: ...
+
     def append(self, key: str, value: str) -> Awaitable[Any]: ...
+
     def delete(self, key: str) -> Awaitable[Any]: ...
+
     def clear(self) -> Awaitable[Any]: ...
 
 class SharedStorageSetMethodOptions(TypedDict):
     ignoreIfPresent: NotRequired[bool]
 
 class WindowSharedStorage(SharedStorage):
+
     def run(self, name: str, options: Union['SharedStorageRunOperationMethodOptions', 'None'] = {}) -> Awaitable[Any]: ...
+
     def selectURL(self, name: str, urls: Sequence[SharedStorageUrlWithMetadata], options: Union['SharedStorageRunOperationMethodOptions', 'None'] = {}) -> Awaitable[SharedStorageResponse]: ...
     worklet: SharedStorageWorklet
 
@@ -10120,19 +11648,26 @@ class SharedStorageUrlWithMetadata(TypedDict):
     reportingMetadata: NotRequired[object]
 
 class WorkletSharedStorage(SharedStorage):
+
     def get(self, key: str) -> Awaitable[str]: ...
+
     def length(self) -> Awaitable[int]: ...
+
     def remainingBudget(self) -> Awaitable[float]: ...
 
 class SpeechRecognition(EventTarget):
-    def New(self) -> SpeechRecognition: ...
+    @classmethod
+    def new(cls) -> SpeechRecognition: ...
     grammars: SpeechGrammarList
     lang: str
     continuous: bool
     interimResults: bool
     maxAlternatives: int
+
     def start(self) -> None: ...
+
     def stop(self) -> None: ...
+
     def abort(self) -> None: ...
     onaudiostart: EventHandler
     onsoundstart: EventHandler
@@ -10147,7 +11682,8 @@ class SpeechRecognition(EventTarget):
     onend: EventHandler
 
 class SpeechRecognitionErrorEvent(Event):
-    def New(self, type: str, eventInitDict: SpeechRecognitionErrorEventInit) -> SpeechRecognitionErrorEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: SpeechRecognitionErrorEventInit) -> SpeechRecognitionErrorEvent: ...
     error: SpeechRecognitionErrorCode
     message: str
 
@@ -10167,7 +11703,8 @@ class SpeechRecognitionResultList:
     length: int
 
 class SpeechRecognitionEvent(Event):
-    def New(self, type: str, eventInitDict: SpeechRecognitionEventInit) -> SpeechRecognitionEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: SpeechRecognitionEventInit) -> SpeechRecognitionEvent: ...
     resultIndex: int
     results: SpeechRecognitionResultList
 
@@ -10180,9 +11717,12 @@ class SpeechGrammar:
     weight: float
 
 class SpeechGrammarList:
-    def New(self) -> SpeechGrammarList: ...
+    @classmethod
+    def new(cls) -> SpeechGrammarList: ...
     length: int
+
     def addFromURI(self, src: str, weight: Union['float', 'None'] = 1.0) -> None: ...
+
     def addFromString(self, string: str, weight: Union['float', 'None'] = 1.0) -> None: ...
 
 class SpeechSynthesis(EventTarget):
@@ -10190,14 +11730,20 @@ class SpeechSynthesis(EventTarget):
     speaking: bool
     paused: bool
     onvoiceschanged: EventHandler
+
     def speak(self, utterance: SpeechSynthesisUtterance) -> None: ...
+
     def cancel(self) -> None: ...
+
     def pause(self) -> None: ...
+
     def resume(self) -> None: ...
+
     def getVoices(self) -> Sequence[SpeechSynthesisVoice]: ...
 
 class SpeechSynthesisUtterance(EventTarget):
-    def New(self, text: Union['str', 'None'] = None) -> SpeechSynthesisUtterance: ...
+    @classmethod
+    def new(cls, text: Union['str', 'None'] = None) -> SpeechSynthesisUtterance: ...
     text: str
     lang: str
     voice: Union['SpeechSynthesisVoice', 'None']
@@ -10213,7 +11759,8 @@ class SpeechSynthesisUtterance(EventTarget):
     onboundary: EventHandler
 
 class SpeechSynthesisEvent(Event):
-    def New(self, type: str, eventInitDict: SpeechSynthesisEventInit) -> SpeechSynthesisEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: SpeechSynthesisEventInit) -> SpeechSynthesisEvent: ...
     utterance: SpeechSynthesisUtterance
     charIndex: int
     charLength: int
@@ -10228,7 +11775,8 @@ class SpeechSynthesisEventInit(TypedDict, EventInit):
     name: NotRequired[str]
 
 class SpeechSynthesisErrorEvent(SpeechSynthesisEvent):
-    def New(self, type: str, eventInitDict: SpeechSynthesisErrorEventInit) -> SpeechSynthesisErrorEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: SpeechSynthesisErrorEventInit) -> SpeechSynthesisErrorEvent: ...
     error: SpeechSynthesisErrorCode
 
 class SpeechSynthesisErrorEventInit(TypedDict, SpeechSynthesisEventInit):
@@ -10245,8 +11793,11 @@ class NavigatorStorageBuckets:
     storageBuckets: StorageBucketManager
 
 class StorageBucketManager:
+
     def open(self, name: str, options: Union['StorageBucketOptions', 'None'] = {}) -> Awaitable[StorageBucket]: ...
+
     def keys(self) -> Awaitable[Sequence[str]]: ...
+
     def delete(self, name: str) -> Awaitable[None]: ...
 
 class StorageBucketOptions(TypedDict):
@@ -10257,14 +11808,21 @@ class StorageBucketOptions(TypedDict):
 
 class StorageBucket:
     name: str
+
     def persist(self) -> Awaitable[bool]: ...
+
     def persisted(self) -> Awaitable[bool]: ...
+
     def estimate(self) -> Awaitable[StorageEstimate]: ...
+
     def durability(self) -> Awaitable[StorageBucketDurability]: ...
+
     def setExpires(self, expires: DOMHighResTimeStamp) -> Awaitable[None]: ...
+
     def expires(self) -> Awaitable[Union['DOMHighResTimeStamp', 'None']]: ...
     indexedDB: IDBFactory
     caches: CacheStorage
+
     def getDirectory(self) -> Awaitable[FileSystemDirectoryHandle]: ...
 
 class NavigatorStorage:
@@ -10275,12 +11833,18 @@ class StorageEstimate(TypedDict):
     quota: NotRequired[int]
 
 class ReadableStream:
-    def New(self, underlyingSource: Union['object', 'None'] = None, strategy: Union['QueuingStrategy', 'None'] = {}) -> ReadableStream: ...
+    @classmethod
+    def new(cls, underlyingSource: Union['object', 'None'] = None, strategy: Union['QueuingStrategy', 'None'] = {}) -> ReadableStream: ...
     locked: bool
+
     def cancel(self, reason: Union['Any', 'None'] = None) -> Awaitable[None]: ...
+
     def getReader(self, options: Union['ReadableStreamGetReaderOptions', 'None'] = {}) -> ReadableStreamReader: ...
+
     def pipeThrough(self, transform: ReadableWritablePair, options: Union['StreamPipeOptions', 'None'] = {}) -> ReadableStream: ...
+
     def pipeTo(self, destination: WritableStream, options: Union['StreamPipeOptions', 'None'] = {}) -> Awaitable[None]: ...
+
     def tee(self) -> Sequence[ReadableStream]: ...
 
 class ReadableStreamGetReaderOptions(TypedDict):
@@ -10308,11 +11872,15 @@ class UnderlyingSource(TypedDict):
 
 class ReadableStreamGenericReader:
     closed: Awaitable[None]
+
     def cancel(self, reason: Union['Any', 'None'] = None) -> Awaitable[None]: ...
 
 class ReadableStreamDefaultReader(ReadableStreamGenericReader):
-    def New(self, stream: ReadableStream) -> ReadableStreamDefaultReader: ...
+    @classmethod
+    def new(cls, stream: ReadableStream) -> ReadableStreamDefaultReader: ...
+
     def read(self) -> Awaitable[ReadableStreamReadResult]: ...
+
     def releaseLock(self) -> None: ...
 
 class ReadableStreamReadResult(TypedDict):
@@ -10320,33 +11888,48 @@ class ReadableStreamReadResult(TypedDict):
     done: NotRequired[bool]
 
 class ReadableStreamBYOBReader(ReadableStreamGenericReader):
-    def New(self, stream: ReadableStream) -> ReadableStreamBYOBReader: ...
+    @classmethod
+    def new(cls, stream: ReadableStream) -> ReadableStreamBYOBReader: ...
+
     def read(self, view: ArrayBufferView) -> Awaitable[ReadableStreamReadResult]: ...
+
     def releaseLock(self) -> None: ...
 
 class ReadableStreamDefaultController:
     desiredSize: Union['float', 'None']
+
     def close(self) -> None: ...
+
     def enqueue(self, chunk: Union['Any', 'None'] = None) -> None: ...
+
     def error(self, e: Union['Any', 'None'] = None) -> None: ...
 
 class ReadableByteStreamController:
     byobRequest: Union['ReadableStreamBYOBRequest', 'None']
     desiredSize: Union['float', 'None']
+
     def close(self) -> None: ...
+
     def enqueue(self, chunk: ArrayBufferView) -> None: ...
+
     def error(self, e: Union['Any', 'None'] = None) -> None: ...
 
 class ReadableStreamBYOBRequest:
     view: Union['ArrayBufferView', 'None']
+
     def respond(self, bytesWritten: int) -> None: ...
+
     def respondWithNewView(self, view: ArrayBufferView) -> None: ...
 
 class WritableStream:
-    def New(self, underlyingSink: Union['object', 'None'] = None, strategy: Union['QueuingStrategy', 'None'] = {}) -> WritableStream: ...
+    @classmethod
+    def new(cls, underlyingSink: Union['object', 'None'] = None, strategy: Union['QueuingStrategy', 'None'] = {}) -> WritableStream: ...
     locked: bool
+
     def abort(self, reason: Union['Any', 'None'] = None) -> Awaitable[None]: ...
+
     def close(self) -> Awaitable[None]: ...
+
     def getWriter(self) -> WritableStreamDefaultWriter: ...
 
 class UnderlyingSink(TypedDict):
@@ -10357,21 +11940,28 @@ class UnderlyingSink(TypedDict):
     type: NotRequired[Any]
 
 class WritableStreamDefaultWriter:
-    def New(self, stream: WritableStream) -> WritableStreamDefaultWriter: ...
+    @classmethod
+    def new(cls, stream: WritableStream) -> WritableStreamDefaultWriter: ...
     closed: Awaitable[None]
     desiredSize: Union['float', 'None']
     ready: Awaitable[None]
+
     def abort(self, reason: Union['Any', 'None'] = None) -> Awaitable[None]: ...
+
     def close(self) -> Awaitable[None]: ...
+
     def releaseLock(self) -> None: ...
+
     def write(self, chunk: Union['Any', 'None'] = None) -> Awaitable[None]: ...
 
 class WritableStreamDefaultController:
     signal: AbortSignal
+
     def error(self, e: Union['Any', 'None'] = None) -> None: ...
 
 class TransformStream:
-    def New(self, transformer: Union['object', 'None'] = None, writableStrategy: Union['QueuingStrategy', 'None'] = {}, readableStrategy: Union['QueuingStrategy', 'None'] = {}) -> TransformStream: ...
+    @classmethod
+    def new(cls, transformer: Union['object', 'None'] = None, writableStrategy: Union['QueuingStrategy', 'None'] = {}, readableStrategy: Union['QueuingStrategy', 'None'] = {}) -> TransformStream: ...
     readable: ReadableStream
     writable: WritableStream
 
@@ -10384,8 +11974,11 @@ class Transformer(TypedDict):
 
 class TransformStreamDefaultController:
     desiredSize: Union['float', 'None']
+
     def enqueue(self, chunk: Union['Any', 'None'] = None) -> None: ...
+
     def error(self, reason: Union['Any', 'None'] = None) -> None: ...
+
     def terminate(self) -> None: ...
 
 class QueuingStrategy(TypedDict):
@@ -10396,12 +11989,14 @@ class QueuingStrategyInit(TypedDict):
     highWaterMark: float
 
 class ByteLengthQueuingStrategy:
-    def New(self, init: QueuingStrategyInit) -> ByteLengthQueuingStrategy: ...
+    @classmethod
+    def new(cls, init: QueuingStrategyInit) -> ByteLengthQueuingStrategy: ...
     highWaterMark: float
     size: Function
 
 class CountQueuingStrategy:
-    def New(self, init: QueuingStrategyInit) -> CountQueuingStrategy: ...
+    @classmethod
+    def new(cls, init: QueuingStrategyInit) -> CountQueuingStrategy: ...
     highWaterMark: float
     size: Function
 
@@ -10412,6 +12007,7 @@ class GenericTransformStream:
 class TimeEvent(Event):
     view: Union['WindowProxy', 'None']
     detail: int
+
     def initTimeEvent(self, typeArg: str, viewArg: Union['Window', 'None'], detailArg: int) -> None: ...
 
 class SVGAnimationElement(SVGElement, SVGTests):
@@ -10419,12 +12015,19 @@ class SVGAnimationElement(SVGElement, SVGTests):
     onbegin: EventHandler
     onend: EventHandler
     onrepeat: EventHandler
+
     def getStartTime(self) -> float: ...
+
     def getCurrentTime(self) -> float: ...
+
     def getSimpleDuration(self) -> float: ...
+
     def beginElement(self) -> None: ...
+
     def beginElementAt(self, offset: float) -> None: ...
+
     def endElement(self) -> None: ...
+
     def endElementAt(self, offset: float) -> None: ...
 
 class SVGAnimateElement(SVGAnimationElement): ...
@@ -10440,10 +12043,13 @@ class SVGAnimateTransformElement(SVGAnimationElement): ...
 class SVGDiscardElement(SVGAnimationElement): ...
 
 class TestutilsNamespace:
+
     def gc(self) -> Awaitable[None]: ...
 
 class TextDetector:
-    def New(self) -> TextDetector: ...
+    @classmethod
+    def new(cls) -> TextDetector: ...
+
     def detect(self, image: ImageBitmapSource) -> Awaitable[Sequence[DetectedText]]: ...
 
 class DetectedText(TypedDict):
@@ -10469,7 +12075,8 @@ class TouchInit(TypedDict):
     touchType: NotRequired[TouchType]
 
 class Touch:
-    def New(self, touchInitDict: TouchInit) -> Touch: ...
+    @classmethod
+    def new(cls, touchInitDict: TouchInit) -> Touch: ...
     identifier: int
     target: EventTarget
     screenX: float
@@ -10495,7 +12102,8 @@ class TouchEventInit(TypedDict, EventModifierInit):
     changedTouches: NotRequired[Sequence[Touch]]
 
 class TouchEvent(UIEvent):
-    def New(self, type: str, eventInitDict: Union['TouchEventInit', 'None'] = {}) -> TouchEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['TouchEventInit', 'None'] = {}) -> TouchEvent: ...
     touches: TouchList
     targetTouches: TouchList
     changedTouches: TouchList
@@ -10511,29 +12119,41 @@ class PrivateToken(TypedDict):
     issuers: NotRequired[Sequence[str]]
 
 class TrustedHTML:
+
     def toJSON(self) -> str: ...
 
 class TrustedScript:
+
     def toJSON(self) -> str: ...
 
 class TrustedScriptURL:
+
     def toJSON(self) -> str: ...
 
 class TrustedTypePolicyFactory:
+
     def createPolicy(self, policyName: str, policyOptions: Union['TrustedTypePolicyOptions', 'None'] = {}) -> TrustedTypePolicy: ...
+
     def isHTML(self, value: Any) -> bool: ...
+
     def isScript(self, value: Any) -> bool: ...
+
     def isScriptURL(self, value: Any) -> bool: ...
     emptyHTML: TrustedHTML
     emptyScript: TrustedScript
+
     def getAttributeType(self, tagName: str, attribute: str, elementNs: Union['str', 'None'] = "", attrNs: Union['str', 'None'] = "") -> Union['str', 'None']: ...
+
     def getPropertyType(self, tagName: str, property: str, elementNs: Union['str', 'None'] = "") -> Union['str', 'None']: ...
     defaultPolicy: Union['TrustedTypePolicy', 'None']
 
 class TrustedTypePolicy:
     name: str
+
     def createHTML(self, input: str, *arguments: Any) -> TrustedHTML: ...
+
     def createScript(self, input: str, *arguments: Any) -> TrustedScript: ...
+
     def createScriptURL(self, input: str, *arguments: Any) -> TrustedScriptURL: ...
 
 class TrustedTypePolicyOptions(TypedDict):
@@ -10595,8 +12215,11 @@ class AuctionAdConfig(TypedDict):
 class InterestGroupScriptRunnerGlobalScope: ...
 
 class InterestGroupBiddingScriptRunnerGlobalScope(InterestGroupScriptRunnerGlobalScope):
+
     def setBid(self, generateBidOutput: Union['GenerateBidOutput', 'None'] = {}) -> bool: ...
+
     def setPriority(self, priority: float) -> None: ...
+
     def setPrioritySignalsOverride(self, key: str, priority: float) -> None: ...
 
 class AdRender(TypedDict):
@@ -10617,7 +12240,9 @@ class GenerateBidOutput(TypedDict):
 class InterestGroupScoringScriptRunnerGlobalScope(InterestGroupScriptRunnerGlobalScope): ...
 
 class InterestGroupReportingScriptRunnerGlobalScope(InterestGroupScriptRunnerGlobalScope):
+
     def sendReportTo(self, url: str) -> None: ...
+
     def registerAdBeacon(self, map: str) -> None: ...
 
 class PreviousWin(TypedDict):
@@ -10703,14 +12328,17 @@ class NavigatorUAData:
     brands: Sequence[NavigatorUABrandVersion]
     mobile: bool
     platform: str
+
     def getHighEntropyValues(self, hints: Sequence[str]) -> Awaitable[UADataValues]: ...
+
     def toJSON(self) -> UALowEntropyJSON: ...
 
 class NavigatorUA:
     userAgentData: NavigatorUAData
 
 class FocusEvent(UIEvent):
-    def New(self, type: str, eventInitDict: Union['FocusEventInit', 'None'] = {}) -> FocusEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['FocusEventInit', 'None'] = {}) -> FocusEvent: ...
     relatedTarget: Union['EventTarget', 'None']
 
 class FocusEventInit(TypedDict, UIEventInit):
@@ -10733,7 +12361,8 @@ class EventModifierInit(TypedDict, UIEventInit):
     modifierSymbolLock: NotRequired[bool]
 
 class WheelEvent(MouseEvent):
-    def New(self, type: str, eventInitDict: Union['WheelEventInit', 'None'] = {}) -> WheelEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['WheelEventInit', 'None'] = {}) -> WheelEvent: ...
     DOM_DELTA_PIXEL = 0x00
     DOM_DELTA_LINE = 0x01
     DOM_DELTA_PAGE = 0x02
@@ -10749,7 +12378,8 @@ class WheelEventInit(TypedDict, MouseEventInit):
     deltaMode: NotRequired[int]
 
 class KeyboardEvent(UIEvent):
-    def New(self, type: str, eventInitDict: Union['KeyboardEventInit', 'None'] = {}) -> KeyboardEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['KeyboardEventInit', 'None'] = {}) -> KeyboardEvent: ...
     DOM_KEY_LOCATION_STANDARD = 0x00
     DOM_KEY_LOCATION_LEFT = 0x01
     DOM_KEY_LOCATION_RIGHT = 0x02
@@ -10763,7 +12393,9 @@ class KeyboardEvent(UIEvent):
     metaKey: bool
     repeat: bool
     isComposing: bool
+
     def getModifierState(self, keyArg: str) -> bool: ...
+
     def initKeyboardEvent(self, typeArg: str, bubblesArg: Union['bool', 'None'] = False, cancelableArg: Union['bool', 'None'] = False, viewArg: Union['Window', 'None'] = None, keyArg: Union['str', 'None'] = "", locationArg: Union['int', 'None'] = 0, ctrlKey: Union['bool', 'None'] = False, altKey: Union['bool', 'None'] = False, shiftKey: Union['bool', 'None'] = False, metaKey: Union['bool', 'None'] = False) -> None: ...
     charCode: int
     keyCode: int
@@ -10778,8 +12410,10 @@ class KeyboardEventInit(TypedDict, EventModifierInit):
     keyCode: NotRequired[int]
 
 class CompositionEvent(UIEvent):
-    def New(self, type: str, eventInitDict: Union['CompositionEventInit', 'None'] = {}) -> CompositionEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['CompositionEventInit', 'None'] = {}) -> CompositionEvent: ...
     data: str
+
     def initCompositionEvent(self, typeArg: str, bubblesArg: Union['bool', 'None'] = False, cancelableArg: Union['bool', 'None'] = False, viewArg: Union['WindowProxy', 'None'] = None, dataArg: Union['str', 'None'] = "") -> None: ...
 
 class CompositionEventInit(TypedDict, UIEventInit):
@@ -10794,25 +12428,38 @@ class MutationEvent(Event):
     newValue: str
     attrName: str
     attrChange: int
+
     def initMutationEvent(self, typeArg: str, bubblesArg: Union['bool', 'None'] = False, cancelableArg: Union['bool', 'None'] = False, relatedNodeArg: Union['Node', 'None'] = None, prevValueArg: Union['str', 'None'] = "", newValueArg: Union['str', 'None'] = "", attrNameArg: Union['str', 'None'] = "", attrChangeArg: Union['int', 'None'] = 0) -> None: ...
 
 class URLSearchParams:
-    def New(self, init: Union['Sequence[Sequence[str]]', 'str', 'str', 'None'] = "") -> URLSearchParams: ...
+    @classmethod
+    def new(cls, init: Union['Sequence[Sequence[str]]', 'str', 'str', 'None'] = "") -> URLSearchParams: ...
     size: int
+
     def append(self, name: str, value: str) -> None: ...
+
     def delete(self, name: str, value: Union['str', 'None'] = None) -> None: ...
+
     def get(self, name: str) -> Union['str', 'None']: ...
+
     def getAll(self, name: str) -> Sequence[str]: ...
+
     def has(self, name: str, value: Union['str', 'None'] = None) -> bool: ...
+
     def set(self, name: str, value: str) -> None: ...
+
     def sort(self) -> None: ...
 
 class URLPattern:
     @overload
-    def New(self, input: URLPatternInput, baseURL: str, options: Union['URLPatternOptions', 'None'] = {}) -> URLPattern: ...
+    @classmethod
+    def new(cls, input: URLPatternInput, baseURL: str, options: Union['URLPatternOptions', 'None'] = {}) -> URLPattern: ...
     @overload
-    def New(self, input: Union['URLPatternInput', 'None'] = {}, options: Union['URLPatternOptions', 'None'] = {}) -> URLPattern: ...
+    @classmethod
+    def new(cls, input: Union['URLPatternInput', 'None'] = {}, options: Union['URLPatternOptions', 'None'] = {}) -> URLPattern: ...
+
     def test(self, input: Union['URLPatternInput', 'None'] = {}, baseURL: Union['str', 'None'] = None) -> bool: ...
+
     def exec(self, input: Union['URLPatternInput', 'None'] = {}, baseURL: Union['str', 'None'] = None) -> Union['URLPatternResult', 'None']: ...
     protocol: str
     username: str
@@ -10863,7 +12510,8 @@ class PerformanceMeasureOptions(TypedDict):
     end: NotRequired[Union['str', 'DOMHighResTimeStamp']]
 
 class PerformanceMark(PerformanceEntry):
-    def New(self, markName: str, markOptions: Union['PerformanceMarkOptions', 'None'] = {}) -> PerformanceMark: ...
+    @classmethod
+    def new(cls, markName: str, markOptions: Union['PerformanceMarkOptions', 'None'] = {}) -> PerformanceMark: ...
     detail: Any
 
 class PerformanceMeasure(PerformanceEntry):
@@ -10882,7 +12530,9 @@ class VideoFrameCallbackMetadata(TypedDict):
     rtpTimestamp: NotRequired[int]
 
 class VirtualKeyboard(EventTarget):
+
     def show(self) -> None: ...
+
     def hide(self) -> None: ...
     boundingRect: DOMRect
     overlaysContent: bool
@@ -10944,13 +12594,17 @@ class WebAssemblyInstantiatedSource(TypedDict):
     instance: Instance
 
 class WebassemblyNamespace:
+
     def validate(self, bytes: BufferSource) -> bool: ...
+
     def compile(self, bytes: BufferSource) -> Awaitable[Module]: ...
     @overload
     def instantiate(self, bytes: BufferSource, importObject: Union['object', 'None'] = None) -> Awaitable[WebAssemblyInstantiatedSource]: ...
     @overload
     def instantiate(self, moduleObject: Module, importObject: Union['object', 'None'] = None) -> Awaitable[Instance]: ...
+
     def compileStreaming(self, source: Awaitable[Response]) -> Awaitable[Module]: ...
+
     def instantiateStreaming(self, source: Awaitable[Response], importObject: Union['object', 'None'] = None) -> Awaitable[WebAssemblyInstantiatedSource]: ...
 
 class ModuleExportDescriptor(TypedDict):
@@ -10963,10 +12617,12 @@ class ModuleImportDescriptor(TypedDict):
     kind: ImportExportKind
 
 class Module:
-    def New(self, bytes: BufferSource) -> Module: ...
+    @classmethod
+    def new(cls, bytes: BufferSource) -> Module: ...
 
 class Instance:
-    def New(self, module: Module, importObject: Union['object', 'None'] = None) -> Instance: ...
+    @classmethod
+    def new(cls, module: Module, importObject: Union['object', 'None'] = None) -> Instance: ...
     exports: object
 
 class MemoryDescriptor(TypedDict):
@@ -10974,7 +12630,9 @@ class MemoryDescriptor(TypedDict):
     maximum: NotRequired[int]
 
 class Memory:
-    def New(self, descriptor: MemoryDescriptor) -> Memory: ...
+    @classmethod
+    def new(cls, descriptor: MemoryDescriptor) -> Memory: ...
+
     def grow(self, delta: int) -> int: ...
     buffer: ArrayBuffer
 
@@ -10984,9 +12642,13 @@ class TableDescriptor(TypedDict):
     maximum: NotRequired[int]
 
 class Table:
-    def New(self, descriptor: TableDescriptor, value: Union['Any', 'None'] = None) -> Table: ...
+    @classmethod
+    def new(cls, descriptor: TableDescriptor, value: Union['Any', 'None'] = None) -> Table: ...
+
     def grow(self, delta: int, value: Union['Any', 'None'] = None) -> int: ...
+
     def get(self, index: int) -> Any: ...
+
     def set(self, index: int, value: Union['Any', 'None'] = None) -> None: ...
     length: int
 
@@ -10995,17 +12657,21 @@ class GlobalDescriptor(TypedDict):
     mutable: NotRequired[bool]
 
 class Global:
-    def New(self, descriptor: GlobalDescriptor, v: Union['Any', 'None'] = None) -> Global: ...
+    @classmethod
+    def new(cls, descriptor: GlobalDescriptor, v: Union['Any', 'None'] = None) -> Global: ...
+
     def valueOf(self) -> Any: ...
     value: Any
 
 class AnimationTimeline:
     currentTime: Union['Union["CSSNumberish", "None"]', 'Union["float", "None"]']
     duration: Union['CSSNumberish', 'None']
+
     def play(self, effect: Union['AnimationEffect', 'None'] = None) -> Animation: ...
 
 class Animation(EventTarget):
-    def New(self, effect: Union['AnimationEffect', 'None'] = None, timeline: Union['AnimationTimeline', 'None'] = None) -> Animation: ...
+    @classmethod
+    def new(cls, effect: Union['AnimationEffect', 'None'] = None, timeline: Union['AnimationTimeline', 'None'] = None) -> Animation: ...
     startTime: Union['Union["CSSNumberish", "None"]', 'Union["float", "None"]']
     currentTime: Union['Union["CSSNumberish", "None"]', 'Union["float", "None"]']
     id: str
@@ -11020,25 +12686,40 @@ class Animation(EventTarget):
     onfinish: EventHandler
     oncancel: EventHandler
     onremove: EventHandler
+
     def cancel(self) -> None: ...
+
     def finish(self) -> None: ...
+
     def play(self) -> None: ...
+
     def pause(self) -> None: ...
+
     def updatePlaybackRate(self, playbackRate: float) -> None: ...
+
     def reverse(self) -> None: ...
+
     def persist(self) -> None: ...
+
     def commitStyles(self) -> None: ...
 
 class AnimationEffect:
     parent: Union['GroupEffect', 'None']
     previousSibling: Union['AnimationEffect', 'None']
     nextSibling: Union['AnimationEffect', 'None']
+
     def before(self, *effects: AnimationEffect) -> None: ...
+
     def after(self, *effects: AnimationEffect) -> None: ...
+
     def replace(self, *effects: AnimationEffect) -> None: ...
+
     def remove(self) -> None: ...
+
     def getTiming(self) -> EffectTiming: ...
+
     def getComputedTiming(self) -> ComputedEffectTiming: ...
+
     def updateTiming(self, timing: Union['OptionalEffectTiming', 'None'] = {}) -> None: ...
 
 class EffectTiming(TypedDict):
@@ -11072,31 +12753,41 @@ class ComputedEffectTiming(TypedDict, EffectTiming):
     currentIteration: NotRequired[Union['float', 'None']]
 
 class GroupEffect:
-    def New(self, children: Sequence[AnimationEffect], timing: Union['float', 'EffectTiming', 'None'] = {}) -> GroupEffect: ...
+    @classmethod
+    def new(cls, children: Sequence[AnimationEffect], timing: Union['float', 'EffectTiming', 'None'] = {}) -> GroupEffect: ...
     children: AnimationNodeList
     firstChild: Union['AnimationEffect', 'None']
     lastChild: Union['AnimationEffect', 'None']
+
     def clone(self) -> GroupEffect: ...
+
     def prepend(self, *effects: AnimationEffect) -> None: ...
+
     def append(self, *effects: AnimationEffect) -> None: ...
 
 class AnimationNodeList:
     length: int
 
 class SequenceEffect(GroupEffect):
-    def New(self, children: Sequence[AnimationEffect], timing: Union['float', 'EffectTiming', 'None'] = {}) -> SequenceEffect: ...
+    @classmethod
+    def new(cls, children: Sequence[AnimationEffect], timing: Union['float', 'EffectTiming', 'None'] = {}) -> SequenceEffect: ...
+
     def clone(self) -> SequenceEffect: ...
 
 class KeyframeEffect(AnimationEffect):
     @overload
-    def New(self, target: Union['Element', 'None'], keyframes: Union['object', 'None'], options: Union['float', 'KeyframeEffectOptions', 'None'] = {}) -> KeyframeEffect: ...
+    @classmethod
+    def new(cls, target: Union['Element', 'None'], keyframes: Union['object', 'None'], options: Union['float', 'KeyframeEffectOptions', 'None'] = {}) -> KeyframeEffect: ...
     @overload
-    def New(self, source: KeyframeEffect) -> KeyframeEffect: ...
+    @classmethod
+    def new(cls, source: KeyframeEffect) -> KeyframeEffect: ...
     iterationComposite: IterationCompositeOperation
     target: Union['Element', 'None']
     pseudoElement: Union['str', 'None']
     composite: CompositeOperation
+
     def getKeyframes(self) -> Sequence[object]: ...
+
     def setKeyframes(self, keyframes: Union['object', 'None']) -> None: ...
 
 class KeyframeEffectOptions(TypedDict, EffectTiming):
@@ -11115,7 +12806,8 @@ class KeyframeAnimationOptions(TypedDict, KeyframeEffectOptions):
     timeline: NotRequired[Union['AnimationTimeline', 'None']]
 
 class AnimationPlaybackEvent(Event):
-    def New(self, type: str, eventInitDict: Union['AnimationPlaybackEventInit', 'None'] = {}) -> AnimationPlaybackEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['AnimationPlaybackEventInit', 'None'] = {}) -> AnimationPlaybackEvent: ...
     currentTime: Union['Union["CSSNumberish", "None"]', 'Union["float", "None"]']
     timelineTime: Union['Union["CSSNumberish", "None"]', 'Union["float", "None"]']
 
@@ -11127,7 +12819,8 @@ class DocumentTimelineOptions(TypedDict):
     originTime: NotRequired[DOMHighResTimeStamp]
 
 class DocumentTimeline(AnimationTimeline):
-    def New(self, options: Union['DocumentTimelineOptions', 'None'] = {}) -> DocumentTimeline: ...
+    @classmethod
+    def new(cls, options: Union['DocumentTimelineOptions', 'None'] = {}) -> DocumentTimeline: ...
 
 class BaseComputedKeyframe(TypedDict):
     offset: NotRequired[Union['float', 'None']]
@@ -11146,7 +12839,9 @@ class BaseKeyframe(TypedDict):
     composite: NotRequired[CompositeOperationOrAuto]
 
 class Animatable:
+
     def animate(self, keyframes: Union['object', 'None'], options: Union['float', 'KeyframeAnimationOptions', 'None'] = {}) -> Animation: ...
+
     def getAnimations(self, options: Union['GetAnimationsOptions', 'None'] = {}) -> Sequence[Animation]: ...
 
 class GetAnimationsOptions(TypedDict):
@@ -11157,6 +12852,7 @@ class LaunchParams:
     files: Sequence[FileSystemHandle]
 
 class LaunchQueue:
+
     def setConsumer(self, consumer: LaunchConsumer) -> None: ...
 
 class BluetoothDataFilterInit(TypedDict):
@@ -11184,10 +12880,13 @@ class RequestDeviceOptions(TypedDict):
     acceptAllDevices: NotRequired[bool]
 
 class Bluetooth(EventTarget, BluetoothDeviceEventHandlers, CharacteristicEventHandlers, ServiceEventHandlers):
+
     def getAvailability(self) -> Awaitable[bool]: ...
     onavailabilitychanged: EventHandler
     referringDevice: Union['BluetoothDevice', 'None']
+
     def getDevices(self) -> Awaitable[Sequence[BluetoothDevice]]: ...
+
     def requestDevice(self, options: Union['RequestDeviceOptions', 'None'] = {}) -> Awaitable[BluetoothDevice]: ...
 
 class BluetoothPermissionDescriptor(TypedDict, PermissionDescriptor):
@@ -11210,7 +12909,8 @@ class BluetoothPermissionResult(PermissionStatus):
     devices: Sequence[BluetoothDevice]
 
 class ValueEvent(Event):
-    def New(self, type: str, initDict: Union['ValueEventInit', 'None'] = {}) -> ValueEvent: ...
+    @classmethod
+    def new(cls, type: str, initDict: Union['ValueEventInit', 'None'] = {}) -> ValueEvent: ...
     value: Any
 
 class ValueEventInit(TypedDict, EventInit):
@@ -11220,7 +12920,9 @@ class BluetoothDevice(EventTarget, BluetoothDeviceEventHandlers, CharacteristicE
     id: str
     name: Union['str', 'None']
     gatt: Union['BluetoothRemoteGATTServer', 'None']
+
     def forget(self) -> Awaitable[None]: ...
+
     def watchAdvertisements(self, options: Union['WatchAdvertisementsOptions', 'None'] = {}) -> Awaitable[None]: ...
     watchingAdvertisements: bool
 
@@ -11232,7 +12934,8 @@ class BluetoothManufacturerDataMap: ...
 class BluetoothServiceDataMap: ...
 
 class BluetoothAdvertisingEvent(Event):
-    def New(self, type: str, init: BluetoothAdvertisingEventInit) -> BluetoothAdvertisingEvent: ...
+    @classmethod
+    def new(cls, type: str, init: BluetoothAdvertisingEventInit) -> BluetoothAdvertisingEvent: ...
     device: BluetoothDevice
     uuids: Sequence[UUID]
     name: Union['str', 'None']
@@ -11255,18 +12958,26 @@ class BluetoothAdvertisingEventInit(TypedDict, EventInit):
 class BluetoothRemoteGATTServer:
     device: BluetoothDevice
     connected: bool
+
     def connect(self) -> Awaitable[BluetoothRemoteGATTServer]: ...
+
     def disconnect(self) -> None: ...
+
     def getPrimaryService(self, service: BluetoothServiceUUID) -> Awaitable[BluetoothRemoteGATTService]: ...
+
     def getPrimaryServices(self, service: Union['BluetoothServiceUUID', 'None'] = None) -> Awaitable[Sequence[BluetoothRemoteGATTService]]: ...
 
 class BluetoothRemoteGATTService(EventTarget, CharacteristicEventHandlers, ServiceEventHandlers):
     device: BluetoothDevice
     uuid: UUID
     isPrimary: bool
+
     def getCharacteristic(self, characteristic: BluetoothCharacteristicUUID) -> Awaitable[BluetoothRemoteGATTCharacteristic]: ...
+
     def getCharacteristics(self, characteristic: Union['BluetoothCharacteristicUUID', 'None'] = None) -> Awaitable[Sequence[BluetoothRemoteGATTCharacteristic]]: ...
+
     def getIncludedService(self, service: BluetoothServiceUUID) -> Awaitable[BluetoothRemoteGATTService]: ...
+
     def getIncludedServices(self, service: Union['BluetoothServiceUUID', 'None'] = None) -> Awaitable[Sequence[BluetoothRemoteGATTService]]: ...
 
 class BluetoothRemoteGATTCharacteristic(EventTarget, CharacteristicEventHandlers):
@@ -11274,13 +12985,21 @@ class BluetoothRemoteGATTCharacteristic(EventTarget, CharacteristicEventHandlers
     uuid: UUID
     properties: BluetoothCharacteristicProperties
     value: DataView
+
     def getDescriptor(self, descriptor: BluetoothDescriptorUUID) -> Awaitable[BluetoothRemoteGATTDescriptor]: ...
+
     def getDescriptors(self, descriptor: Union['BluetoothDescriptorUUID', 'None'] = None) -> Awaitable[Sequence[BluetoothRemoteGATTDescriptor]]: ...
+
     def readValue(self) -> Awaitable[DataView]: ...
+
     def writeValue(self, value: BufferSource) -> Awaitable[None]: ...
+
     def writeValueWithResponse(self, value: BufferSource) -> Awaitable[None]: ...
+
     def writeValueWithoutResponse(self, value: BufferSource) -> Awaitable[None]: ...
+
     def startNotifications(self) -> Awaitable[BluetoothRemoteGATTCharacteristic]: ...
+
     def stopNotifications(self) -> Awaitable[BluetoothRemoteGATTCharacteristic]: ...
 
 class BluetoothCharacteristicProperties:
@@ -11298,7 +13017,9 @@ class BluetoothRemoteGATTDescriptor:
     characteristic: BluetoothRemoteGATTCharacteristic
     uuid: UUID
     value: DataView
+
     def readValue(self) -> Awaitable[DataView]: ...
+
     def writeValue(self, value: BufferSource) -> Awaitable[None]: ...
 
 class CharacteristicEventHandlers:
@@ -11323,6 +13044,7 @@ class LockManager:
     def request(self, name: str, callback: LockGrantedCallback) -> Awaitable[Any]: ...
     @overload
     def request(self, name: str, options: LockOptions, callback: LockGrantedCallback) -> Awaitable[Any]: ...
+
     def query(self) -> Awaitable[LockManagerSnapshot]: ...
 
 class LockOptions(TypedDict):
@@ -11345,20 +13067,23 @@ class Lock:
     mode: LockMode
 
 class NDEFMessage:
-    def New(self, messageInit: NDEFMessageInit) -> NDEFMessage: ...
+    @classmethod
+    def new(cls, messageInit: NDEFMessageInit) -> NDEFMessage: ...
     records: Sequence[NDEFRecord]
 
 class NDEFMessageInit(TypedDict):
     records: Sequence[NDEFRecordInit]
 
 class NDEFRecord:
-    def New(self, recordInit: NDEFRecordInit) -> NDEFRecord: ...
+    @classmethod
+    def new(cls, recordInit: NDEFRecordInit) -> NDEFRecord: ...
     recordType: str
     mediaType: Union['str', 'None']
     id: Union['str', 'None']
     data: DataView
     encoding: Union['str', 'None']
     lang: Union['str', 'None']
+
     def toRecords(self) -> Sequence[NDEFRecord]: ...
 
 class NDEFRecordInit(TypedDict):
@@ -11370,15 +13095,20 @@ class NDEFRecordInit(TypedDict):
     data: NotRequired[Any]
 
 class NDEFReader(EventTarget):
-    def New(self) -> NDEFReader: ...
+    @classmethod
+    def new(cls) -> NDEFReader: ...
     onreading: EventHandler
     onreadingerror: EventHandler
+
     def scan(self, options: Union['NDEFScanOptions', 'None'] = {}) -> Awaitable[None]: ...
+
     def write(self, message: NDEFMessageSource, options: Union['NDEFWriteOptions', 'None'] = {}) -> Awaitable[None]: ...
+
     def makeReadOnly(self, options: Union['NDEFMakeReadOnlyOptions', 'None'] = {}) -> Awaitable[None]: ...
 
 class NDEFReadingEvent(Event):
-    def New(self, type: str, readingEventInitDict: NDEFReadingEventInit) -> NDEFReadingEvent: ...
+    @classmethod
+    def new(cls, type: str, readingEventInitDict: NDEFReadingEventInit) -> NDEFReadingEvent: ...
     serialNumber: str
     message: NDEFMessage
 
@@ -11416,41 +13146,70 @@ class BaseAudioContext(EventTarget):
     state: AudioContextState
     audioWorklet: AudioWorklet
     onstatechange: EventHandler
+
     def createAnalyser(self) -> AnalyserNode: ...
+
     def createBiquadFilter(self) -> BiquadFilterNode: ...
+
     def createBuffer(self, numberOfChannels: int, length: int, sampleRate: float) -> AudioBuffer: ...
+
     def createBufferSource(self) -> AudioBufferSourceNode: ...
+
     def createChannelMerger(self, numberOfInputs: Union['int', 'None'] = 6) -> ChannelMergerNode: ...
+
     def createChannelSplitter(self, numberOfOutputs: Union['int', 'None'] = 6) -> ChannelSplitterNode: ...
+
     def createConstantSource(self) -> ConstantSourceNode: ...
+
     def createConvolver(self) -> ConvolverNode: ...
+
     def createDelay(self, maxDelayTime: Union['float', 'None'] = 1.0) -> DelayNode: ...
+
     def createDynamicsCompressor(self) -> DynamicsCompressorNode: ...
+
     def createGain(self) -> GainNode: ...
+
     def createIIRFilter(self, feedforward: Sequence[float], feedback: Sequence[float]) -> IIRFilterNode: ...
+
     def createOscillator(self) -> OscillatorNode: ...
+
     def createPanner(self) -> PannerNode: ...
+
     def createPeriodicWave(self, real: Sequence[float], imag: Sequence[float], constraints: Union['PeriodicWaveConstraints', 'None'] = {}) -> PeriodicWave: ...
+
     def createScriptProcessor(self, bufferSize: Union['int', 'None'] = 0, numberOfInputChannels: Union['int', 'None'] = 2, numberOfOutputChannels: Union['int', 'None'] = 2) -> ScriptProcessorNode: ...
+
     def createStereoPanner(self) -> StereoPannerNode: ...
+
     def createWaveShaper(self) -> WaveShaperNode: ...
+
     def decodeAudioData(self, audioData: ArrayBuffer, successCallback: Union['DecodeSuccessCallback', 'None'] = None, errorCallback: Union['DecodeErrorCallback', 'None'] = None) -> Awaitable[AudioBuffer]: ...
 
 class AudioContext(BaseAudioContext):
-    def New(self, contextOptions: Union['AudioContextOptions', 'None'] = {}) -> AudioContext: ...
+    @classmethod
+    def new(cls, contextOptions: Union['AudioContextOptions', 'None'] = {}) -> AudioContext: ...
     baseLatency: float
     outputLatency: float
     sinkId: Union['str', 'AudioSinkInfo']
     renderCapacity: AudioRenderCapacity
     onsinkchange: EventHandler
+
     def getOutputTimestamp(self) -> AudioTimestamp: ...
+
     def resume(self) -> Awaitable[None]: ...
+
     def suspend(self) -> Awaitable[None]: ...
+
     def close(self) -> Awaitable[None]: ...
+
     def setSinkId(self, sinkId: Union['str', 'AudioSinkOptions']) -> Awaitable[None]: ...
+
     def createMediaElementSource(self, mediaElement: HTMLMediaElement) -> MediaElementAudioSourceNode: ...
+
     def createMediaStreamSource(self, mediaStream: MediaStream) -> MediaStreamAudioSourceNode: ...
+
     def createMediaStreamTrackSource(self, mediaStreamTrack: MediaStreamTrack) -> MediaStreamTrackAudioSourceNode: ...
+
     def createMediaStreamDestination(self) -> MediaStreamAudioDestinationNode: ...
 
 class AudioContextOptions(TypedDict):
@@ -11469,7 +13228,9 @@ class AudioTimestamp(TypedDict):
     performanceTime: NotRequired[DOMHighResTimeStamp]
 
 class AudioRenderCapacity(EventTarget):
+
     def start(self, options: Union['AudioRenderCapacityOptions', 'None'] = {}) -> None: ...
+
     def stop(self) -> None: ...
     onupdate: EventHandler
 
@@ -11477,7 +13238,8 @@ class AudioRenderCapacityOptions(TypedDict):
     updateInterval: NotRequired[float]
 
 class AudioRenderCapacityEvent(Event):
-    def New(self, type: str, eventInitDict: Union['AudioRenderCapacityEventInit', 'None'] = {}) -> AudioRenderCapacityEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['AudioRenderCapacityEventInit', 'None'] = {}) -> AudioRenderCapacityEvent: ...
     timestamp: float
     averageLoad: float
     peakLoad: float
@@ -11491,11 +13253,16 @@ class AudioRenderCapacityEventInit(TypedDict, EventInit):
 
 class OfflineAudioContext(BaseAudioContext):
     @overload
-    def New(self, contextOptions: OfflineAudioContextOptions) -> OfflineAudioContext: ...
+    @classmethod
+    def new(cls, contextOptions: OfflineAudioContextOptions) -> OfflineAudioContext: ...
     @overload
-    def New(self, numberOfChannels: int, length: int, sampleRate: float) -> OfflineAudioContext: ...
+    @classmethod
+    def new(cls, numberOfChannels: int, length: int, sampleRate: float) -> OfflineAudioContext: ...
+
     def startRendering(self) -> Awaitable[AudioBuffer]: ...
+
     def resume(self) -> Awaitable[None]: ...
+
     def suspend(self, suspendTime: float) -> Awaitable[None]: ...
     length: int
     oncomplete: EventHandler
@@ -11506,20 +13273,25 @@ class OfflineAudioContextOptions(TypedDict):
     sampleRate: float
 
 class OfflineAudioCompletionEvent(Event):
-    def New(self, type: str, eventInitDict: OfflineAudioCompletionEventInit) -> OfflineAudioCompletionEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: OfflineAudioCompletionEventInit) -> OfflineAudioCompletionEvent: ...
     renderedBuffer: AudioBuffer
 
 class OfflineAudioCompletionEventInit(TypedDict, EventInit):
     renderedBuffer: AudioBuffer
 
 class AudioBuffer:
-    def New(self, options: AudioBufferOptions) -> AudioBuffer: ...
+    @classmethod
+    def new(cls, options: AudioBufferOptions) -> AudioBuffer: ...
     sampleRate: float
     length: int
     duration: float
     numberOfChannels: int
+
     def getChannelData(self, channel: int) -> Float32Array: ...
+
     def copyFromChannel(self, destination: Float32Array, channelNumber: int, bufferOffset: Union['int', 'None'] = 0) -> None: ...
+
     def copyToChannel(self, source: Float32Array, channelNumber: int, bufferOffset: Union['int', 'None'] = 0) -> None: ...
 
 class AudioBufferOptions(TypedDict):
@@ -11564,24 +13336,38 @@ class AudioParam:
     defaultValue: float
     minValue: float
     maxValue: float
+
     def setValueAtTime(self, value: float, startTime: float) -> AudioParam: ...
+
     def linearRampToValueAtTime(self, value: float, endTime: float) -> AudioParam: ...
+
     def exponentialRampToValueAtTime(self, value: float, endTime: float) -> AudioParam: ...
+
     def setTargetAtTime(self, target: float, startTime: float, timeConstant: float) -> AudioParam: ...
+
     def setValueCurveAtTime(self, values: Sequence[float], startTime: float, duration: float) -> AudioParam: ...
+
     def cancelScheduledValues(self, cancelTime: float) -> AudioParam: ...
+
     def cancelAndHoldAtTime(self, cancelTime: float) -> AudioParam: ...
 
 class AudioScheduledSourceNode(AudioNode):
     onended: EventHandler
+
     def start(self, when: Union['float', 'None'] = 0) -> None: ...
+
     def stop(self, when: Union['float', 'None'] = 0) -> None: ...
 
 class AnalyserNode(AudioNode):
-    def New(self, context: BaseAudioContext, options: Union['AnalyserOptions', 'None'] = {}) -> AnalyserNode: ...
+    @classmethod
+    def new(cls, context: BaseAudioContext, options: Union['AnalyserOptions', 'None'] = {}) -> AnalyserNode: ...
+
     def getFloatFrequencyData(self, array: Float32Array) -> None: ...
+
     def getByteFrequencyData(self, array: Uint8Array) -> None: ...
+
     def getFloatTimeDomainData(self, array: Float32Array) -> None: ...
+
     def getByteTimeDomainData(self, array: Uint8Array) -> None: ...
     fftSize: int
     frequencyBinCount: int
@@ -11596,13 +13382,15 @@ class AnalyserOptions(TypedDict, AudioNodeOptions):
     smoothingTimeConstant: NotRequired[float]
 
 class AudioBufferSourceNode(AudioScheduledSourceNode):
-    def New(self, context: BaseAudioContext, options: Union['AudioBufferSourceOptions', 'None'] = {}) -> AudioBufferSourceNode: ...
+    @classmethod
+    def new(cls, context: BaseAudioContext, options: Union['AudioBufferSourceOptions', 'None'] = {}) -> AudioBufferSourceNode: ...
     buffer: Union['AudioBuffer', 'None']
     playbackRate: AudioParam
     detune: AudioParam
     loop: bool
     loopStart: float
     loopEnd: float
+
     def start(self, when: Union['float', 'None'] = 0, offset: Union['float', 'None'] = None, duration: Union['float', 'None'] = None) -> None: ...
 
 class AudioBufferSourceOptions(TypedDict):
@@ -11626,11 +13414,14 @@ class AudioListener:
     upX: AudioParam
     upY: AudioParam
     upZ: AudioParam
+
     def setPosition(self, x: float, y: float, z: float) -> None: ...
+
     def setOrientation(self, x: float, y: float, z: float, xUp: float, yUp: float, zUp: float) -> None: ...
 
 class AudioProcessingEvent(Event):
-    def New(self, type: str, eventInitDict: AudioProcessingEventInit) -> AudioProcessingEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: AudioProcessingEventInit) -> AudioProcessingEvent: ...
     playbackTime: float
     inputBuffer: AudioBuffer
     outputBuffer: AudioBuffer
@@ -11641,12 +13432,14 @@ class AudioProcessingEventInit(TypedDict, EventInit):
     outputBuffer: AudioBuffer
 
 class BiquadFilterNode(AudioNode):
-    def New(self, context: BaseAudioContext, options: Union['BiquadFilterOptions', 'None'] = {}) -> BiquadFilterNode: ...
+    @classmethod
+    def new(cls, context: BaseAudioContext, options: Union['BiquadFilterOptions', 'None'] = {}) -> BiquadFilterNode: ...
     type: BiquadFilterType
     frequency: AudioParam
     detune: AudioParam
     Q: AudioParam
     gain: AudioParam
+
     def getFrequencyResponse(self, frequencyHz: Float32Array, magResponse: Float32Array, phaseResponse: Float32Array) -> None: ...
 
 class BiquadFilterOptions(TypedDict, AudioNodeOptions):
@@ -11657,26 +13450,30 @@ class BiquadFilterOptions(TypedDict, AudioNodeOptions):
     gain: NotRequired[float]
 
 class ChannelMergerNode(AudioNode):
-    def New(self, context: BaseAudioContext, options: Union['ChannelMergerOptions', 'None'] = {}) -> ChannelMergerNode: ...
+    @classmethod
+    def new(cls, context: BaseAudioContext, options: Union['ChannelMergerOptions', 'None'] = {}) -> ChannelMergerNode: ...
 
 class ChannelMergerOptions(TypedDict, AudioNodeOptions):
     numberOfInputs: NotRequired[int]
 
 class ChannelSplitterNode(AudioNode):
-    def New(self, context: BaseAudioContext, options: Union['ChannelSplitterOptions', 'None'] = {}) -> ChannelSplitterNode: ...
+    @classmethod
+    def new(cls, context: BaseAudioContext, options: Union['ChannelSplitterOptions', 'None'] = {}) -> ChannelSplitterNode: ...
 
 class ChannelSplitterOptions(TypedDict, AudioNodeOptions):
     numberOfOutputs: NotRequired[int]
 
 class ConstantSourceNode(AudioScheduledSourceNode):
-    def New(self, context: BaseAudioContext, options: Union['ConstantSourceOptions', 'None'] = {}) -> ConstantSourceNode: ...
+    @classmethod
+    def new(cls, context: BaseAudioContext, options: Union['ConstantSourceOptions', 'None'] = {}) -> ConstantSourceNode: ...
     offset: AudioParam
 
 class ConstantSourceOptions(TypedDict):
     offset: NotRequired[float]
 
 class ConvolverNode(AudioNode):
-    def New(self, context: BaseAudioContext, options: Union['ConvolverOptions', 'None'] = {}) -> ConvolverNode: ...
+    @classmethod
+    def new(cls, context: BaseAudioContext, options: Union['ConvolverOptions', 'None'] = {}) -> ConvolverNode: ...
     buffer: Union['AudioBuffer', 'None']
     normalize: bool
 
@@ -11685,7 +13482,8 @@ class ConvolverOptions(TypedDict, AudioNodeOptions):
     disableNormalization: NotRequired[bool]
 
 class DelayNode(AudioNode):
-    def New(self, context: BaseAudioContext, options: Union['DelayOptions', 'None'] = {}) -> DelayNode: ...
+    @classmethod
+    def new(cls, context: BaseAudioContext, options: Union['DelayOptions', 'None'] = {}) -> DelayNode: ...
     delayTime: AudioParam
 
 class DelayOptions(TypedDict, AudioNodeOptions):
@@ -11693,7 +13491,8 @@ class DelayOptions(TypedDict, AudioNodeOptions):
     delayTime: NotRequired[float]
 
 class DynamicsCompressorNode(AudioNode):
-    def New(self, context: BaseAudioContext, options: Union['DynamicsCompressorOptions', 'None'] = {}) -> DynamicsCompressorNode: ...
+    @classmethod
+    def new(cls, context: BaseAudioContext, options: Union['DynamicsCompressorOptions', 'None'] = {}) -> DynamicsCompressorNode: ...
     threshold: AudioParam
     knee: AudioParam
     ratio: AudioParam
@@ -11709,14 +13508,17 @@ class DynamicsCompressorOptions(TypedDict, AudioNodeOptions):
     threshold: NotRequired[float]
 
 class GainNode(AudioNode):
-    def New(self, context: BaseAudioContext, options: Union['GainOptions', 'None'] = {}) -> GainNode: ...
+    @classmethod
+    def new(cls, context: BaseAudioContext, options: Union['GainOptions', 'None'] = {}) -> GainNode: ...
     gain: AudioParam
 
 class GainOptions(TypedDict, AudioNodeOptions):
     gain: NotRequired[float]
 
 class IIRFilterNode(AudioNode):
-    def New(self, context: BaseAudioContext, options: IIRFilterOptions) -> IIRFilterNode: ...
+    @classmethod
+    def new(cls, context: BaseAudioContext, options: IIRFilterOptions) -> IIRFilterNode: ...
+
     def getFrequencyResponse(self, frequencyHz: Float32Array, magResponse: Float32Array, phaseResponse: Float32Array) -> None: ...
 
 class IIRFilterOptions(TypedDict, AudioNodeOptions):
@@ -11724,34 +13526,40 @@ class IIRFilterOptions(TypedDict, AudioNodeOptions):
     feedback: Sequence[float]
 
 class MediaElementAudioSourceNode(AudioNode):
-    def New(self, context: AudioContext, options: MediaElementAudioSourceOptions) -> MediaElementAudioSourceNode: ...
+    @classmethod
+    def new(cls, context: AudioContext, options: MediaElementAudioSourceOptions) -> MediaElementAudioSourceNode: ...
     mediaElement: HTMLMediaElement
 
 class MediaElementAudioSourceOptions(TypedDict):
     mediaElement: HTMLMediaElement
 
 class MediaStreamAudioDestinationNode(AudioNode):
-    def New(self, context: AudioContext, options: Union['AudioNodeOptions', 'None'] = {}) -> MediaStreamAudioDestinationNode: ...
+    @classmethod
+    def new(cls, context: AudioContext, options: Union['AudioNodeOptions', 'None'] = {}) -> MediaStreamAudioDestinationNode: ...
     stream: MediaStream
 
 class MediaStreamAudioSourceNode(AudioNode):
-    def New(self, context: AudioContext, options: MediaStreamAudioSourceOptions) -> MediaStreamAudioSourceNode: ...
+    @classmethod
+    def new(cls, context: AudioContext, options: MediaStreamAudioSourceOptions) -> MediaStreamAudioSourceNode: ...
     mediaStream: MediaStream
 
 class MediaStreamAudioSourceOptions(TypedDict):
     mediaStream: MediaStream
 
 class MediaStreamTrackAudioSourceNode(AudioNode):
-    def New(self, context: AudioContext, options: MediaStreamTrackAudioSourceOptions) -> MediaStreamTrackAudioSourceNode: ...
+    @classmethod
+    def new(cls, context: AudioContext, options: MediaStreamTrackAudioSourceOptions) -> MediaStreamTrackAudioSourceNode: ...
 
 class MediaStreamTrackAudioSourceOptions(TypedDict):
     mediaStreamTrack: MediaStreamTrack
 
 class OscillatorNode(AudioScheduledSourceNode):
-    def New(self, context: BaseAudioContext, options: Union['OscillatorOptions', 'None'] = {}) -> OscillatorNode: ...
+    @classmethod
+    def new(cls, context: BaseAudioContext, options: Union['OscillatorOptions', 'None'] = {}) -> OscillatorNode: ...
     type: OscillatorType
     frequency: AudioParam
     detune: AudioParam
+
     def setPeriodicWave(self, periodicWave: PeriodicWave) -> None: ...
 
 class OscillatorOptions(TypedDict, AudioNodeOptions):
@@ -11761,7 +13569,8 @@ class OscillatorOptions(TypedDict, AudioNodeOptions):
     periodicWave: NotRequired[PeriodicWave]
 
 class PannerNode(AudioNode):
-    def New(self, context: BaseAudioContext, options: Union['PannerOptions', 'None'] = {}) -> PannerNode: ...
+    @classmethod
+    def new(cls, context: BaseAudioContext, options: Union['PannerOptions', 'None'] = {}) -> PannerNode: ...
     panningModel: PanningModelType
     positionX: AudioParam
     positionY: AudioParam
@@ -11776,7 +13585,9 @@ class PannerNode(AudioNode):
     coneInnerAngle: float
     coneOuterAngle: float
     coneOuterGain: float
+
     def setPosition(self, x: float, y: float, z: float) -> None: ...
+
     def setOrientation(self, x: float, y: float, z: float) -> None: ...
 
 class PannerOptions(TypedDict, AudioNodeOptions):
@@ -11796,7 +13607,8 @@ class PannerOptions(TypedDict, AudioNodeOptions):
     coneOuterGain: NotRequired[float]
 
 class PeriodicWave:
-    def New(self, context: BaseAudioContext, options: Union['PeriodicWaveOptions', 'None'] = {}) -> PeriodicWave: ...
+    @classmethod
+    def new(cls, context: BaseAudioContext, options: Union['PeriodicWaveOptions', 'None'] = {}) -> PeriodicWave: ...
 
 class PeriodicWaveConstraints(TypedDict):
     disableNormalization: NotRequired[bool]
@@ -11810,14 +13622,16 @@ class ScriptProcessorNode(AudioNode):
     bufferSize: int
 
 class StereoPannerNode(AudioNode):
-    def New(self, context: BaseAudioContext, options: Union['StereoPannerOptions', 'None'] = {}) -> StereoPannerNode: ...
+    @classmethod
+    def new(cls, context: BaseAudioContext, options: Union['StereoPannerOptions', 'None'] = {}) -> StereoPannerNode: ...
     pan: AudioParam
 
 class StereoPannerOptions(TypedDict, AudioNodeOptions):
     pan: NotRequired[float]
 
 class WaveShaperNode(AudioNode):
-    def New(self, context: BaseAudioContext, options: Union['WaveShaperOptions', 'None'] = {}) -> WaveShaperNode: ...
+    @classmethod
+    def new(cls, context: BaseAudioContext, options: Union['WaveShaperOptions', 'None'] = {}) -> WaveShaperNode: ...
     curve: Float32Array
     oversample: OverSampleType
 
@@ -11829,6 +13643,7 @@ class AudioWorklet(Worklet):
     port: MessagePort
 
 class AudioWorkletGlobalScope(WorkletGlobalScope):
+
     def registerProcessor(self, name: str, processorCtor: AudioWorkletProcessorConstructor) -> None: ...
     currentFrame: int
     currentTime: float
@@ -11838,7 +13653,8 @@ class AudioWorkletGlobalScope(WorkletGlobalScope):
 class AudioParamMap: ...
 
 class AudioWorkletNode(AudioNode):
-    def New(self, context: BaseAudioContext, name: str, options: Union['AudioWorkletNodeOptions', 'None'] = {}) -> AudioWorkletNode: ...
+    @classmethod
+    def new(cls, context: BaseAudioContext, name: str, options: Union['AudioWorkletNodeOptions', 'None'] = {}) -> AudioWorkletNode: ...
     parameters: AudioParamMap
     port: MessagePort
     onprocessorerror: EventHandler
@@ -11851,7 +13667,8 @@ class AudioWorkletNodeOptions(TypedDict, AudioNodeOptions):
     processorOptions: NotRequired[object]
 
 class AudioWorkletProcessor:
-    def New(self) -> AudioWorkletProcessor: ...
+    @classmethod
+    def new(cls) -> AudioWorkletProcessor: ...
     port: MessagePort
 
 class AudioParamDescriptor(TypedDict):
@@ -11865,7 +13682,9 @@ class PublicKeyCredential(Credential):
     rawId: ArrayBuffer
     response: AuthenticatorResponse
     authenticatorAttachment: Union['str', 'None']
+
     def getClientExtensionResults(self) -> AuthenticationExtensionsClientOutputs: ...
+
     def toJSON(self) -> PublicKeyCredentialJSON: ...
 
 class RegistrationResponseJSON(TypedDict):
@@ -11936,9 +13755,13 @@ class AuthenticatorResponse:
 
 class AuthenticatorAttestationResponse(AuthenticatorResponse):
     attestationObject: ArrayBuffer
+
     def getTransports(self) -> Sequence[str]: ...
+
     def getAuthenticatorData(self) -> ArrayBuffer: ...
+
     def getPublicKey(self) -> ArrayBuffer: ...
+
     def getPublicKeyAlgorithm(self) -> COSEAlgorithmIdentifier: ...
 
 class AuthenticatorAssertionResponse(AuthenticatorResponse):
@@ -12104,14 +13927,20 @@ class VideoEncoderEncodeOptionsForVp9(TypedDict):
     quantizer: NotRequired[Union['int', 'None']]
 
 class AudioDecoder(EventTarget):
-    def New(self, init: AudioDecoderInit) -> AudioDecoder: ...
+    @classmethod
+    def new(cls, init: AudioDecoderInit) -> AudioDecoder: ...
     state: CodecState
     decodeQueueSize: int
     ondequeue: EventHandler
+
     def configure(self, config: AudioDecoderConfig) -> None: ...
+
     def decode(self, chunk: EncodedAudioChunk) -> None: ...
+
     def flush(self) -> Awaitable[None]: ...
+
     def reset(self) -> None: ...
+
     def close(self) -> None: ...
 
 class AudioDecoderInit(TypedDict):
@@ -12119,14 +13948,20 @@ class AudioDecoderInit(TypedDict):
     error: WebCodecsErrorCallback
 
 class VideoDecoder(EventTarget):
-    def New(self, init: VideoDecoderInit) -> VideoDecoder: ...
+    @classmethod
+    def new(cls, init: VideoDecoderInit) -> VideoDecoder: ...
     state: CodecState
     decodeQueueSize: int
     ondequeue: EventHandler
+
     def configure(self, config: VideoDecoderConfig) -> None: ...
+
     def decode(self, chunk: EncodedVideoChunk) -> None: ...
+
     def flush(self) -> Awaitable[None]: ...
+
     def reset(self) -> None: ...
+
     def close(self) -> None: ...
 
 class VideoDecoderInit(TypedDict):
@@ -12134,14 +13969,20 @@ class VideoDecoderInit(TypedDict):
     error: WebCodecsErrorCallback
 
 class AudioEncoder(EventTarget):
-    def New(self, init: AudioEncoderInit) -> AudioEncoder: ...
+    @classmethod
+    def new(cls, init: AudioEncoderInit) -> AudioEncoder: ...
     state: CodecState
     encodeQueueSize: int
     ondequeue: EventHandler
+
     def configure(self, config: AudioEncoderConfig) -> None: ...
+
     def encode(self, data: AudioData) -> None: ...
+
     def flush(self) -> Awaitable[None]: ...
+
     def reset(self) -> None: ...
+
     def close(self) -> None: ...
 
 class AudioEncoderInit(TypedDict):
@@ -12152,14 +13993,20 @@ class EncodedAudioChunkMetadata(TypedDict):
     decoderConfig: NotRequired[AudioDecoderConfig]
 
 class VideoEncoder(EventTarget):
-    def New(self, init: VideoEncoderInit) -> VideoEncoder: ...
+    @classmethod
+    def new(cls, init: VideoEncoderInit) -> VideoEncoder: ...
     state: CodecState
     encodeQueueSize: int
     ondequeue: EventHandler
+
     def configure(self, config: VideoEncoderConfig) -> None: ...
+
     def encode(self, frame: VideoFrame, options: Union['VideoEncoderEncodeOptions', 'None'] = {}) -> None: ...
+
     def flush(self) -> Awaitable[None]: ...
+
     def reset(self) -> None: ...
+
     def close(self) -> None: ...
 
 class VideoEncoderInit(TypedDict):
@@ -12208,11 +14055,13 @@ class VideoDecoderConfig(TypedDict):
     optimizeForLatency: NotRequired[bool]
 
 class EncodedAudioChunk:
-    def New(self, init: EncodedAudioChunkInit) -> EncodedAudioChunk: ...
+    @classmethod
+    def new(cls, init: EncodedAudioChunkInit) -> EncodedAudioChunk: ...
     type: EncodedAudioChunkType
     timestamp: int
     duration: Union['int', 'None']
     byteLength: int
+
     def copyTo(self, destination: AllowSharedBufferSource) -> None: ...
 
 class EncodedAudioChunkInit(TypedDict):
@@ -12222,11 +14071,13 @@ class EncodedAudioChunkInit(TypedDict):
     data: BufferSource
 
 class EncodedVideoChunk:
-    def New(self, init: EncodedVideoChunkInit) -> EncodedVideoChunk: ...
+    @classmethod
+    def new(cls, init: EncodedVideoChunkInit) -> EncodedVideoChunk: ...
     type: EncodedVideoChunkType
     timestamp: int
     duration: Union['int', 'None']
     byteLength: int
+
     def copyTo(self, destination: AllowSharedBufferSource) -> None: ...
 
 class EncodedVideoChunkInit(TypedDict):
@@ -12236,16 +14087,21 @@ class EncodedVideoChunkInit(TypedDict):
     data: AllowSharedBufferSource
 
 class AudioData:
-    def New(self, init: AudioDataInit) -> AudioData: ...
+    @classmethod
+    def new(cls, init: AudioDataInit) -> AudioData: ...
     format: Union['AudioSampleFormat', 'None']
     sampleRate: float
     numberOfFrames: int
     numberOfChannels: int
     duration: int
     timestamp: int
+
     def allocationSize(self, options: AudioDataCopyToOptions) -> int: ...
+
     def copyTo(self, destination: AllowSharedBufferSource, options: AudioDataCopyToOptions) -> None: ...
+
     def clone(self) -> AudioData: ...
+
     def close(self) -> None: ...
 
 class AudioDataInit(TypedDict):
@@ -12265,9 +14121,11 @@ class AudioDataCopyToOptions(TypedDict):
 
 class VideoFrame:
     @overload
-    def New(self, image: CanvasImageSource, init: Union['VideoFrameInit', 'None'] = {}) -> VideoFrame: ...
+    @classmethod
+    def new(cls, image: CanvasImageSource, init: Union['VideoFrameInit', 'None'] = {}) -> VideoFrame: ...
     @overload
-    def New(self, data: AllowSharedBufferSource, init: VideoFrameBufferInit) -> VideoFrame: ...
+    @classmethod
+    def new(cls, data: AllowSharedBufferSource, init: VideoFrameBufferInit) -> VideoFrame: ...
     format: Union['VideoPixelFormat', 'None']
     codedWidth: int
     codedHeight: int
@@ -12278,10 +14136,15 @@ class VideoFrame:
     duration: Union['int', 'None']
     timestamp: int
     colorSpace: VideoColorSpace
+
     def metadata(self) -> VideoFrameMetadata: ...
+
     def allocationSize(self, options: Union['VideoFrameCopyToOptions', 'None'] = {}) -> int: ...
+
     def copyTo(self, destination: AllowSharedBufferSource, options: Union['VideoFrameCopyToOptions', 'None'] = {}) -> Awaitable[Sequence[PlaneLayout]]: ...
+
     def clone(self) -> VideoFrame: ...
+
     def close(self) -> None: ...
 
 class VideoFrameInit(TypedDict):
@@ -12317,11 +14180,13 @@ class PlaneLayout(TypedDict):
     stride: int
 
 class VideoColorSpace:
-    def New(self, init: Union['VideoColorSpaceInit', 'None'] = {}) -> VideoColorSpace: ...
+    @classmethod
+    def new(cls, init: Union['VideoColorSpaceInit', 'None'] = {}) -> VideoColorSpace: ...
     primaries: Union['VideoColorPrimaries', 'None']
     transfer: Union['VideoTransferCharacteristics', 'None']
     matrix: Union['VideoMatrixCoefficients', 'None']
     fullRange: Union['bool', 'None']
+
     def toJSON(self) -> VideoColorSpaceInit: ...
 
 class VideoColorSpaceInit(TypedDict):
@@ -12331,13 +14196,17 @@ class VideoColorSpaceInit(TypedDict):
     fullRange: NotRequired[Union['bool', 'None']]
 
 class ImageDecoder:
-    def New(self, init: ImageDecoderInit) -> ImageDecoder: ...
+    @classmethod
+    def new(cls, init: ImageDecoderInit) -> ImageDecoder: ...
     type: str
     complete: bool
     completed: Awaitable[None]
     tracks: ImageTrackList
+
     def decode(self, options: Union['ImageDecodeOptions', 'None'] = {}) -> Awaitable[ImageDecodeResult]: ...
+
     def reset(self) -> None: ...
+
     def close(self) -> None: ...
 
 class ImageDecoderInit(TypedDict):
@@ -12715,124 +14584,243 @@ class WebGLRenderingContextBase:
     drawingBufferHeight: GLsizei
     drawingBufferColorSpace: PredefinedColorSpace
     unpackColorSpace: PredefinedColorSpace
+
     def getContextAttributes(self) -> Union['WebGLContextAttributes', 'None']: ...
+
     def isContextLost(self) -> bool: ...
+
     def getSupportedExtensions(self) -> Sequence[str]: ...
+
     def getExtension(self, name: str) -> Union['object', 'None']: ...
+
     def activeTexture(self, texture: GLenum) -> None: ...
+
     def attachShader(self, program: WebGLProgram, shader: WebGLShader) -> None: ...
+
     def bindAttribLocation(self, program: WebGLProgram, index: GLuint, name: str) -> None: ...
+
     def bindBuffer(self, target: GLenum, buffer: Union['WebGLBuffer', 'None']) -> None: ...
+
     def bindFramebuffer(self, target: GLenum, framebuffer: Union['WebGLFramebuffer', 'None']) -> None: ...
+
     def bindRenderbuffer(self, target: GLenum, renderbuffer: Union['WebGLRenderbuffer', 'None']) -> None: ...
+
     def bindTexture(self, target: GLenum, texture: Union['WebGLTexture', 'None']) -> None: ...
+
     def blendColor(self, red: GLclampf, green: GLclampf, blue: GLclampf, alpha: GLclampf) -> None: ...
+
     def blendEquation(self, mode: GLenum) -> None: ...
+
     def blendEquationSeparate(self, modeRGB: GLenum, modeAlpha: GLenum) -> None: ...
+
     def blendFunc(self, sfactor: GLenum, dfactor: GLenum) -> None: ...
+
     def blendFuncSeparate(self, srcRGB: GLenum, dstRGB: GLenum, srcAlpha: GLenum, dstAlpha: GLenum) -> None: ...
+
     def checkFramebufferStatus(self, target: GLenum) -> GLenum: ...
+
     def clear(self, mask: GLbitfield) -> None: ...
+
     def clearColor(self, red: GLclampf, green: GLclampf, blue: GLclampf, alpha: GLclampf) -> None: ...
+
     def clearDepth(self, depth: GLclampf) -> None: ...
+
     def clearStencil(self, s: GLint) -> None: ...
+
     def colorMask(self, red: GLboolean, green: GLboolean, blue: GLboolean, alpha: GLboolean) -> None: ...
+
     def compileShader(self, shader: WebGLShader) -> None: ...
+
     def copyTexImage2D(self, target: GLenum, level: GLint, internalformat: GLenum, x: GLint, y: GLint, width: GLsizei, height: GLsizei, border: GLint) -> None: ...
+
     def copyTexSubImage2D(self, target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, x: GLint, y: GLint, width: GLsizei, height: GLsizei) -> None: ...
+
     def createBuffer(self) -> Union['WebGLBuffer', 'None']: ...
+
     def createFramebuffer(self) -> Union['WebGLFramebuffer', 'None']: ...
+
     def createProgram(self) -> Union['WebGLProgram', 'None']: ...
+
     def createRenderbuffer(self) -> Union['WebGLRenderbuffer', 'None']: ...
+
     def createShader(self, type: GLenum) -> Union['WebGLShader', 'None']: ...
+
     def createTexture(self) -> Union['WebGLTexture', 'None']: ...
+
     def cullFace(self, mode: GLenum) -> None: ...
+
     def deleteBuffer(self, buffer: Union['WebGLBuffer', 'None']) -> None: ...
+
     def deleteFramebuffer(self, framebuffer: Union['WebGLFramebuffer', 'None']) -> None: ...
+
     def deleteProgram(self, program: Union['WebGLProgram', 'None']) -> None: ...
+
     def deleteRenderbuffer(self, renderbuffer: Union['WebGLRenderbuffer', 'None']) -> None: ...
+
     def deleteShader(self, shader: Union['WebGLShader', 'None']) -> None: ...
+
     def deleteTexture(self, texture: Union['WebGLTexture', 'None']) -> None: ...
+
     def depthFunc(self, func: GLenum) -> None: ...
+
     def depthMask(self, flag: GLboolean) -> None: ...
+
     def depthRange(self, zNear: GLclampf, zFar: GLclampf) -> None: ...
+
     def detachShader(self, program: WebGLProgram, shader: WebGLShader) -> None: ...
+
     def disable(self, cap: GLenum) -> None: ...
+
     def disableVertexAttribArray(self, index: GLuint) -> None: ...
+
     def drawArrays(self, mode: GLenum, first: GLint, count: GLsizei) -> None: ...
+
     def drawElements(self, mode: GLenum, count: GLsizei, type: GLenum, offset: GLintptr) -> None: ...
+
     def enable(self, cap: GLenum) -> None: ...
+
     def enableVertexAttribArray(self, index: GLuint) -> None: ...
+
     def finish(self) -> None: ...
+
     def flush(self) -> None: ...
+
     def framebufferRenderbuffer(self, target: GLenum, attachment: GLenum, renderbuffertarget: GLenum, renderbuffer: Union['WebGLRenderbuffer', 'None']) -> None: ...
+
     def framebufferTexture2D(self, target: GLenum, attachment: GLenum, textarget: GLenum, texture: Union['WebGLTexture', 'None'], level: GLint) -> None: ...
+
     def frontFace(self, mode: GLenum) -> None: ...
+
     def generateMipmap(self, target: GLenum) -> None: ...
+
     def getActiveAttrib(self, program: WebGLProgram, index: GLuint) -> Union['WebGLActiveInfo', 'None']: ...
+
     def getActiveUniform(self, program: WebGLProgram, index: GLuint) -> Union['WebGLActiveInfo', 'None']: ...
+
     def getAttachedShaders(self, program: WebGLProgram) -> Sequence[WebGLShader]: ...
+
     def getAttribLocation(self, program: WebGLProgram, name: str) -> GLint: ...
+
     def getBufferParameter(self, target: GLenum, pname: GLenum) -> Any: ...
+
     def getParameter(self, pname: GLenum) -> Any: ...
+
     def getError(self) -> GLenum: ...
+
     def getFramebufferAttachmentParameter(self, target: GLenum, attachment: GLenum, pname: GLenum) -> Any: ...
+
     def getProgramParameter(self, program: WebGLProgram, pname: GLenum) -> Any: ...
+
     def getProgramInfoLog(self, program: WebGLProgram) -> Union['str', 'None']: ...
+
     def getRenderbufferParameter(self, target: GLenum, pname: GLenum) -> Any: ...
+
     def getShaderParameter(self, shader: WebGLShader, pname: GLenum) -> Any: ...
+
     def getShaderPrecisionFormat(self, shadertype: GLenum, precisiontype: GLenum) -> Union['WebGLShaderPrecisionFormat', 'None']: ...
+
     def getShaderInfoLog(self, shader: WebGLShader) -> Union['str', 'None']: ...
+
     def getShaderSource(self, shader: WebGLShader) -> Union['str', 'None']: ...
+
     def getTexParameter(self, target: GLenum, pname: GLenum) -> Any: ...
+
     def getUniform(self, program: WebGLProgram, location: WebGLUniformLocation) -> Any: ...
+
     def getUniformLocation(self, program: WebGLProgram, name: str) -> Union['WebGLUniformLocation', 'None']: ...
+
     def getVertexAttrib(self, index: GLuint, pname: GLenum) -> Any: ...
+
     def getVertexAttribOffset(self, index: GLuint, pname: GLenum) -> GLintptr: ...
+
     def hint(self, target: GLenum, mode: GLenum) -> None: ...
+
     def isBuffer(self, buffer: Union['WebGLBuffer', 'None']) -> GLboolean: ...
+
     def isEnabled(self, cap: GLenum) -> GLboolean: ...
+
     def isFramebuffer(self, framebuffer: Union['WebGLFramebuffer', 'None']) -> GLboolean: ...
+
     def isProgram(self, program: Union['WebGLProgram', 'None']) -> GLboolean: ...
+
     def isRenderbuffer(self, renderbuffer: Union['WebGLRenderbuffer', 'None']) -> GLboolean: ...
+
     def isShader(self, shader: Union['WebGLShader', 'None']) -> GLboolean: ...
+
     def isTexture(self, texture: Union['WebGLTexture', 'None']) -> GLboolean: ...
+
     def lineWidth(self, width: GLfloat) -> None: ...
+
     def linkProgram(self, program: WebGLProgram) -> None: ...
+
     def pixelStorei(self, pname: GLenum, param: GLint) -> None: ...
+
     def polygonOffset(self, factor: GLfloat, units: GLfloat) -> None: ...
+
     def renderbufferStorage(self, target: GLenum, internalformat: GLenum, width: GLsizei, height: GLsizei) -> None: ...
+
     def sampleCoverage(self, value: GLclampf, invert: GLboolean) -> None: ...
+
     def scissor(self, x: GLint, y: GLint, width: GLsizei, height: GLsizei) -> None: ...
+
     def shaderSource(self, shader: WebGLShader, source: str) -> None: ...
+
     def stencilFunc(self, func: GLenum, ref: GLint, mask: GLuint) -> None: ...
+
     def stencilFuncSeparate(self, face: GLenum, func: GLenum, ref: GLint, mask: GLuint) -> None: ...
+
     def stencilMask(self, mask: GLuint) -> None: ...
+
     def stencilMaskSeparate(self, face: GLenum, mask: GLuint) -> None: ...
+
     def stencilOp(self, fail: GLenum, zfail: GLenum, zpass: GLenum) -> None: ...
+
     def stencilOpSeparate(self, face: GLenum, fail: GLenum, zfail: GLenum, zpass: GLenum) -> None: ...
+
     def texParameterf(self, target: GLenum, pname: GLenum, param: GLfloat) -> None: ...
+
     def texParameteri(self, target: GLenum, pname: GLenum, param: GLint) -> None: ...
+
     def uniform1f(self, location: Union['WebGLUniformLocation', 'None'], x: GLfloat) -> None: ...
+
     def uniform2f(self, location: Union['WebGLUniformLocation', 'None'], x: GLfloat, y: GLfloat) -> None: ...
+
     def uniform3f(self, location: Union['WebGLUniformLocation', 'None'], x: GLfloat, y: GLfloat, z: GLfloat) -> None: ...
+
     def uniform4f(self, location: Union['WebGLUniformLocation', 'None'], x: GLfloat, y: GLfloat, z: GLfloat, w: GLfloat) -> None: ...
+
     def uniform1i(self, location: Union['WebGLUniformLocation', 'None'], x: GLint) -> None: ...
+
     def uniform2i(self, location: Union['WebGLUniformLocation', 'None'], x: GLint, y: GLint) -> None: ...
+
     def uniform3i(self, location: Union['WebGLUniformLocation', 'None'], x: GLint, y: GLint, z: GLint) -> None: ...
+
     def uniform4i(self, location: Union['WebGLUniformLocation', 'None'], x: GLint, y: GLint, z: GLint, w: GLint) -> None: ...
+
     def useProgram(self, program: Union['WebGLProgram', 'None']) -> None: ...
+
     def validateProgram(self, program: WebGLProgram) -> None: ...
+
     def vertexAttrib1f(self, index: GLuint, x: GLfloat) -> None: ...
+
     def vertexAttrib2f(self, index: GLuint, x: GLfloat, y: GLfloat) -> None: ...
+
     def vertexAttrib3f(self, index: GLuint, x: GLfloat, y: GLfloat, z: GLfloat) -> None: ...
+
     def vertexAttrib4f(self, index: GLuint, x: GLfloat, y: GLfloat, z: GLfloat, w: GLfloat) -> None: ...
+
     def vertexAttrib1fv(self, index: GLuint, values: Float32List) -> None: ...
+
     def vertexAttrib2fv(self, index: GLuint, values: Float32List) -> None: ...
+
     def vertexAttrib3fv(self, index: GLuint, values: Float32List) -> None: ...
+
     def vertexAttrib4fv(self, index: GLuint, values: Float32List) -> None: ...
+
     def vertexAttribPointer(self, index: GLuint, size: GLint, type: GLenum, normalized: GLboolean, stride: GLsizei, offset: GLintptr) -> None: ...
+
     def viewport(self, x: GLint, y: GLint, width: GLsizei, height: GLsizei) -> None: ...
+
     def makeXRCompatible(self) -> Awaitable[None]: ...
 
 class WebGLRenderingContextOverloads:
@@ -12840,9 +14828,13 @@ class WebGLRenderingContextOverloads:
     def bufferData(self, target: GLenum, size: GLsizeiptr, usage: GLenum) -> None: ...
     @overload
     def bufferData(self, target: GLenum, data: Union['AllowSharedBufferSource', 'None'], usage: GLenum) -> None: ...
+
     def bufferSubData(self, target: GLenum, offset: GLintptr, data: AllowSharedBufferSource) -> None: ...
+
     def compressedTexImage2D(self, target: GLenum, level: GLint, internalformat: GLenum, width: GLsizei, height: GLsizei, border: GLint, data: ArrayBufferView) -> None: ...
+
     def compressedTexSubImage2D(self, target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, width: GLsizei, height: GLsizei, format: GLenum, data: ArrayBufferView) -> None: ...
+
     def readPixels(self, x: GLint, y: GLint, width: GLsizei, height: GLsizei, format: GLenum, type: GLenum, pixels: Union['ArrayBufferView', 'None']) -> None: ...
     @overload
     def texImage2D(self, target: GLenum, level: GLint, internalformat: GLint, width: GLsizei, height: GLsizei, border: GLint, format: GLenum, type: GLenum, pixels: Union['ArrayBufferView', 'None']) -> None: ...
@@ -12852,22 +14844,34 @@ class WebGLRenderingContextOverloads:
     def texSubImage2D(self, target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, width: GLsizei, height: GLsizei, format: GLenum, type: GLenum, pixels: Union['ArrayBufferView', 'None']) -> None: ...
     @overload
     def texSubImage2D(self, target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, format: GLenum, type: GLenum, source: TexImageSource) -> None: ...
+
     def uniform1fv(self, location: Union['WebGLUniformLocation', 'None'], v: Float32List) -> None: ...
+
     def uniform2fv(self, location: Union['WebGLUniformLocation', 'None'], v: Float32List) -> None: ...
+
     def uniform3fv(self, location: Union['WebGLUniformLocation', 'None'], v: Float32List) -> None: ...
+
     def uniform4fv(self, location: Union['WebGLUniformLocation', 'None'], v: Float32List) -> None: ...
+
     def uniform1iv(self, location: Union['WebGLUniformLocation', 'None'], v: Int32List) -> None: ...
+
     def uniform2iv(self, location: Union['WebGLUniformLocation', 'None'], v: Int32List) -> None: ...
+
     def uniform3iv(self, location: Union['WebGLUniformLocation', 'None'], v: Int32List) -> None: ...
+
     def uniform4iv(self, location: Union['WebGLUniformLocation', 'None'], v: Int32List) -> None: ...
+
     def uniformMatrix2fv(self, location: Union['WebGLUniformLocation', 'None'], transpose: GLboolean, value: Float32List) -> None: ...
+
     def uniformMatrix3fv(self, location: Union['WebGLUniformLocation', 'None'], transpose: GLboolean, value: Float32List) -> None: ...
+
     def uniformMatrix4fv(self, location: Union['WebGLUniformLocation', 'None'], transpose: GLboolean, value: Float32List) -> None: ...
 
 class WebGLRenderingContext(WebGLRenderingContextBase, WebGLRenderingContextOverloads): ...
 
 class WebGLContextEvent(Event):
-    def New(self, type: str, eventInit: Union['WebGLContextEventInit', 'None'] = {}) -> WebGLContextEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInit: Union['WebGLContextEventInit', 'None'] = {}) -> WebGLContextEvent: ...
     statusMessage: str
 
 class WebGLContextEventInit(TypedDict, EventInit):
@@ -13147,16 +15151,27 @@ class WebGL2RenderingContextBase:
     TEXTURE_IMMUTABLE_LEVELS = 0x82DF
     TIMEOUT_IGNORED = -1
     MAX_CLIENT_WAIT_TIMEOUT_WEBGL = 0x9247
+
     def copyBufferSubData(self, readTarget: GLenum, writeTarget: GLenum, readOffset: GLintptr, writeOffset: GLintptr, size: GLsizeiptr) -> None: ...
+
     def getBufferSubData(self, target: GLenum, srcByteOffset: GLintptr, dstBuffer: ArrayBufferView, dstOffset: Union['GLuint', 'None'] = 0, length: Union['GLuint', 'None'] = 0) -> None: ...
+
     def blitFramebuffer(self, srcX0: GLint, srcY0: GLint, srcX1: GLint, srcY1: GLint, dstX0: GLint, dstY0: GLint, dstX1: GLint, dstY1: GLint, mask: GLbitfield, filter: GLenum) -> None: ...
+
     def framebufferTextureLayer(self, target: GLenum, attachment: GLenum, texture: Union['WebGLTexture', 'None'], level: GLint, layer: GLint) -> None: ...
+
     def invalidateFramebuffer(self, target: GLenum, attachments: Sequence[GLenum]) -> None: ...
+
     def invalidateSubFramebuffer(self, target: GLenum, attachments: Sequence[GLenum], x: GLint, y: GLint, width: GLsizei, height: GLsizei) -> None: ...
+
     def readBuffer(self, src: GLenum) -> None: ...
+
     def getInternalformatParameter(self, target: GLenum, internalformat: GLenum, pname: GLenum) -> Any: ...
+
     def renderbufferStorageMultisample(self, target: GLenum, samples: GLsizei, internalformat: GLenum, width: GLsizei, height: GLsizei) -> None: ...
+
     def texStorage2D(self, target: GLenum, levels: GLsizei, internalformat: GLenum, width: GLsizei, height: GLsizei) -> None: ...
+
     def texStorage3D(self, target: GLenum, levels: GLsizei, internalformat: GLenum, width: GLsizei, height: GLsizei, depth: GLsizei) -> None: ...
     @overload
     def texImage3D(self, target: GLenum, level: GLint, internalformat: GLint, width: GLsizei, height: GLsizei, depth: GLsizei, border: GLint, format: GLenum, type: GLenum, pboOffset: GLintptr) -> None: ...
@@ -13172,6 +15187,7 @@ class WebGL2RenderingContextBase:
     def texSubImage3D(self, target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, zoffset: GLint, width: GLsizei, height: GLsizei, depth: GLsizei, format: GLenum, type: GLenum, source: TexImageSource) -> None: ...
     @overload
     def texSubImage3D(self, target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, zoffset: GLint, width: GLsizei, height: GLsizei, depth: GLsizei, format: GLenum, type: GLenum, srcData: Union['ArrayBufferView', 'None'], srcOffset: Union['GLuint', 'None'] = 0) -> None: ...
+
     def copyTexSubImage3D(self, target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, zoffset: GLint, x: GLint, y: GLint, width: GLsizei, height: GLsizei) -> None: ...
     @overload
     def compressedTexImage3D(self, target: GLenum, level: GLint, internalformat: GLenum, width: GLsizei, height: GLsizei, depth: GLsizei, border: GLint, imageSize: GLsizei, offset: GLintptr) -> None: ...
@@ -13181,77 +15197,149 @@ class WebGL2RenderingContextBase:
     def compressedTexSubImage3D(self, target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, zoffset: GLint, width: GLsizei, height: GLsizei, depth: GLsizei, format: GLenum, imageSize: GLsizei, offset: GLintptr) -> None: ...
     @overload
     def compressedTexSubImage3D(self, target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, zoffset: GLint, width: GLsizei, height: GLsizei, depth: GLsizei, format: GLenum, srcData: ArrayBufferView, srcOffset: Union['GLuint', 'None'] = 0, srcLengthOverride: Union['GLuint', 'None'] = 0) -> None: ...
+
     def getFragDataLocation(self, program: WebGLProgram, name: str) -> GLint: ...
+
     def uniform1ui(self, location: Union['WebGLUniformLocation', 'None'], v0: GLuint) -> None: ...
+
     def uniform2ui(self, location: Union['WebGLUniformLocation', 'None'], v0: GLuint, v1: GLuint) -> None: ...
+
     def uniform3ui(self, location: Union['WebGLUniformLocation', 'None'], v0: GLuint, v1: GLuint, v2: GLuint) -> None: ...
+
     def uniform4ui(self, location: Union['WebGLUniformLocation', 'None'], v0: GLuint, v1: GLuint, v2: GLuint, v3: GLuint) -> None: ...
+
     def uniform1uiv(self, location: Union['WebGLUniformLocation', 'None'], data: Uint32List, srcOffset: Union['GLuint', 'None'] = 0, srcLength: Union['GLuint', 'None'] = 0) -> None: ...
+
     def uniform2uiv(self, location: Union['WebGLUniformLocation', 'None'], data: Uint32List, srcOffset: Union['GLuint', 'None'] = 0, srcLength: Union['GLuint', 'None'] = 0) -> None: ...
+
     def uniform3uiv(self, location: Union['WebGLUniformLocation', 'None'], data: Uint32List, srcOffset: Union['GLuint', 'None'] = 0, srcLength: Union['GLuint', 'None'] = 0) -> None: ...
+
     def uniform4uiv(self, location: Union['WebGLUniformLocation', 'None'], data: Uint32List, srcOffset: Union['GLuint', 'None'] = 0, srcLength: Union['GLuint', 'None'] = 0) -> None: ...
+
     def uniformMatrix3x2fv(self, location: Union['WebGLUniformLocation', 'None'], transpose: GLboolean, data: Float32List, srcOffset: Union['GLuint', 'None'] = 0, srcLength: Union['GLuint', 'None'] = 0) -> None: ...
+
     def uniformMatrix4x2fv(self, location: Union['WebGLUniformLocation', 'None'], transpose: GLboolean, data: Float32List, srcOffset: Union['GLuint', 'None'] = 0, srcLength: Union['GLuint', 'None'] = 0) -> None: ...
+
     def uniformMatrix2x3fv(self, location: Union['WebGLUniformLocation', 'None'], transpose: GLboolean, data: Float32List, srcOffset: Union['GLuint', 'None'] = 0, srcLength: Union['GLuint', 'None'] = 0) -> None: ...
+
     def uniformMatrix4x3fv(self, location: Union['WebGLUniformLocation', 'None'], transpose: GLboolean, data: Float32List, srcOffset: Union['GLuint', 'None'] = 0, srcLength: Union['GLuint', 'None'] = 0) -> None: ...
+
     def uniformMatrix2x4fv(self, location: Union['WebGLUniformLocation', 'None'], transpose: GLboolean, data: Float32List, srcOffset: Union['GLuint', 'None'] = 0, srcLength: Union['GLuint', 'None'] = 0) -> None: ...
+
     def uniformMatrix3x4fv(self, location: Union['WebGLUniformLocation', 'None'], transpose: GLboolean, data: Float32List, srcOffset: Union['GLuint', 'None'] = 0, srcLength: Union['GLuint', 'None'] = 0) -> None: ...
+
     def vertexAttribI4i(self, index: GLuint, x: GLint, y: GLint, z: GLint, w: GLint) -> None: ...
+
     def vertexAttribI4iv(self, index: GLuint, values: Int32List) -> None: ...
+
     def vertexAttribI4ui(self, index: GLuint, x: GLuint, y: GLuint, z: GLuint, w: GLuint) -> None: ...
+
     def vertexAttribI4uiv(self, index: GLuint, values: Uint32List) -> None: ...
+
     def vertexAttribIPointer(self, index: GLuint, size: GLint, type: GLenum, stride: GLsizei, offset: GLintptr) -> None: ...
+
     def vertexAttribDivisor(self, index: GLuint, divisor: GLuint) -> None: ...
+
     def drawArraysInstanced(self, mode: GLenum, first: GLint, count: GLsizei, instanceCount: GLsizei) -> None: ...
+
     def drawElementsInstanced(self, mode: GLenum, count: GLsizei, type: GLenum, offset: GLintptr, instanceCount: GLsizei) -> None: ...
+
     def drawRangeElements(self, mode: GLenum, start: GLuint, end: GLuint, count: GLsizei, type: GLenum, offset: GLintptr) -> None: ...
+
     def drawBuffers(self, buffers: Sequence[GLenum]) -> None: ...
+
     def clearBufferfv(self, buffer: GLenum, drawbuffer: GLint, values: Float32List, srcOffset: Union['GLuint', 'None'] = 0) -> None: ...
+
     def clearBufferiv(self, buffer: GLenum, drawbuffer: GLint, values: Int32List, srcOffset: Union['GLuint', 'None'] = 0) -> None: ...
+
     def clearBufferuiv(self, buffer: GLenum, drawbuffer: GLint, values: Uint32List, srcOffset: Union['GLuint', 'None'] = 0) -> None: ...
+
     def clearBufferfi(self, buffer: GLenum, drawbuffer: GLint, depth: GLfloat, stencil: GLint) -> None: ...
+
     def createQuery(self) -> Union['WebGLQuery', 'None']: ...
+
     def deleteQuery(self, query: Union['WebGLQuery', 'None']) -> None: ...
+
     def isQuery(self, query: Union['WebGLQuery', 'None']) -> GLboolean: ...
+
     def beginQuery(self, target: GLenum, query: WebGLQuery) -> None: ...
+
     def endQuery(self, target: GLenum) -> None: ...
+
     def getQuery(self, target: GLenum, pname: GLenum) -> Union['WebGLQuery', 'None']: ...
+
     def getQueryParameter(self, query: WebGLQuery, pname: GLenum) -> Any: ...
+
     def createSampler(self) -> Union['WebGLSampler', 'None']: ...
+
     def deleteSampler(self, sampler: Union['WebGLSampler', 'None']) -> None: ...
+
     def isSampler(self, sampler: Union['WebGLSampler', 'None']) -> GLboolean: ...
+
     def bindSampler(self, unit: GLuint, sampler: Union['WebGLSampler', 'None']) -> None: ...
+
     def samplerParameteri(self, sampler: WebGLSampler, pname: GLenum, param: GLint) -> None: ...
+
     def samplerParameterf(self, sampler: WebGLSampler, pname: GLenum, param: GLfloat) -> None: ...
+
     def getSamplerParameter(self, sampler: WebGLSampler, pname: GLenum) -> Any: ...
+
     def fenceSync(self, condition: GLenum, flags: GLbitfield) -> Union['WebGLSync', 'None']: ...
+
     def isSync(self, sync: Union['WebGLSync', 'None']) -> GLboolean: ...
+
     def deleteSync(self, sync: Union['WebGLSync', 'None']) -> None: ...
+
     def clientWaitSync(self, sync: WebGLSync, flags: GLbitfield, timeout: GLuint64) -> GLenum: ...
+
     def waitSync(self, sync: WebGLSync, flags: GLbitfield, timeout: GLint64) -> None: ...
+
     def getSyncParameter(self, sync: WebGLSync, pname: GLenum) -> Any: ...
+
     def createTransformFeedback(self) -> Union['WebGLTransformFeedback', 'None']: ...
+
     def deleteTransformFeedback(self, tf: Union['WebGLTransformFeedback', 'None']) -> None: ...
+
     def isTransformFeedback(self, tf: Union['WebGLTransformFeedback', 'None']) -> GLboolean: ...
+
     def bindTransformFeedback(self, target: GLenum, tf: Union['WebGLTransformFeedback', 'None']) -> None: ...
+
     def beginTransformFeedback(self, primitiveMode: GLenum) -> None: ...
+
     def endTransformFeedback(self) -> None: ...
+
     def transformFeedbackVaryings(self, program: WebGLProgram, varyings: Sequence[str], bufferMode: GLenum) -> None: ...
+
     def getTransformFeedbackVarying(self, program: WebGLProgram, index: GLuint) -> Union['WebGLActiveInfo', 'None']: ...
+
     def pauseTransformFeedback(self) -> None: ...
+
     def resumeTransformFeedback(self) -> None: ...
+
     def bindBufferBase(self, target: GLenum, index: GLuint, buffer: Union['WebGLBuffer', 'None']) -> None: ...
+
     def bindBufferRange(self, target: GLenum, index: GLuint, buffer: Union['WebGLBuffer', 'None'], offset: GLintptr, size: GLsizeiptr) -> None: ...
+
     def getIndexedParameter(self, target: GLenum, index: GLuint) -> Any: ...
+
     def getUniformIndices(self, program: WebGLProgram, uniformNames: Sequence[str]) -> Sequence[GLuint]: ...
+
     def getActiveUniforms(self, program: WebGLProgram, uniformIndices: Sequence[GLuint], pname: GLenum) -> Any: ...
+
     def getUniformBlockIndex(self, program: WebGLProgram, uniformBlockName: str) -> GLuint: ...
+
     def getActiveUniformBlockParameter(self, program: WebGLProgram, uniformBlockIndex: GLuint, pname: GLenum) -> Any: ...
+
     def getActiveUniformBlockName(self, program: WebGLProgram, uniformBlockIndex: GLuint) -> Union['str', 'None']: ...
+
     def uniformBlockBinding(self, program: WebGLProgram, uniformBlockIndex: GLuint, uniformBlockBinding: GLuint) -> None: ...
+
     def createVertexArray(self) -> Union['WebGLVertexArrayObject', 'None']: ...
+
     def deleteVertexArray(self, vertexArray: Union['WebGLVertexArrayObject', 'None']) -> None: ...
+
     def isVertexArray(self, vertexArray: Union['WebGLVertexArrayObject', 'None']) -> GLboolean: ...
+
     def bindVertexArray(self, array: Union['WebGLVertexArrayObject', 'None']) -> None: ...
 
 class WebGL2RenderingContextOverloads:
@@ -13293,16 +15381,27 @@ class WebGL2RenderingContextOverloads:
     def compressedTexSubImage2D(self, target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, width: GLsizei, height: GLsizei, format: GLenum, imageSize: GLsizei, offset: GLintptr) -> None: ...
     @overload
     def compressedTexSubImage2D(self, target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, width: GLsizei, height: GLsizei, format: GLenum, srcData: ArrayBufferView, srcOffset: Union['GLuint', 'None'] = 0, srcLengthOverride: Union['GLuint', 'None'] = 0) -> None: ...
+
     def uniform1fv(self, location: Union['WebGLUniformLocation', 'None'], data: Float32List, srcOffset: Union['GLuint', 'None'] = 0, srcLength: Union['GLuint', 'None'] = 0) -> None: ...
+
     def uniform2fv(self, location: Union['WebGLUniformLocation', 'None'], data: Float32List, srcOffset: Union['GLuint', 'None'] = 0, srcLength: Union['GLuint', 'None'] = 0) -> None: ...
+
     def uniform3fv(self, location: Union['WebGLUniformLocation', 'None'], data: Float32List, srcOffset: Union['GLuint', 'None'] = 0, srcLength: Union['GLuint', 'None'] = 0) -> None: ...
+
     def uniform4fv(self, location: Union['WebGLUniformLocation', 'None'], data: Float32List, srcOffset: Union['GLuint', 'None'] = 0, srcLength: Union['GLuint', 'None'] = 0) -> None: ...
+
     def uniform1iv(self, location: Union['WebGLUniformLocation', 'None'], data: Int32List, srcOffset: Union['GLuint', 'None'] = 0, srcLength: Union['GLuint', 'None'] = 0) -> None: ...
+
     def uniform2iv(self, location: Union['WebGLUniformLocation', 'None'], data: Int32List, srcOffset: Union['GLuint', 'None'] = 0, srcLength: Union['GLuint', 'None'] = 0) -> None: ...
+
     def uniform3iv(self, location: Union['WebGLUniformLocation', 'None'], data: Int32List, srcOffset: Union['GLuint', 'None'] = 0, srcLength: Union['GLuint', 'None'] = 0) -> None: ...
+
     def uniform4iv(self, location: Union['WebGLUniformLocation', 'None'], data: Int32List, srcOffset: Union['GLuint', 'None'] = 0, srcLength: Union['GLuint', 'None'] = 0) -> None: ...
+
     def uniformMatrix2fv(self, location: Union['WebGLUniformLocation', 'None'], transpose: GLboolean, data: Float32List, srcOffset: Union['GLuint', 'None'] = 0, srcLength: Union['GLuint', 'None'] = 0) -> None: ...
+
     def uniformMatrix3fv(self, location: Union['WebGLUniformLocation', 'None'], transpose: GLboolean, data: Float32List, srcOffset: Union['GLuint', 'None'] = 0, srcLength: Union['GLuint', 'None'] = 0) -> None: ...
+
     def uniformMatrix4fv(self, location: Union['WebGLUniformLocation', 'None'], transpose: GLboolean, data: Float32List, srcOffset: Union['GLuint', 'None'] = 0, srcLength: Union['GLuint', 'None'] = 0) -> None: ...
     @overload
     def readPixels(self, x: GLint, y: GLint, width: GLsizei, height: GLsizei, format: GLenum, type: GLenum, dstData: Union['ArrayBufferView', 'None']) -> None: ...
@@ -13367,7 +15466,9 @@ class NavigatorGPU:
     gpu: GPU
 
 class GPU:
+
     def requestAdapter(self, options: Union['GPURequestAdapterOptions', 'None'] = {}) -> Awaitable[Union['GPUAdapter', 'None']]: ...
+
     def getPreferredCanvasFormat(self) -> GPUTextureFormat: ...
     wgslLanguageFeatures: WGSLLanguageFeatures
 
@@ -13379,7 +15480,9 @@ class GPUAdapter:
     features: GPUSupportedFeatures
     limits: GPUSupportedLimits
     isFallbackAdapter: bool
+
     def requestDevice(self, descriptor: Union['GPUDeviceDescriptor', 'None'] = {}) -> Awaitable[GPUDevice]: ...
+
     def requestAdapterInfo(self, unmaskHints: Union['Sequence[str]', 'None'] = []) -> Awaitable[GPUAdapterInfo]: ...
 
 class GPUDeviceDescriptor(TypedDict, GPUObjectDescriptorBase):
@@ -13391,24 +15494,42 @@ class GPUDevice(EventTarget, GPUObjectBase):
     features: GPUSupportedFeatures
     limits: GPUSupportedLimits
     queue: GPUQueue
+
     def destroy(self) -> None: ...
+
     def createBuffer(self, descriptor: GPUBufferDescriptor) -> GPUBuffer: ...
+
     def createTexture(self, descriptor: GPUTextureDescriptor) -> GPUTexture: ...
+
     def createSampler(self, descriptor: Union['GPUSamplerDescriptor', 'None'] = {}) -> GPUSampler: ...
+
     def importExternalTexture(self, descriptor: GPUExternalTextureDescriptor) -> GPUExternalTexture: ...
+
     def createBindGroupLayout(self, descriptor: GPUBindGroupLayoutDescriptor) -> GPUBindGroupLayout: ...
+
     def createPipelineLayout(self, descriptor: GPUPipelineLayoutDescriptor) -> GPUPipelineLayout: ...
+
     def createBindGroup(self, descriptor: GPUBindGroupDescriptor) -> GPUBindGroup: ...
+
     def createShaderModule(self, descriptor: GPUShaderModuleDescriptor) -> GPUShaderModule: ...
+
     def createComputePipeline(self, descriptor: GPUComputePipelineDescriptor) -> GPUComputePipeline: ...
+
     def createRenderPipeline(self, descriptor: GPURenderPipelineDescriptor) -> GPURenderPipeline: ...
+
     def createComputePipelineAsync(self, descriptor: GPUComputePipelineDescriptor) -> Awaitable[GPUComputePipeline]: ...
+
     def createRenderPipelineAsync(self, descriptor: GPURenderPipelineDescriptor) -> Awaitable[GPURenderPipeline]: ...
+
     def createCommandEncoder(self, descriptor: Union['GPUCommandEncoderDescriptor', 'None'] = {}) -> GPUCommandEncoder: ...
+
     def createRenderBundleEncoder(self, descriptor: GPURenderBundleEncoderDescriptor) -> GPURenderBundleEncoder: ...
+
     def createQuerySet(self, descriptor: GPUQuerySetDescriptor) -> GPUQuerySet: ...
     lost: Awaitable[GPUDeviceLostInfo]
+
     def pushErrorScope(self, filter: GPUErrorFilter) -> None: ...
+
     def popErrorScope(self) -> Awaitable[Union['GPUError', 'None']]: ...
     onuncapturederror: EventHandler
 
@@ -13416,9 +15537,13 @@ class GPUBuffer(GPUObjectBase):
     size: GPUSize64Out
     usage: GPUFlagsConstant
     mapState: GPUBufferMapState
+
     def mapAsync(self, mode: GPUMapModeFlags, offset: Union['GPUSize64', 'None'] = 0, size: Union['GPUSize64', 'None'] = None) -> Awaitable[None]: ...
+
     def getMappedRange(self, offset: Union['GPUSize64', 'None'] = 0, size: Union['GPUSize64', 'None'] = None) -> ArrayBuffer: ...
+
     def unmap(self) -> None: ...
+
     def destroy(self) -> None: ...
 
 class GPUBufferDescriptor(TypedDict, GPUObjectDescriptorBase):
@@ -13427,7 +15552,9 @@ class GPUBufferDescriptor(TypedDict, GPUObjectDescriptorBase):
     mappedAtCreation: NotRequired[bool]
 
 class GPUTexture(GPUObjectBase):
+
     def createView(self, descriptor: Union['GPUTextureViewDescriptor', 'None'] = {}) -> GPUTextureView: ...
+
     def destroy(self) -> None: ...
     width: GPUIntegerCoordinateOut
     height: GPUIntegerCoordinateOut
@@ -13533,6 +15660,7 @@ class GPUPipelineLayoutDescriptor(TypedDict, GPUObjectDescriptorBase):
     bindGroupLayouts: Sequence[GPUBindGroupLayout]
 
 class GPUShaderModule(GPUObjectBase):
+
     def getCompilationInfo(self) -> Awaitable[GPUCompilationInfo]: ...
 
 class GPUShaderModuleDescriptor(TypedDict, GPUObjectDescriptorBase):
@@ -13555,7 +15683,8 @@ class GPUCompilationInfo:
     messages: Sequence[GPUCompilationMessage]
 
 class GPUPipelineError(DOMException):
-    def New(self, message: Union['str', 'None'] = "", options: GPUPipelineErrorInit) -> GPUPipelineError: ...
+    @classmethod
+    def new(cls, message: Union['str', 'None'] = "", options: GPUPipelineErrorInit) -> GPUPipelineError: ...
     reason: GPUPipelineErrorReason
 
 class GPUPipelineErrorInit(TypedDict):
@@ -13565,6 +15694,7 @@ class GPUPipelineDescriptorBase(TypedDict, GPUObjectDescriptorBase):
     layout: Union['GPUPipelineLayout', 'GPUAutoLayoutMode']
 
 class GPUPipelineBase:
+
     def getBindGroupLayout(self, index: int) -> GPUBindGroupLayout: ...
 
 class GPUProgrammableStage(TypedDict):
@@ -13676,15 +15806,25 @@ class GPUCommandBufferDescriptor(TypedDict, GPUObjectDescriptorBase): ...
 class GPUCommandsMixin: ...
 
 class GPUCommandEncoder(GPUObjectBase, GPUCommandsMixin, GPUDebugCommandsMixin):
+
     def beginRenderPass(self, descriptor: GPURenderPassDescriptor) -> GPURenderPassEncoder: ...
+
     def beginComputePass(self, descriptor: Union['GPUComputePassDescriptor', 'None'] = {}) -> GPUComputePassEncoder: ...
+
     def copyBufferToBuffer(self, source: GPUBuffer, sourceOffset: GPUSize64, destination: GPUBuffer, destinationOffset: GPUSize64, size: GPUSize64) -> None: ...
+
     def copyBufferToTexture(self, source: GPUImageCopyBuffer, destination: GPUImageCopyTexture, copySize: GPUExtent3D) -> None: ...
+
     def copyTextureToBuffer(self, source: GPUImageCopyTexture, destination: GPUImageCopyBuffer, copySize: GPUExtent3D) -> None: ...
+
     def copyTextureToTexture(self, source: GPUImageCopyTexture, destination: GPUImageCopyTexture, copySize: GPUExtent3D) -> None: ...
+
     def clearBuffer(self, buffer: GPUBuffer, offset: Union['GPUSize64', 'None'] = 0, size: Union['GPUSize64', 'None'] = None) -> None: ...
+
     def writeTimestamp(self, querySet: GPUQuerySet, queryIndex: GPUSize32) -> None: ...
+
     def resolveQuerySet(self, querySet: GPUQuerySet, firstQuery: GPUSize32, queryCount: GPUSize32, destination: GPUBuffer, destinationOffset: GPUSize64) -> None: ...
+
     def finish(self, descriptor: Union['GPUCommandBufferDescriptor', 'None'] = {}) -> GPUCommandBuffer: ...
 
 class GPUCommandEncoderDescriptor(TypedDict, GPUObjectDescriptorBase): ...
@@ -13696,14 +15836,21 @@ class GPUBindingCommandsMixin:
     def setBindGroup(self, index: GPUIndex32, bindGroup: Union['GPUBindGroup', 'None'], dynamicOffsetsData: Uint32Array, dynamicOffsetsDataStart: GPUSize64, dynamicOffsetsDataLength: GPUSize32) -> None: ...
 
 class GPUDebugCommandsMixin:
+
     def pushDebugGroup(self, groupLabel: str) -> None: ...
+
     def popDebugGroup(self) -> None: ...
+
     def insertDebugMarker(self, markerLabel: str) -> None: ...
 
 class GPUComputePassEncoder(GPUObjectBase, GPUCommandsMixin, GPUDebugCommandsMixin, GPUBindingCommandsMixin):
+
     def setPipeline(self, pipeline: GPUComputePipeline) -> None: ...
+
     def dispatchWorkgroups(self, workgroupCountX: GPUSize32, workgroupCountY: Union['GPUSize32', 'None'] = 1, workgroupCountZ: Union['GPUSize32', 'None'] = 1) -> None: ...
+
     def dispatchWorkgroupsIndirect(self, indirectBuffer: GPUBuffer, indirectOffset: GPUSize64) -> None: ...
+
     def end(self) -> None: ...
 
 class GPUComputePassTimestampWrites(TypedDict):
@@ -13715,13 +15862,21 @@ class GPUComputePassDescriptor(TypedDict, GPUObjectDescriptorBase):
     timestampWrites: NotRequired[GPUComputePassTimestampWrites]
 
 class GPURenderPassEncoder(GPUObjectBase, GPUCommandsMixin, GPUDebugCommandsMixin, GPUBindingCommandsMixin, GPURenderCommandsMixin):
+
     def setViewport(self, x: float, y: float, width: float, height: float, minDepth: float, maxDepth: float) -> None: ...
+
     def setScissorRect(self, x: GPUIntegerCoordinate, y: GPUIntegerCoordinate, width: GPUIntegerCoordinate, height: GPUIntegerCoordinate) -> None: ...
+
     def setBlendConstant(self, color: GPUColor) -> None: ...
+
     def setStencilReference(self, reference: GPUStencilValue) -> None: ...
+
     def beginOcclusionQuery(self, queryIndex: GPUSize32) -> None: ...
+
     def endOcclusionQuery(self) -> None: ...
+
     def executeBundles(self, bundles: Sequence[GPURenderBundle]) -> None: ...
+
     def end(self) -> None: ...
 
 class GPURenderPassTimestampWrites(TypedDict):
@@ -13760,12 +15915,19 @@ class GPURenderPassLayout(TypedDict, GPUObjectDescriptorBase):
     sampleCount: NotRequired[GPUSize32]
 
 class GPURenderCommandsMixin:
+
     def setPipeline(self, pipeline: GPURenderPipeline) -> None: ...
+
     def setIndexBuffer(self, buffer: GPUBuffer, indexFormat: GPUIndexFormat, offset: Union['GPUSize64', 'None'] = 0, size: Union['GPUSize64', 'None'] = None) -> None: ...
+
     def setVertexBuffer(self, slot: GPUIndex32, buffer: Union['GPUBuffer', 'None'], offset: Union['GPUSize64', 'None'] = 0, size: Union['GPUSize64', 'None'] = None) -> None: ...
+
     def draw(self, vertexCount: GPUSize32, instanceCount: Union['GPUSize32', 'None'] = 1, firstVertex: Union['GPUSize32', 'None'] = 0, firstInstance: Union['GPUSize32', 'None'] = 0) -> None: ...
+
     def drawIndexed(self, indexCount: GPUSize32, instanceCount: Union['GPUSize32', 'None'] = 1, firstIndex: Union['GPUSize32', 'None'] = 0, baseVertex: Union['GPUSignedOffset32', 'None'] = 0, firstInstance: Union['GPUSize32', 'None'] = 0) -> None: ...
+
     def drawIndirect(self, indirectBuffer: GPUBuffer, indirectOffset: GPUSize64) -> None: ...
+
     def drawIndexedIndirect(self, indirectBuffer: GPUBuffer, indirectOffset: GPUSize64) -> None: ...
 
 class GPURenderBundle(GPUObjectBase): ...
@@ -13773,6 +15935,7 @@ class GPURenderBundle(GPUObjectBase): ...
 class GPURenderBundleDescriptor(TypedDict, GPUObjectDescriptorBase): ...
 
 class GPURenderBundleEncoder(GPUObjectBase, GPUCommandsMixin, GPUDebugCommandsMixin, GPUBindingCommandsMixin, GPURenderCommandsMixin):
+
     def finish(self, descriptor: Union['GPURenderBundleDescriptor', 'None'] = {}) -> GPURenderBundle: ...
 
 class GPURenderBundleEncoderDescriptor(TypedDict, GPURenderPassLayout):
@@ -13782,13 +15945,19 @@ class GPURenderBundleEncoderDescriptor(TypedDict, GPURenderPassLayout):
 class GPUQueueDescriptor(TypedDict, GPUObjectDescriptorBase): ...
 
 class GPUQueue(GPUObjectBase):
+
     def submit(self, commandBuffers: Sequence[GPUCommandBuffer]) -> None: ...
+
     def onSubmittedWorkDone(self) -> Awaitable[None]: ...
+
     def writeBuffer(self, buffer: GPUBuffer, bufferOffset: GPUSize64, data: AllowSharedBufferSource, dataOffset: Union['GPUSize64', 'None'] = 0, size: Union['GPUSize64', 'None'] = None) -> None: ...
+
     def writeTexture(self, destination: GPUImageCopyTexture, data: AllowSharedBufferSource, dataLayout: GPUImageDataLayout, size: GPUExtent3D) -> None: ...
+
     def copyExternalImageToTexture(self, source: GPUImageCopyExternalImage, destination: GPUImageCopyTextureTagged, copySize: GPUExtent3D) -> None: ...
 
 class GPUQuerySet(GPUObjectBase):
+
     def destroy(self) -> None: ...
     type: GPUQueryType
     count: GPUSize32Out
@@ -13799,8 +15968,11 @@ class GPUQuerySetDescriptor(TypedDict, GPUObjectDescriptorBase):
 
 class GPUCanvasContext:
     canvas: Union['HTMLCanvasElement', 'OffscreenCanvas']
+
     def configure(self, configuration: GPUCanvasConfiguration) -> None: ...
+
     def unconfigure(self) -> None: ...
+
     def getCurrentTexture(self) -> GPUTexture: ...
 
 class GPUCanvasConfiguration(TypedDict):
@@ -13819,16 +15991,20 @@ class GPUError:
     message: str
 
 class GPUValidationError(GPUError):
-    def New(self, message: str) -> GPUValidationError: ...
+    @classmethod
+    def new(cls, message: str) -> GPUValidationError: ...
 
 class GPUOutOfMemoryError(GPUError):
-    def New(self, message: str) -> GPUOutOfMemoryError: ...
+    @classmethod
+    def new(cls, message: str) -> GPUOutOfMemoryError: ...
 
 class GPUInternalError(GPUError):
-    def New(self, message: str) -> GPUInternalError: ...
+    @classmethod
+    def new(cls, message: str) -> GPUInternalError: ...
 
 class GPUUncapturedErrorEvent(Event):
-    def New(self, type: str, gpuUncapturedErrorEventInitDict: GPUUncapturedErrorEventInit) -> GPUUncapturedErrorEvent: ...
+    @classmethod
+    def new(cls, type: str, gpuUncapturedErrorEventInitDict: GPUUncapturedErrorEventInit) -> GPUUncapturedErrorEvent: ...
     error: GPUError
 
 class GPUUncapturedErrorEventInit(TypedDict, EventInit):
@@ -13857,7 +16033,9 @@ class GPUExtent3DDict(TypedDict):
 class HID(EventTarget):
     onconnect: EventHandler
     ondisconnect: EventHandler
+
     def getDevices(self) -> Awaitable[Sequence[HIDDevice]]: ...
+
     def requestDevice(self, options: HIDDeviceRequestOptions) -> Awaitable[Sequence[HIDDevice]]: ...
 
 class HIDDeviceRequestOptions(TypedDict):
@@ -13877,22 +16055,30 @@ class HIDDevice(EventTarget):
     productId: int
     productName: str
     collections: Sequence[HIDCollectionInfo]
+
     def open(self) -> Awaitable[None]: ...
+
     def close(self) -> Awaitable[None]: ...
+
     def forget(self) -> Awaitable[None]: ...
+
     def sendReport(self, reportId: int, data: BufferSource) -> Awaitable[None]: ...
+
     def sendFeatureReport(self, reportId: int, data: BufferSource) -> Awaitable[None]: ...
+
     def receiveFeatureReport(self, reportId: int) -> Awaitable[DataView]: ...
 
 class HIDConnectionEvent(Event):
-    def New(self, type: str, eventInitDict: HIDConnectionEventInit) -> HIDConnectionEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: HIDConnectionEventInit) -> HIDConnectionEvent: ...
     device: HIDDevice
 
 class HIDConnectionEventInit(TypedDict, EventInit):
     device: HIDDevice
 
 class HIDInputReportEvent(Event):
-    def New(self, type: str, eventInitDict: HIDInputReportEventInit) -> HIDInputReportEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: HIDInputReportEventInit) -> HIDInputReportEvent: ...
     device: HIDDevice
     reportId: int
     data: DataView
@@ -13946,7 +16132,8 @@ class HIDReportItem(TypedDict):
     strings: NotRequired[Sequence[str]]
 
 class DOMException:
-    def New(self, message: Union['str', 'None'] = "", name: Union['str', 'None'] = "Error") -> DOMException: ...
+    @classmethod
+    def new(cls, message: Union['str', 'None'] = "", name: Union['str', 'None'] = "Error") -> DOMException: ...
     name: str
     message: str
     code: int
@@ -14002,25 +16189,31 @@ class MIDIPort(EventTarget):
     state: MIDIPortDeviceState
     connection: MIDIPortConnectionState
     onstatechange: EventHandler
+
     def open(self) -> Awaitable[MIDIPort]: ...
+
     def close(self) -> Awaitable[MIDIPort]: ...
 
 class MIDIInput(MIDIPort):
     onmidimessage: EventHandler
 
 class MIDIOutput(MIDIPort):
+
     def send(self, data: Sequence[int], timestamp: Union['DOMHighResTimeStamp', 'None'] = 0) -> None: ...
+
     def clear(self) -> None: ...
 
 class MIDIMessageEvent(Event):
-    def New(self, type: str, eventInitDict: Union['MIDIMessageEventInit', 'None'] = {}) -> MIDIMessageEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['MIDIMessageEventInit', 'None'] = {}) -> MIDIMessageEvent: ...
     data: Uint8Array
 
 class MIDIMessageEventInit(TypedDict, EventInit):
     data: NotRequired[Uint8Array]
 
 class MIDIConnectionEvent(Event):
-    def New(self, type: str, eventInitDict: Union['MIDIConnectionEventInit', 'None'] = {}) -> MIDIConnectionEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['MIDIConnectionEventInit', 'None'] = {}) -> MIDIConnectionEvent: ...
     port: MIDIPort
 
 class MIDIConnectionEventInit(TypedDict, EventInit):
@@ -14054,8 +16247,11 @@ class MLOperand: ...
 class MLActivation: ...
 
 class MLContext:
+
     def computeSync(self, graph: MLGraph, inputs: MLNamedArrayBufferViews, outputs: MLNamedArrayBufferViews) -> None: ...
+
     def compute(self, graph: MLGraph, inputs: MLNamedArrayBufferViews, outputs: MLNamedArrayBufferViews) -> Awaitable[MLComputeResult]: ...
+
     def createCommandEncoder(self) -> MLCommandEncoder: ...
 
 class MLComputeResult(TypedDict):
@@ -14063,8 +16259,11 @@ class MLComputeResult(TypedDict):
     outputs: NotRequired[MLNamedArrayBufferViews]
 
 class MLCommandEncoder:
+
     def initializeGraph(self, graph: MLGraph) -> None: ...
+
     def dispatch(self, graph: MLGraph, inputs: MLNamedGPUResources, outputs: MLNamedGPUResources) -> None: ...
+
     def finish(self, descriptor: Union['GPUCommandBufferDescriptor', 'None'] = {}) -> GPUCommandBuffer: ...
 
 class MLBufferResourceView(TypedDict):
@@ -14073,44 +16272,71 @@ class MLBufferResourceView(TypedDict):
     size: NotRequired[int]
 
 class MLGraphBuilder:
-    def New(self, context: MLContext) -> MLGraphBuilder: ...
+    @classmethod
+    def new(cls, context: MLContext) -> MLGraphBuilder: ...
+
     def input(self, name: str, descriptor: MLOperandDescriptor) -> MLOperand: ...
     @overload
     def constant(self, descriptor: MLOperandDescriptor, bufferView: MLBufferView) -> MLOperand: ...
     @overload
     def constant(self, value: float, type: Union['MLOperandType', 'None'] = "float32") -> MLOperand: ...
+
     def build(self, outputs: MLNamedOperands) -> Awaitable[MLGraph]: ...
+
     def buildSync(self, outputs: MLNamedOperands) -> MLGraph: ...
+
     def batchNormalization(self, input: MLOperand, mean: MLOperand, variance: MLOperand, options: Union['MLBatchNormalizationOptions', 'None'] = {}) -> MLOperand: ...
     @overload
     def clamp(self, x: MLOperand, options: Union['MLClampOptions', 'None'] = {}) -> MLOperand: ...
     @overload
     def clamp(self, options: Union['MLClampOptions', 'None'] = {}) -> MLActivation: ...
+
     def concat(self, inputs: Sequence[MLOperand], axis: int) -> MLOperand: ...
+
     def conv2d(self, input: MLOperand, filter: MLOperand, options: Union['MLConv2dOptions', 'None'] = {}) -> MLOperand: ...
+
     def convTranspose2d(self, input: MLOperand, filter: MLOperand, options: Union['MLConvTranspose2dOptions', 'None'] = {}) -> MLOperand: ...
+
     def add(self, a: MLOperand, b: MLOperand) -> MLOperand: ...
+
     def sub(self, a: MLOperand, b: MLOperand) -> MLOperand: ...
+
     def mul(self, a: MLOperand, b: MLOperand) -> MLOperand: ...
+
     def div(self, a: MLOperand, b: MLOperand) -> MLOperand: ...
+
     def max(self, a: MLOperand, b: MLOperand) -> MLOperand: ...
+
     def min(self, a: MLOperand, b: MLOperand) -> MLOperand: ...
+
     def pow(self, a: MLOperand, b: MLOperand) -> MLOperand: ...
+
     def abs(self, x: MLOperand) -> MLOperand: ...
+
     def ceil(self, x: MLOperand) -> MLOperand: ...
+
     def cos(self, x: MLOperand) -> MLOperand: ...
+
     def exp(self, x: MLOperand) -> MLOperand: ...
+
     def floor(self, x: MLOperand) -> MLOperand: ...
+
     def log(self, x: MLOperand) -> MLOperand: ...
+
     def neg(self, x: MLOperand) -> MLOperand: ...
+
     def sin(self, x: MLOperand) -> MLOperand: ...
+
     def tan(self, x: MLOperand) -> MLOperand: ...
     @overload
     def elu(self, x: MLOperand, options: Union['MLEluOptions', 'None'] = {}) -> MLOperand: ...
     @overload
     def elu(self, options: Union['MLEluOptions', 'None'] = {}) -> MLActivation: ...
+
     def gemm(self, a: MLOperand, b: MLOperand, options: Union['MLGemmOptions', 'None'] = {}) -> MLOperand: ...
+
     def gru(self, input: MLOperand, weight: MLOperand, recurrentWeight: MLOperand, steps: int, hiddenSize: int, options: Union['MLGruOptions', 'None'] = {}) -> Sequence[MLOperand]: ...
+
     def gruCell(self, input: MLOperand, weight: MLOperand, recurrentWeight: MLOperand, hiddenState: MLOperand, hiddenSize: int, options: Union['MLGruCellOptions', 'None'] = {}) -> MLOperand: ...
     @overload
     def hardSigmoid(self, x: MLOperand, options: Union['MLHardSigmoidOptions', 'None'] = {}) -> MLOperand: ...
@@ -14120,6 +16346,7 @@ class MLGraphBuilder:
     def hardSwish(self, x: MLOperand) -> MLOperand: ...
     @overload
     def hardSwish(self) -> MLActivation: ...
+
     def instanceNormalization(self, input: MLOperand, options: Union['MLInstanceNormalizationOptions', 'None'] = {}) -> MLOperand: ...
     @overload
     def leakyRelu(self, x: MLOperand, options: Union['MLLeakyReluOptions', 'None'] = {}) -> MLOperand: ...
@@ -14129,34 +16356,55 @@ class MLGraphBuilder:
     def linear(self, x: MLOperand, options: Union['MLLinearOptions', 'None'] = {}) -> MLOperand: ...
     @overload
     def linear(self, options: Union['MLLinearOptions', 'None'] = {}) -> MLActivation: ...
+
     def lstm(self, input: MLOperand, weight: MLOperand, recurrentWeight: MLOperand, steps: int, hiddenSize: int, options: Union['MLLstmOptions', 'None'] = {}) -> Sequence[MLOperand]: ...
+
     def lstmCell(self, input: MLOperand, weight: MLOperand, recurrentWeight: MLOperand, hiddenState: MLOperand, cellState: MLOperand, hiddenSize: int, options: Union['MLLstmCellOptions', 'None'] = {}) -> Sequence[MLOperand]: ...
+
     def matmul(self, a: MLOperand, b: MLOperand) -> MLOperand: ...
+
     def pad(self, input: MLOperand, beginningPadding: Sequence[int], endingPadding: Sequence[int], options: Union['MLPadOptions', 'None'] = {}) -> MLOperand: ...
+
     def averagePool2d(self, input: MLOperand, options: Union['MLPool2dOptions', 'None'] = {}) -> MLOperand: ...
+
     def l2Pool2d(self, input: MLOperand, options: Union['MLPool2dOptions', 'None'] = {}) -> MLOperand: ...
+
     def maxPool2d(self, input: MLOperand, options: Union['MLPool2dOptions', 'None'] = {}) -> MLOperand: ...
+
     def prelu(self, x: MLOperand, slope: MLOperand) -> MLOperand: ...
+
     def reduceL1(self, input: MLOperand, options: Union['MLReduceOptions', 'None'] = {}) -> MLOperand: ...
+
     def reduceL2(self, input: MLOperand, options: Union['MLReduceOptions', 'None'] = {}) -> MLOperand: ...
+
     def reduceLogSum(self, input: MLOperand, options: Union['MLReduceOptions', 'None'] = {}) -> MLOperand: ...
+
     def reduceLogSumExp(self, input: MLOperand, options: Union['MLReduceOptions', 'None'] = {}) -> MLOperand: ...
+
     def reduceMax(self, input: MLOperand, options: Union['MLReduceOptions', 'None'] = {}) -> MLOperand: ...
+
     def reduceMean(self, input: MLOperand, options: Union['MLReduceOptions', 'None'] = {}) -> MLOperand: ...
+
     def reduceMin(self, input: MLOperand, options: Union['MLReduceOptions', 'None'] = {}) -> MLOperand: ...
+
     def reduceProduct(self, input: MLOperand, options: Union['MLReduceOptions', 'None'] = {}) -> MLOperand: ...
+
     def reduceSum(self, input: MLOperand, options: Union['MLReduceOptions', 'None'] = {}) -> MLOperand: ...
+
     def reduceSumSquare(self, input: MLOperand, options: Union['MLReduceOptions', 'None'] = {}) -> MLOperand: ...
     @overload
     def relu(self, x: MLOperand) -> MLOperand: ...
     @overload
     def relu(self) -> MLActivation: ...
+
     def resample2d(self, input: MLOperand, options: Union['MLResample2dOptions', 'None'] = {}) -> MLOperand: ...
+
     def reshape(self, input: MLOperand, newShape: Sequence[Union['int', 'None']]) -> MLOperand: ...
     @overload
     def sigmoid(self, x: MLOperand) -> MLOperand: ...
     @overload
     def sigmoid(self) -> MLActivation: ...
+
     def slice(self, input: MLOperand, starts: Sequence[int], sizes: Sequence[int]) -> MLOperand: ...
     @overload
     def softmax(self, x: MLOperand) -> MLOperand: ...
@@ -14170,12 +16418,15 @@ class MLGraphBuilder:
     def softsign(self, x: MLOperand) -> MLOperand: ...
     @overload
     def softsign(self) -> MLActivation: ...
+
     def split(self, input: MLOperand, splits: Union['int', 'Sequence[int]'], options: Union['MLSplitOptions', 'None'] = {}) -> Sequence[MLOperand]: ...
+
     def squeeze(self, input: MLOperand, options: Union['MLSqueezeOptions', 'None'] = {}) -> MLOperand: ...
     @overload
     def tanh(self, x: MLOperand) -> MLOperand: ...
     @overload
     def tanh(self) -> MLActivation: ...
+
     def transpose(self, input: MLOperand, options: Union['MLTransposeOptions', 'None'] = {}) -> MLOperand: ...
 
 class MLBatchNormalizationOptions(TypedDict):
@@ -14313,13 +16564,19 @@ class MLTransposeOptions(TypedDict):
 
 class RTCRtpSender:
     transform: Union['RTCRtpTransform', 'None']
+
     def generateKeyFrame(self, rids: Union['Sequence[str]', 'None'] = None) -> Awaitable[None]: ...
     track: Union['MediaStreamTrack', 'None']
     transport: Union['RTCDtlsTransport', 'None']
+
     def setParameters(self, parameters: RTCRtpSendParameters, setParameterOptions: Union['RTCSetParameterOptions', 'None'] = {}) -> Awaitable[None]: ...
+
     def getParameters(self) -> RTCRtpSendParameters: ...
+
     def replaceTrack(self, withTrack: Union['MediaStreamTrack', 'None']) -> Awaitable[None]: ...
+
     def setStreams(self, *streams: MediaStream) -> None: ...
+
     def getStats(self) -> Awaitable[RTCStatsReport]: ...
     dtmf: Union['RTCDTMFSender', 'None']
 
@@ -14327,21 +16584,28 @@ class RTCRtpReceiver:
     transform: Union['RTCRtpTransform', 'None']
     track: MediaStreamTrack
     transport: Union['RTCDtlsTransport', 'None']
+
     def getParameters(self) -> RTCRtpReceiveParameters: ...
+
     def getContributingSources(self) -> Sequence[RTCRtpContributingSource]: ...
+
     def getSynchronizationSources(self) -> Sequence[RTCRtpSynchronizationSource]: ...
+
     def getStats(self) -> Awaitable[RTCStatsReport]: ...
 
 class SFrameTransformOptions(TypedDict):
     role: NotRequired[SFrameTransformRole]
 
 class SFrameTransform(EventTarget, GenericTransformStream):
-    def New(self, options: Union['SFrameTransformOptions', 'None'] = {}) -> SFrameTransform: ...
+    @classmethod
+    def new(cls, options: Union['SFrameTransformOptions', 'None'] = {}) -> SFrameTransform: ...
+
     def setEncryptionKey(self, key: CryptoKey, keyID: Union['CryptoKeyID', 'None'] = None) -> Awaitable[None]: ...
     onerror: EventHandler
 
 class SFrameTransformErrorEvent(Event):
-    def New(self, type: str, eventInitDict: SFrameTransformErrorEventInit) -> SFrameTransformErrorEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: SFrameTransformErrorEventInit) -> SFrameTransformErrorEvent: ...
     errorType: SFrameTransformErrorEventType
     keyID: Union['CryptoKeyID', 'None']
     frame: Any
@@ -14367,6 +16631,7 @@ class RTCEncodedVideoFrame:
     type: RTCEncodedVideoFrameType
     timestamp: int
     data: ArrayBuffer
+
     def getMetadata(self) -> RTCEncodedVideoFrameMetadata: ...
 
 class RTCEncodedAudioFrameMetadata(TypedDict):
@@ -14378,6 +16643,7 @@ class RTCEncodedAudioFrameMetadata(TypedDict):
 class RTCEncodedAudioFrame:
     timestamp: int
     data: ArrayBuffer
+
     def getMetadata(self) -> RTCEncodedAudioFrameMetadata: ...
 
 class RTCTransformEvent(Event):
@@ -14387,11 +16653,14 @@ class RTCRtpScriptTransformer:
     readable: ReadableStream
     writable: WritableStream
     options: Any
+
     def generateKeyFrame(self, rid: Union['str', 'None'] = None) -> Awaitable[int]: ...
+
     def sendKeyFrameRequest(self) -> Awaitable[None]: ...
 
 class RTCRtpScriptTransform:
-    def New(self, worker: Worker, options: Union['Any', 'None'] = None, transfer: Union['Sequence[object]', 'None'] = None) -> RTCRtpScriptTransform: ...
+    @classmethod
+    def new(cls, worker: Worker, options: Union['Any', 'None'] = None, transfer: Union['Sequence[object]', 'None'] = None) -> RTCRtpScriptTransform: ...
 
 class RTCIceParameters(TypedDict):
     iceLite: NotRequired[bool]
@@ -14403,10 +16672,15 @@ class RTCIceGatherOptions(TypedDict):
     iceServers: NotRequired[Sequence[RTCIceServer]]
 
 class RTCIceTransport(EventTarget):
-    def New(self) -> RTCIceTransport: ...
+    @classmethod
+    def new(cls) -> RTCIceTransport: ...
+
     def gather(self, options: Union['RTCIceGatherOptions', 'None'] = {}) -> None: ...
+
     def start(self, remoteParameters: Union['RTCIceParameters', 'None'] = {}, role: Union['RTCIceRole', 'None'] = "controlled") -> None: ...
+
     def stop(self) -> None: ...
+
     def addRemoteCandidate(self, remoteCandidate: Union['RTCIceCandidateInit', 'None'] = {}) -> None: ...
     onerror: EventHandler
     onicecandidate: EventHandler
@@ -14414,10 +16688,15 @@ class RTCIceTransport(EventTarget):
     component: RTCIceComponent
     state: RTCIceTransportState
     gatheringState: RTCIceGathererState
+
     def getLocalCandidates(self) -> Sequence[RTCIceCandidate]: ...
+
     def getRemoteCandidates(self) -> Sequence[RTCIceCandidate]: ...
+
     def getSelectedCandidatePair(self) -> Union['RTCIceCandidatePair', 'None']: ...
+
     def getLocalParameters(self) -> Union['RTCIceParameters', 'None']: ...
+
     def getRemoteParameters(self) -> Union['RTCIceParameters', 'None']: ...
     onstatechange: EventHandler
     ongatheringstatechange: EventHandler
@@ -14427,6 +16706,7 @@ class RTCIdentityProviderGlobalScope(WorkerGlobalScope):
     rtcIdentityProvider: RTCIdentityProviderRegistrar
 
 class RTCIdentityProviderRegistrar:
+
     def register(self, idp: RTCIdentityProvider) -> None: ...
 
 class RTCIdentityProvider(TypedDict):
@@ -14446,8 +16726,11 @@ class RTCIdentityValidationResult(TypedDict):
     contents: str
 
 class RTCPeerConnection(EventTarget):
-    def New(self, configuration: Union['RTCConfiguration', 'None'] = {}) -> RTCPeerConnection: ...
+    @classmethod
+    def new(cls, configuration: Union['RTCConfiguration', 'None'] = {}) -> RTCPeerConnection: ...
+
     def setIdentityProvider(self, provider: str, options: Union['RTCIdentityProviderOptions', 'None'] = {}) -> None: ...
+
     def getIdentityAssertion(self) -> Awaitable[str]: ...
     peerIdentity: Awaitable[RTCIdentityAssertion]
     idpLoginUrl: Union['str', 'None']
@@ -14483,9 +16766,13 @@ class RTCPeerConnection(EventTarget):
     iceConnectionState: RTCIceConnectionState
     connectionState: RTCPeerConnectionState
     canTrickleIceCandidates: Union['bool', 'None']
+
     def restartIce(self) -> None: ...
+
     def getConfiguration(self) -> RTCConfiguration: ...
+
     def setConfiguration(self, configuration: Union['RTCConfiguration', 'None'] = {}) -> None: ...
+
     def close(self) -> None: ...
     onnegotiationneeded: EventHandler
     onicecandidate: EventHandler
@@ -14494,16 +16781,24 @@ class RTCPeerConnection(EventTarget):
     oniceconnectionstatechange: EventHandler
     onicegatheringstatechange: EventHandler
     onconnectionstatechange: EventHandler
+
     def getSenders(self) -> Sequence[RTCRtpSender]: ...
+
     def getReceivers(self) -> Sequence[RTCRtpReceiver]: ...
+
     def getTransceivers(self) -> Sequence[RTCRtpTransceiver]: ...
+
     def addTrack(self, track: MediaStreamTrack, *streams: MediaStream) -> RTCRtpSender: ...
+
     def removeTrack(self, sender: RTCRtpSender) -> None: ...
+
     def addTransceiver(self, trackOrKind: Union['MediaStreamTrack', 'str'], init: Union['RTCRtpTransceiverInit', 'None'] = {}) -> RTCRtpTransceiver: ...
     ontrack: EventHandler
     sctp: Union['RTCSctpTransport', 'None']
+
     def createDataChannel(self, label: str, dataChannelDict: Union['RTCDataChannelInit', 'None'] = {}) -> RTCDataChannel: ...
     ondatachannel: EventHandler
+
     def getStats(self, selector: Union['MediaStreamTrack', 'None'] = None) -> Awaitable[RTCStatsReport]: ...
 
 class RTCConfiguration(TypedDict):
@@ -14521,12 +16816,14 @@ class RTCIdentityProviderOptions(TypedDict):
     peerIdentity: NotRequired[str]
 
 class RTCIdentityAssertion:
-    def New(self, idp: str, name: str) -> RTCIdentityAssertion: ...
+    @classmethod
+    def new(cls, idp: str, name: str) -> RTCIdentityAssertion: ...
     idp: str
     name: str
 
 class RTCError(DOMException):
-    def New(self, init: RTCErrorInit, message: Union['str', 'None'] = "") -> RTCError: ...
+    @classmethod
+    def new(cls, init: RTCErrorInit, message: Union['str', 'None'] = "") -> RTCError: ...
     httpRequestStatusCode: Union['int', 'None']
     errorDetail: RTCErrorDetailType
     sdpLineNumber: Union['int', 'None']
@@ -14568,6 +16865,7 @@ class RTCDataChannel(EventTarget):
     onerror: EventHandler
     onclosing: EventHandler
     onclose: EventHandler
+
     def close(self) -> None: ...
     onmessage: EventHandler
     binaryType: BinaryType
@@ -14833,9 +17131,11 @@ class RTCOfferOptions(TypedDict, RTCOfferAnswerOptions):
 class RTCAnswerOptions(TypedDict, RTCOfferAnswerOptions): ...
 
 class RTCSessionDescription:
-    def New(self, descriptionInitDict: RTCSessionDescriptionInit) -> RTCSessionDescription: ...
+    @classmethod
+    def new(cls, descriptionInitDict: RTCSessionDescriptionInit) -> RTCSessionDescription: ...
     type: RTCSdpType
     sdp: str
+
     def toJSON(self) -> object: ...
 
 class RTCSessionDescriptionInit(TypedDict):
@@ -14847,7 +17147,8 @@ class RTCLocalSessionDescriptionInit(TypedDict):
     sdp: NotRequired[str]
 
 class RTCIceCandidate:
-    def New(self, candidateInitDict: Union['RTCIceCandidateInit', 'None'] = {}) -> RTCIceCandidate: ...
+    @classmethod
+    def new(cls, candidateInitDict: Union['RTCIceCandidateInit', 'None'] = {}) -> RTCIceCandidate: ...
     candidate: str
     sdpMid: Union['str', 'None']
     sdpMLineIndex: Union['int', 'None']
@@ -14864,6 +17165,7 @@ class RTCIceCandidate:
     usernameFragment: Union['str', 'None']
     relayProtocol: Union['RTCIceServerTransportProtocol', 'None']
     url: Union['str', 'None']
+
     def toJSON(self) -> RTCIceCandidateInit: ...
 
 class RTCIceCandidateInit(TypedDict):
@@ -14873,7 +17175,8 @@ class RTCIceCandidateInit(TypedDict):
     usernameFragment: NotRequired[Union['str', 'None']]
 
 class RTCPeerConnectionIceEvent(Event):
-    def New(self, type: str, eventInitDict: Union['RTCPeerConnectionIceEventInit', 'None'] = {}) -> RTCPeerConnectionIceEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['RTCPeerConnectionIceEventInit', 'None'] = {}) -> RTCPeerConnectionIceEvent: ...
     candidate: Union['RTCIceCandidate', 'None']
     url: Union['str', 'None']
 
@@ -14882,7 +17185,8 @@ class RTCPeerConnectionIceEventInit(TypedDict, EventInit):
     url: NotRequired[Union['str', 'None']]
 
 class RTCPeerConnectionIceErrorEvent(Event):
-    def New(self, type: str, eventInitDict: RTCPeerConnectionIceErrorEventInit) -> RTCPeerConnectionIceErrorEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: RTCPeerConnectionIceErrorEventInit) -> RTCPeerConnectionIceErrorEvent: ...
     address: Union['str', 'None']
     port: Union['int', 'None']
     url: str
@@ -14901,6 +17205,7 @@ class RTCCertificateExpiration(TypedDict):
 
 class RTCCertificate:
     expires: EpochTimeStamp
+
     def getFingerprints(self) -> Sequence[RTCDtlsFingerprint]: ...
 
 class RTCRtpTransceiverInit(TypedDict):
@@ -14961,12 +17266,15 @@ class RTCRtpTransceiver:
     receiver: RTCRtpReceiver
     direction: RTCRtpTransceiverDirection
     currentDirection: Union['RTCRtpTransceiverDirection', 'None']
+
     def stop(self) -> None: ...
+
     def setCodecPreferences(self, codecs: Sequence[RTCRtpCodecCapability]) -> None: ...
 
 class RTCDtlsTransport(EventTarget):
     iceTransport: RTCIceTransport
     state: RTCDtlsTransportState
+
     def getRemoteCertificates(self) -> Sequence[ArrayBuffer]: ...
     onstatechange: EventHandler
     onerror: EventHandler
@@ -14980,7 +17288,8 @@ class RTCIceCandidatePair(TypedDict):
     remote: NotRequired[RTCIceCandidate]
 
 class RTCTrackEvent(Event):
-    def New(self, type: str, eventInitDict: RTCTrackEventInit) -> RTCTrackEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: RTCTrackEventInit) -> RTCTrackEvent: ...
     receiver: RTCRtpReceiver
     track: MediaStreamTrack
     streams: Sequence[MediaStream]
@@ -15000,20 +17309,23 @@ class RTCSctpTransport(EventTarget):
     onstatechange: EventHandler
 
 class RTCDataChannelEvent(Event):
-    def New(self, type: str, eventInitDict: RTCDataChannelEventInit) -> RTCDataChannelEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: RTCDataChannelEventInit) -> RTCDataChannelEvent: ...
     channel: RTCDataChannel
 
 class RTCDataChannelEventInit(TypedDict, EventInit):
     channel: RTCDataChannel
 
 class RTCDTMFSender(EventTarget):
+
     def insertDTMF(self, tones: str, duration: Union['int', 'None'] = 100, interToneGap: Union['int', 'None'] = 70) -> None: ...
     ontonechange: EventHandler
     canInsertDTMF: bool
     toneBuffer: str
 
 class RTCDTMFToneChangeEvent(Event):
-    def New(self, type: str, eventInitDict: Union['RTCDTMFToneChangeEventInit', 'None'] = {}) -> RTCDTMFToneChangeEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['RTCDTMFToneChangeEventInit', 'None'] = {}) -> RTCDTMFToneChangeEvent: ...
     tone: str
 
 class RTCDTMFToneChangeEventInit(TypedDict, EventInit):
@@ -15027,14 +17339,16 @@ class RTCStats(TypedDict):
     id: str
 
 class RTCErrorEvent(Event):
-    def New(self, type: str, eventInitDict: RTCErrorEventInit) -> RTCErrorEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: RTCErrorEventInit) -> RTCErrorEvent: ...
     error: RTCError
 
 class RTCErrorEventInit(TypedDict, EventInit):
     error: RTCError
 
 class WebSocket(EventTarget):
-    def New(self, url: str, protocols: Union['str', 'Sequence[str]', 'None'] = []) -> WebSocket: ...
+    @classmethod
+    def new(cls, url: str, protocols: Union['str', 'Sequence[str]', 'None'] = []) -> WebSocket: ...
     url: str
     CONNECTING = 0
     OPEN = 1
@@ -15047,13 +17361,16 @@ class WebSocket(EventTarget):
     onclose: EventHandler
     extensions: str
     protocol: str
+
     def close(self, code: Union['int', 'None'] = None, reason: Union['str', 'None'] = None) -> None: ...
     onmessage: EventHandler
     binaryType: BinaryType
+
     def send(self, data: Union['BufferSource', 'Blob', 'str']) -> None: ...
 
 class CloseEvent(Event):
-    def New(self, type: str, eventInitDict: Union['CloseEventInit', 'None'] = {}) -> CloseEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['CloseEventInit', 'None'] = {}) -> CloseEvent: ...
     wasClean: bool
     code: int
     reason: str
@@ -15073,17 +17390,22 @@ class WebTransportDatagramDuplexStream:
     outgoingHighWaterMark: float
 
 class WebTransport:
-    def New(self, url: str, options: Union['WebTransportOptions', 'None'] = {}) -> WebTransport: ...
+    @classmethod
+    def new(cls, url: str, options: Union['WebTransportOptions', 'None'] = {}) -> WebTransport: ...
+
     def getStats(self) -> Awaitable[WebTransportStats]: ...
     ready: Awaitable[None]
     reliability: WebTransportReliabilityMode
     congestionControl: WebTransportCongestionControl
     closed: Awaitable[WebTransportCloseInfo]
     draining: Awaitable[None]
+
     def close(self, closeInfo: Union['WebTransportCloseInfo', 'None'] = {}) -> None: ...
     datagrams: WebTransportDatagramDuplexStream
+
     def createBidirectionalStream(self, options: Union['WebTransportSendStreamOptions', 'None'] = {}) -> Awaitable[WebTransportBidirectionalStream]: ...
     incomingBidirectionalStreams: ReadableStream
+
     def createUnidirectionalStream(self, options: Union['WebTransportSendStreamOptions', 'None'] = {}) -> Awaitable[WebTransportSendStream]: ...
     incomingUnidirectionalStreams: ReadableStream
 
@@ -15127,6 +17449,7 @@ class WebTransportDatagramStats(TypedDict):
 
 class WebTransportSendStream(WritableStream):
     sendOrder: Union['int', 'None']
+
     def getStats(self) -> Awaitable[WebTransportSendStreamStats]: ...
 
 class WebTransportSendStreamStats(TypedDict):
@@ -15136,6 +17459,7 @@ class WebTransportSendStreamStats(TypedDict):
     bytesAcknowledged: NotRequired[int]
 
 class WebTransportReceiveStream(ReadableStream):
+
     def getStats(self) -> Awaitable[WebTransportReceiveStreamStats]: ...
 
 class WebTransportReceiveStreamStats(TypedDict):
@@ -15148,7 +17472,8 @@ class WebTransportBidirectionalStream:
     writable: WebTransportSendStream
 
 class WebTransportError(DOMException):
-    def New(self, message: Union['str', 'None'] = "", options: Union['WebTransportErrorOptions', 'None'] = {}) -> WebTransportError: ...
+    @classmethod
+    def new(cls, message: Union['str', 'None'] = "", options: Union['WebTransportErrorOptions', 'None'] = {}) -> WebTransportError: ...
     source: WebTransportErrorSource
     streamErrorCode: Union['int', 'None']
 
@@ -15171,43 +17496,52 @@ class USBDeviceRequestOptions(TypedDict):
 class USB(EventTarget):
     onconnect: EventHandler
     ondisconnect: EventHandler
+
     def getDevices(self) -> Awaitable[Sequence[USBDevice]]: ...
+
     def requestDevice(self, options: USBDeviceRequestOptions) -> Awaitable[USBDevice]: ...
 
 class USBConnectionEventInit(TypedDict, EventInit):
     device: USBDevice
 
 class USBConnectionEvent(Event):
-    def New(self, type: str, eventInitDict: USBConnectionEventInit) -> USBConnectionEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: USBConnectionEventInit) -> USBConnectionEvent: ...
     device: USBDevice
 
 class USBInTransferResult:
-    def New(self, status: USBTransferStatus, data: Union['DataView', 'None'] = None) -> USBInTransferResult: ...
+    @classmethod
+    def new(cls, status: USBTransferStatus, data: Union['DataView', 'None'] = None) -> USBInTransferResult: ...
     data: DataView
     status: USBTransferStatus
 
 class USBOutTransferResult:
-    def New(self, status: USBTransferStatus, bytesWritten: Union['int', 'None'] = 0) -> USBOutTransferResult: ...
+    @classmethod
+    def new(cls, status: USBTransferStatus, bytesWritten: Union['int', 'None'] = 0) -> USBOutTransferResult: ...
     bytesWritten: int
     status: USBTransferStatus
 
 class USBIsochronousInTransferPacket:
-    def New(self, status: USBTransferStatus, data: Union['DataView', 'None'] = None) -> USBIsochronousInTransferPacket: ...
+    @classmethod
+    def new(cls, status: USBTransferStatus, data: Union['DataView', 'None'] = None) -> USBIsochronousInTransferPacket: ...
     data: DataView
     status: USBTransferStatus
 
 class USBIsochronousInTransferResult:
-    def New(self, packets: Sequence[USBIsochronousInTransferPacket], data: Union['DataView', 'None'] = None) -> USBIsochronousInTransferResult: ...
+    @classmethod
+    def new(cls, packets: Sequence[USBIsochronousInTransferPacket], data: Union['DataView', 'None'] = None) -> USBIsochronousInTransferResult: ...
     data: DataView
     packets: Sequence[USBIsochronousInTransferPacket]
 
 class USBIsochronousOutTransferPacket:
-    def New(self, status: USBTransferStatus, bytesWritten: Union['int', 'None'] = 0) -> USBIsochronousOutTransferPacket: ...
+    @classmethod
+    def new(cls, status: USBTransferStatus, bytesWritten: Union['int', 'None'] = 0) -> USBIsochronousOutTransferPacket: ...
     bytesWritten: int
     status: USBTransferStatus
 
 class USBIsochronousOutTransferResult:
-    def New(self, packets: Sequence[USBIsochronousOutTransferPacket]) -> USBIsochronousOutTransferResult: ...
+    @classmethod
+    def new(cls, packets: Sequence[USBIsochronousOutTransferPacket]) -> USBIsochronousOutTransferResult: ...
     packets: Sequence[USBIsochronousOutTransferPacket]
 
 class USBDevice:
@@ -15228,20 +17562,35 @@ class USBDevice:
     configuration: Union['USBConfiguration', 'None']
     configurations: Sequence[USBConfiguration]
     opened: bool
+
     def open(self) -> Awaitable[None]: ...
+
     def close(self) -> Awaitable[None]: ...
+
     def forget(self) -> Awaitable[None]: ...
+
     def selectConfiguration(self, configurationValue: int) -> Awaitable[None]: ...
+
     def claimInterface(self, interfaceNumber: int) -> Awaitable[None]: ...
+
     def releaseInterface(self, interfaceNumber: int) -> Awaitable[None]: ...
+
     def selectAlternateInterface(self, interfaceNumber: int, alternateSetting: int) -> Awaitable[None]: ...
+
     def controlTransferIn(self, setup: USBControlTransferParameters, length: int) -> Awaitable[USBInTransferResult]: ...
+
     def controlTransferOut(self, setup: USBControlTransferParameters, data: Union['BufferSource', 'None'] = None) -> Awaitable[USBOutTransferResult]: ...
+
     def clearHalt(self, direction: USBDirection, endpointNumber: int) -> Awaitable[None]: ...
+
     def transferIn(self, endpointNumber: int, length: int) -> Awaitable[USBInTransferResult]: ...
+
     def transferOut(self, endpointNumber: int, data: BufferSource) -> Awaitable[USBOutTransferResult]: ...
+
     def isochronousTransferIn(self, endpointNumber: int, packetLengths: Sequence[int]) -> Awaitable[USBIsochronousInTransferResult]: ...
+
     def isochronousTransferOut(self, endpointNumber: int, data: BufferSource, packetLengths: Sequence[int]) -> Awaitable[USBIsochronousOutTransferResult]: ...
+
     def reset(self) -> Awaitable[None]: ...
 
 class USBControlTransferParameters(TypedDict):
@@ -15252,20 +17601,23 @@ class USBControlTransferParameters(TypedDict):
     index: int
 
 class USBConfiguration:
-    def New(self, device: USBDevice, configurationValue: int) -> USBConfiguration: ...
+    @classmethod
+    def new(cls, device: USBDevice, configurationValue: int) -> USBConfiguration: ...
     configurationValue: int
     configurationName: Union['str', 'None']
     interfaces: Sequence[USBInterface]
 
 class USBInterface:
-    def New(self, configuration: USBConfiguration, interfaceNumber: int) -> USBInterface: ...
+    @classmethod
+    def new(cls, configuration: USBConfiguration, interfaceNumber: int) -> USBInterface: ...
     interfaceNumber: int
     alternate: USBAlternateInterface
     alternates: Sequence[USBAlternateInterface]
     claimed: bool
 
 class USBAlternateInterface:
-    def New(self, deviceInterface: USBInterface, alternateSetting: int) -> USBAlternateInterface: ...
+    @classmethod
+    def new(cls, deviceInterface: USBInterface, alternateSetting: int) -> USBAlternateInterface: ...
     alternateSetting: int
     interfaceClass: int
     interfaceSubclass: int
@@ -15274,7 +17626,8 @@ class USBAlternateInterface:
     endpoints: Sequence[USBEndpoint]
 
 class USBEndpoint:
-    def New(self, alternate: USBAlternateInterface, endpointNumber: int, direction: USBDirection) -> USBEndpoint: ...
+    @classmethod
+    def new(cls, alternate: USBAlternateInterface, endpointNumber: int, direction: USBDirection) -> USBEndpoint: ...
     endpointNumber: int
     direction: USBDirection
     type: USBEndpointType
@@ -15296,7 +17649,8 @@ class USBPermissionResult(PermissionStatus):
     devices: Sequence[USBDevice]
 
 class VTTCue(TextTrackCue):
-    def New(self, startTime: float, endTime: float, text: str) -> VTTCue: ...
+    @classmethod
+    def new(cls, startTime: float, endTime: float, text: str) -> VTTCue: ...
     region: Union['VTTRegion', 'None']
     vertical: DirectionSetting
     snapToLines: bool
@@ -15307,10 +17661,12 @@ class VTTCue(TextTrackCue):
     size: float
     align: AlignSetting
     text: str
+
     def getCueAsHTML(self) -> DocumentFragment: ...
 
 class VTTRegion:
-    def New(self) -> VTTRegion: ...
+    @classmethod
+    def new(cls) -> VTTRegion: ...
     id: str
     width: float
     lines: int
@@ -15338,6 +17694,7 @@ class XRDepthInformation:
 
 class XRCPUDepthInformation(XRDepthInformation):
     data: ArrayBuffer
+
     def getDepthInMeters(self, x: float, y: float) -> float: ...
 
 class XRWebGLDepthInformation(XRDepthInformation):
@@ -15360,6 +17717,7 @@ class XRInputSource:
 
 class XRHand:
     size: int
+
     def get(self, key: XRHandJoint) -> XRJointSpace: ...
 
 class XRJointSpace(XRSpace):
@@ -15379,9 +17737,11 @@ class XRTransientInputHitTestOptionsInit(TypedDict):
     offsetRay: NotRequired[XRRay]
 
 class XRHitTestSource:
+
     def cancel(self) -> None: ...
 
 class XRTransientInputHitTestSource:
+
     def cancel(self) -> None: ...
 
 class XRTransientInputHitTestResult:
@@ -15396,9 +17756,11 @@ class XRRayDirectionInit(TypedDict):
 
 class XRRay:
     @overload
-    def New(self, origin: Union['DOMPointInit', 'None'] = {}, direction: Union['XRRayDirectionInit', 'None'] = {}) -> XRRay: ...
+    @classmethod
+    def new(cls, origin: Union['DOMPointInit', 'None'] = {}, direction: Union['XRRayDirectionInit', 'None'] = {}) -> XRRay: ...
     @overload
-    def New(self, transform: XRRigidTransform) -> XRRay: ...
+    @classmethod
+    def new(cls, transform: XRRigidTransform) -> XRRay: ...
     origin: DOMPointReadOnly
     direction: DOMPointReadOnly
     matrix: Float32Array
@@ -15416,7 +17778,9 @@ class XRLightProbeInit(TypedDict):
     reflectionFormat: NotRequired[XRReflectionFormat]
 
 class XRSystem(EventTarget):
+
     def isSessionSupported(self, mode: XRSessionMode) -> Awaitable[bool]: ...
+
     def requestSession(self, mode: XRSessionMode, options: Union['XRSessionInit', 'None'] = {}) -> Awaitable[XRSession]: ...
     ondevicechange: EventHandler
 
@@ -15437,6 +17801,7 @@ class XRRenderState:
 class XRSpace(EventTarget): ...
 
 class XRReferenceSpace(XRSpace):
+
     def getOffsetReferenceSpace(self, originOffset: XRRigidTransform) -> XRReferenceSpace: ...
     onreset: EventHandler
 
@@ -15450,7 +17815,8 @@ class XRViewport:
     height: int
 
 class XRRigidTransform:
-    def New(self, position: Union['DOMPointInit', 'None'] = {}, orientation: Union['DOMPointInit', 'None'] = {}) -> XRRigidTransform: ...
+    @classmethod
+    def new(cls, position: Union['DOMPointInit', 'None'] = {}, orientation: Union['DOMPointInit', 'None'] = {}) -> XRRigidTransform: ...
     position: DOMPointReadOnly
     orientation: DOMPointReadOnly
     matrix: Float32Array
@@ -15479,24 +17845,28 @@ class XRWebGLLayerInit(TypedDict):
     framebufferScaleFactor: NotRequired[float]
 
 class XRWebGLLayer(XRLayer):
-    def New(self, session: XRSession, context: XRWebGLRenderingContext, layerInit: Union['XRWebGLLayerInit', 'None'] = {}) -> XRWebGLLayer: ...
+    @classmethod
+    def new(cls, session: XRSession, context: XRWebGLRenderingContext, layerInit: Union['XRWebGLLayerInit', 'None'] = {}) -> XRWebGLLayer: ...
     antialias: bool
     ignoreDepthValues: bool
     fixedFoveation: Union['float', 'None']
     framebuffer: Union['WebGLFramebuffer', 'None']
     framebufferWidth: int
     framebufferHeight: int
+
     def getViewport(self, view: XRView) -> Union['XRViewport', 'None']: ...
 
 class XRSessionEvent(Event):
-    def New(self, type: str, eventInitDict: XRSessionEventInit) -> XRSessionEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: XRSessionEventInit) -> XRSessionEvent: ...
     session: XRSession
 
 class XRSessionEventInit(TypedDict, EventInit):
     session: XRSession
 
 class XRInputSourceEvent(Event):
-    def New(self, type: str, eventInitDict: XRInputSourceEventInit) -> XRInputSourceEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: XRInputSourceEventInit) -> XRInputSourceEvent: ...
     frame: XRFrame
     inputSource: XRInputSource
 
@@ -15505,7 +17875,8 @@ class XRInputSourceEventInit(TypedDict, EventInit):
     inputSource: XRInputSource
 
 class XRInputSourcesChangeEvent(Event):
-    def New(self, type: str, eventInitDict: XRInputSourcesChangeEventInit) -> XRInputSourcesChangeEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: XRInputSourcesChangeEventInit) -> XRInputSourcesChangeEvent: ...
     session: XRSession
     added: Sequence[XRInputSource]
     removed: Sequence[XRInputSource]
@@ -15516,7 +17887,8 @@ class XRInputSourcesChangeEventInit(TypedDict, EventInit):
     removed: Sequence[XRInputSource]
 
 class XRReferenceSpaceEvent(Event):
-    def New(self, type: str, eventInitDict: XRReferenceSpaceEventInit) -> XRReferenceSpaceEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: XRReferenceSpaceEventInit) -> XRReferenceSpaceEvent: ...
     referenceSpace: XRReferenceSpace
     transform: Union['XRRigidTransform', 'None']
 
@@ -15543,6 +17915,7 @@ class XRCompositionLayer(XRLayer):
     mipLevels: int
     quality: XRLayerQuality
     needsRedraw: bool
+
     def destroy(self) -> None: ...
 
 class XRProjectionLayer(XRCompositionLayer):
@@ -15663,13 +18036,18 @@ class XRMediaEquirectLayerInit(TypedDict, XRMediaLayerInit):
     lowerVerticalAngle: NotRequired[float]
 
 class XRMediaBinding:
-    def New(self, session: XRSession) -> XRMediaBinding: ...
+    @classmethod
+    def new(cls, session: XRSession) -> XRMediaBinding: ...
+
     def createQuadLayer(self, video: HTMLVideoElement, init: Union['XRMediaQuadLayerInit', 'None'] = {}) -> XRQuadLayer: ...
+
     def createCylinderLayer(self, video: HTMLVideoElement, init: Union['XRMediaCylinderLayerInit', 'None'] = {}) -> XRCylinderLayer: ...
+
     def createEquirectLayer(self, video: HTMLVideoElement, init: Union['XRMediaEquirectLayerInit', 'None'] = {}) -> XREquirectLayer: ...
 
 class XRLayerEvent(Event):
-    def New(self, type: str, eventInitDict: XRLayerEventInit) -> XRLayerEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: XRLayerEventInit) -> XRLayerEvent: ...
     layer: XRLayer
 
 class XRLayerEventInit(TypedDict, EventInit):
@@ -15677,11 +18055,13 @@ class XRLayerEventInit(TypedDict, EventInit):
 
 class WindowControlsOverlay(EventTarget):
     visible: bool
+
     def getTitlebarAreaRect(self) -> DOMRect: ...
     ongeometrychange: EventHandler
 
 class WindowControlsOverlayGeometryChangeEvent(Event):
-    def New(self, type: str, eventInitDict: WindowControlsOverlayGeometryChangeEventInit) -> WindowControlsOverlayGeometryChangeEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: WindowControlsOverlayGeometryChangeEventInit) -> WindowControlsOverlayGeometryChangeEvent: ...
     titlebarAreaRect: DOMRect
     visible: bool
 
@@ -15736,14 +18116,19 @@ class XMLHttpRequestEventTarget(EventTarget):
 class XMLHttpRequestUpload(XMLHttpRequestEventTarget): ...
 
 class FormData:
-    def New(self, form: Union['HTMLFormElement', 'None'] = None, submitter: Union['HTMLElement', 'None'] = None) -> FormData: ...
+    @classmethod
+    def new(cls, form: Union['HTMLFormElement', 'None'] = None, submitter: Union['HTMLElement', 'None'] = None) -> FormData: ...
     @overload
     def append(self, name: str, value: str) -> None: ...
     @overload
     def append(self, name: str, blobValue: Blob, filename: Union['str', 'None'] = None) -> None: ...
+
     def delete(self, name: str) -> None: ...
+
     def get(self, name: str) -> Union['FormDataEntryValue', 'None']: ...
+
     def getAll(self, name: str) -> Sequence[FormDataEntryValue]: ...
+
     def has(self, name: str) -> bool: ...
     @overload
     def set(self, name: str, value: str) -> None: ...
@@ -15751,7 +18136,8 @@ class FormData:
     def set(self, name: str, blobValue: Blob, filename: Union['str', 'None'] = None) -> None: ...
 
 class ProgressEvent(Event):
-    def New(self, type: str, eventInitDict: Union['ProgressEventInit', 'None'] = {}) -> ProgressEvent: ...
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['ProgressEventInit', 'None'] = {}) -> ProgressEvent: ...
     lengthComputable: bool
     loaded: int
     total: int

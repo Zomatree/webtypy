@@ -56,19 +56,28 @@ def s_member_name(name: str) -> str:
 
 
 def s_method(m: GMethod) -> str:
-    returns = ''
     if m.returns is not None and m.returns != 'undefined':
         returns = ' -> ' + s_annotation(m.returns)
     else:
         returns = ' -> None'
 
-    args_arr = ['self'] + [s_arg(a) for a in m.arguments]
-    args_str = ', '.join(args_arr)
     name = s_member_name(m.name)
-    decorator = ''
+    decorators: list[str] = []
+    args_arr = [s_arg(a) for a in m.arguments]
+
     if m.overload:
-        decorator = '@overload\n'
-    return f'{decorator}def {name}({args_str}){returns}: ...'
+        decorators.append("@overload")
+
+    if name == "new":
+        decorators.append("@classmethod")
+        args_arr = ["cls"] + args_arr
+    else:
+        args_arr = ["self"] + args_arr
+
+    args_str = ', '.join(args_arr)
+    decorators_str = "\n".join(decorators)
+
+    return f'{decorators_str}\ndef {name}({args_str}){returns}: ...'
 
 
 def s_annotation_named(a: GAnnotation) -> str:

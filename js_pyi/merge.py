@@ -4,14 +4,15 @@ from typing import List, cast
 
 from js_pyi.assertions import expect_isinstance
 from js_pyi.datamodel import GAttribute, GStmt, GUnhandled, GClass, GInclude, GEnum, GMethod
-from js_pyi.itertools import partition, groupby as groupby2, groupby
+from js_pyi.itertools import partition, groupby
 
 
 def _fix_constructor(cl: GClass):
-    constructors = list(filter(lambda m: isinstance(m, GMethod) and m.name == 'constructor', cl.children))
+    constructors = cast(list[GMethod], list(filter(lambda m: isinstance(m, GMethod) and m.name == 'constructor', cl.children)))
+
     for c in constructors:
         c: GMethod
-        c.name = 'New'
+        c.name = 'new'
         c.returns = cl.name
         cl.children.remove(c)
 
@@ -43,7 +44,6 @@ def _fix_duplicated_attrs(cl: GClass):
     combined: list[GStmt] = []
 
     for name, same_attrs in attrs.items():
-        print(same_attrs)
         if len(same_attrs) > 1 and not any([isinstance(attr, GMethod) for attr in same_attrs]):
             same_attrs = cast(list[GAttribute], same_attrs)
             combined.append(GAttribute(name, [attr.annotation for attr in same_attrs]))
@@ -58,10 +58,10 @@ def merge(statements: List[GStmt]) -> List[GStmt]:
     enums: List[GStmt] = []
     classes: List[GStmt] = []
     the_rest: List[GStmt] = []
-    by_name = groupby2(handled, lambda stmt: stmt.name)
+    by_name = groupby(handled, lambda stmt: stmt.name)
     # { 'Doc' : [ GClass('Doc', ... ), GClass('Doc', ...), GInclude('Doc', ...) ] , ... }
     for name, sts_for_name in by_name.items():
-        by_type = groupby2(sts_for_name, lambda s: type(s))
+        by_type = groupby(sts_for_name, lambda s: type(s))
         if GClass in by_type:
             mi = _m_class(by_type)
             _fix_constructor(mi)

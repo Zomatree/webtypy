@@ -29,9 +29,6 @@ _types_dict = {
 
 
 def to_py_type(s: str) -> str:
-    if s == "false":
-        print("asdasdasdasdasd")
-
     return _types_dict.get(s, s)
 
 
