@@ -1,9 +1,9 @@
 from __future__ import annotations
 
-from typing import List
+from typing import List, cast
 
 from js_pyi.assertions import expect_isinstance
-from js_pyi.datamodel import GStmt, GUnhandled, GClass, GInclude, GEnum, GMethod
+from js_pyi.datamodel import GAttribute, GStmt, GUnhandled, GClass, GInclude, GEnum, GMethod
 from js_pyi.itertools import partition, groupby as groupby2, groupby
 
 
@@ -27,6 +27,31 @@ def _mark_method_overload(cl: GClass):
                 m: GMethod
                 m.overload = True
 
+def _fix_duplicated_attrs(cl: GClass):
+    attrs: dict[str, list[GStmt]] = {}
+    extras: list[GStmt] = []
+
+    for attr in cl.children:
+        if name := getattr(attr, "name", None):
+            l = attrs.setdefault(name, [])
+
+            if attr not in l:
+                l.append(attr)
+        else:
+            extras.append(attr)  # cant handle the type so ignore it and add it at the end
+
+    combined: list[GStmt] = []
+
+    for name, same_attrs in attrs.items():
+        print(same_attrs)
+        if len(same_attrs) > 1 and not any([isinstance(attr, GMethod) for attr in same_attrs]):
+            same_attrs = cast(list[GAttribute], same_attrs)
+            combined.append(GAttribute(name, [attr.annotation for attr in same_attrs]))
+
+        else:
+            combined.extend(same_attrs)
+
+    cl.children = combined + extras
 
 def merge(statements: List[GStmt]) -> List[GStmt]:
     unhandled, handled = partition(statements, lambda e: isinstance(e, GUnhandled))
@@ -40,6 +65,7 @@ def merge(statements: List[GStmt]) -> List[GStmt]:
         if GClass in by_type:
             mi = _m_class(by_type)
             _fix_constructor(mi)
+            _fix_duplicated_attrs(mi)
             _mark_method_overload(mi)
             classes.append(mi)
         elif GEnum in by_type:

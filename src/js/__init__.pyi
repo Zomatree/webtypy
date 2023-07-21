@@ -2,9 +2,9 @@
 
 from typing import overload, Any, Awaitable, Sequence, Literal, TypedDict, NotRequired, ByteString, Union, Callable
 from .ecmascript import *
-
-USVString = str
 SecurityPolicyViolationEventDisposition = Literal["enforce", "report"]
+
+IdentityCredentialRequestOptionsContext = Literal["signin", "signup", "use", "continue"]
 
 EndingType = Literal["transparent", "native"]
 
@@ -182,6 +182,14 @@ OffscreenRenderingContextId = Literal["2d", "bitmaprenderer", "webgl", "webgl2",
 
 ScrollRestoration = Literal["auto", "manual"]
 
+NavigationHistoryBehavior = Literal["auto", "push", "replace"]
+
+NavigationType = Literal["push", "replace", "reload", "traverse"]
+
+NavigationFocusReset = Literal["after-transition", "manual"]
+
+NavigationScrollBehavior = Literal["after-transition", "manual"]
+
 DOMParserSupportedType = Literal["text/html", "text/xml", "application/xml", "application/xhtml+xml", "image/svg+xml"]
 
 ImageOrientation = Literal["from-image", "flipY"]
@@ -288,7 +296,7 @@ RenderBlockingStatusType = Literal["blocking", "non-blocking"]
 
 TaskPriority = Literal["user-blocking", "user-visible", "background"]
 
-CaptureStartFocusBehavior = Literal["focus-captured-surface", "no-focus-change"]
+CaptureStartFocusBehavior = Literal["focus-capturing-application", "focus-captured-surface", "no-focus-change"]
 
 SelfCapturePreferenceEnum = Literal["include", "exclude"]
 
@@ -306,7 +314,7 @@ OrientationType = Literal["portrait-primary", "portrait-secondary", "landscape-p
 
 WakeLockType = Literal["screen"]
 
-ScrollAxis = Literal["block", "inline", "horizontal", "vertical"]
+ScrollAxis = Literal["block", "inline", "x", "y"]
 
 ParityType = Literal["none", "even", "odd"]
 
@@ -662,11 +670,15 @@ XRLayerQuality = Literal["default", "text-optimized", "graphics-optimized"]
 
 XRTextureType = Literal["texture", "texture-array"]
 
+TextDirection = Literal["ltr", "rtl", "auto"]
+
+ProgressionDirection = Literal["ltr", "rtl"]
+
 XMLHttpRequestResponseType = Literal["", "arraybuffer", "blob", "document", "json", "text"]
 
 GLuint64EXT = int
 
-BlobPart = Union['BufferSource', 'Blob', 'USVString']
+BlobPart = Union['BufferSource', 'Blob', 'str']
 
 AlgorithmIdentifier = Union['object', 'str']
 
@@ -694,7 +706,7 @@ CSSStringSource = Union['str', 'ReadableStream']
 
 CSSToken = Union['str', 'CSSStyleValue', 'CSSParserValue']
 
-CSSUnparsedSegment = Union['USVString', 'CSSVariableReferenceValue']
+CSSUnparsedSegment = Union['str', 'CSSVariableReferenceValue']
 
 CSSKeywordish = Union['str', 'CSSKeywordValue']
 
@@ -732,21 +744,21 @@ FileCallback = Callable[[File], None]
 
 FencedFrameConfigSize = Union['int', 'OpaqueProperty']
 
-FencedFrameConfigURL = USVString
+FencedFrameConfigURL = str
 
 ReportEventType = Union['FenceEvent', 'str']
 
 HeadersInit = Union['Sequence[Sequence[ByteString]]', 'ByteString']
 
-XMLHttpRequestBodyInit = Union['Blob', 'BufferSource', 'FormData', 'URLSearchParams', 'USVString']
+XMLHttpRequestBodyInit = Union['Blob', 'BufferSource', 'FormData', 'URLSearchParams', 'str']
 
 BodyInit = Union['ReadableStream', 'XMLHttpRequestBodyInit']
 
-RequestInfo = Union['Request', 'USVString']
+RequestInfo = Union['Request', 'str']
 
 StartInDirectory = Union['WellKnownDirectory', 'FileSystemHandle']
 
-FileSystemWriteChunkType = Union['BufferSource', 'Blob', 'USVString', 'WriteParams']
+FileSystemWriteChunkType = Union['BufferSource', 'Blob', 'str', 'WriteParams']
 
 PositionCallback = Callable[[GeolocationPosition], None]
 
@@ -773,6 +785,8 @@ OffscreenRenderingContext = Union['OffscreenCanvasRenderingContext2D', 'ImageBit
 CustomElementConstructor = Callable[[], HTMLElement]
 
 FunctionStringCallback = Callable[[str], None]
+
+NavigationInterceptHandler = Callable[[], Awaitable[None]]
 
 EventHandlerNonNull = Callable[[Event], Any]
 
@@ -804,11 +818,11 @@ ProfilerResource = str
 
 JsonLdRecord = Any
 
-JsonLdInput = Union['JsonLdRecord', 'Sequence[JsonLdRecord]', 'USVString', 'RemoteDocument']
+JsonLdInput = Union['JsonLdRecord', 'Sequence[JsonLdRecord]', 'str', 'RemoteDocument']
 
-JsonLdContext = Union['JsonLdRecord', 'Sequence[Union["JsonLdRecord", "USVString"]]', 'USVString']
+JsonLdContext = Union['JsonLdRecord', 'Sequence[Union["JsonLdRecord", "str"]]', 'str']
 
-LoadDocumentCallback = Callable[[USVString,Union['LoadDocumentOptions', 'None']], Awaitable[RemoteDocument]]
+LoadDocumentCallback = Callable[[str,Union['LoadDocumentOptions', 'None']], Awaitable[RemoteDocument]]
 
 NavigatorUserMediaSuccessCallback = Callable[[MediaStream], None]
 
@@ -836,7 +850,7 @@ PerformanceEntryList = Sequence[PerformanceEntry]
 
 PerformanceObserverCallback = Callable[[PerformanceObserverEntryList,PerformanceObserver,PerformanceObserverCallbackOptions], None]
 
-PushMessageDataInit = Union['BufferSource', 'USVString']
+PushMessageDataInit = Union['BufferSource', 'str']
 
 RemotePlaybackAvailabilityCallback = Callable[[bool], None]
 
@@ -854,7 +868,7 @@ SchedulerPostTaskCallback = Callable[[], Any]
 
 SharedStorageOperationConstructor = Callable[[SharedStorageRunOperationMethodOptions], SharedStorageOperation]
 
-SharedStorageResponse = Union['USVString', 'FencedFrameConfig']
+SharedStorageResponse = Union['str', 'FencedFrameConfig']
 
 ReadableStreamReader = Union['ReadableStreamDefaultReader', 'ReadableStreamBYOBReader']
 
@@ -886,17 +900,17 @@ CreateHTMLCallback = Callable[[str,Any], str]
 
 CreateScriptCallback = Callable[[str,Any], str]
 
-CreateScriptURLCallback = Callable[[str,Any], USVString]
+CreateScriptURLCallback = Callable[[str,Any], str]
 
 HTMLString = str
 
 ScriptString = str
 
-ScriptURLString = USVString
+ScriptURLString = str
 
 TrustedType = Union['TrustedHTML', 'TrustedScript', 'TrustedScriptURL']
 
-URLPatternInput = Union['USVString', 'URLPatternInit']
+URLPatternInput = Union['str', 'URLPatternInit']
 
 VibratePattern = Union['int', 'Sequence[int]']
 
@@ -1002,6 +1016,8 @@ GPUPipelineConstantValue = float
 
 GPUColorWriteFlags = int
 
+GPUImageCopyExternalImageSource = Union['ImageBitmap', 'HTMLVideoElement', 'VideoFrame', 'HTMLCanvasElement', 'OffscreenCanvas']
+
 GPUBufferDynamicOffset = int
 
 GPUStencilValue = int
@@ -1040,6 +1056,8 @@ ArrayBufferView = Union['Int8Array', 'Int16Array', 'Int32Array', 'Uint8Array', '
 
 BufferSource = Union['ArrayBufferView', 'ArrayBuffer']
 
+AllowSharedBufferSource = Union['ArrayBuffer', 'SharedArrayBuffer', 'ArrayBufferView']
+
 Function = Callable[[Any], Any]
 
 VoidFunction = Callable[[], None]
@@ -1074,7 +1092,7 @@ XRFrameRequestCallback = Callable[[DOMHighResTimeStamp,XRFrame], None]
 
 XRWebGLRenderingContext = Union['WebGLRenderingContext', 'WebGL2RenderingContext']
 
-FormDataEntryValue = Union['File', 'USVString']
+FormDataEntryValue = Union['File', 'str']
 
 class ANGLE_instanced_arrays:
     VERTEX_ATTRIB_ARRAY_DIVISOR_ANGLE = 0x88FE
@@ -1084,12 +1102,12 @@ class ANGLE_instanced_arrays:
 
 class CSPViolationReportBody(ReportBody):
     def toJSON(self) -> object: ...
-    documentURL: USVString
-    referrer: Union['USVString', 'None']
-    blockedURL: Union['USVString', 'None']
+    documentURL: str
+    referrer: Union['str', 'None']
+    blockedURL: Union['str', 'None']
     effectiveDirective: str
     originalPolicy: str
-    sourceFile: Union['USVString', 'None']
+    sourceFile: Union['str', 'None']
     sample: Union['str', 'None']
     disposition: SecurityPolicyViolationEventDisposition
     statusCode: int
@@ -1098,13 +1116,13 @@ class CSPViolationReportBody(ReportBody):
 
 class SecurityPolicyViolationEvent(Event):
     def New(self, type: str, eventInitDict: Union['SecurityPolicyViolationEventInit', 'None'] = {}) -> SecurityPolicyViolationEvent: ...
-    documentURI: USVString
-    referrer: USVString
-    blockedURI: USVString
+    documentURI: str
+    referrer: str
+    blockedURI: str
     effectiveDirective: str
     violatedDirective: str
     originalPolicy: str
-    sourceFile: USVString
+    sourceFile: str
     sample: str
     disposition: SecurityPolicyViolationEventDisposition
     statusCode: int
@@ -1112,13 +1130,13 @@ class SecurityPolicyViolationEvent(Event):
     columnNumber: int
 
 class SecurityPolicyViolationEventInit(TypedDict, EventInit):
-    documentURI: USVString
-    referrer: NotRequired[USVString]
-    blockedURI: NotRequired[USVString]
+    documentURI: str
+    referrer: NotRequired[str]
+    blockedURI: NotRequired[str]
     violatedDirective: str
     effectiveDirective: str
     originalPolicy: str
-    sourceFile: NotRequired[USVString]
+    sourceFile: NotRequired[str]
     sample: NotRequired[str]
     disposition: SecurityPolicyViolationEventDisposition
     statusCode: int
@@ -1138,7 +1156,7 @@ class Element(Node, InnerHTML, Region, GeometryUtils, ParentNode, NonDocumentTyp
     def getSpatialNavigationContainer(self) -> Node: ...
     def focusableAreas(self, option: Union['FocusableAreasOption', 'None'] = {}) -> Sequence[Node]: ...
     def spatialNavigationSearch(self, dir: SpatialNavigationDirection, options: Union['SpatialNavigationSearchOptions', 'None'] = {}) -> Union['Node', 'None']: ...
-    def pseudo(self, type: CSSOMString) -> Union['CSSPseudoElement', 'None']: ...
+    def pseudo(self, type: str) -> Union['CSSPseudoElement', 'None']: ...
     part: DOMTokenList
     def computedStyleMap(self) -> StylePropertyMapReadOnly: ...
     def getClientRects(self) -> DOMRectList: ...
@@ -1229,7 +1247,7 @@ class Range(AbstractRange):
     def setStartAfter(self, node: Node) -> None: ...
     def setEndBefore(self, node: Node) -> None: ...
     def setEndAfter(self, node: Node) -> None: ...
-    def collapse(self, toStart: Union['bool', 'None'] = false) -> None: ...
+    def collapse(self, toStart: Union['bool', 'None'] = False) -> None: ...
     def selectNode(self, node: Node) -> None: ...
     def selectNodeContents(self, node: Node) -> None: ...
     START_TO_START = 0
@@ -1249,44 +1267,33 @@ class Range(AbstractRange):
     def intersectsNode(self, node: Node) -> bool: ...
 
 class StyleSheet:
-    type: str
+    type: Union['str', 'str']
     disabled: bool
-    ownerNode: Node
-    parentStyleSheet: StyleSheet
-    href: str
-    title: str
+    ownerNode: Union['Node', 'Union["Element", "ProcessingInstruction", "None"]']
+    parentStyleSheet: Union['StyleSheet', 'Union["CSSStyleSheet", "None"]']
+    href: Union['str', 'Union["str", "None"]']
+    title: Union['str', 'Union["str", "None"]']
     media: MediaList
-    type: CSSOMString
-    href: Union['USVString', 'None']
-    ownerNode: Union['Element', 'ProcessingInstruction', 'None']
-    parentStyleSheet: Union['CSSStyleSheet', 'None']
-    title: Union['str', 'None']
-    media: MediaList
-    disabled: bool
 
 class StyleSheetList:
     length: int
     def item(self, index: int) -> StyleSheet: ...
-    length: int
 
 class MediaList:
-    mediaText: str
+    mediaText: Union['str', 'str']
     length: int
     def item(self, index: int) -> str: ...
     @overload
     def deleteMedium(self, oldMedium: str) -> None: ...
     @overload
+    def deleteMedium(self, medium: str) -> None: ...
+    @overload
     def appendMedium(self, newMedium: str) -> None: ...
-    mediaText: CSSOMString
-    length: int
     @overload
-    def appendMedium(self, medium: CSSOMString) -> None: ...
-    @overload
-    def deleteMedium(self, medium: CSSOMString) -> None: ...
+    def appendMedium(self, medium: str) -> None: ...
 
 class LinkStyle:
-    sheet: StyleSheet
-    sheet: Union['CSSStyleSheet', 'None']
+    sheet: Union['StyleSheet', 'Union["CSSStyleSheet", "None"]']
 
 class DocumentStyle:
     styleSheets: StyleSheetList
@@ -1294,7 +1301,6 @@ class DocumentStyle:
 class CSSRuleList:
     length: int
     def item(self, index: int) -> CSSRule: ...
-    length: int
 
 class CSSRule:
     UNKNOWN_RULE = 0
@@ -1305,45 +1311,30 @@ class CSSRule:
     FONT_FACE_RULE = 5
     PAGE_RULE = 6
     type: int
-    cssText: str
-    parentStyleSheet: CSSStyleSheet
-    parentRule: CSSRule
+    cssText: Union['str', 'str']
+    parentStyleSheet: Union['CSSStyleSheet', 'Union["CSSStyleSheet", "None"]']
+    parentRule: Union['CSSRule', 'Union["CSSRule", "None"]']
     KEYFRAMES_RULE = 7
     KEYFRAME_RULE = 8
     SUPPORTS_RULE = 12
     COUNTER_STYLE_RULE = 11
     FONT_FEATURE_VALUES_RULE = 14
-    cssText: CSSOMString
-    parentRule: Union['CSSRule', 'None']
-    parentStyleSheet: Union['CSSStyleSheet', 'None']
-    type: int
-    STYLE_RULE = 1
-    CHARSET_RULE = 2
-    IMPORT_RULE = 3
-    MEDIA_RULE = 4
-    FONT_FACE_RULE = 5
-    PAGE_RULE = 6
     MARGIN_RULE = 9
     NAMESPACE_RULE = 10
 
-class CSSStyleRule(CSSRule):
-    selectorText: str
+class CSSStyleRule(CSSRule, CSSGroupingRule):
+    selectorText: Union['str', 'str']
     style: CSSStyleDeclaration
     cssRules: CSSRuleList
-    def insertRule(self, rule: CSSOMString, index: Union['int', 'None'] = 0) -> int: ...
+    def insertRule(self, rule: str, index: Union['int', 'None'] = 0) -> int: ...
     def deleteRule(self, index: int) -> None: ...
     styleMap: StylePropertyMap
-    selectorText: CSSOMString
-    style: CSSStyleDeclaration
 
 class CSSFontFaceRule(CSSRule):
     style: CSSStyleDeclaration
-    style: CSSStyleDeclaration
 
 class CSSPageRule(CSSRule, CSSGroupingRule):
-    selectorText: str
-    style: CSSStyleDeclaration
-    selectorText: CSSOMString
+    selectorText: Union['str', 'str']
     style: CSSStyleDeclaration
 
 class CSSCharsetRule(CSSRule):
@@ -1352,31 +1343,28 @@ class CSSCharsetRule(CSSRule):
 class CSSUnknownRule(CSSRule): ...
 
 class CSSStyleDeclaration:
-    cssText: str
+    cssText: Union['str', 'str']
     @overload
     def getPropertyValue(self, propertyName: str) -> str: ...
+    @overload
+    def getPropertyValue(self, property: str) -> str: ...
     def getPropertyCSSValue(self, propertyName: str) -> CSSValue: ...
     @overload
     def removeProperty(self, propertyName: str) -> str: ...
     @overload
+    def removeProperty(self, property: str) -> str: ...
+    @overload
     def getPropertyPriority(self, propertyName: str) -> str: ...
     @overload
+    def getPropertyPriority(self, property: str) -> str: ...
+    @overload
     def setProperty(self, propertyName: str, value: str, priority: str) -> None: ...
+    @overload
+    def setProperty(self, property: str, value: str, priority: Union['str', 'None'] = "") -> None: ...
     length: int
     def item(self, index: int) -> str: ...
-    parentRule: CSSRule
-    cssText: CSSOMString
-    length: int
-    @overload
-    def getPropertyValue(self, property: CSSOMString) -> CSSOMString: ...
-    @overload
-    def getPropertyPriority(self, property: CSSOMString) -> CSSOMString: ...
-    @overload
-    def setProperty(self, property: CSSOMString, value: CSSOMString, priority: Union['CSSOMString', 'None'] = "") -> None: ...
-    @overload
-    def removeProperty(self, property: CSSOMString) -> CSSOMString: ...
-    parentRule: Union['CSSRule', 'None']
-    cssFloat: CSSOMString
+    parentRule: Union['CSSRule', 'Union["CSSRule", "None"]']
+    cssFloat: str
     accentColor: str
     additiveSymbols: str
     alignContent: str
@@ -1884,7 +1872,6 @@ class DOMImplementationCSS(DOMImplementation):
 class ElementCSSInlineStyle:
     style: CSSStyleDeclaration
     attributeStyleMap: StylePropertyMap
-    style: CSSStyleDeclaration
 
 class CSS2Properties:
     azimuth: str
@@ -2087,7 +2074,7 @@ class EXT_texture_norm16:
     RGBA16_SNORM_EXT = 0x8F9B
 
 class IdentityCredential(Credential):
-    token: Union['USVString', 'None']
+    token: Union['str', 'None']
 
 class CredentialRequestOptions(TypedDict):
     identity: NotRequired[IdentityCredentialRequestOptions]
@@ -2100,48 +2087,59 @@ class CredentialRequestOptions(TypedDict):
 
 class IdentityCredentialRequestOptions(TypedDict):
     providers: NotRequired[Sequence[IdentityProviderConfig]]
+    context: NotRequired[IdentityCredentialRequestOptionsContext]
 
 class IdentityProviderConfig(TypedDict):
-    configURL: USVString
-    clientId: USVString
-    nonce: NotRequired[USVString]
+    configURL: str
+    clientId: str
+    nonce: NotRequired[str]
+    loginHint: NotRequired[str]
 
 class IdentityProviderWellKnown(TypedDict):
-    provider_urls: Sequence[USVString]
+    provider_urls: Sequence[str]
 
 class IdentityProviderIcon(TypedDict):
-    url: USVString
+    url: str
     size: NotRequired[int]
 
 class IdentityProviderBranding(TypedDict):
-    background_color: NotRequired[USVString]
-    color: NotRequired[USVString]
+    background_color: NotRequired[str]
+    color: NotRequired[str]
     icons: NotRequired[Sequence[IdentityProviderIcon]]
-    name: NotRequired[USVString]
+    name: NotRequired[str]
 
 class IdentityProviderAPIConfig(TypedDict):
-    accounts_endpoint: USVString
-    client_metadata_endpoint: USVString
-    id_assertion_endpoint: USVString
+    accounts_endpoint: str
+    client_metadata_endpoint: str
+    id_assertion_endpoint: str
     branding: NotRequired[IdentityProviderBranding]
 
 class IdentityProviderAccount(TypedDict):
-    id: USVString
-    name: USVString
-    email: USVString
-    given_name: NotRequired[USVString]
-    picture: NotRequired[USVString]
-    approved_clients: NotRequired[Sequence[USVString]]
+    id: str
+    name: str
+    email: str
+    given_name: NotRequired[str]
+    picture: NotRequired[str]
+    approved_clients: NotRequired[Sequence[str]]
+    login_hints: NotRequired[Sequence[str]]
 
 class IdentityProviderAccountList(TypedDict):
     accounts: NotRequired[Sequence[IdentityProviderAccount]]
 
 class IdentityProviderToken(TypedDict):
-    token: USVString
+    token: str
 
 class IdentityProviderClientMetadata(TypedDict):
-    privacy_policy_url: NotRequired[USVString]
-    terms_of_service_url: NotRequired[USVString]
+    privacy_policy_url: NotRequired[str]
+    terms_of_service_url: NotRequired[str]
+
+class IdentityUserInfo(TypedDict):
+    email: NotRequired[str]
+    name: NotRequired[str]
+    givenName: NotRequired[str]
+    picture: NotRequired[str]
+
+class IdentityProvider: ...
 
 class Blob:
     def New(self, blobParts: Union['Sequence[BlobPart]', 'None'] = None, options: Union['BlobPropertyBag', 'None'] = {}) -> Blob: ...
@@ -2149,7 +2147,7 @@ class Blob:
     type: str
     def slice(self, start: Union['int', 'None'] = None, end: Union['int', 'None'] = None, contentType: Union['str', 'None'] = None) -> Blob: ...
     def stream(self) -> ReadableStream: ...
-    def text(self) -> Awaitable[USVString]: ...
+    def text(self) -> Awaitable[str]: ...
     def arrayBuffer(self) -> Awaitable[ArrayBuffer]: ...
 
 class BlobPropertyBag(TypedDict):
@@ -2157,10 +2155,10 @@ class BlobPropertyBag(TypedDict):
     endings: NotRequired[EndingType]
 
 class File(Blob):
-    def New(self, fileBits: Sequence[BlobPart], fileName: USVString, options: Union['FilePropertyBag', 'None'] = {}) -> File: ...
+    def New(self, fileBits: Sequence[BlobPart], fileName: str, options: Union['FilePropertyBag', 'None'] = {}) -> File: ...
     name: str
     lastModified: int
-    webkitRelativePath: USVString
+    webkitRelativePath: str
 
 class FilePropertyBag(TypedDict, BlobPropertyBag):
     lastModified: NotRequired[int]
@@ -2196,20 +2194,20 @@ class FileReaderSync:
     def readAsDataURL(self, blob: Blob) -> str: ...
 
 class URL:
-    def New(self, url: USVString, base: Union['USVString', 'None'] = None) -> URL: ...
-    href: USVString
-    origin: USVString
-    protocol: USVString
-    username: USVString
-    password: USVString
-    host: USVString
-    hostname: USVString
-    port: USVString
-    pathname: USVString
-    search: USVString
+    def New(self, url: str, base: Union['str', 'None'] = None) -> URL: ...
+    href: str
+    origin: str
+    protocol: str
+    username: str
+    password: str
+    host: str
+    hostname: str
+    port: str
+    pathname: str
+    search: str
     searchParams: URLSearchParams
-    hash: USVString
-    def toJSON(self) -> USVString: ...
+    hash: str
+    def toJSON(self) -> str: ...
 
 class IDBRequest(EventTarget):
     result: Any
@@ -2238,7 +2236,7 @@ class WindowOrWorkerGlobalScope:
     crypto: Crypto
     def fetch(self, input: RequestInfo, init: Union['RequestInit', 'None'] = {}) -> Awaitable[Response]: ...
     performance: Performance
-    origin: USVString
+    origin: str
     isSecureContext: bool
     crossOriginIsolated: bool
     def reportError(self, e: Any) -> None: ...
@@ -2561,8 +2559,8 @@ class Document(Node, FontFaceSource, GeometryUtils, NonElementParentNode, Docume
     def caretPositionFromPoint(self, x: float, y: float) -> Union['CaretPosition', 'None']: ...
     scrollingElement: Union['Element', 'None']
     implementation: DOMImplementation
-    URL: USVString
-    documentURI: USVString
+    URL: str
+    documentURI: str
     compatMode: str
     characterSet: str
     charset: str
@@ -2580,7 +2578,7 @@ class Document(Node, FontFaceSource, GeometryUtils, NonElementParentNode, Docume
     def createCDATASection(self, data: str) -> CDATASection: ...
     def createComment(self, data: str) -> Comment: ...
     def createProcessingInstruction(self, target: str, data: str) -> ProcessingInstruction: ...
-    def importNode(self, node: Node, deep: Union['bool', 'None'] = false) -> Node: ...
+    def importNode(self, node: Node, deep: Union['bool', 'None'] = False) -> Node: ...
     def adoptNode(self, node: Node) -> Node: ...
     def createAttribute(self, localName: str) -> Attr: ...
     def createAttributeNS(self, namespace: Union['str', 'None'], qualifiedName: str) -> Attr: ...
@@ -2596,9 +2594,9 @@ class Document(Node, FontFaceSource, GeometryUtils, NonElementParentNode, Docume
     onfullscreenchange: EventHandler
     onfullscreenerror: EventHandler
     location: Union['Location', 'None']
-    domain: USVString
-    referrer: USVString
-    cookie: USVString
+    domain: str
+    referrer: str
+    cookie: str
     lastModified: str
     readyState: DocumentReadyState
     title: str
@@ -2616,14 +2614,14 @@ class Document(Node, FontFaceSource, GeometryUtils, NonElementParentNode, Docume
     @overload
     def open(self, unused1: Union['str', 'None'] = None, unused2: Union['str', 'None'] = None) -> Document: ...
     @overload
-    def open(self, url: USVString, name: str, features: str) -> Union['WindowProxy', 'None']: ...
+    def open(self, url: str, name: str, features: str) -> Union['WindowProxy', 'None']: ...
     def close(self) -> None: ...
     def write(self, *text: str) -> None: ...
     def writeln(self, *text: str) -> None: ...
     defaultView: Union['WindowProxy', 'None']
     def hasFocus(self) -> bool: ...
     designMode: str
-    def execCommand(self, commandId: str, showUI: Union['bool', 'None'] = false, value: Union['str', 'None'] = "") -> bool: ...
+    def execCommand(self, commandId: str, showUI: Union['bool', 'None'] = False, value: Union['str', 'None'] = "") -> bool: ...
     def queryCommandEnabled(self, commandId: str) -> bool: ...
     def queryCommandIndeterm(self, commandId: str) -> bool: ...
     def queryCommandState(self, commandId: str) -> bool: ...
@@ -2655,13 +2653,13 @@ class Document(Node, FontFaceSource, GeometryUtils, NonElementParentNode, Docume
     def exitPointerLock(self) -> None: ...
     prerendering: bool
     onprerenderingchange: EventHandler
-    def requestStorageAccessFor(self, requestedOrigin: USVString) -> Awaitable[None]: ...
+    def requestStorageAccessFor(self, requestedOrigin: str) -> Awaitable[None]: ...
     fragmentDirective: FragmentDirective
     def getSelection(self) -> Union['Selection', 'None']: ...
     def hasStorageAccess(self) -> Awaitable[bool]: ...
     def requestStorageAccess(self) -> Awaitable[None]: ...
-    def hasPrivateTokens(self, issuer: USVString) -> Awaitable[bool]: ...
-    def hasRedemptionRecord(self, issuer: USVString) -> Awaitable[bool]: ...
+    def hasPrivateTokens(self, issuer: str) -> Awaitable[bool]: ...
+    def hasRedemptionRecord(self, issuer: str) -> Awaitable[bool]: ...
     timeline: DocumentTimeline
 
 class SVGSVGElement(SVGGraphicsElement, SVGFitToViewBox, WindowEventHandlers):
@@ -2948,7 +2946,7 @@ class SVGScriptElement(SVGElement, SVGURIReference):
 class SVGAElement(SVGGraphicsElement, SVGURIReference, HTMLHyperlinkElementUtils):
     target: SVGAnimatedString
     download: str
-    ping: USVString
+    ping: str
     rel: str
     relList: DOMTokenList
     hreflang: str
@@ -3365,13 +3363,13 @@ class XRHitTestResult:
 class XRAnchorSet: ...
 
 class HTMLAttributionSrcElementUtils:
-    attributionSrc: USVString
+    attributionSrc: str
 
 class HTMLAnchorElement(HTMLElement, HTMLAttributionSrcElementUtils, HTMLHyperlinkElementUtils):
     def New(self) -> HTMLAnchorElement: ...
     target: str
     download: str
-    ping: USVString
+    ping: str
     rel: str
     relList: DOMTokenList
     hreflang: str
@@ -3390,12 +3388,9 @@ class HTMLImageElement(HTMLElement, HTMLAttributionSrcElementUtils):
     def New(self) -> HTMLImageElement: ...
     x: int
     y: int
-    """ # GIgnoredStmt 
-    LegacyFactoryFunction=Image(optional unsigned long width, optional unsigned long height)
-    """
     alt: str
-    src: USVString
-    srcset: USVString
+    src: str
+    srcset: str
     sizes: str
     crossOrigin: Union['str', 'None']
     useMap: str
@@ -3405,23 +3400,26 @@ class HTMLImageElement(HTMLElement, HTMLAttributionSrcElementUtils):
     naturalWidth: int
     naturalHeight: int
     complete: bool
-    currentSrc: USVString
+    currentSrc: str
     referrerPolicy: str
     decoding: str
     loading: str
     fetchPriority: str
     def decode(self) -> Awaitable[None]: ...
     name: str
-    lowsrc: USVString
+    lowsrc: str
     align: str
     hspace: int
     vspace: int
-    longDesc: USVString
+    longDesc: str
     border: str
+    """ # GIgnoredStmt 
+    LegacyFactoryFunction=Image(optional unsigned long width, optional unsigned long height)
+    """
 
 class HTMLScriptElement(HTMLElement, HTMLAttributionSrcElementUtils):
     def New(self) -> HTMLScriptElement: ...
-    src: USVString
+    src: str
     type: str
     noModule: bool
     async_: bool
@@ -3445,7 +3443,7 @@ class RequestInit(TypedDict):
     method: NotRequired[ByteString]
     headers: NotRequired[HeadersInit]
     body: NotRequired[Union['BodyInit', 'None']]
-    referrer: NotRequired[USVString]
+    referrer: NotRequired[str]
     referrerPolicy: NotRequired[ReferrerPolicy]
     mode: NotRequired[RequestMode]
     credentials: NotRequired[RequestCredentials]
@@ -3462,6 +3460,7 @@ class RequestInit(TypedDict):
 class XMLHttpRequest(XMLHttpRequestEventTarget):
     def New(self) -> XMLHttpRequest: ...
     def setAttributionReporting(self, options: AttributionReportingRequestOptions) -> None: ...
+    def setPrivateToken(self, privateToken: PrivateToken) -> None: ...
     onreadystatechange: EventHandler
     UNSENT = 0
     OPENED = 1
@@ -3470,16 +3469,16 @@ class XMLHttpRequest(XMLHttpRequestEventTarget):
     DONE = 4
     readyState: int
     @overload
-    def open(self, method: ByteString, url: USVString) -> None: ...
+    def open(self, method: ByteString, url: str) -> None: ...
     @overload
-    def open(self, method: ByteString, url: USVString, async_: bool, username: Union['USVString', 'None'] = None, password: Union['USVString', 'None'] = None) -> None: ...
+    def open(self, method: ByteString, url: str, async_: bool, username: Union['str', 'None'] = None, password: Union['str', 'None'] = None) -> None: ...
     def setRequestHeader(self, name: ByteString, value: ByteString) -> None: ...
     timeout: int
     withCredentials: bool
     upload: XMLHttpRequestUpload
     def send(self, body: Union['Document', 'XMLHttpRequestBodyInit', 'None'] = None) -> None: ...
     def abort(self) -> None: ...
-    responseURL: USVString
+    responseURL: str
     status: int
     statusText: ByteString
     def getResponseHeader(self, name: ByteString) -> Union['ByteString', 'None']: ...
@@ -3487,7 +3486,7 @@ class XMLHttpRequest(XMLHttpRequestEventTarget):
     def overrideMimeType(self, mime: str) -> None: ...
     responseType: XMLHttpRequestResponseType
     response: Any
-    responseText: USVString
+    responseText: str
     responseXML: Union['Document', 'None']
 
 class HTMLMediaElement(HTMLElement):
@@ -3498,9 +3497,9 @@ class HTMLMediaElement(HTMLElement):
     onwaitingforkey: EventHandler
     def setMediaKeys(self, mediaKeys: Union['MediaKeys', 'None']) -> Awaitable[None]: ...
     error: Union['MediaError', 'None']
-    src: USVString
+    src: str
     srcObject: Union['MediaProvider', 'None']
-    currentSrc: USVString
+    currentSrc: str
     crossOrigin: Union['str', 'None']
     NETWORK_EMPTY = 0
     NETWORK_IDLE = 1
@@ -3568,7 +3567,7 @@ class Navigator(NavigatorBadge, NavigatorDeviceMemory, GlobalPrivacyControl, Nav
     @overload
     def getAutoplayPolicy(self, context: AudioContext) -> AutoplayPolicy: ...
     def getBattery(self) -> Awaitable[BatteryManager]: ...
-    def sendBeacon(self, url: USVString, data: Union['BodyInit', 'None'] = None) -> bool: ...
+    def sendBeacon(self, url: str, data: Union['BodyInit', 'None'] = None) -> bool: ...
     clipboard: Clipboard
     contacts: ContactsManager
     credentials: CredentialsContainer
@@ -3592,9 +3591,9 @@ class Navigator(NavigatorBadge, NavigatorDeviceMemory, GlobalPrivacyControl, Nav
     wakeLock: WakeLock
     serial: Serial
     serviceWorker: ServiceWorkerContainer
-    def joinAdInterestGroup(self, group: AuctionAdInterestGroup, durationSeconds: float) -> Awaitable[None]: ...
-    def leaveAdInterestGroup(self, group: AuctionAdInterestGroupKey) -> Awaitable[None]: ...
-    def runAdAuction(self, config: AuctionAdConfig) -> Awaitable[Union['USVString', 'None']]: ...
+    def joinAdInterestGroup(self, group: AuctionAdInterestGroup) -> Awaitable[None]: ...
+    def leaveAdInterestGroup(self, group: Union['AuctionAdInterestGroupKey', 'None'] = {}) -> Awaitable[None]: ...
+    def runAdAuction(self, config: AuctionAdConfig) -> Awaitable[Union['str', 'FencedFrameConfig', 'None']]: ...
     def updateAdInterestGroups(self) -> None: ...
     def vibrate(self, pattern: VibratePattern) -> bool: ...
     virtualKeyboard: VirtualKeyboard
@@ -3647,7 +3646,7 @@ class ServiceWorkerRegistration(EventTarget):
     waiting: Union['ServiceWorker', 'None']
     active: Union['ServiceWorker', 'None']
     navigationPreload: NavigationPreloadManager
-    scope: USVString
+    scope: str
     updateViaCache: ServiceWorkerUpdateViaCache
     def update(self) -> Awaitable[None]: ...
     def unregister(self) -> Awaitable[bool]: ...
@@ -3762,6 +3761,20 @@ class MediaStreamTrack(EventTarget):
     isolated: bool
     onisolationchange: EventHandler
 
+class CapturedMouseEvent(Event):
+    def New(self, type: str, eventInitDict: Union['CapturedMouseEventInit', 'None'] = {}) -> CapturedMouseEvent: ...
+    surfaceX: int
+    surfaceY: int
+
+class CapturedMouseEventInit(TypedDict, EventInit):
+    surfaceX: NotRequired[int]
+    surfaceY: NotRequired[int]
+
+class CaptureController(EventTarget):
+    def New(self) -> CaptureController: ...
+    oncapturedmousechange: EventHandler
+    def setFocusBehavior(self, focusBehavior: CaptureStartFocusBehavior) -> None: ...
+
 class ClipboardEventInit(TypedDict, EventInit):
     clipboardData: NotRequired[Union['DataTransfer', 'None']]
 
@@ -3802,7 +3815,7 @@ class Window(EventTarget, GlobalEventHandlers, WindowEventHandlers, WindowOrWork
     onorientationchange: EventHandler
     cookieStore: CookieStore
     def navigate(self, dir: SpatialNavigationDirection) -> None: ...
-    def matchMedia(self, query: CSSOMString) -> MediaQueryList: ...
+    def matchMedia(self, query: str) -> MediaQueryList: ...
     screen: Screen
     visualViewport: Union['VisualViewport', 'None']
     def moveTo(self, x: int, y: int) -> None: ...
@@ -3834,7 +3847,7 @@ class Window(EventTarget, GlobalEventHandlers, WindowEventHandlers, WindowOrWork
     outerWidth: int
     outerHeight: int
     devicePixelRatio: float
-    def getComputedStyle(self, elt: Element, pseudoElt: Union['CSSOMString', 'None'] = None) -> CSSStyleDeclaration: ...
+    def getComputedStyle(self, elt: Element, pseudoElt: Union['str', 'None'] = None) -> CSSStyleDeclaration: ...
     def getDigitalGoodsService(self, serviceProvider: str) -> Awaitable[DigitalGoodsService]: ...
     documentPictureInPicture: DocumentPictureInPicture
     event: Union['Event', 'None']
@@ -3848,6 +3861,7 @@ class Window(EventTarget, GlobalEventHandlers, WindowEventHandlers, WindowOrWork
     name: str
     location: Location
     history: History
+    navigation: Navigation
     customElements: CustomElementRegistry
     locationbar: BarProp
     menubar: BarProp
@@ -3867,7 +3881,7 @@ class Window(EventTarget, GlobalEventHandlers, WindowEventHandlers, WindowOrWork
     opener: Any
     parent: Union['WindowProxy', 'None']
     frameElement: Union['Element', 'None']
-    def open(self, url: Union['USVString', 'None'] = "", target: Union['str', 'None'] = "_blank", features: Union['str', 'None'] = "") -> Union['WindowProxy', 'None']: ...
+    def open(self, url: Union['str', 'None'] = "", target: Union['str', 'None'] = "_blank", features: Union['str', 'None'] = "") -> Union['WindowProxy', 'None']: ...
     navigator: Navigator
     clientInformation: Navigator
     originAgentCluster: bool
@@ -3879,7 +3893,7 @@ class Window(EventTarget, GlobalEventHandlers, WindowEventHandlers, WindowOrWork
     def prompt(self, message: Union['str', 'None'] = "", default: Union['str', 'None'] = "") -> Union['str', 'None']: ...
     def print(self) -> None: ...
     @overload
-    def postMessage(self, message: Any, targetOrigin: USVString, transfer: Union['Sequence[object]', 'None'] = []) -> None: ...
+    def postMessage(self, message: Any, targetOrigin: str, transfer: Union['Sequence[object]', 'None'] = []) -> None: ...
     @overload
     def postMessage(self, message: Any, options: Union['WindowPostMessageOptions', 'None'] = {}) -> None: ...
     def captureEvents(self) -> None: ...
@@ -3932,7 +3946,7 @@ class PressureObserverOptions(TypedDict):
     sampleRate: NotRequired[float]
 
 class ConsoleNamespace:
-    def assert_(self, condition: Union['bool', 'None'] = false, *data: Any) -> None: ...
+    def assert_(self, condition: Union['bool', 'None'] = False, *data: Any) -> None: ...
     def clear(self) -> None: ...
     def debug(self, *data: Any) -> None: ...
     def error(self, *data: Any) -> None: ...
@@ -3985,7 +3999,7 @@ class ContentDescription(TypedDict):
     description: str
     category: NotRequired[ContentCategory]
     icons: NotRequired[Sequence[ImageResource]]
-    url: USVString
+    url: str
 
 class ContentIndex:
     def add(self, description: ContentDescription) -> Awaitable[None]: ...
@@ -4001,45 +4015,45 @@ class ContentIndexEvent(ExtendableEvent):
 
 class CookieStore(EventTarget):
     @overload
-    def get(self, name: USVString) -> Awaitable[Union['CookieListItem', 'None']]: ...
+    def get(self, name: str) -> Awaitable[Union['CookieListItem', 'None']]: ...
     @overload
     def get(self, options: Union['CookieStoreGetOptions', 'None'] = {}) -> Awaitable[Union['CookieListItem', 'None']]: ...
     @overload
-    def getAll(self, name: USVString) -> Awaitable[CookieList]: ...
+    def getAll(self, name: str) -> Awaitable[CookieList]: ...
     @overload
     def getAll(self, options: Union['CookieStoreGetOptions', 'None'] = {}) -> Awaitable[CookieList]: ...
     @overload
-    def set(self, name: USVString, value: USVString) -> Awaitable[None]: ...
+    def set(self, name: str, value: str) -> Awaitable[None]: ...
     @overload
     def set(self, options: CookieInit) -> Awaitable[None]: ...
     @overload
-    def delete(self, name: USVString) -> Awaitable[None]: ...
+    def delete(self, name: str) -> Awaitable[None]: ...
     @overload
     def delete(self, options: CookieStoreDeleteOptions) -> Awaitable[None]: ...
     onchange: EventHandler
 
 class CookieStoreGetOptions(TypedDict):
-    name: NotRequired[USVString]
-    url: NotRequired[USVString]
+    name: NotRequired[str]
+    url: NotRequired[str]
 
 class CookieInit(TypedDict):
-    name: USVString
-    value: USVString
+    name: str
+    value: str
     expires: NotRequired[Union['DOMHighResTimeStamp', 'None']]
-    domain: NotRequired[Union['USVString', 'None']]
-    path: NotRequired[USVString]
+    domain: NotRequired[Union['str', 'None']]
+    path: NotRequired[str]
     sameSite: NotRequired[CookieSameSite]
 
 class CookieStoreDeleteOptions(TypedDict):
-    name: USVString
-    domain: NotRequired[Union['USVString', 'None']]
-    path: NotRequired[USVString]
+    name: str
+    domain: NotRequired[Union['str', 'None']]
+    path: NotRequired[str]
 
 class CookieListItem(TypedDict):
-    name: NotRequired[USVString]
-    value: NotRequired[USVString]
-    domain: NotRequired[Union['USVString', 'None']]
-    path: NotRequired[USVString]
+    name: NotRequired[str]
+    value: NotRequired[str]
+    domain: NotRequired[Union['str', 'None']]
+    path: NotRequired[str]
     expires: NotRequired[Union['DOMHighResTimeStamp', 'None']]
     secure: NotRequired[bool]
     sameSite: NotRequired[CookieSameSite]
@@ -4072,21 +4086,21 @@ class CrashReportBody(ReportBody):
     reason: Union['str', 'None']
 
 class Credential:
-    id: USVString
+    id: str
     type: str
 
 class CredentialUserData:
-    name: USVString
-    iconURL: USVString
+    name: str
+    iconURL: str
 
 class CredentialsContainer:
     def get(self, options: Union['CredentialRequestOptions', 'None'] = {}) -> Awaitable[Union['Credential', 'None']]: ...
-    def store(self, credential: Credential) -> Awaitable[Credential]: ...
+    def store(self, credential: Credential) -> Awaitable[None]: ...
     def create(self, options: Union['CredentialCreationOptions', 'None'] = {}) -> Awaitable[Union['Credential', 'None']]: ...
     def preventSilentAccess(self) -> Awaitable[None]: ...
 
 class CredentialData(TypedDict):
-    id: USVString
+    id: str
 
 class CredentialCreationOptions(TypedDict):
     signal: NotRequired[AbortSignal]
@@ -4099,34 +4113,34 @@ class PasswordCredential(Credential, CredentialUserData):
     def New(self, form: HTMLFormElement) -> PasswordCredential: ...
     @overload
     def New(self, data: PasswordCredentialData) -> PasswordCredential: ...
-    password: USVString
+    password: str
 
 class PasswordCredentialData(TypedDict, CredentialData):
-    name: NotRequired[USVString]
-    iconURL: NotRequired[USVString]
-    origin: USVString
-    password: USVString
+    name: NotRequired[str]
+    iconURL: NotRequired[str]
+    origin: str
+    password: str
 
 class FederatedCredential(Credential, CredentialUserData):
     def New(self, data: FederatedCredentialInit) -> FederatedCredential: ...
-    provider: USVString
+    provider: str
     protocol: Union['str', 'None']
 
 class FederatedCredentialRequestOptions(TypedDict):
-    providers: NotRequired[Sequence[USVString]]
+    providers: NotRequired[Sequence[str]]
     protocols: NotRequired[Sequence[str]]
 
 class FederatedCredentialInit(TypedDict, CredentialData):
-    name: NotRequired[USVString]
-    iconURL: NotRequired[USVString]
-    origin: USVString
-    provider: USVString
+    name: NotRequired[str]
+    iconURL: NotRequired[str]
+    origin: str
+    provider: str
     protocol: NotRequired[str]
 
 class HTMLIFrameElement(HTMLElement):
     def New(self) -> HTMLIFrameElement: ...
     csp: str
-    src: USVString
+    src: str
     srcdoc: str
     name: str
     sandbox: DOMTokenList
@@ -4142,18 +4156,25 @@ class HTMLIFrameElement(HTMLElement):
     align: str
     scrolling: str
     frameBorder: str
-    longDesc: USVString
+    longDesc: str
     marginHeight: str
     marginWidth: str
     permissionsPolicy: PermissionsPolicy
+    privateToken: str
 
 class ScriptingPolicyReportBody(ReportBody):
     def toJSON(self) -> object: ...
     violationType: str
-    violationURL: Union['USVString', 'None']
-    violationSample: Union['USVString', 'None']
+    violationURL: Union['str', 'None']
+    violationSample: Union['str', 'None']
     lineno: int
     colno: int
+
+class CSSPositionFallbackRule(CSSGroupingRule):
+    name: str
+
+class CSSTryRule(CSSRule):
+    style: CSSStyleDeclaration
 
 class AnimationWorkletGlobalScope(WorkletGlobalScope):
     def registerAnimator(self, name: str, animatorCtor: AnimatorInstanceConstructor) -> None: ...
@@ -4171,30 +4192,30 @@ class WorkletGroupEffect:
     def getChildren(self) -> Sequence[WorkletAnimationEffect]: ...
 
 class CSSAnimation(Animation):
-    animationName: CSSOMString
+    animationName: str
 
 class AnimationEvent(Event):
-    def New(self, type: CSSOMString, animationEventInitDict: Union['AnimationEventInit', 'None'] = {}) -> AnimationEvent: ...
-    animationName: CSSOMString
+    def New(self, type: str, animationEventInitDict: Union['AnimationEventInit', 'None'] = {}) -> AnimationEvent: ...
+    animationName: str
     elapsedTime: float
-    pseudoElement: CSSOMString
+    pseudoElement: str
 
 class AnimationEventInit(TypedDict, EventInit):
-    animationName: NotRequired[CSSOMString]
+    animationName: NotRequired[str]
     elapsedTime: NotRequired[float]
-    pseudoElement: NotRequired[CSSOMString]
+    pseudoElement: NotRequired[str]
 
 class CSSKeyframeRule(CSSRule):
-    keyText: CSSOMString
+    keyText: str
     style: CSSStyleDeclaration
 
 class CSSKeyframesRule(CSSRule):
-    name: CSSOMString
+    name: str
     cssRules: CSSRuleList
     length: int
-    def appendRule(self, rule: CSSOMString) -> None: ...
-    def deleteRule(self, select: CSSOMString) -> None: ...
-    def findRule(self, select: CSSOMString) -> Union['CSSKeyframeRule', 'None']: ...
+    def appendRule(self, rule: str) -> None: ...
+    def deleteRule(self, select: str) -> None: ...
+    def findRule(self, select: str) -> Union['CSSKeyframeRule', 'None']: ...
 
 class GlobalEventHandlers:
     onanimationstart: EventHandler
@@ -4300,23 +4321,23 @@ class GlobalEventHandlers:
     onbeforexrselect: EventHandler
 
 class CSSScopeRule(CSSGroupingRule):
-    start: Union['CSSOMString', 'None']
-    end: Union['CSSOMString', 'None']
+    start: Union['str', 'None']
+    end: Union['str', 'None']
 
 class CSSLayerBlockRule(CSSGroupingRule):
-    name: CSSOMString
+    name: str
 
 class CSSLayerStatementRule(CSSRule):
-    nameList: Sequence[CSSOMString]
+    nameList: Sequence[str]
 
 class CSSColorProfileRule(CSSRule):
-    name: CSSOMString
-    src: CSSOMString
-    renderingIntent: CSSOMString
-    components: CSSOMString
+    name: str
+    src: str
+    renderingIntent: str
+    components: str
 
 class CSSConditionRule(CSSGroupingRule):
-    conditionText: CSSOMString
+    conditionText: str
 
 class CSSMediaRule(CSSConditionRule):
     media: MediaList
@@ -4325,9 +4346,9 @@ class CSSSupportsRule(CSSConditionRule): ...
 
 class CssNamespace:
     @overload
-    def supports(self, property: CSSOMString, value: CSSOMString) -> bool: ...
+    def supports(self, property: str, value: str) -> bool: ...
     @overload
-    def supports(self, conditionText: CSSOMString) -> bool: ...
+    def supports(self, conditionText: str) -> bool: ...
     def parseStylesheet(self, css: CSSStringSource, options: Union['CSSParserOptions', 'None'] = {}) -> Awaitable[Sequence[CSSParserRule]]: ...
     def parseRuleList(self, css: CSSStringSource, options: Union['CSSParserOptions', 'None'] = {}) -> Awaitable[Sequence[CSSParserRule]]: ...
     def parseRule(self, css: CSSStringSource, options: Union['CSSParserOptions', 'None'] = {}) -> Awaitable[CSSParserRule]: ...
@@ -4395,11 +4416,11 @@ class CssNamespace:
     def dpcm(self, value: float) -> CSSUnitValue: ...
     def dppx(self, value: float) -> CSSUnitValue: ...
     def fr(self, value: float) -> CSSUnitValue: ...
-    def escape(self, ident: CSSOMString) -> CSSOMString: ...
+    def escape(self, ident: str) -> str: ...
 
 class CSSContainerRule(CSSConditionRule):
-    containerName: CSSOMString
-    containerQuery: CSSOMString
+    containerName: str
+    containerQuery: str
 
 class ContentVisibilityAutoStateChangeEvent(Event):
     def New(self, type: str, eventInitDict: Union['ContentVisibilityAutoStateChangeEventInit', 'None'] = {}) -> ContentVisibilityAutoStateChangeEvent: ...
@@ -4409,45 +4430,45 @@ class ContentVisibilityAutoStateChangeEventInit(TypedDict, EventInit):
     skipped: NotRequired[bool]
 
 class CSSCounterStyleRule(CSSRule):
-    name: CSSOMString
-    system: CSSOMString
-    symbols: CSSOMString
-    additiveSymbols: CSSOMString
-    negative: CSSOMString
-    prefix: CSSOMString
-    suffix: CSSOMString
-    range: CSSOMString
-    pad: CSSOMString
-    speakAs: CSSOMString
-    fallback: CSSOMString
+    name: str
+    system: str
+    symbols: str
+    additiveSymbols: str
+    negative: str
+    prefix: str
+    suffix: str
+    range: str
+    pad: str
+    speakAs: str
+    fallback: str
 
 class FontFaceDescriptors(TypedDict):
-    style: NotRequired[CSSOMString]
-    weight: NotRequired[CSSOMString]
-    stretch: NotRequired[CSSOMString]
-    unicodeRange: NotRequired[CSSOMString]
-    variant: NotRequired[CSSOMString]
-    featureSettings: NotRequired[CSSOMString]
-    variationSettings: NotRequired[CSSOMString]
-    display: NotRequired[CSSOMString]
-    ascentOverride: NotRequired[CSSOMString]
-    descentOverride: NotRequired[CSSOMString]
-    lineGapOverride: NotRequired[CSSOMString]
+    style: NotRequired[str]
+    weight: NotRequired[str]
+    stretch: NotRequired[str]
+    unicodeRange: NotRequired[str]
+    variant: NotRequired[str]
+    featureSettings: NotRequired[str]
+    variationSettings: NotRequired[str]
+    display: NotRequired[str]
+    ascentOverride: NotRequired[str]
+    descentOverride: NotRequired[str]
+    lineGapOverride: NotRequired[str]
 
 class FontFace:
-    def New(self, family: CSSOMString, source: Union['CSSOMString', 'BinaryData'], descriptors: Union['FontFaceDescriptors', 'None'] = {}) -> FontFace: ...
-    family: CSSOMString
-    style: CSSOMString
-    weight: CSSOMString
-    stretch: CSSOMString
-    unicodeRange: CSSOMString
-    variant: CSSOMString
-    featureSettings: CSSOMString
-    variationSettings: CSSOMString
-    display: CSSOMString
-    ascentOverride: CSSOMString
-    descentOverride: CSSOMString
-    lineGapOverride: CSSOMString
+    def New(self, family: str, source: Union['str', 'BinaryData'], descriptors: Union['FontFaceDescriptors', 'None'] = {}) -> FontFace: ...
+    family: str
+    style: str
+    weight: str
+    stretch: str
+    unicodeRange: str
+    variant: str
+    featureSettings: str
+    variationSettings: str
+    display: str
+    ascentOverride: str
+    descentOverride: str
+    lineGapOverride: str
     status: FontFaceLoadStatus
     def load(self) -> Awaitable[FontFace]: ...
     loaded: Awaitable[FontFace]
@@ -4478,7 +4499,7 @@ class FontFaceSetLoadEventInit(TypedDict, EventInit):
     fontfaces: NotRequired[Sequence[FontFace]]
 
 class FontFaceSetLoadEvent(Event):
-    def New(self, type: CSSOMString, eventInitDict: Union['FontFaceSetLoadEventInit', 'None'] = {}) -> FontFaceSetLoadEvent: ...
+    def New(self, type: str, eventInitDict: Union['FontFaceSetLoadEventInit', 'None'] = {}) -> FontFaceSetLoadEvent: ...
     fontfaces: Sequence[FontFace]
 
 class FontFaceSet(EventTarget):
@@ -4489,8 +4510,8 @@ class FontFaceSet(EventTarget):
     onloading: EventHandler
     onloadingdone: EventHandler
     onloadingerror: EventHandler
-    def load(self, font: CSSOMString, text: Union['CSSOMString', 'None'] = " ") -> Awaitable[Sequence[FontFace]]: ...
-    def check(self, font: CSSOMString, text: Union['CSSOMString', 'None'] = " ") -> bool: ...
+    def load(self, font: str, text: Union['str', 'None'] = " ") -> Awaitable[Sequence[FontFace]]: ...
+    def check(self, font: str, text: Union['str', 'None'] = " ") -> bool: ...
     ready: Awaitable[FontFaceSet]
     status: FontFaceSetLoadStatus
 
@@ -4501,7 +4522,7 @@ class WorkerGlobalScope(EventTarget, FontFaceSource, WindowOrWorkerGlobalScope):
     self: WorkerGlobalScope
     location: WorkerLocation
     navigator: WorkerNavigator
-    def importScripts(self, *urls: USVString) -> None: ...
+    def importScripts(self, *urls: str) -> None: ...
     onerror: OnErrorEventHandler
     onlanguagechange: EventHandler
     onoffline: EventHandler
@@ -4510,7 +4531,7 @@ class WorkerGlobalScope(EventTarget, FontFaceSource, WindowOrWorkerGlobalScope):
     onunhandledrejection: EventHandler
 
 class CSSFontFeatureValuesRule(CSSRule):
-    fontFamily: CSSOMString
+    fontFamily: str
     annotation: CSSFontFeatureValuesMap
     ornaments: CSSFontFeatureValuesMap
     stylistic: CSSFontFeatureValuesMap
@@ -4519,13 +4540,13 @@ class CSSFontFeatureValuesRule(CSSRule):
     styleset: CSSFontFeatureValuesMap
 
 class CSSFontFeatureValuesMap:
-    def set(self, featureValueName: CSSOMString, values: Union['int', 'Sequence[int]']) -> None: ...
+    def set(self, featureValueName: str, values: Union['int', 'Sequence[int]']) -> None: ...
 
 class CSSFontPaletteValuesRule(CSSRule):
-    name: CSSOMString
-    fontFamily: CSSOMString
-    basePalette: CSSOMString
-    overrideColors: CSSOMString
+    name: str
+    fontFamily: str
+    basePalette: str
+    overrideColors: str
 
 class Highlight:
     def New(self, *initialRanges: AbstractRange) -> Highlight: ...
@@ -4698,21 +4719,21 @@ class PropertyDefinition(TypedDict):
     initialValue: NotRequired[str]
 
 class CSSPropertyRule(CSSRule):
-    name: CSSOMString
-    syntax: CSSOMString
+    name: str
+    syntax: str
     inherits: bool
-    initialValue: Union['CSSOMString', 'None']
+    initialValue: Union['str', 'None']
 
 class CSSPseudoElement(EventTarget, GeometryUtils):
-    type: CSSOMString
+    type: str
     element: Element
     parent: Union['Element', 'CSSPseudoElement']
-    def pseudo(self, type: CSSOMString) -> Union['CSSPseudoElement', 'None']: ...
+    def pseudo(self, type: str) -> Union['CSSPseudoElement', 'None']: ...
 
 class NamedFlowMap: ...
 
 class NamedFlow(EventTarget):
-    name: CSSOMString
+    name: str
     overset: bool
     def getRegions(self) -> Sequence[Element]: ...
     firstEmptyRegionIndex: int
@@ -4720,35 +4741,37 @@ class NamedFlow(EventTarget):
     def getRegionsByContent(self, node: Node) -> Sequence[Element]: ...
 
 class Region:
-    regionOverset: CSSOMString
+    regionOverset: str
     def getRegionFlowRanges(self) -> Sequence[Range]: ...
 
+class CSSStartingStyleRule(CSSGroupingRule): ...
+
 class CSSTransition(Animation):
-    transitionProperty: CSSOMString
+    transitionProperty: str
 
 class TransitionEvent(Event):
-    def New(self, type: CSSOMString, transitionEventInitDict: Union['TransitionEventInit', 'None'] = {}) -> TransitionEvent: ...
-    propertyName: CSSOMString
+    def New(self, type: str, transitionEventInitDict: Union['TransitionEventInit', 'None'] = {}) -> TransitionEvent: ...
+    propertyName: str
     elapsedTime: float
-    pseudoElement: CSSOMString
+    pseudoElement: str
 
 class TransitionEventInit(TypedDict, EventInit):
-    propertyName: NotRequired[CSSOMString]
+    propertyName: NotRequired[str]
     elapsedTime: NotRequired[float]
-    pseudoElement: NotRequired[CSSOMString]
+    pseudoElement: NotRequired[str]
 
 class CSSStyleValue: ...
 
 class StylePropertyMapReadOnly:
-    def get(self, property: USVString) -> Union['None', 'CSSStyleValue']: ...
-    def getAll(self, property: USVString) -> Sequence[CSSStyleValue]: ...
-    def has(self, property: USVString) -> bool: ...
+    def get(self, property: str) -> Union['None', 'CSSStyleValue']: ...
+    def getAll(self, property: str) -> Sequence[CSSStyleValue]: ...
+    def has(self, property: str) -> bool: ...
     size: int
 
 class StylePropertyMap(StylePropertyMapReadOnly):
-    def set(self, property: USVString, *values: Union['CSSStyleValue', 'USVString']) -> None: ...
-    def append(self, property: USVString, *values: Union['CSSStyleValue', 'USVString']) -> None: ...
-    def delete(self, property: USVString) -> None: ...
+    def set(self, property: str, *values: Union['CSSStyleValue', 'str']) -> None: ...
+    def append(self, property: str, *values: Union['CSSStyleValue', 'str']) -> None: ...
+    def delete(self, property: str) -> None: ...
     def clear(self) -> None: ...
 
 class CSSUnparsedValue(CSSStyleValue):
@@ -4756,13 +4779,13 @@ class CSSUnparsedValue(CSSStyleValue):
     length: int
 
 class CSSVariableReferenceValue:
-    def New(self, variable: USVString, fallback: Union['CSSUnparsedValue', 'None'] = None) -> CSSVariableReferenceValue: ...
-    variable: USVString
+    def New(self, variable: str, fallback: Union['CSSUnparsedValue', 'None'] = None) -> CSSVariableReferenceValue: ...
+    variable: str
     fallback: Union['CSSUnparsedValue', 'None']
 
 class CSSKeywordValue(CSSStyleValue):
-    def New(self, value: USVString) -> CSSKeywordValue: ...
-    value: USVString
+    def New(self, value: str) -> CSSKeywordValue: ...
+    value: str
 
 class CSSNumericType(TypedDict):
     length: NotRequired[int]
@@ -4782,14 +4805,14 @@ class CSSNumericValue(CSSStyleValue):
     def min(self, *values: CSSNumberish) -> CSSNumericValue: ...
     def max(self, *values: CSSNumberish) -> CSSNumericValue: ...
     def equals(self, *value: CSSNumberish) -> bool: ...
-    def to(self, unit: USVString) -> CSSUnitValue: ...
-    def toSum(self, *units: USVString) -> CSSMathSum: ...
+    def to(self, unit: str) -> CSSUnitValue: ...
+    def toSum(self, *units: str) -> CSSMathSum: ...
     def type(self) -> CSSNumericType: ...
 
 class CSSUnitValue(CSSNumericValue):
-    def New(self, value: float, unit: USVString) -> CSSUnitValue: ...
+    def New(self, value: float, unit: str) -> CSSUnitValue: ...
     value: float
-    unit: USVString
+    unit: str
 
 class CSSMathValue(CSSNumericValue):
     operator: CSSMathOperator
@@ -4956,19 +4979,19 @@ class ScrollToOptions(TypedDict, ScrollOptions):
     top: NotRequired[float]
 
 class MediaQueryList(EventTarget):
-    media: CSSOMString
+    media: str
     matches: bool
     def addListener(self, callback: Union['EventListener', 'None']) -> None: ...
     def removeListener(self, callback: Union['EventListener', 'None']) -> None: ...
     onchange: EventHandler
 
 class MediaQueryListEvent(Event):
-    def New(self, type: CSSOMString, eventInitDict: Union['MediaQueryListEventInit', 'None'] = {}) -> MediaQueryListEvent: ...
-    media: CSSOMString
+    def New(self, type: str, eventInitDict: Union['MediaQueryListEventInit', 'None'] = {}) -> MediaQueryListEvent: ...
+    media: str
     matches: bool
 
 class MediaQueryListEventInit(TypedDict, EventInit):
-    media: NotRequired[CSSOMString]
+    media: NotRequired[str]
     matches: NotRequired[bool]
 
 class Screen:
@@ -5020,27 +5043,23 @@ class HTMLElement(Element, ElementCSSInlineStyle, GlobalEventHandlers, ElementCo
     def attachInternals(self) -> ElementInternals: ...
     def showPopover(self) -> None: ...
     def hidePopover(self) -> None: ...
-    def togglePopover(self, force: Union['bool', 'None'] = None) -> None: ...
+    def togglePopover(self, force: Union['bool', 'None'] = None) -> bool: ...
     popover: Union['str', 'None']
 
 class MouseEvent(UIEvent):
     def New(self, type: str, eventInitDict: Union['MouseEventInit', 'None'] = {}) -> MouseEvent: ...
-    screenX: float
-    screenY: float
+    screenX: Union['float', 'int']
+    screenY: Union['float', 'int']
     pageX: float
     pageY: float
-    clientX: float
-    clientY: float
+    clientX: Union['float', 'int']
+    clientY: Union['float', 'int']
     x: float
     y: float
     offsetX: float
     offsetY: float
     movementX: float
     movementY: float
-    screenX: int
-    screenY: int
-    clientX: int
-    clientY: int
     ctrlKey: bool
     shiftKey: bool
     altKey: bool
@@ -5049,19 +5068,15 @@ class MouseEvent(UIEvent):
     buttons: int
     relatedTarget: Union['EventTarget', 'None']
     def getModifierState(self, keyArg: str) -> bool: ...
-    def initMouseEvent(self, typeArg: str, bubblesArg: Union['bool', 'None'] = false, cancelableArg: Union['bool', 'None'] = false, viewArg: Union['Window', 'None'] = None, detailArg: Union['int', 'None'] = 0, screenXArg: Union['int', 'None'] = 0, screenYArg: Union['int', 'None'] = 0, clientXArg: Union['int', 'None'] = 0, clientYArg: Union['int', 'None'] = 0, ctrlKeyArg: Union['bool', 'None'] = false, altKeyArg: Union['bool', 'None'] = false, shiftKeyArg: Union['bool', 'None'] = false, metaKeyArg: Union['bool', 'None'] = false, buttonArg: Union['int', 'None'] = 0, relatedTargetArg: Union['EventTarget', 'None'] = None) -> None: ...
+    def initMouseEvent(self, typeArg: str, bubblesArg: Union['bool', 'None'] = False, cancelableArg: Union['bool', 'None'] = False, viewArg: Union['Window', 'None'] = None, detailArg: Union['int', 'None'] = 0, screenXArg: Union['int', 'None'] = 0, screenYArg: Union['int', 'None'] = 0, clientXArg: Union['int', 'None'] = 0, clientYArg: Union['int', 'None'] = 0, ctrlKeyArg: Union['bool', 'None'] = False, altKeyArg: Union['bool', 'None'] = False, shiftKeyArg: Union['bool', 'None'] = False, metaKeyArg: Union['bool', 'None'] = False, buttonArg: Union['int', 'None'] = 0, relatedTargetArg: Union['EventTarget', 'None'] = None) -> None: ...
 
 class MouseEventInit(TypedDict, EventModifierInit):
-    screenX: NotRequired[float]
-    screenY: NotRequired[float]
-    clientX: NotRequired[float]
-    clientY: NotRequired[float]
+    screenX: Union['NotRequired[float]', 'NotRequired[int]']
+    screenY: Union['NotRequired[float]', 'NotRequired[int]']
+    clientX: Union['NotRequired[float]', 'NotRequired[int]']
+    clientY: Union['NotRequired[float]', 'NotRequired[int]']
     movementX: NotRequired[float]
     movementY: NotRequired[float]
-    screenX: NotRequired[int]
-    screenY: NotRequired[int]
-    clientX: NotRequired[int]
-    clientY: NotRequired[int]
     button: NotRequired[int]
     buttons: NotRequired[int]
     relatedTarget: NotRequired[Union['EventTarget', 'None']]
@@ -5101,10 +5116,10 @@ class CSSStyleSheet(StyleSheet):
     def New(self, options: Union['CSSStyleSheetInit', 'None'] = {}) -> CSSStyleSheet: ...
     ownerRule: Union['CSSRule', 'None']
     cssRules: CSSRuleList
-    def insertRule(self, rule: CSSOMString, index: Union['int', 'None'] = 0) -> int: ...
+    def insertRule(self, rule: str, index: Union['int', 'None'] = 0) -> int: ...
     def deleteRule(self, index: int) -> None: ...
-    def replace(self, text: USVString) -> Awaitable[CSSStyleSheet]: ...
-    def replaceSync(self, text: USVString) -> None: ...
+    def replace(self, text: str) -> Awaitable[CSSStyleSheet]: ...
+    def replaceSync(self, text: str) -> None: ...
     rules: CSSRuleList
     def addRule(self, selector: Union['str', 'None'] = "undefined", style: Union['str', 'None'] = "undefined", index: Union['int', 'None'] = None) -> int: ...
     def removeRule(self, index: Union['int', 'None'] = 0) -> None: ...
@@ -5127,31 +5142,31 @@ class ProcessingInstruction(CharacterData, LinkStyle):
     target: str
 
 class CSSImportRule(CSSRule):
-    href: USVString
+    href: str
     media: MediaList
     styleSheet: Union['CSSStyleSheet', 'None']
-    layerName: Union['CSSOMString', 'None']
-    supportsText: Union['CSSOMString', 'None']
+    layerName: Union['str', 'None']
+    supportsText: Union['str', 'None']
 
 class CSSGroupingRule(CSSRule):
     cssRules: CSSRuleList
-    def insertRule(self, rule: CSSOMString, index: Union['int', 'None'] = 0) -> int: ...
+    def insertRule(self, rule: str, index: Union['int', 'None'] = 0) -> int: ...
     def deleteRule(self, index: int) -> None: ...
 
 class CSSMarginRule(CSSRule):
-    name: CSSOMString
+    name: str
     style: CSSStyleDeclaration
 
 class CSSNamespaceRule(CSSRule):
-    namespaceURI: CSSOMString
-    prefix: CSSOMString
+    namespaceURI: str
+    prefix: str
 
 class MathMLElement(Element, ElementCSSInlineStyle, GlobalEventHandlers, HTMLOrForeignElement): ...
 
 class ElementInternals(ARIAMixin):
     states: CustomStateSet
     shadowRoot: Union['ShadowRoot', 'None']
-    def setFormValue(self, value: Union['File', 'USVString', 'FormData', 'None'], state: Union['File', 'USVString', 'FormData', 'None'] = None) -> None: ...
+    def setFormValue(self, value: Union['File', 'str', 'FormData', 'None'], state: Union['File', 'str', 'FormData', 'None'] = None) -> None: ...
     form: Union['HTMLFormElement', 'None']
     def setValidity(self, flags: Union['ValidityStateFlags', 'None'] = {}, message: Union['str', 'None'] = None, anchor: Union['HTMLElement', 'None'] = None) -> None: ...
     willValidate: bool
@@ -5283,7 +5298,6 @@ class DocumentPictureInPicture(EventTarget):
 class DocumentPictureInPictureOptions(TypedDict):
     width: NotRequired[int]
     height: NotRequired[int]
-    copyStyleSheets: NotRequired[bool]
 
 class DocumentPictureInPictureEvent(Event):
     def New(self, type: str, eventInitDict: DocumentPictureInPictureEventInit) -> DocumentPictureInPictureEvent: ...
@@ -5315,7 +5329,7 @@ class Event:
     composed: bool
     isTrusted: bool
     timeStamp: DOMHighResTimeStamp
-    def initEvent(self, type: str, bubbles: Union['bool', 'None'] = false, cancelable: Union['bool', 'None'] = false) -> None: ...
+    def initEvent(self, type: str, bubbles: Union['bool', 'None'] = False, cancelable: Union['bool', 'None'] = False) -> None: ...
 
 class EventInit(TypedDict):
     bubbles: NotRequired[bool]
@@ -5325,7 +5339,7 @@ class EventInit(TypedDict):
 class CustomEvent(Event):
     def New(self, type: str, eventInitDict: Union['CustomEventInit', 'None'] = {}) -> CustomEvent: ...
     detail: Any
-    def initCustomEvent(self, type: str, bubbles: Union['bool', 'None'] = false, cancelable: Union['bool', 'None'] = false, detail: Union['Any', 'None'] = None) -> None: ...
+    def initCustomEvent(self, type: str, bubbles: Union['bool', 'None'] = False, cancelable: Union['bool', 'None'] = False, detail: Union['Any', 'None'] = None) -> None: ...
 
 class CustomEventInit(TypedDict, EventInit):
     detail: NotRequired[Any]
@@ -5446,7 +5460,7 @@ class Node(EventTarget):
     NOTATION_NODE = 12
     nodeType: int
     nodeName: str
-    baseURI: USVString
+    baseURI: str
     isConnected: bool
     ownerDocument: Union['Document', 'None']
     def getRootNode(self, options: Union['GetRootNodeOptions', 'None'] = {}) -> Node: ...
@@ -5461,7 +5475,7 @@ class Node(EventTarget):
     nodeValue: Union['str', 'None']
     textContent: Union['str', 'None']
     def normalize(self) -> None: ...
-    def cloneNode(self, deep: Union['bool', 'None'] = false) -> Node: ...
+    def cloneNode(self, deep: Union['bool', 'None'] = False) -> Node: ...
     def isEqualNode(self, otherNode: Union['Node', 'None']) -> bool: ...
     def isSameNode(self, otherNode: Union['Node', 'None']) -> bool: ...
     DOCUMENT_POSITION_DISCONNECTED = 0x01
@@ -5695,6 +5709,11 @@ class CharacterBoundsUpdateEvent(Event):
     rangeStart: int
     rangeEnd: int
 
+class BrowserCaptureMediaStreamTrack(MediaStreamTrack):
+    def restrictTo(self, cropTarget: Union['CropTarget', 'None']) -> Awaitable[None]: ...
+    def cropTo(self, cropTarget: Union['CropTarget', 'None']) -> Awaitable[None]: ...
+    def clone(self) -> BrowserCaptureMediaStreamTrack: ...
+
 class PerformanceElementTiming(PerformanceEntry):
     renderTime: DOMHighResTimeStamp
     loadTime: DOMHighResTimeStamp
@@ -5721,7 +5740,7 @@ class TextDecodeOptions(TypedDict):
 
 class TextDecoder(TextDecoderCommon):
     def New(self, label: Union['str', 'None'] = "utf-8", options: Union['TextDecoderOptions', 'None'] = {}) -> TextDecoder: ...
-    def decode(self, input: Union['BufferSource', 'None'] = None, options: Union['TextDecodeOptions', 'None'] = {}) -> USVString: ...
+    def decode(self, input: Union['AllowSharedBufferSource', 'None'] = None, options: Union['TextDecodeOptions', 'None'] = {}) -> str: ...
 
 class TextEncoderCommon:
     encoding: str
@@ -5732,8 +5751,8 @@ class TextEncoderEncodeIntoResult(TypedDict):
 
 class TextEncoder(TextEncoderCommon):
     def New(self) -> TextEncoder: ...
-    def encode(self, input: Union['USVString', 'None'] = "") -> Uint8Array: ...
-    def encodeInto(self, source: USVString, destination: Uint8Array) -> TextEncoderEncodeIntoResult: ...
+    def encode(self, input: Union['str', 'None'] = "") -> Uint8Array: ...
+    def encodeInto(self, source: str, destination: Uint8Array) -> TextEncoderEncodeIntoResult: ...
 
 class TextDecoderStream(TextDecoderCommon, GenericTransformStream):
     def New(self, label: Union['str', 'None'] = "utf-8", options: Union['TextDecoderOptions', 'None'] = {}) -> TextDecoderStream: ...
@@ -5814,7 +5833,7 @@ class HTMLInputElement(HTMLElement, PopoverInvokerElement):
     disabled: bool
     form: Union['HTMLFormElement', 'None']
     files: Union['FileList', 'None']
-    formAction: USVString
+    formAction: str
     formEnctype: str
     formMethod: str
     formNoValidate: bool
@@ -5833,7 +5852,7 @@ class HTMLInputElement(HTMLElement, PopoverInvokerElement):
     readOnly: bool
     required: bool
     size: int
-    src: USVString
+    src: str
     step: str
     type: str
     defaultValue: str
@@ -5874,15 +5893,15 @@ class DataTransferItem:
 class FileSystemEntry:
     isFile: bool
     isDirectory: bool
-    name: USVString
-    fullPath: USVString
+    name: str
+    fullPath: str
     filesystem: FileSystem
     def getParent(self, successCallback: Union['FileSystemEntryCallback', 'None'] = None, errorCallback: Union['ErrorCallback', 'None'] = None) -> None: ...
 
 class FileSystemDirectoryEntry(FileSystemEntry):
     def createReader(self) -> FileSystemDirectoryReader: ...
-    def getFile(self, path: Union['USVString', 'None'] = None, options: Union['FileSystemFlags', 'None'] = {}, successCallback: Union['FileSystemEntryCallback', 'None'] = None, errorCallback: Union['ErrorCallback', 'None'] = None) -> None: ...
-    def getDirectory(self, path: Union['USVString', 'None'] = None, options: Union['FileSystemFlags', 'None'] = {}, successCallback: Union['FileSystemEntryCallback', 'None'] = None, errorCallback: Union['ErrorCallback', 'None'] = None) -> None: ...
+    def getFile(self, path: Union['str', 'None'] = None, options: Union['FileSystemFlags', 'None'] = {}, successCallback: Union['FileSystemEntryCallback', 'None'] = None, errorCallback: Union['ErrorCallback', 'None'] = None) -> None: ...
+    def getDirectory(self, path: Union['str', 'None'] = None, options: Union['FileSystemFlags', 'None'] = {}, successCallback: Union['FileSystemEntryCallback', 'None'] = None, errorCallback: Union['ErrorCallback', 'None'] = None) -> None: ...
 
 class FileSystemFlags(TypedDict):
     create: NotRequired[bool]
@@ -5895,7 +5914,7 @@ class FileSystemFileEntry(FileSystemEntry):
     def file(self, successCallback: FileCallback, errorCallback: Union['ErrorCallback', 'None'] = None) -> None: ...
 
 class FileSystem:
-    name: USVString
+    name: str
     root: FileSystemDirectoryEntry
 
 class EpubReadingSystem:
@@ -5987,15 +6006,15 @@ class Body:
     def blob(self) -> Awaitable[Blob]: ...
     def formData(self) -> Awaitable[FormData]: ...
     def json(self) -> Awaitable[Any]: ...
-    def text(self) -> Awaitable[USVString]: ...
+    def text(self) -> Awaitable[str]: ...
 
 class Request(Body):
     def New(self, input: RequestInfo, init: Union['RequestInit', 'None'] = {}) -> Request: ...
     method: ByteString
-    url: USVString
+    url: str
     headers: Headers
     destination: RequestDestination
-    referrer: USVString
+    referrer: str
     referrerPolicy: ReferrerPolicy
     mode: RequestMode
     credentials: RequestCredentials
@@ -6012,7 +6031,7 @@ class Request(Body):
 class Response(Body):
     def New(self, body: Union['BodyInit', 'None'] = None, init: Union['ResponseInit', 'None'] = {}) -> Response: ...
     type: ResponseType
-    url: USVString
+    url: str
     redirected: bool
     status: int
     ok: bool
@@ -6026,7 +6045,7 @@ class ResponseInit(TypedDict):
     headers: NotRequired[HeadersInit]
 
 class AuthenticationExtensionsClientInputs(TypedDict):
-    credentialProtectionPolicy: NotRequired[USVString]
+    credentialProtectionPolicy: NotRequired[str]
     enforceCredentialProtectionPolicy: NotRequired[bool]
     credBlob: NotRequired[ArrayBuffer]
     getCredBlob: NotRequired[bool]
@@ -6034,8 +6053,8 @@ class AuthenticationExtensionsClientInputs(TypedDict):
     hmacCreateSecret: NotRequired[bool]
     hmacGetSecret: NotRequired[HMACGetSecretInput]
     payment: NotRequired[AuthenticationExtensionsPaymentInputs]
-    appid: NotRequired[USVString]
-    appidExclude: NotRequired[USVString]
+    appid: NotRequired[str]
+    appidExclude: NotRequired[str]
     credProps: NotRequired[bool]
     prf: NotRequired[AuthenticationExtensionsPRFInputs]
     largeBlob: NotRequired[AuthenticationExtensionsLargeBlobInputs]
@@ -6072,12 +6091,12 @@ class FileSystemHandle:
     def queryPermission(self, descriptor: Union['FileSystemHandlePermissionDescriptor', 'None'] = {}) -> Awaitable[PermissionState]: ...
     def requestPermission(self, descriptor: Union['FileSystemHandlePermissionDescriptor', 'None'] = {}) -> Awaitable[PermissionState]: ...
     kind: FileSystemHandleKind
-    name: USVString
+    name: str
     def isSameEntry(self, other: FileSystemHandle) -> Awaitable[bool]: ...
 
 class FilePickerAcceptType(TypedDict):
-    description: NotRequired[USVString]
-    accept: NotRequired[Union['USVString', 'Sequence[USVString]']]
+    description: NotRequired[str]
+    accept: NotRequired[Union['str', 'Sequence[str]']]
 
 class FilePickerOptions(TypedDict):
     types: NotRequired[Sequence[FilePickerAcceptType]]
@@ -6089,7 +6108,7 @@ class OpenFilePickerOptions(TypedDict, FilePickerOptions):
     multiple: NotRequired[bool]
 
 class SaveFilePickerOptions(TypedDict, FilePickerOptions):
-    suggestedName: NotRequired[Union['USVString', 'None']]
+    suggestedName: NotRequired[Union['str', 'None']]
 
 class DirectoryPickerOptions(TypedDict):
     id: NotRequired[str]
@@ -6352,16 +6371,16 @@ class FileSystemRemoveOptions(TypedDict):
     recursive: NotRequired[bool]
 
 class FileSystemDirectoryHandle(FileSystemHandle):
-    def getFileHandle(self, name: USVString, options: Union['FileSystemGetFileOptions', 'None'] = {}) -> Awaitable[FileSystemFileHandle]: ...
-    def getDirectoryHandle(self, name: USVString, options: Union['FileSystemGetDirectoryOptions', 'None'] = {}) -> Awaitable[FileSystemDirectoryHandle]: ...
-    def removeEntry(self, name: USVString, options: Union['FileSystemRemoveOptions', 'None'] = {}) -> Awaitable[None]: ...
-    def resolve(self, possibleDescendant: FileSystemHandle) -> Awaitable[Sequence[USVString]]: ...
+    def getFileHandle(self, name: str, options: Union['FileSystemGetFileOptions', 'None'] = {}) -> Awaitable[FileSystemFileHandle]: ...
+    def getDirectoryHandle(self, name: str, options: Union['FileSystemGetDirectoryOptions', 'None'] = {}) -> Awaitable[FileSystemDirectoryHandle]: ...
+    def removeEntry(self, name: str, options: Union['FileSystemRemoveOptions', 'None'] = {}) -> Awaitable[None]: ...
+    def resolve(self, possibleDescendant: FileSystemHandle) -> Awaitable[Sequence[str]]: ...
 
 class WriteParams(TypedDict):
     type: WriteCommandType
     size: NotRequired[Union['int', 'None']]
     position: NotRequired[Union['int', 'None']]
-    data: NotRequired[Union['BufferSource', 'Blob', 'USVString', 'None']]
+    data: NotRequired[Union['BufferSource', 'Blob', 'str', 'None']]
 
 class FileSystemWritableFileStream(WritableStream):
     def write(self, data: FileSystemWriteChunkType) -> Awaitable[None]: ...
@@ -6372,8 +6391,8 @@ class FileSystemReadWriteOptions(TypedDict):
     at: NotRequired[int]
 
 class FileSystemSyncAccessHandle:
-    def read(self, buffer: BufferSource, options: Union['FileSystemReadWriteOptions', 'None'] = {}) -> int: ...
-    def write(self, buffer: BufferSource, options: Union['FileSystemReadWriteOptions', 'None'] = {}) -> int: ...
+    def read(self, buffer: AllowSharedBufferSource, options: Union['FileSystemReadWriteOptions', 'None'] = {}) -> int: ...
+    def write(self, buffer: AllowSharedBufferSource, options: Union['FileSystemReadWriteOptions', 'None'] = {}) -> int: ...
     def truncate(self, newSize: int) -> None: ...
     def getSize(self) -> int: ...
     def flush(self) -> None: ...
@@ -6736,10 +6755,10 @@ class DOMMatrixInit(TypedDict, DOMMatrix2DInit):
     is2D: NotRequired[bool]
 
 class RelatedApplication(TypedDict):
-    platform: USVString
-    url: NotRequired[USVString]
+    platform: str
+    url: NotRequired[str]
     id: NotRequired[str]
-    version: NotRequired[USVString]
+    version: NotRequired[str]
 
 class GlobalPrivacyControl:
     globalPrivacyControl: bool
@@ -6802,12 +6821,12 @@ class HTMLTitleElement(HTMLElement):
 
 class HTMLBaseElement(HTMLElement):
     def New(self) -> HTMLBaseElement: ...
-    href: USVString
+    href: str
     target: str
 
 class HTMLLinkElement(HTMLElement, LinkStyle):
     def New(self) -> HTMLLinkElement: ...
-    href: USVString
+    href: str
     crossOrigin: Union['str', 'None']
     rel: str
     relList: DOMTokenList
@@ -6816,7 +6835,7 @@ class HTMLLinkElement(HTMLElement, LinkStyle):
     hreflang: str
     type: str
     sizes: DOMTokenList
-    imageSrcset: USVString
+    imageSrcset: str
     imageSizes: str
     referrerPolicy: str
     blocking: DOMTokenList
@@ -6863,7 +6882,7 @@ class HTMLPreElement(HTMLElement):
 
 class HTMLQuoteElement(HTMLElement):
     def New(self) -> HTMLQuoteElement: ...
-    cite: USVString
+    cite: str
 
 class HTMLOListElement(HTMLElement):
     def New(self) -> HTMLOListElement: ...
@@ -6910,21 +6929,21 @@ class HTMLBRElement(HTMLElement):
     clear: str
 
 class HTMLHyperlinkElementUtils:
-    href: USVString
-    origin: USVString
-    protocol: USVString
-    username: USVString
-    password: USVString
-    host: USVString
-    hostname: USVString
-    port: USVString
-    pathname: USVString
-    search: USVString
-    hash: USVString
+    href: str
+    origin: str
+    protocol: str
+    username: str
+    password: str
+    host: str
+    hostname: str
+    port: str
+    pathname: str
+    search: str
+    hash: str
 
 class HTMLModElement(HTMLElement):
     def New(self) -> HTMLModElement: ...
-    cite: USVString
+    cite: str
     dateTime: str
 
 class HTMLPictureElement(HTMLElement):
@@ -6932,9 +6951,9 @@ class HTMLPictureElement(HTMLElement):
 
 class HTMLSourceElement(HTMLElement):
     def New(self) -> HTMLSourceElement: ...
-    src: USVString
+    src: str
     type: str
-    srcset: USVString
+    srcset: str
     sizes: str
     media: str
     width: int
@@ -6942,7 +6961,7 @@ class HTMLSourceElement(HTMLElement):
 
 class HTMLEmbedElement(HTMLElement):
     def New(self) -> HTMLEmbedElement: ...
-    src: USVString
+    src: str
     type: str
     width: str
     height: str
@@ -6952,7 +6971,7 @@ class HTMLEmbedElement(HTMLElement):
 
 class HTMLObjectElement(HTMLElement):
     def New(self) -> HTMLObjectElement: ...
-    data: USVString
+    data: str
     type: str
     name: str
     form: Union['HTMLFormElement', 'None']
@@ -6985,7 +7004,7 @@ class HTMLVideoElement(HTMLMediaElement):
     height: int
     videoWidth: int
     videoHeight: int
-    poster: USVString
+    poster: str
     playsInline: bool
     def getVideoPlaybackQuality(self) -> VideoPlaybackQuality: ...
     def requestPictureInPicture(self) -> Awaitable[PictureInPictureWindow]: ...
@@ -7004,7 +7023,7 @@ class HTMLAudioElement(HTMLMediaElement):
 class HTMLTrackElement(HTMLElement):
     def New(self) -> HTMLTrackElement: ...
     kind: str
-    src: USVString
+    src: str
     srclang: str
     label: str
     default: bool
@@ -7112,7 +7131,7 @@ class HTMLAreaElement(HTMLElement, HTMLHyperlinkElementUtils):
     shape: str
     target: str
     download: str
-    ping: USVString
+    ping: str
     rel: str
     relList: DOMTokenList
     referrerPolicy: str
@@ -7201,7 +7220,7 @@ class HTMLTableCellElement(HTMLElement):
 class HTMLFormElement(HTMLElement):
     def New(self) -> HTMLFormElement: ...
     acceptCharset: str
-    action: USVString
+    action: str
     autocomplete: str
     enctype: str
     encoding: str
@@ -7229,7 +7248,7 @@ class HTMLButtonElement(HTMLElement, PopoverInvokerElement):
     def New(self) -> HTMLButtonElement: ...
     disabled: bool
     form: Union['HTMLFormElement', 'None']
-    formAction: USVString
+    formAction: str
     formEnctype: str
     formMethod: str
     formNoValidate: bool
@@ -7285,9 +7304,6 @@ class HTMLOptGroupElement(HTMLElement):
 
 class HTMLOptionElement(HTMLElement):
     def New(self) -> HTMLOptionElement: ...
-    """ # GIgnoredStmt 
-    LegacyFactoryFunction=Option(optional DOMString text = "", optional DOMString value, optional boolean defaultSelected = false, optional boolean selected = false)
-    """
     disabled: bool
     form: Union['HTMLFormElement', 'None']
     label: str
@@ -7296,6 +7312,9 @@ class HTMLOptionElement(HTMLElement):
     value: str
     text: str
     index: int
+    """ # GIgnoredStmt 
+    LegacyFactoryFunction=Option(optional DOMString text = "", optional DOMString value, optional boolean defaultSelected = false, optional boolean selected = false)
+    """
 
 class HTMLTextAreaElement(HTMLElement):
     def New(self) -> HTMLTextAreaElement: ...
@@ -7443,7 +7462,7 @@ class HTMLCanvasElement(HTMLElement):
     width: int
     height: int
     def getContext(self, contextId: str, options: Union['Any', 'None'] = None) -> Union['RenderingContext', 'None']: ...
-    def toDataURL(self, type: Union['str', 'None'] = "image/png", quality: Union['Any', 'None'] = None) -> USVString: ...
+    def toDataURL(self, type: Union['str', 'None'] = "image/png", quality: Union['Any', 'None'] = None) -> str: ...
     def toBlob(self, callback: BlobCallback, type: Union['str', 'None'] = "image/png", quality: Union['Any', 'None'] = None) -> None: ...
     def transferControlToOffscreen(self) -> OffscreenCanvas: ...
     def captureStream(self, frameRequestRate: Union['float', 'None'] = None) -> MediaStream: ...
@@ -7593,8 +7612,8 @@ class CanvasPath:
     def arcTo(self, x1: float, y1: float, x2: float, y2: float, radius: float) -> None: ...
     def rect(self, x: float, y: float, w: float, h: float) -> None: ...
     def roundRect(self, x: float, y: float, w: float, h: float, radii: Union['float', 'DOMPointInit', 'Sequence[Union["float", "DOMPointInit"]]', 'None'] = 0) -> None: ...
-    def arc(self, x: float, y: float, radius: float, startAngle: float, endAngle: float, counterclockwise: Union['bool', 'None'] = false) -> None: ...
-    def ellipse(self, x: float, y: float, radiusX: float, radiusY: float, rotation: float, startAngle: float, endAngle: float, counterclockwise: Union['bool', 'None'] = false) -> None: ...
+    def arc(self, x: float, y: float, radius: float, startAngle: float, endAngle: float, counterclockwise: Union['bool', 'None'] = False) -> None: ...
+    def ellipse(self, x: float, y: float, radiusX: float, radiusY: float, rotation: float, startAngle: float, endAngle: float, counterclockwise: Union['bool', 'None'] = False) -> None: ...
 
 class CanvasGradient:
     def addColorStop(self, offset: float, color: str) -> None: ...
@@ -7661,6 +7680,7 @@ class OffscreenCanvasRenderingContext2D(CanvasState, CanvasTransform, CanvasComp
 class CustomElementRegistry:
     def define(self, name: str, constructor: CustomElementConstructor, options: Union['ElementDefinitionOptions', 'None'] = {}) -> None: ...
     def get(self, name: str) -> Union['CustomElementConstructor', 'None']: ...
+    def getName(self, constructor: CustomElementConstructor) -> Union['str', 'None']: ...
     def whenDefined(self, name: str) -> Awaitable[CustomElementConstructor]: ...
     def upgrade(self, root: Node) -> None: ...
 
@@ -7742,23 +7762,23 @@ class ToggleEventInit(TypedDict, EventInit):
     newState: NotRequired[str]
 
 class WindowPostMessageOptions(TypedDict, StructuredSerializeOptions):
-    targetOrigin: NotRequired[USVString]
+    targetOrigin: NotRequired[str]
 
 class BarProp:
     visible: bool
 
 class Location:
-    href: USVString
-    origin: USVString
-    protocol: USVString
-    host: USVString
-    hostname: USVString
-    port: USVString
-    pathname: USVString
-    search: USVString
-    hash: USVString
-    def assign(self, url: USVString) -> None: ...
-    def replace(self, url: USVString) -> None: ...
+    href: str
+    origin: str
+    protocol: str
+    host: str
+    hostname: str
+    port: str
+    pathname: str
+    search: str
+    hash: str
+    def assign(self, url: str) -> None: ...
+    def replace(self, url: str) -> None: ...
     def reload(self) -> None: ...
     ancestorOrigins: DOMStringList
 
@@ -7769,8 +7789,102 @@ class History:
     def go(self, delta: Union['int', 'None'] = 0) -> None: ...
     def back(self) -> None: ...
     def forward(self) -> None: ...
-    def pushState(self, data: Any, unused: str, url: Union['USVString', 'None'] = None) -> None: ...
-    def replaceState(self, data: Any, unused: str, url: Union['USVString', 'None'] = None) -> None: ...
+    def pushState(self, data: Any, unused: str, url: Union['str', 'None'] = None) -> None: ...
+    def replaceState(self, data: Any, unused: str, url: Union['str', 'None'] = None) -> None: ...
+
+class Navigation(EventTarget):
+    def entries(self) -> Sequence[NavigationHistoryEntry]: ...
+    currentEntry: Union['NavigationHistoryEntry', 'None']
+    def updateCurrentEntry(self, options: NavigationUpdateCurrentEntryOptions) -> None: ...
+    transition: Union['NavigationTransition', 'None']
+    canGoBack: bool
+    canGoForward: bool
+    def navigate(self, url: str, options: Union['NavigationNavigateOptions', 'None'] = {}) -> NavigationResult: ...
+    def reload(self, options: Union['NavigationReloadOptions', 'None'] = {}) -> NavigationResult: ...
+    def traverseTo(self, key: str, options: Union['NavigationOptions', 'None'] = {}) -> NavigationResult: ...
+    def back(self, options: Union['NavigationOptions', 'None'] = {}) -> NavigationResult: ...
+    def forward(self, options: Union['NavigationOptions', 'None'] = {}) -> NavigationResult: ...
+    onnavigate: EventHandler
+    onnavigatesuccess: EventHandler
+    onnavigateerror: EventHandler
+    oncurrententrychange: EventHandler
+
+class NavigationUpdateCurrentEntryOptions(TypedDict):
+    state: Any
+
+class NavigationOptions(TypedDict):
+    info: NotRequired[Any]
+
+class NavigationNavigateOptions(TypedDict, NavigationOptions):
+    state: NotRequired[Any]
+    history: NotRequired[NavigationHistoryBehavior]
+
+class NavigationReloadOptions(TypedDict, NavigationOptions):
+    state: NotRequired[Any]
+
+class NavigationResult(TypedDict):
+    committed: NotRequired[Awaitable[NavigationHistoryEntry]]
+    finished: NotRequired[Awaitable[NavigationHistoryEntry]]
+
+class NavigationHistoryEntry(EventTarget):
+    url: Union['str', 'None']
+    key: str
+    id: str
+    index: int
+    sameDocument: bool
+    def getState(self) -> Any: ...
+    ondispose: EventHandler
+
+class NavigationTransition:
+    navigationType: NavigationType
+    from_: NavigationHistoryEntry
+    finished: Awaitable[None]
+
+class NavigateEvent(Event):
+    def New(self, type: str, eventInitDict: NavigateEventInit) -> NavigateEvent: ...
+    navigationType: NavigationType
+    destination: NavigationDestination
+    canIntercept: bool
+    userInitiated: bool
+    hashChange: bool
+    signal: AbortSignal
+    formData: Union['FormData', 'None']
+    downloadRequest: Union['str', 'None']
+    info: Any
+    def intercept(self, options: Union['NavigationInterceptOptions', 'None'] = {}) -> None: ...
+    def scroll(self) -> None: ...
+
+class NavigateEventInit(TypedDict, EventInit):
+    navigationType: NotRequired[NavigationType]
+    destination: NavigationDestination
+    canIntercept: NotRequired[bool]
+    userInitiated: NotRequired[bool]
+    hashChange: NotRequired[bool]
+    signal: AbortSignal
+    formData: NotRequired[Union['FormData', 'None']]
+    downloadRequest: NotRequired[Union['str', 'None']]
+    info: NotRequired[Any]
+
+class NavigationInterceptOptions(TypedDict):
+    handler: NotRequired[NavigationInterceptHandler]
+    focusReset: NotRequired[NavigationFocusReset]
+    scroll: NotRequired[NavigationScrollBehavior]
+
+class NavigationDestination:
+    url: str
+    key: str
+    id: str
+    index: int
+    sameDocument: bool
+    def getState(self) -> Any: ...
+
+class NavigationCurrentEntryChangeEvent(Event):
+    def New(self, type: str, eventInitDict: NavigationCurrentEntryChangeEventInit) -> NavigationCurrentEntryChangeEvent: ...
+    navigationType: Union['NavigationType', 'None']
+    from_: NavigationHistoryEntry
+
+class NavigationCurrentEntryChangeEventInit(TypedDict, EventInit):
+    navigationType: NotRequired[Union['NavigationType', 'None']]
 
 class PopStateEvent(Event):
     def New(self, type: str, eventInitDict: Union['PopStateEventInit', 'None'] = {}) -> PopStateEvent: ...
@@ -7781,12 +7895,12 @@ class PopStateEventInit(TypedDict, EventInit):
 
 class HashChangeEvent(Event):
     def New(self, type: str, eventInitDict: Union['HashChangeEventInit', 'None'] = {}) -> HashChangeEvent: ...
-    oldURL: USVString
-    newURL: USVString
+    oldURL: str
+    newURL: str
 
 class HashChangeEventInit(TypedDict, EventInit):
-    oldURL: NotRequired[USVString]
-    newURL: NotRequired[USVString]
+    oldURL: NotRequired[str]
+    newURL: NotRequired[str]
 
 class PageTransitionEvent(Event):
     def New(self, type: str, eventInitDict: Union['PageTransitionEventInit', 'None'] = {}) -> PageTransitionEvent: ...
@@ -7801,14 +7915,14 @@ class BeforeUnloadEvent(Event):
 class ErrorEvent(Event):
     def New(self, type: str, eventInitDict: Union['ErrorEventInit', 'None'] = {}) -> ErrorEvent: ...
     message: str
-    filename: USVString
+    filename: str
     lineno: int
     colno: int
     error: Any
 
 class ErrorEventInit(TypedDict, EventInit):
     message: NotRequired[str]
-    filename: NotRequired[USVString]
+    filename: NotRequired[str]
     lineno: NotRequired[int]
     colno: NotRequired[int]
     error: NotRequired[Any]
@@ -7847,8 +7961,8 @@ class NavigatorOnLine:
     onLine: bool
 
 class NavigatorContentUtils:
-    def registerProtocolHandler(self, scheme: str, url: USVString) -> None: ...
-    def unregisterProtocolHandler(self, scheme: str, url: USVString) -> None: ...
+    def registerProtocolHandler(self, scheme: str, url: str) -> None: ...
+    def unregisterProtocolHandler(self, scheme: str, url: str) -> None: ...
 
 class NavigatorCookies:
     cookieEnabled: bool
@@ -7909,22 +8023,22 @@ class DedicatedWorkerGlobalScope(WorkerGlobalScope, AnimationFrameProvider):
 class MessageEvent(Event):
     def New(self, type: str, eventInitDict: Union['MessageEventInit', 'None'] = {}) -> MessageEvent: ...
     data: Any
-    origin: USVString
+    origin: str
     lastEventId: str
     source: Union['MessageEventSource', 'None']
     ports: Sequence[MessagePort]
-    def initMessageEvent(self, type: str, bubbles: Union['bool', 'None'] = false, cancelable: Union['bool', 'None'] = false, data: Union['Any', 'None'] = None, origin: Union['USVString', 'None'] = "", lastEventId: Union['str', 'None'] = "", source: Union['MessageEventSource', 'None'] = None, ports: Union['Sequence[MessagePort]', 'None'] = []) -> None: ...
+    def initMessageEvent(self, type: str, bubbles: Union['bool', 'None'] = False, cancelable: Union['bool', 'None'] = False, data: Union['Any', 'None'] = None, origin: Union['str', 'None'] = "", lastEventId: Union['str', 'None'] = "", source: Union['MessageEventSource', 'None'] = None, ports: Union['Sequence[MessagePort]', 'None'] = []) -> None: ...
 
 class MessageEventInit(TypedDict, EventInit):
     data: NotRequired[Any]
-    origin: NotRequired[USVString]
+    origin: NotRequired[str]
     lastEventId: NotRequired[str]
     source: NotRequired[Union['MessageEventSource', 'None']]
     ports: NotRequired[Sequence[MessagePort]]
 
 class EventSource(EventTarget):
-    def New(self, url: USVString, eventSourceInitDict: Union['EventSourceInit', 'None'] = {}) -> EventSource: ...
-    url: USVString
+    def New(self, url: str, eventSourceInitDict: Union['EventSourceInit', 'None'] = {}) -> EventSource: ...
+    url: str
     withCredentials: bool
     CONNECTING = 0
     OPEN = 1
@@ -7973,7 +8087,7 @@ class AbstractWorker:
     onerror: EventHandler
 
 class Worker(EventTarget, AbstractWorker):
-    def New(self, scriptURL: USVString, options: Union['WorkerOptions', 'None'] = {}) -> Worker: ...
+    def New(self, scriptURL: str, options: Union['WorkerOptions', 'None'] = {}) -> Worker: ...
     def terminate(self) -> None: ...
     @overload
     def postMessage(self, message: Any, transfer: Sequence[object]) -> None: ...
@@ -7988,27 +8102,27 @@ class WorkerOptions(TypedDict):
     name: NotRequired[str]
 
 class SharedWorker(EventTarget, AbstractWorker):
-    def New(self, scriptURL: USVString, options: Union['str', 'WorkerOptions', 'None'] = {}) -> SharedWorker: ...
+    def New(self, scriptURL: str, options: Union['str', 'WorkerOptions', 'None'] = {}) -> SharedWorker: ...
     port: MessagePort
 
 class NavigatorConcurrentHardware:
     hardwareConcurrency: int
 
 class WorkerLocation:
-    href: USVString
-    origin: USVString
-    protocol: USVString
-    host: USVString
-    hostname: USVString
-    port: USVString
-    pathname: USVString
-    search: USVString
-    hash: USVString
+    href: str
+    origin: str
+    protocol: str
+    host: str
+    hostname: str
+    port: str
+    pathname: str
+    search: str
+    hash: str
 
 class WorkletGlobalScope: ...
 
 class Worklet:
-    def addModule(self, moduleURL: USVString, options: Union['WorkletOptions', 'None'] = {}) -> Awaitable[None]: ...
+    def addModule(self, moduleURL: str, options: Union['WorkletOptions', 'None'] = {}) -> Awaitable[None]: ...
 
 class WorkletOptions(TypedDict):
     credentials: NotRequired[RequestCredentials]
@@ -8029,15 +8143,15 @@ class StorageEvent(Event):
     key: Union['str', 'None']
     oldValue: Union['str', 'None']
     newValue: Union['str', 'None']
-    url: USVString
+    url: str
     storageArea: Union['Storage', 'None']
-    def initStorageEvent(self, type: str, bubbles: Union['bool', 'None'] = false, cancelable: Union['bool', 'None'] = false, key: Union['str', 'None'] = None, oldValue: Union['str', 'None'] = None, newValue: Union['str', 'None'] = None, url: Union['USVString', 'None'] = "", storageArea: Union['Storage', 'None'] = None) -> None: ...
+    def initStorageEvent(self, type: str, bubbles: Union['bool', 'None'] = False, cancelable: Union['bool', 'None'] = False, key: Union['str', 'None'] = None, oldValue: Union['str', 'None'] = None, newValue: Union['str', 'None'] = None, url: Union['str', 'None'] = "", storageArea: Union['Storage', 'None'] = None) -> None: ...
 
 class StorageEventInit(TypedDict, EventInit):
     key: NotRequired[Union['str', 'None']]
     oldValue: NotRequired[Union['str', 'None']]
     newValue: NotRequired[Union['str', 'None']]
-    url: NotRequired[USVString]
+    url: NotRequired[str]
     storageArea: NotRequired[Union['Storage', 'None']]
 
 class HTMLMarqueeElement(HTMLElement):
@@ -8065,9 +8179,9 @@ class HTMLFrameElement(HTMLElement):
     def New(self) -> HTMLFrameElement: ...
     name: str
     scrolling: str
-    src: USVString
+    src: str
     frameBorder: str
-    longDesc: USVString
+    longDesc: str
     noResize: bool
     contentDocument: Union['Document', 'None']
     contentWindow: Union['WindowProxy', 'None']
@@ -8293,7 +8407,7 @@ class Point2D(TypedDict):
     y: NotRequired[float]
 
 class ImageResource(TypedDict):
-    src: USVString
+    src: str
     sizes: NotRequired[str]
     type: NotRequired[str]
     label: NotRequired[str]
@@ -8327,7 +8441,7 @@ class UIEvent(Event):
     sourceCapabilities: Union['InputDeviceCapabilities', 'None']
     view: Union['Window', 'None']
     detail: int
-    def initUIEvent(self, typeArg: str, bubblesArg: Union['bool', 'None'] = false, cancelableArg: Union['bool', 'None'] = false, viewArg: Union['Window', 'None'] = None, detailArg: Union['int', 'None'] = 0) -> None: ...
+    def initUIEvent(self, typeArg: str, bubblesArg: Union['bool', 'None'] = False, cancelableArg: Union['bool', 'None'] = False, viewArg: Union['Window', 'None'] = None, detailArg: Union['int', 'None'] = 0) -> None: ...
     which: int
 
 class UIEventInit(TypedDict, EventInit):
@@ -8437,7 +8551,7 @@ class JsonLdProcessor:
 class RdfDataset:
     def New(self) -> RdfDataset: ...
     defaultGraph: RdfGraph
-    def add(self, graphName: USVString, graph: RdfGraph) -> None: ...
+    def add(self, graphName: str, graph: RdfGraph) -> None: ...
 
 class RdfGraph:
     def New(self) -> RdfGraph: ...
@@ -8445,28 +8559,28 @@ class RdfGraph:
 
 class RdfTriple:
     def New(self) -> RdfTriple: ...
-    subject: USVString
-    predicate: USVString
-    object: Union['USVString', 'RdfLiteral']
+    subject: str
+    predicate: str
+    object: Union['str', 'RdfLiteral']
 
 class RdfLiteral:
     def New(self) -> RdfLiteral: ...
-    value: USVString
-    datatype: USVString
-    language: Union['USVString', 'None']
+    value: str
+    datatype: str
+    language: Union['str', 'None']
 
 class JsonLdOptions(TypedDict):
-    base: NotRequired[Union['USVString', 'None']]
+    base: NotRequired[Union['str', 'None']]
     compactArrays: NotRequired[bool]
     compactToRelative: NotRequired[bool]
     documentLoader: NotRequired[Union['LoadDocumentCallback', 'None']]
-    expandContext: NotRequired[Union['Union["JsonLdRecord", "None"]', 'USVString']]
+    expandContext: NotRequired[Union['Union["JsonLdRecord", "None"]', 'str']]
     extractAllScripts: NotRequired[bool]
     frameExpansion: NotRequired[bool]
     ordered: NotRequired[bool]
-    processingMode: NotRequired[USVString]
+    processingMode: NotRequired[str]
     produceGeneralizedRdf: NotRequired[bool]
-    rdfDirection: NotRequired[Union['USVString', 'None']]
+    rdfDirection: NotRequired[Union['str', 'None']]
     useNativeTypes: NotRequired[bool]
     useRdfType: NotRequired[bool]
     embed: NotRequired[Union['JsonLdEmbed', 'bool']]
@@ -8478,24 +8592,24 @@ class JsonLdOptions(TypedDict):
 
 class LoadDocumentOptions(TypedDict):
     extractAllScripts: NotRequired[bool]
-    profile: NotRequired[USVString]
-    requestProfile: NotRequired[Union['USVString', 'Sequence[USVString]']]
+    profile: NotRequired[str]
+    requestProfile: NotRequired[Union['str', 'Sequence[str]']]
 
 class RemoteDocument:
     def New(self) -> RemoteDocument: ...
-    contentType: USVString
-    contextUrl: USVString
+    contentType: str
+    contextUrl: str
     document: Any
-    documentUrl: USVString
-    profile: USVString
+    documentUrl: str
+    profile: str
 
 class JsonLdError(TypedDict):
     code: NotRequired[JsonLdErrorCode]
-    message: NotRequired[Union['USVString', 'None']]
+    message: NotRequired[Union['str', 'None']]
 
 class JsonLdFramingError(TypedDict):
     code: NotRequired[JsonLdFramingErrorCode]
-    message: NotRequired[Union['USVString', 'None']]
+    message: NotRequired[Union['str', 'None']]
 
 class Keyboard(EventTarget):
     def lock(self, keyCodes: Union['Sequence[str]', 'None'] = []) -> Awaitable[None]: ...
@@ -8531,10 +8645,10 @@ class QueryOptions(TypedDict):
 
 class FontData:
     def blob(self) -> Awaitable[Blob]: ...
-    postscriptName: USVString
-    fullName: USVString
-    family: USVString
-    style: USVString
+    postscriptName: str
+    fullName: str
+    family: str
+    style: str
 
 class PerformanceLongTaskTiming(PerformanceEntry):
     attribution: Sequence[TaskAttributionTiming]
@@ -8723,10 +8837,6 @@ class CaptureActionEventInit(TypedDict, EventInit):
 
 class CropTarget: ...
 
-class BrowserCaptureMediaStreamTrack(MediaStreamTrack):
-    def cropTo(self, cropTarget: Union['CropTarget', 'None']) -> Awaitable[None]: ...
-    def clone(self) -> BrowserCaptureMediaStreamTrack: ...
-
 class MediaStream(EventTarget):
     @overload
     def New(self) -> MediaStream: ...
@@ -8842,7 +8952,7 @@ class MediaMetadataInit(TypedDict):
     artwork: NotRequired[Sequence[MediaImage]]
 
 class MediaImage(TypedDict):
-    src: USVString
+    src: str
     sizes: NotRequired[str]
     type: NotRequired[str]
 
@@ -8913,6 +9023,7 @@ class PerformanceNavigationTiming(PerformanceResourceTiming):
     loadEventEnd: DOMHighResTimeStamp
     type: NavigationTimingType
     redirectCount: int
+    criticalCHRestart: DOMHighResTimeStamp
     def toJSON(self) -> object: ...
     activationStart: DOMHighResTimeStamp
 
@@ -8971,9 +9082,9 @@ class Notification(EventTarget):
     lang: str
     body: str
     tag: str
-    image: USVString
-    icon: USVString
-    badge: USVString
+    image: str
+    icon: str
+    badge: str
     vibrate: Sequence[int]
     timestamp: EpochTimeStamp
     renotify: bool
@@ -8988,9 +9099,9 @@ class NotificationOptions(TypedDict):
     lang: NotRequired[str]
     body: NotRequired[str]
     tag: NotRequired[str]
-    image: NotRequired[USVString]
-    icon: NotRequired[USVString]
-    badge: NotRequired[USVString]
+    image: NotRequired[str]
+    icon: NotRequired[str]
+    badge: NotRequired[str]
     vibrate: NotRequired[VibratePattern]
     timestamp: NotRequired[EpochTimeStamp]
     renotify: NotRequired[bool]
@@ -9002,7 +9113,7 @@ class NotificationOptions(TypedDict):
 class NotificationAction(TypedDict):
     action: str
     title: str
-    icon: NotRequired[USVString]
+    icon: NotRequired[str]
 
 class GetNotificationOptions(TypedDict):
     tag: NotRequired[str]
@@ -9082,7 +9193,7 @@ class RelativeOrientationReadingValues(TypedDict, AbsoluteOrientationReadingValu
 
 class Client:
     lifecycleState: ClientLifecycleState
-    url: USVString
+    url: str
     frameType: FrameType
     id: str
     type: ClientType
@@ -9111,23 +9222,23 @@ class PaymentRequestDetailsUpdate(TypedDict):
 
 class PaymentRequestEvent(ExtendableEvent):
     def New(self, type: str, eventInitDict: Union['PaymentRequestEventInit', 'None'] = {}) -> PaymentRequestEvent: ...
-    topOrigin: USVString
-    paymentRequestOrigin: USVString
+    topOrigin: str
+    paymentRequestOrigin: str
     paymentRequestId: str
     methodData: Sequence[PaymentMethodData]
     total: object
     modifiers: Sequence[PaymentDetailsModifier]
     paymentOptions: Union['object', 'None']
     shippingOptions: Sequence[PaymentShippingOption]
-    def openWindow(self, url: USVString) -> Awaitable[Union['WindowClient', 'None']]: ...
+    def openWindow(self, url: str) -> Awaitable[Union['WindowClient', 'None']]: ...
     def changePaymentMethod(self, methodName: str, methodDetails: Union['object', 'None'] = None) -> Awaitable[Union['PaymentRequestDetailsUpdate', 'None']]: ...
     def changeShippingAddress(self, shippingAddress: Union['AddressInit', 'None'] = {}) -> Awaitable[Union['PaymentRequestDetailsUpdate', 'None']]: ...
     def changeShippingOption(self, shippingOption: str) -> Awaitable[Union['PaymentRequestDetailsUpdate', 'None']]: ...
     def respondWith(self, handlerResponsePromise: Awaitable[PaymentHandlerResponse]) -> None: ...
 
 class PaymentRequestEventInit(TypedDict, ExtendableEventInit):
-    topOrigin: NotRequired[USVString]
-    paymentRequestOrigin: NotRequired[USVString]
+    topOrigin: NotRequired[str]
+    paymentRequestOrigin: NotRequired[str]
     paymentRequestId: NotRequired[str]
     methodData: NotRequired[Sequence[PaymentMethodData]]
     total: NotRequired[PaymentCurrencyAmount]
@@ -9223,13 +9334,13 @@ class MemoryBreakdownEntry(TypedDict):
     types: NotRequired[Sequence[str]]
 
 class MemoryAttribution(TypedDict):
-    url: NotRequired[USVString]
+    url: NotRequired[str]
     container: NotRequired[MemoryAttributionContainer]
     scope: NotRequired[str]
 
 class MemoryAttributionContainer(TypedDict):
     id: NotRequired[str]
-    src: NotRequired[USVString]
+    src: NotRequired[str]
 
 class PerformanceEntry:
     name: str
@@ -9344,7 +9455,7 @@ class PointerEvent(MouseEvent):
 
 class HTMLPortalElement(HTMLElement):
     def New(self) -> HTMLPortalElement: ...
-    src: USVString
+    src: str
     referrerPolicy: str
     def activate(self, options: Union['PortalActivateOptions', 'None'] = {}) -> Awaitable[None]: ...
     def postMessage(self, message: Any, options: Union['PostMessageOptions', 'None'] = {}) -> None: ...
@@ -9373,11 +9484,11 @@ class Presentation:
 
 class PresentationRequest(EventTarget):
     @overload
-    def New(self, url: USVString) -> PresentationRequest: ...
+    def New(self, url: str) -> PresentationRequest: ...
     @overload
-    def New(self, urls: Sequence[USVString]) -> PresentationRequest: ...
+    def New(self, urls: Sequence[str]) -> PresentationRequest: ...
     def start(self) -> Awaitable[PresentationConnection]: ...
-    def reconnect(self, presentationId: USVString) -> Awaitable[PresentationConnection]: ...
+    def reconnect(self, presentationId: str) -> Awaitable[PresentationConnection]: ...
     def getAvailability(self) -> Awaitable[PresentationAvailability]: ...
     onconnectionavailable: EventHandler
 
@@ -9393,8 +9504,8 @@ class PresentationConnectionAvailableEventInit(TypedDict, EventInit):
     connection: PresentationConnection
 
 class PresentationConnection(EventTarget):
-    id: USVString
-    url: USVString
+    id: str
+    url: str
     state: PresentationConnectionState
     def close(self) -> None: ...
     def terminate(self) -> None: ...
@@ -9456,7 +9567,7 @@ class PushSubscriptionOptionsInit(TypedDict):
     applicationServerKey: NotRequired[Union['BufferSource', 'str', 'None']]
 
 class PushSubscription:
-    endpoint: USVString
+    endpoint: str
     expirationTime: Union['EpochTimeStamp', 'None']
     options: PushSubscriptionOptions
     def getKey(self, name: PushEncryptionKeyName) -> ArrayBuffer: ...
@@ -9464,15 +9575,15 @@ class PushSubscription:
     def toJSON(self) -> PushSubscriptionJSON: ...
 
 class PushSubscriptionJSON(TypedDict):
-    endpoint: NotRequired[USVString]
+    endpoint: NotRequired[str]
     expirationTime: NotRequired[Union['EpochTimeStamp', 'None']]
-    keys: NotRequired[USVString]
+    keys: NotRequired[str]
 
 class PushMessageData:
     def arrayBuffer(self) -> ArrayBuffer: ...
     def blob(self) -> Blob: ...
     def json(self) -> Any: ...
-    def text(self) -> USVString: ...
+    def text(self) -> str: ...
 
 class PushEvent(ExtendableEvent):
     def New(self, type: str, eventInitDict: Union['PushEventInit', 'None'] = {}) -> PushEvent: ...
@@ -9560,7 +9671,7 @@ class GenerateTestReportParameters(TypedDict):
     group: NotRequired[str]
 
 class TopLevelStorageAccessPermissionDescriptor(TypedDict, PermissionDescriptor):
-    requestedOrigin: NotRequired[USVString]
+    requestedOrigin: NotRequired[str]
 
 class IdleRequestOptions(TypedDict):
     timeout: NotRequired[int]
@@ -9666,10 +9777,6 @@ class TaskSignal(AbortSignal):
     priority: TaskPriority
     onprioritychange: EventHandler
 
-class CaptureController:
-    def New(self) -> CaptureController: ...
-    def setFocusBehavior(self, focusBehavior: CaptureStartFocusBehavior) -> None: ...
-
 class DisplayMediaStreamOptions(TypedDict):
     video: NotRequired[Union['bool', 'MediaTrackConstraints']]
     audio: NotRequired[Union['bool', 'MediaTrackConstraints']]
@@ -9714,36 +9821,26 @@ class ViewTimeline(ScrollTimeline):
     startOffset: CSSNumericValue
     endOffset: CSSNumericValue
 
-class AnimationTimeOptions(TypedDict):
-    range: NotRequired[Union['str', 'None']]
-
-class AnimationTimeline:
-    def getCurrentTime(self, options: Union['AnimationTimeOptions', 'None'] = {}) -> Union['CSSNumericValue', 'None']: ...
-    currentTime: Union['CSSNumberish', 'None']
-    duration: Union['CSSNumberish', 'None']
-    def play(self, effect: Union['AnimationEffect', 'None'] = None) -> Animation: ...
-    currentTime: Union['float', 'None']
-
 class FragmentDirective: ...
 
 class SecurePaymentConfirmationRequest(TypedDict):
     challenge: BufferSource
-    rpId: USVString
+    rpId: str
     credentialIds: Sequence[BufferSource]
     instrument: PaymentCredentialInstrument
     timeout: NotRequired[int]
-    payeeName: NotRequired[USVString]
-    payeeOrigin: NotRequired[USVString]
+    payeeName: NotRequired[str]
+    payeeOrigin: NotRequired[str]
     extensions: NotRequired[AuthenticationExtensionsClientInputs]
-    locale: NotRequired[Sequence[USVString]]
+    locale: NotRequired[Sequence[str]]
     showOptOut: NotRequired[bool]
 
 class AuthenticationExtensionsPaymentInputs(TypedDict):
     isPayment: NotRequired[bool]
-    rpId: NotRequired[USVString]
-    topOrigin: NotRequired[USVString]
-    payeeName: NotRequired[USVString]
-    payeeOrigin: NotRequired[USVString]
+    rpId: NotRequired[str]
+    topOrigin: NotRequired[str]
+    payeeName: NotRequired[str]
+    payeeOrigin: NotRequired[str]
     total: NotRequired[PaymentCurrencyAmount]
     instrument: NotRequired[PaymentCredentialInstrument]
 
@@ -9751,16 +9848,16 @@ class CollectedClientPaymentData(TypedDict, CollectedClientData):
     payment: CollectedClientAdditionalPaymentData
 
 class CollectedClientAdditionalPaymentData(TypedDict):
-    rpId: USVString
-    topOrigin: USVString
-    payeeName: NotRequired[USVString]
-    payeeOrigin: NotRequired[USVString]
+    rpId: str
+    topOrigin: str
+    payeeName: NotRequired[str]
+    payeeOrigin: NotRequired[str]
     total: PaymentCurrencyAmount
     instrument: PaymentCredentialInstrument
 
 class PaymentCredentialInstrument(TypedDict):
-    displayName: USVString
-    icon: USVString
+    displayName: str
+    icon: str
     iconMustBeShown: NotRequired[bool]
 
 class Selection:
@@ -9787,7 +9884,7 @@ class Selection:
     def selectAllChildren(self, node: Node) -> None: ...
     def modify(self, alter: Union['str', 'None'] = None, direction: Union['str', 'None'] = None, granularity: Union['str', 'None'] = None) -> None: ...
     def deleteFromDocument(self) -> None: ...
-    def containsNode(self, node: Node, allowPartialContainment: Union['bool', 'None'] = false) -> bool: ...
+    def containsNode(self, node: Node, allowPartialContainment: Union['bool', 'None'] = False) -> bool: ...
 
 class Serial(EventTarget):
     onconnect: EventHandler
@@ -9843,7 +9940,7 @@ class PerformanceServerTiming:
     def toJSON(self) -> object: ...
 
 class ServiceWorker(EventTarget, AbstractWorker):
-    scriptURL: USVString
+    scriptURL: str
     state: ServiceWorkerState
     @overload
     def postMessage(self, message: Any, transfer: Sequence[object]) -> None: ...
@@ -9854,8 +9951,8 @@ class ServiceWorker(EventTarget, AbstractWorker):
 class ServiceWorkerContainer(EventTarget):
     controller: Union['ServiceWorker', 'None']
     ready: Awaitable[ServiceWorkerRegistration]
-    def register(self, scriptURL: USVString, options: Union['RegistrationOptions', 'None'] = {}) -> Awaitable[ServiceWorkerRegistration]: ...
-    def getRegistration(self, clientURL: Union['USVString', 'None'] = "") -> Awaitable[Union['ServiceWorkerRegistration', 'None']]: ...
+    def register(self, scriptURL: str, options: Union['RegistrationOptions', 'None'] = {}) -> Awaitable[ServiceWorkerRegistration]: ...
+    def getRegistration(self, clientURL: Union['str', 'None'] = "") -> Awaitable[Union['ServiceWorkerRegistration', 'None']]: ...
     def getRegistrations(self) -> Awaitable[Sequence[ServiceWorkerRegistration]]: ...
     def startMessages(self) -> None: ...
     oncontrollerchange: EventHandler
@@ -9863,7 +9960,7 @@ class ServiceWorkerContainer(EventTarget):
     onmessageerror: EventHandler
 
 class RegistrationOptions(TypedDict):
-    scope: NotRequired[USVString]
+    scope: NotRequired[str]
     type: NotRequired[WorkerType]
     updateViaCache: NotRequired[ServiceWorkerUpdateViaCache]
 
@@ -9880,14 +9977,14 @@ class NavigationPreloadState(TypedDict):
 class WindowClient(Client):
     visibilityState: VisibilityState
     focused: bool
-    ancestorOrigins: Sequence[USVString]
+    ancestorOrigins: Sequence[str]
     def focus(self) -> Awaitable[WindowClient]: ...
-    def navigate(self, url: USVString) -> Awaitable[Union['WindowClient', 'None']]: ...
+    def navigate(self, url: str) -> Awaitable[Union['WindowClient', 'None']]: ...
 
 class Clients:
     def get(self, id: str) -> Awaitable[Union['Client', 'None']]: ...
     def matchAll(self, options: Union['ClientQueryOptions', 'None'] = {}) -> Awaitable[Sequence[Client]]: ...
-    def openWindow(self, url: USVString) -> Awaitable[Union['WindowClient', 'None']]: ...
+    def openWindow(self, url: str) -> Awaitable[Union['WindowClient', 'None']]: ...
     def claim(self) -> Awaitable[None]: ...
 
 class ClientQueryOptions(TypedDict):
@@ -9921,14 +10018,14 @@ class FetchEventInit(TypedDict, ExtendableEventInit):
 class ExtendableMessageEvent(ExtendableEvent):
     def New(self, type: str, eventInitDict: Union['ExtendableMessageEventInit', 'None'] = {}) -> ExtendableMessageEvent: ...
     data: Any
-    origin: USVString
+    origin: str
     lastEventId: str
     source: Union['Client', 'ServiceWorker', 'MessagePort', 'None']
     ports: Sequence[MessagePort]
 
 class ExtendableMessageEventInit(TypedDict, ExtendableEventInit):
     data: NotRequired[Any]
-    origin: NotRequired[USVString]
+    origin: NotRequired[str]
     lastEventId: NotRequired[str]
     source: NotRequired[Union['Client', 'ServiceWorker', 'MessagePort', 'None']]
     ports: NotRequired[Sequence[MessagePort]]
@@ -10019,7 +10116,7 @@ class WindowSharedStorage(SharedStorage):
     worklet: SharedStorageWorklet
 
 class SharedStorageUrlWithMetadata(TypedDict):
-    url: USVString
+    url: str
     reportingMetadata: NotRequired[object]
 
 class WorkletSharedStorage(SharedStorage):
@@ -10411,7 +10508,7 @@ class PrivateToken(TypedDict):
     version: TokenVersion
     operation: OperationType
     refreshPolicy: NotRequired[RefreshPolicy]
-    issuers: NotRequired[Sequence[USVString]]
+    issuers: NotRequired[Sequence[str]]
 
 class TrustedHTML:
     def toJSON(self) -> str: ...
@@ -10420,7 +10517,7 @@ class TrustedScript:
     def toJSON(self) -> str: ...
 
 class TrustedScriptURL:
-    def toJSON(self) -> USVString: ...
+    def toJSON(self) -> str: ...
 
 class TrustedTypePolicyFactory:
     def createPolicy(self, policyName: str, policyOptions: Union['TrustedTypePolicyOptions', 'None'] = {}) -> TrustedTypePolicy: ...
@@ -10445,76 +10542,139 @@ class TrustedTypePolicyOptions(TypedDict):
     createScriptURL: NotRequired[Union['CreateScriptURLCallback', 'None']]
 
 class AuctionAd(TypedDict):
-    renderURL: USVString
+    renderURL: str
     metadata: NotRequired[Any]
+    buyerReportingId: NotRequired[str]
+    buyerAndSellerReportingId: NotRequired[str]
 
-class AuctionAdInterestGroup(TypedDict):
-    owner: USVString
-    name: USVString
-    priority: NotRequired[float]
+class GenerateBidInterestGroup(TypedDict):
+    owner: str
+    name: str
+    lifetimeMs: float
     enableBiddingSignalsPrioritization: NotRequired[bool]
     priorityVector: NotRequired[float]
-    prioritySignalsOverrides: NotRequired[float]
     executionMode: NotRequired[str]
-    biddingLogicURL: NotRequired[USVString]
-    biddingWasmHelperURL: NotRequired[USVString]
-    updateURL: NotRequired[USVString]
-    trustedBiddingSignalsURL: NotRequired[USVString]
-    trustedBiddingSignalsKeys: NotRequired[Sequence[USVString]]
+    biddingLogicURL: NotRequired[str]
+    biddingWasmHelperURL: NotRequired[str]
+    updateURL: NotRequired[str]
+    trustedBiddingSignalsURL: NotRequired[str]
+    trustedBiddingSignalsKeys: NotRequired[Sequence[str]]
     userBiddingSignals: NotRequired[Any]
     ads: NotRequired[Sequence[AuctionAd]]
     adComponents: NotRequired[Sequence[AuctionAd]]
 
+class AuctionAdInterestGroup(TypedDict, GenerateBidInterestGroup):
+    priority: NotRequired[float]
+    prioritySignalsOverrides: NotRequired[float]
+
 class AuctionAdInterestGroupKey(TypedDict):
-    owner: USVString
-    name: USVString
+    owner: str
+    name: str
 
 class AuctionAdConfig(TypedDict):
-    seller: USVString
-    decisionLogicURL: USVString
-    trustedScoringSignalsURL: NotRequired[USVString]
-    interestGroupBuyers: NotRequired[Sequence[USVString]]
-    auctionSignals: NotRequired[Any]
-    sellerSignals: NotRequired[Any]
-    directFromSellerSignals: NotRequired[USVString]
+    seller: str
+    decisionLogicURL: str
+    trustedScoringSignalsURL: NotRequired[str]
+    interestGroupBuyers: NotRequired[Sequence[str]]
+    auctionSignals: NotRequired[Awaitable[Any]]
+    sellerSignals: NotRequired[Awaitable[Any]]
+    directFromSellerSignals: NotRequired[Awaitable[str]]
     sellerTimeout: NotRequired[int]
     sellerExperimentGroupId: NotRequired[int]
-    perBuyerSignals: NotRequired[Any]
-    perBuyerTimeouts: NotRequired[int]
+    sellerCurrency: NotRequired[str]
+    perBuyerSignals: NotRequired[Awaitable[Any]]
+    perBuyerTimeouts: NotRequired[Awaitable[int]]
     perBuyerGroupLimits: NotRequired[int]
     perBuyerExperimentGroupIds: NotRequired[int]
     perBuyerPrioritySignals: NotRequired[float]
+    perBuyerCurrencies: NotRequired[Awaitable[str]]
     componentAuctions: NotRequired[Sequence[AuctionAdConfig]]
     signal: NotRequired[Union['AbortSignal', 'None']]
+    resolveToConfig: NotRequired[Awaitable[bool]]
 
 class InterestGroupScriptRunnerGlobalScope: ...
 
 class InterestGroupBiddingScriptRunnerGlobalScope(InterestGroupScriptRunnerGlobalScope):
-    @overload
-    def setBid(self) -> bool: ...
-    @overload
-    def setBid(self, generateBidOutput: GenerateBidOutput) -> bool: ...
+    def setBid(self, generateBidOutput: Union['GenerateBidOutput', 'None'] = {}) -> bool: ...
     def setPriority(self, priority: float) -> None: ...
     def setPrioritySignalsOverride(self, key: str, priority: float) -> None: ...
+
+class AdRender(TypedDict):
+    url: str
+    width: NotRequired[str]
+    height: NotRequired[str]
+
+class GenerateBidOutput(TypedDict):
+    bid: NotRequired[float]
+    bidCurrency: NotRequired[str]
+    render: NotRequired[Union['str', 'AdRender']]
+    ad: NotRequired[Any]
+    adComponents: NotRequired[Sequence[Union['str', 'AdRender']]]
+    adCost: NotRequired[float]
+    modelingSignals: NotRequired[float]
+    allowComponentAuction: NotRequired[bool]
 
 class InterestGroupScoringScriptRunnerGlobalScope(InterestGroupScriptRunnerGlobalScope): ...
 
 class InterestGroupReportingScriptRunnerGlobalScope(InterestGroupScriptRunnerGlobalScope):
     def sendReportTo(self, url: str) -> None: ...
-    def registerAdBeacon(self, map: USVString) -> None: ...
+    def registerAdBeacon(self, map: str) -> None: ...
 
-class AdRender(TypedDict):
-    url: str
-    width: str
-    height: str
+class PreviousWin(TypedDict):
+    timeDelta: int
+    adJSON: str
 
-class GenerateBidOutput(TypedDict):
+class BiddingBrowserSignals(TypedDict):
+    topWindowHostname: str
+    seller: str
+    joinCount: int
+    bidCount: int
+    topLevelSeller: NotRequired[str]
+    prevWinsMs: NotRequired[Sequence[PreviousWin]]
+    wasmHelper: NotRequired[object]
+    dataVersion: NotRequired[int]
+
+class ScoringBrowserSignals(TypedDict):
+    topWindowHostname: str
+    interestGroupOwner: str
+    renderURL: str
+    biddingDurationMsec: int
+    bidCurrency: str
+    dataVersion: NotRequired[int]
+    adComponents: NotRequired[Sequence[str]]
+
+class ReportingBrowserSignals(TypedDict):
+    topWindowHostname: str
+    interestGroupOwner: str
+    renderURL: str
     bid: float
-    adRender: Union['str', 'AdRender']
-    ad: NotRequired[Any]
-    adComponents: NotRequired[Sequence[Union['str', 'AdRender']]]
+    highestScoringOtherBid: float
+    bidCurrency: NotRequired[str]
+    highestScoringOtherBidCurrency: NotRequired[str]
+    topLevelSeller: NotRequired[str]
+    componentSeller: NotRequired[str]
+    buyerAndSellerReportingId: NotRequired[str]
+
+class ReportResultBrowserSignals(TypedDict, ReportingBrowserSignals):
+    desirability: float
+    topLevelSellerSignals: NotRequired[str]
+    modifiedBid: NotRequired[float]
+    dataVersion: NotRequired[int]
+
+class ReportWinBrowserSignals(TypedDict, ReportingBrowserSignals):
     adCost: NotRequired[float]
-    modelingSignals: NotRequired[float]
+    seller: NotRequired[str]
+    madeHighestScoringOtherBid: NotRequired[bool]
+    interestGroupName: NotRequired[str]
+    buyerReportingId: NotRequired[str]
+    modelingSignals: NotRequired[int]
+    dataVersion: NotRequired[int]
+
+class ScoreAdOutput(TypedDict):
+    desirability: float
+    bid: NotRequired[float]
+    bidCurrency: NotRequired[str]
+    incomingBidInSellerCurrency: NotRequired[float]
     allowComponentAuction: NotRequired[bool]
 
 class NavigatorUABrandVersion(TypedDict):
@@ -10604,7 +10764,7 @@ class KeyboardEvent(UIEvent):
     repeat: bool
     isComposing: bool
     def getModifierState(self, keyArg: str) -> bool: ...
-    def initKeyboardEvent(self, typeArg: str, bubblesArg: Union['bool', 'None'] = false, cancelableArg: Union['bool', 'None'] = false, viewArg: Union['Window', 'None'] = None, keyArg: Union['str', 'None'] = "", locationArg: Union['int', 'None'] = 0, ctrlKey: Union['bool', 'None'] = false, altKey: Union['bool', 'None'] = false, shiftKey: Union['bool', 'None'] = false, metaKey: Union['bool', 'None'] = false) -> None: ...
+    def initKeyboardEvent(self, typeArg: str, bubblesArg: Union['bool', 'None'] = False, cancelableArg: Union['bool', 'None'] = False, viewArg: Union['Window', 'None'] = None, keyArg: Union['str', 'None'] = "", locationArg: Union['int', 'None'] = 0, ctrlKey: Union['bool', 'None'] = False, altKey: Union['bool', 'None'] = False, shiftKey: Union['bool', 'None'] = False, metaKey: Union['bool', 'None'] = False) -> None: ...
     charCode: int
     keyCode: int
 
@@ -10620,7 +10780,7 @@ class KeyboardEventInit(TypedDict, EventModifierInit):
 class CompositionEvent(UIEvent):
     def New(self, type: str, eventInitDict: Union['CompositionEventInit', 'None'] = {}) -> CompositionEvent: ...
     data: str
-    def initCompositionEvent(self, typeArg: str, bubblesArg: Union['bool', 'None'] = false, cancelableArg: Union['bool', 'None'] = false, viewArg: Union['WindowProxy', 'None'] = None, dataArg: Union['str', 'None'] = "") -> None: ...
+    def initCompositionEvent(self, typeArg: str, bubblesArg: Union['bool', 'None'] = False, cancelableArg: Union['bool', 'None'] = False, viewArg: Union['WindowProxy', 'None'] = None, dataArg: Union['str', 'None'] = "") -> None: ...
 
 class CompositionEventInit(TypedDict, UIEventInit):
     data: NotRequired[str]
@@ -10634,45 +10794,45 @@ class MutationEvent(Event):
     newValue: str
     attrName: str
     attrChange: int
-    def initMutationEvent(self, typeArg: str, bubblesArg: Union['bool', 'None'] = false, cancelableArg: Union['bool', 'None'] = false, relatedNodeArg: Union['Node', 'None'] = None, prevValueArg: Union['str', 'None'] = "", newValueArg: Union['str', 'None'] = "", attrNameArg: Union['str', 'None'] = "", attrChangeArg: Union['int', 'None'] = 0) -> None: ...
+    def initMutationEvent(self, typeArg: str, bubblesArg: Union['bool', 'None'] = False, cancelableArg: Union['bool', 'None'] = False, relatedNodeArg: Union['Node', 'None'] = None, prevValueArg: Union['str', 'None'] = "", newValueArg: Union['str', 'None'] = "", attrNameArg: Union['str', 'None'] = "", attrChangeArg: Union['int', 'None'] = 0) -> None: ...
 
 class URLSearchParams:
-    def New(self, init: Union['Sequence[Sequence[USVString]]', 'USVString', 'USVString', 'None'] = "") -> URLSearchParams: ...
+    def New(self, init: Union['Sequence[Sequence[str]]', 'str', 'str', 'None'] = "") -> URLSearchParams: ...
     size: int
-    def append(self, name: USVString, value: USVString) -> None: ...
-    def delete(self, name: USVString, value: Union['USVString', 'None'] = None) -> None: ...
-    def get(self, name: USVString) -> Union['USVString', 'None']: ...
-    def getAll(self, name: USVString) -> Sequence[USVString]: ...
-    def has(self, name: USVString, value: Union['USVString', 'None'] = None) -> bool: ...
-    def set(self, name: USVString, value: USVString) -> None: ...
+    def append(self, name: str, value: str) -> None: ...
+    def delete(self, name: str, value: Union['str', 'None'] = None) -> None: ...
+    def get(self, name: str) -> Union['str', 'None']: ...
+    def getAll(self, name: str) -> Sequence[str]: ...
+    def has(self, name: str, value: Union['str', 'None'] = None) -> bool: ...
+    def set(self, name: str, value: str) -> None: ...
     def sort(self) -> None: ...
 
 class URLPattern:
     @overload
-    def New(self, input: URLPatternInput, baseURL: USVString, options: Union['URLPatternOptions', 'None'] = {}) -> URLPattern: ...
+    def New(self, input: URLPatternInput, baseURL: str, options: Union['URLPatternOptions', 'None'] = {}) -> URLPattern: ...
     @overload
     def New(self, input: Union['URLPatternInput', 'None'] = {}, options: Union['URLPatternOptions', 'None'] = {}) -> URLPattern: ...
-    def test(self, input: Union['URLPatternInput', 'None'] = {}, baseURL: Union['USVString', 'None'] = None) -> bool: ...
-    def exec(self, input: Union['URLPatternInput', 'None'] = {}, baseURL: Union['USVString', 'None'] = None) -> Union['URLPatternResult', 'None']: ...
-    protocol: USVString
-    username: USVString
-    password: USVString
-    hostname: USVString
-    port: USVString
-    pathname: USVString
-    search: USVString
-    hash: USVString
+    def test(self, input: Union['URLPatternInput', 'None'] = {}, baseURL: Union['str', 'None'] = None) -> bool: ...
+    def exec(self, input: Union['URLPatternInput', 'None'] = {}, baseURL: Union['str', 'None'] = None) -> Union['URLPatternResult', 'None']: ...
+    protocol: str
+    username: str
+    password: str
+    hostname: str
+    port: str
+    pathname: str
+    search: str
+    hash: str
 
 class URLPatternInit(TypedDict):
-    protocol: NotRequired[USVString]
-    username: NotRequired[USVString]
-    password: NotRequired[USVString]
-    hostname: NotRequired[USVString]
-    port: NotRequired[USVString]
-    pathname: NotRequired[USVString]
-    search: NotRequired[USVString]
-    hash: NotRequired[USVString]
-    baseURL: NotRequired[USVString]
+    protocol: NotRequired[str]
+    username: NotRequired[str]
+    password: NotRequired[str]
+    hostname: NotRequired[str]
+    port: NotRequired[str]
+    pathname: NotRequired[str]
+    search: NotRequired[str]
+    hash: NotRequired[str]
+    baseURL: NotRequired[str]
 
 class URLPatternOptions(TypedDict):
     ignoreCase: NotRequired[bool]
@@ -10689,8 +10849,8 @@ class URLPatternResult(TypedDict):
     hash: NotRequired[URLPatternComponentResult]
 
 class URLPatternComponentResult(TypedDict):
-    input: NotRequired[USVString]
-    groups: NotRequired[Union['USVString', 'None']]
+    input: NotRequired[str]
+    groups: NotRequired[Union['str', 'None']]
 
 class PerformanceMarkOptions(TypedDict):
     detail: NotRequired[Any]
@@ -10794,12 +10954,12 @@ class WebassemblyNamespace:
     def instantiateStreaming(self, source: Awaitable[Response], importObject: Union['object', 'None'] = None) -> Awaitable[WebAssemblyInstantiatedSource]: ...
 
 class ModuleExportDescriptor(TypedDict):
-    name: USVString
+    name: str
     kind: ImportExportKind
 
 class ModuleImportDescriptor(TypedDict):
-    module: USVString
-    name: USVString
+    module: str
+    name: str
     kind: ImportExportKind
 
 class Module:
@@ -10839,15 +10999,18 @@ class Global:
     def valueOf(self) -> Any: ...
     value: Any
 
+class AnimationTimeline:
+    currentTime: Union['Union["CSSNumberish", "None"]', 'Union["float", "None"]']
+    duration: Union['CSSNumberish', 'None']
+    def play(self, effect: Union['AnimationEffect', 'None'] = None) -> Animation: ...
+
 class Animation(EventTarget):
     def New(self, effect: Union['AnimationEffect', 'None'] = None, timeline: Union['AnimationTimeline', 'None'] = None) -> Animation: ...
-    startTime: Union['CSSNumberish', 'None']
-    currentTime: Union['CSSNumberish', 'None']
+    startTime: Union['Union["CSSNumberish", "None"]', 'Union["float", "None"]']
+    currentTime: Union['Union["CSSNumberish", "None"]', 'Union["float", "None"]']
     id: str
     effect: Union['AnimationEffect', 'None']
     timeline: Union['AnimationTimeline', 'None']
-    startTime: Union['float', 'None']
-    currentTime: Union['float', 'None']
     playbackRate: float
     playState: AnimationPlayState
     replaceState: AnimationReplaceState
@@ -10882,13 +11045,10 @@ class EffectTiming(TypedDict):
     delay: NotRequired[float]
     endDelay: NotRequired[float]
     playbackRate: NotRequired[float]
-    duration: NotRequired[Union['float', 'CSSNumericValue', 'str']]
-    delay: NotRequired[float]
-    endDelay: NotRequired[float]
+    duration: Union['NotRequired[Union["float", "CSSNumericValue", "str"]]', 'NotRequired[Union["float", "str"]]']
     fill: NotRequired[FillMode]
     iterationStart: NotRequired[float]
     iterations: NotRequired[float]
-    duration: NotRequired[Union['float', 'str']]
     direction: NotRequired[PlaybackDirection]
     easing: NotRequired[str]
 
@@ -10905,12 +11065,9 @@ class OptionalEffectTiming(TypedDict):
 
 class ComputedEffectTiming(TypedDict, EffectTiming):
     startTime: NotRequired[CSSNumberish]
-    endTime: NotRequired[CSSNumberish]
-    activeDuration: NotRequired[CSSNumberish]
-    localTime: NotRequired[Union['CSSNumberish', 'None']]
-    endTime: NotRequired[float]
-    activeDuration: NotRequired[float]
-    localTime: NotRequired[Union['float', 'None']]
+    endTime: Union['NotRequired[CSSNumberish]', 'NotRequired[float]']
+    activeDuration: Union['NotRequired[CSSNumberish]', 'NotRequired[float]']
+    localTime: Union['NotRequired[Union["CSSNumberish", "None"]]', 'NotRequired[Union["float", "None"]]']
     progress: NotRequired[Union['float', 'None']]
     currentIteration: NotRequired[Union['float', 'None']]
 
@@ -10937,7 +11094,7 @@ class KeyframeEffect(AnimationEffect):
     def New(self, source: KeyframeEffect) -> KeyframeEffect: ...
     iterationComposite: IterationCompositeOperation
     target: Union['Element', 'None']
-    pseudoElement: Union['CSSOMString', 'None']
+    pseudoElement: Union['str', 'None']
     composite: CompositeOperation
     def getKeyframes(self) -> Sequence[object]: ...
     def setKeyframes(self, keyframes: Union['object', 'None']) -> None: ...
@@ -10945,10 +11102,10 @@ class KeyframeEffect(AnimationEffect):
 class KeyframeEffectOptions(TypedDict, EffectTiming):
     iterationComposite: NotRequired[IterationCompositeOperation]
     composite: NotRequired[CompositeOperation]
-    pseudoElement: NotRequired[Union['CSSOMString', 'None']]
+    pseudoElement: NotRequired[Union['str', 'None']]
 
 class TimelineRangeOffset(TypedDict):
-    rangeName: NotRequired[Union['CSSOMString', 'None']]
+    rangeName: NotRequired[Union['str', 'None']]
     offset: NotRequired[CSSNumericValue]
 
 class KeyframeAnimationOptions(TypedDict, KeyframeEffectOptions):
@@ -10958,20 +11115,13 @@ class KeyframeAnimationOptions(TypedDict, KeyframeEffectOptions):
     timeline: NotRequired[Union['AnimationTimeline', 'None']]
 
 class AnimationPlaybackEvent(Event):
-    @overload
     def New(self, type: str, eventInitDict: Union['AnimationPlaybackEventInit', 'None'] = {}) -> AnimationPlaybackEvent: ...
-    @overload
-    def New(self, type: str, eventInitDict: Union['AnimationPlaybackEventInit', 'None'] = {}) -> AnimationPlaybackEvent: ...
-    currentTime: Union['CSSNumberish', 'None']
-    timelineTime: Union['CSSNumberish', 'None']
-    currentTime: Union['float', 'None']
-    timelineTime: Union['float', 'None']
+    currentTime: Union['Union["CSSNumberish", "None"]', 'Union["float", "None"]']
+    timelineTime: Union['Union["CSSNumberish", "None"]', 'Union["float", "None"]']
 
 class AnimationPlaybackEventInit(TypedDict, EventInit):
-    currentTime: NotRequired[Union['CSSNumberish', 'None']]
-    timelineTime: NotRequired[Union['CSSNumberish', 'None']]
-    currentTime: NotRequired[Union['float', 'None']]
-    timelineTime: NotRequired[Union['float', 'None']]
+    currentTime: Union['NotRequired[Union["CSSNumberish", "None"]]', 'NotRequired[Union["float", "None"]]']
+    timelineTime: Union['NotRequired[Union["CSSNumberish", "None"]]', 'NotRequired[Union["float", "None"]]']
 
 class DocumentTimelineOptions(TypedDict):
     originTime: NotRequired[DOMHighResTimeStamp]
@@ -11203,20 +11353,20 @@ class NDEFMessageInit(TypedDict):
 
 class NDEFRecord:
     def New(self, recordInit: NDEFRecordInit) -> NDEFRecord: ...
-    recordType: USVString
-    mediaType: Union['USVString', 'None']
-    id: Union['USVString', 'None']
+    recordType: str
+    mediaType: Union['str', 'None']
+    id: Union['str', 'None']
     data: DataView
-    encoding: Union['USVString', 'None']
-    lang: Union['USVString', 'None']
+    encoding: Union['str', 'None']
+    lang: Union['str', 'None']
     def toRecords(self) -> Sequence[NDEFRecord]: ...
 
 class NDEFRecordInit(TypedDict):
-    recordType: USVString
-    mediaType: NotRequired[USVString]
-    id: NotRequired[USVString]
-    encoding: NotRequired[USVString]
-    lang: NotRequired[USVString]
+    recordType: str
+    mediaType: NotRequired[str]
+    id: NotRequired[str]
+    encoding: NotRequired[str]
+    lang: NotRequired[str]
     data: NotRequired[Any]
 
 class NDEFReader(EventTarget):
@@ -11254,9 +11404,9 @@ class OTPCredentialRequestOptions(TypedDict):
 
 class ShareData(TypedDict):
     files: NotRequired[Sequence[File]]
-    title: NotRequired[USVString]
-    text: NotRequired[USVString]
-    url: NotRequired[USVString]
+    title: NotRequired[str]
+    text: NotRequired[str]
+    url: NotRequired[str]
 
 class BaseAudioContext(EventTarget):
     destination: AudioDestinationNode
@@ -11728,8 +11878,11 @@ class RegistrationResponseJSON(TypedDict):
 
 class AuthenticatorAttestationResponseJSON(TypedDict):
     clientDataJSON: Base64URLString
-    attestationObject: Base64URLString
+    authenticatorData: Base64URLString
     transports: Sequence[str]
+    publicKey: NotRequired[Base64URLString]
+    publicKeyAlgorithm: int
+    attestationObject: Base64URLString
 
 class AuthenticationResponseJSON(TypedDict):
     id: Base64URLString
@@ -11829,7 +11982,7 @@ class AuthenticatorSelectionCriteria(TypedDict):
 class PublicKeyCredentialRequestOptions(TypedDict):
     challenge: BufferSource
     timeout: NotRequired[int]
-    rpId: NotRequired[USVString]
+    rpId: NotRequired[str]
     allowCredentials: NotRequired[Sequence[PublicKeyCredentialDescriptor]]
     userVerification: NotRequired[str]
     attestation: NotRequired[str]
@@ -12045,7 +12198,7 @@ class AudioDecoderConfig(TypedDict):
 
 class VideoDecoderConfig(TypedDict):
     codec: str
-    description: NotRequired[BufferSource]
+    description: NotRequired[AllowSharedBufferSource]
     codedWidth: NotRequired[int]
     codedHeight: NotRequired[int]
     displayAspectWidth: NotRequired[int]
@@ -12060,7 +12213,7 @@ class EncodedAudioChunk:
     timestamp: int
     duration: Union['int', 'None']
     byteLength: int
-    def copyTo(self, destination: BufferSource) -> None: ...
+    def copyTo(self, destination: AllowSharedBufferSource) -> None: ...
 
 class EncodedAudioChunkInit(TypedDict):
     type: EncodedAudioChunkType
@@ -12074,13 +12227,13 @@ class EncodedVideoChunk:
     timestamp: int
     duration: Union['int', 'None']
     byteLength: int
-    def copyTo(self, destination: BufferSource) -> None: ...
+    def copyTo(self, destination: AllowSharedBufferSource) -> None: ...
 
 class EncodedVideoChunkInit(TypedDict):
     type: EncodedVideoChunkType
     timestamp: int
     duration: NotRequired[int]
-    data: BufferSource
+    data: AllowSharedBufferSource
 
 class AudioData:
     def New(self, init: AudioDataInit) -> AudioData: ...
@@ -12091,7 +12244,7 @@ class AudioData:
     duration: int
     timestamp: int
     def allocationSize(self, options: AudioDataCopyToOptions) -> int: ...
-    def copyTo(self, destination: BufferSource, options: AudioDataCopyToOptions) -> None: ...
+    def copyTo(self, destination: AllowSharedBufferSource, options: AudioDataCopyToOptions) -> None: ...
     def clone(self) -> AudioData: ...
     def close(self) -> None: ...
 
@@ -12102,6 +12255,7 @@ class AudioDataInit(TypedDict):
     numberOfChannels: int
     timestamp: int
     data: BufferSource
+    transfer: NotRequired[Sequence[ArrayBuffer]]
 
 class AudioDataCopyToOptions(TypedDict):
     planeIndex: int
@@ -12113,7 +12267,7 @@ class VideoFrame:
     @overload
     def New(self, image: CanvasImageSource, init: Union['VideoFrameInit', 'None'] = {}) -> VideoFrame: ...
     @overload
-    def New(self, data: BufferSource, init: VideoFrameBufferInit) -> VideoFrame: ...
+    def New(self, data: AllowSharedBufferSource, init: VideoFrameBufferInit) -> VideoFrame: ...
     format: Union['VideoPixelFormat', 'None']
     codedWidth: int
     codedHeight: int
@@ -12126,7 +12280,7 @@ class VideoFrame:
     colorSpace: VideoColorSpace
     def metadata(self) -> VideoFrameMetadata: ...
     def allocationSize(self, options: Union['VideoFrameCopyToOptions', 'None'] = {}) -> int: ...
-    def copyTo(self, destination: BufferSource, options: Union['VideoFrameCopyToOptions', 'None'] = {}) -> Awaitable[Sequence[PlaneLayout]]: ...
+    def copyTo(self, destination: AllowSharedBufferSource, options: Union['VideoFrameCopyToOptions', 'None'] = {}) -> Awaitable[Sequence[PlaneLayout]]: ...
     def clone(self) -> VideoFrame: ...
     def close(self) -> None: ...
 
@@ -12150,6 +12304,7 @@ class VideoFrameBufferInit(TypedDict):
     displayWidth: NotRequired[int]
     displayHeight: NotRequired[int]
     colorSpace: NotRequired[VideoColorSpaceInit]
+    transfer: NotRequired[Sequence[ArrayBuffer]]
 
 class VideoFrameMetadata(TypedDict): ...
 
@@ -12192,6 +12347,7 @@ class ImageDecoderInit(TypedDict):
     desiredWidth: NotRequired[int]
     desiredHeight: NotRequired[int]
     preferAnimation: NotRequired[bool]
+    transfer: NotRequired[Sequence[ArrayBuffer]]
 
 class ImageDecodeOptions(TypedDict):
     frameIndex: NotRequired[int]
@@ -12683,8 +12839,8 @@ class WebGLRenderingContextOverloads:
     @overload
     def bufferData(self, target: GLenum, size: GLsizeiptr, usage: GLenum) -> None: ...
     @overload
-    def bufferData(self, target: GLenum, data: Union['BufferSource', 'None'], usage: GLenum) -> None: ...
-    def bufferSubData(self, target: GLenum, offset: GLintptr, data: BufferSource) -> None: ...
+    def bufferData(self, target: GLenum, data: Union['AllowSharedBufferSource', 'None'], usage: GLenum) -> None: ...
+    def bufferSubData(self, target: GLenum, offset: GLintptr, data: AllowSharedBufferSource) -> None: ...
     def compressedTexImage2D(self, target: GLenum, level: GLint, internalformat: GLenum, width: GLsizei, height: GLsizei, border: GLint, data: ArrayBufferView) -> None: ...
     def compressedTexSubImage2D(self, target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, width: GLsizei, height: GLsizei, format: GLenum, data: ArrayBufferView) -> None: ...
     def readPixels(self, x: GLint, y: GLint, width: GLsizei, height: GLsizei, format: GLenum, type: GLenum, pixels: Union['ArrayBufferView', 'None']) -> None: ...
@@ -13102,11 +13258,11 @@ class WebGL2RenderingContextOverloads:
     @overload
     def bufferData(self, target: GLenum, size: GLsizeiptr, usage: GLenum) -> None: ...
     @overload
-    def bufferData(self, target: GLenum, srcData: Union['BufferSource', 'None'], usage: GLenum) -> None: ...
-    @overload
-    def bufferSubData(self, target: GLenum, dstByteOffset: GLintptr, srcData: BufferSource) -> None: ...
+    def bufferData(self, target: GLenum, srcData: Union['AllowSharedBufferSource', 'None'], usage: GLenum) -> None: ...
     @overload
     def bufferData(self, target: GLenum, srcData: ArrayBufferView, usage: GLenum, srcOffset: GLuint, length: Union['GLuint', 'None'] = 0) -> None: ...
+    @overload
+    def bufferSubData(self, target: GLenum, dstByteOffset: GLintptr, srcData: AllowSharedBufferSource) -> None: ...
     @overload
     def bufferSubData(self, target: GLenum, dstByteOffset: GLintptr, srcData: ArrayBufferView, srcOffset: GLuint, length: Union['GLuint', 'None'] = 0) -> None: ...
     @overload
@@ -13114,15 +13270,15 @@ class WebGL2RenderingContextOverloads:
     @overload
     def texImage2D(self, target: GLenum, level: GLint, internalformat: GLint, format: GLenum, type: GLenum, source: TexImageSource) -> None: ...
     @overload
-    def texSubImage2D(self, target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, width: GLsizei, height: GLsizei, format: GLenum, type: GLenum, pixels: Union['ArrayBufferView', 'None']) -> None: ...
-    @overload
-    def texSubImage2D(self, target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, format: GLenum, type: GLenum, source: TexImageSource) -> None: ...
-    @overload
     def texImage2D(self, target: GLenum, level: GLint, internalformat: GLint, width: GLsizei, height: GLsizei, border: GLint, format: GLenum, type: GLenum, pboOffset: GLintptr) -> None: ...
     @overload
     def texImage2D(self, target: GLenum, level: GLint, internalformat: GLint, width: GLsizei, height: GLsizei, border: GLint, format: GLenum, type: GLenum, source: TexImageSource) -> None: ...
     @overload
     def texImage2D(self, target: GLenum, level: GLint, internalformat: GLint, width: GLsizei, height: GLsizei, border: GLint, format: GLenum, type: GLenum, srcData: ArrayBufferView, srcOffset: GLuint) -> None: ...
+    @overload
+    def texSubImage2D(self, target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, width: GLsizei, height: GLsizei, format: GLenum, type: GLenum, pixels: Union['ArrayBufferView', 'None']) -> None: ...
+    @overload
+    def texSubImage2D(self, target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, format: GLenum, type: GLenum, source: TexImageSource) -> None: ...
     @overload
     def texSubImage2D(self, target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, width: GLsizei, height: GLsizei, format: GLenum, type: GLenum, pboOffset: GLintptr) -> None: ...
     @overload
@@ -13158,10 +13314,10 @@ class WebGL2RenderingContextOverloads:
 class WebGL2RenderingContext(WebGLRenderingContextBase, WebGL2RenderingContextBase, WebGL2RenderingContextOverloads): ...
 
 class GPUObjectBase:
-    label: USVString
+    label: str
 
 class GPUObjectDescriptorBase(TypedDict):
-    label: NotRequired[USVString]
+    label: NotRequired[str]
 
 class GPUSupportedLimits:
     maxTextureDimension1D: int
@@ -13380,7 +13536,7 @@ class GPUShaderModule(GPUObjectBase):
     def getCompilationInfo(self) -> Awaitable[GPUCompilationInfo]: ...
 
 class GPUShaderModuleDescriptor(TypedDict, GPUObjectDescriptorBase):
-    code: USVString
+    code: str
     sourceMap: NotRequired[object]
     hints: NotRequired[GPUShaderModuleCompilationHint]
 
@@ -13399,7 +13555,7 @@ class GPUCompilationInfo:
     messages: Sequence[GPUCompilationMessage]
 
 class GPUPipelineError(DOMException):
-    def New(self, message: Union['str', 'None'], options: GPUPipelineErrorInit) -> GPUPipelineError: ...
+    def New(self, message: Union['str', 'None'] = "", options: GPUPipelineErrorInit) -> GPUPipelineError: ...
     reason: GPUPipelineErrorReason
 
 class GPUPipelineErrorInit(TypedDict):
@@ -13413,7 +13569,7 @@ class GPUPipelineBase:
 
 class GPUProgrammableStage(TypedDict):
     module: GPUShaderModule
-    entryPoint: USVString
+    entryPoint: str
     constants: NotRequired[GPUPipelineConstantValue]
 
 class GPUComputePipeline(GPUObjectBase, GPUPipelineBase): ...
@@ -13509,7 +13665,7 @@ class GPUImageCopyTextureTagged(TypedDict, GPUImageCopyTexture):
     premultipliedAlpha: NotRequired[bool]
 
 class GPUImageCopyExternalImage(TypedDict):
-    source: Union['ImageBitmap', 'HTMLVideoElement', 'HTMLCanvasElement', 'OffscreenCanvas']
+    source: GPUImageCopyExternalImageSource
     origin: NotRequired[GPUOrigin2D]
     flipY: NotRequired[bool]
 
@@ -13540,9 +13696,9 @@ class GPUBindingCommandsMixin:
     def setBindGroup(self, index: GPUIndex32, bindGroup: Union['GPUBindGroup', 'None'], dynamicOffsetsData: Uint32Array, dynamicOffsetsDataStart: GPUSize64, dynamicOffsetsDataLength: GPUSize32) -> None: ...
 
 class GPUDebugCommandsMixin:
-    def pushDebugGroup(self, groupLabel: USVString) -> None: ...
+    def pushDebugGroup(self, groupLabel: str) -> None: ...
     def popDebugGroup(self) -> None: ...
-    def insertDebugMarker(self, markerLabel: USVString) -> None: ...
+    def insertDebugMarker(self, markerLabel: str) -> None: ...
 
 class GPUComputePassEncoder(GPUObjectBase, GPUCommandsMixin, GPUDebugCommandsMixin, GPUBindingCommandsMixin):
     def setPipeline(self, pipeline: GPUComputePipeline) -> None: ...
@@ -13628,8 +13784,8 @@ class GPUQueueDescriptor(TypedDict, GPUObjectDescriptorBase): ...
 class GPUQueue(GPUObjectBase):
     def submit(self, commandBuffers: Sequence[GPUCommandBuffer]) -> None: ...
     def onSubmittedWorkDone(self) -> Awaitable[None]: ...
-    def writeBuffer(self, buffer: GPUBuffer, bufferOffset: GPUSize64, data: BufferSource, dataOffset: Union['GPUSize64', 'None'] = 0, size: Union['GPUSize64', 'None'] = None) -> None: ...
-    def writeTexture(self, destination: GPUImageCopyTexture, data: BufferSource, dataLayout: GPUImageDataLayout, size: GPUExtent3D) -> None: ...
+    def writeBuffer(self, buffer: GPUBuffer, bufferOffset: GPUSize64, data: AllowSharedBufferSource, dataOffset: Union['GPUSize64', 'None'] = 0, size: Union['GPUSize64', 'None'] = None) -> None: ...
+    def writeTexture(self, destination: GPUImageCopyTexture, data: AllowSharedBufferSource, dataLayout: GPUImageDataLayout, size: GPUExtent3D) -> None: ...
     def copyExternalImageToTexture(self, source: GPUImageCopyExternalImage, destination: GPUImageCopyTextureTagged, copySize: GPUExtent3D) -> None: ...
 
 class GPUQuerySet(GPUObjectBase):
@@ -14160,7 +14316,7 @@ class RTCRtpSender:
     def generateKeyFrame(self, rids: Union['Sequence[str]', 'None'] = None) -> Awaitable[None]: ...
     track: Union['MediaStreamTrack', 'None']
     transport: Union['RTCDtlsTransport', 'None']
-    def setParameters(self, parameters: RTCRtpSendParameters) -> Awaitable[None]: ...
+    def setParameters(self, parameters: RTCRtpSendParameters, setParameterOptions: Union['RTCSetParameterOptions', 'None'] = {}) -> Awaitable[None]: ...
     def getParameters(self) -> RTCRtpSendParameters: ...
     def replaceTrack(self, withTrack: Union['MediaStreamTrack', 'None']) -> Awaitable[None]: ...
     def setStreams(self, *streams: MediaStream) -> None: ...
@@ -14299,19 +14455,29 @@ class RTCPeerConnection(EventTarget):
     @overload
     def createOffer(self, options: Union['RTCOfferOptions', 'None'] = {}) -> Awaitable[RTCSessionDescriptionInit]: ...
     @overload
+    def createOffer(self, successCallback: RTCSessionDescriptionCallback, failureCallback: RTCPeerConnectionErrorCallback, options: Union['RTCOfferOptions', 'None'] = {}) -> Awaitable[None]: ...
+    @overload
     def createAnswer(self, options: Union['RTCAnswerOptions', 'None'] = {}) -> Awaitable[RTCSessionDescriptionInit]: ...
     @overload
+    def createAnswer(self, successCallback: RTCSessionDescriptionCallback, failureCallback: RTCPeerConnectionErrorCallback) -> Awaitable[None]: ...
+    @overload
     def setLocalDescription(self, description: Union['RTCLocalSessionDescriptionInit', 'None'] = {}) -> Awaitable[None]: ...
+    @overload
+    def setLocalDescription(self, description: RTCLocalSessionDescriptionInit, successCallback: VoidFunction, failureCallback: RTCPeerConnectionErrorCallback) -> Awaitable[None]: ...
     localDescription: Union['RTCSessionDescription', 'None']
     currentLocalDescription: Union['RTCSessionDescription', 'None']
     pendingLocalDescription: Union['RTCSessionDescription', 'None']
     @overload
     def setRemoteDescription(self, description: RTCSessionDescriptionInit) -> Awaitable[None]: ...
+    @overload
+    def setRemoteDescription(self, description: RTCSessionDescriptionInit, successCallback: VoidFunction, failureCallback: RTCPeerConnectionErrorCallback) -> Awaitable[None]: ...
     remoteDescription: Union['RTCSessionDescription', 'None']
     currentRemoteDescription: Union['RTCSessionDescription', 'None']
     pendingRemoteDescription: Union['RTCSessionDescription', 'None']
     @overload
     def addIceCandidate(self, candidate: Union['RTCIceCandidateInit', 'None'] = {}) -> Awaitable[None]: ...
+    @overload
+    def addIceCandidate(self, candidate: RTCIceCandidateInit, successCallback: VoidFunction, failureCallback: RTCPeerConnectionErrorCallback) -> Awaitable[None]: ...
     signalingState: RTCSignalingState
     iceGatheringState: RTCIceGatheringState
     iceConnectionState: RTCIceConnectionState
@@ -14328,16 +14494,6 @@ class RTCPeerConnection(EventTarget):
     oniceconnectionstatechange: EventHandler
     onicegatheringstatechange: EventHandler
     onconnectionstatechange: EventHandler
-    @overload
-    def createOffer(self, successCallback: RTCSessionDescriptionCallback, failureCallback: RTCPeerConnectionErrorCallback, options: Union['RTCOfferOptions', 'None'] = {}) -> Awaitable[None]: ...
-    @overload
-    def setLocalDescription(self, description: RTCLocalSessionDescriptionInit, successCallback: VoidFunction, failureCallback: RTCPeerConnectionErrorCallback) -> Awaitable[None]: ...
-    @overload
-    def createAnswer(self, successCallback: RTCSessionDescriptionCallback, failureCallback: RTCPeerConnectionErrorCallback) -> Awaitable[None]: ...
-    @overload
-    def setRemoteDescription(self, description: RTCSessionDescriptionInit, successCallback: VoidFunction, failureCallback: RTCPeerConnectionErrorCallback) -> Awaitable[None]: ...
-    @overload
-    def addIceCandidate(self, candidate: RTCIceCandidateInit, successCallback: VoidFunction, failureCallback: RTCPeerConnectionErrorCallback) -> Awaitable[None]: ...
     def getSenders(self) -> Sequence[RTCRtpSender]: ...
     def getReceivers(self) -> Sequence[RTCRtpReceiver]: ...
     def getTransceivers(self) -> Sequence[RTCRtpTransceiver]: ...
@@ -14346,7 +14502,7 @@ class RTCPeerConnection(EventTarget):
     def addTransceiver(self, trackOrKind: Union['MediaStreamTrack', 'str'], init: Union['RTCRtpTransceiverInit', 'None'] = {}) -> RTCRtpTransceiver: ...
     ontrack: EventHandler
     sctp: Union['RTCSctpTransport', 'None']
-    def createDataChannel(self, label: USVString, dataChannelDict: Union['RTCDataChannelInit', 'None'] = {}) -> RTCDataChannel: ...
+    def createDataChannel(self, label: str, dataChannelDict: Union['RTCDataChannelInit', 'None'] = {}) -> RTCDataChannel: ...
     ondatachannel: EventHandler
     def getStats(self, selector: Union['MediaStreamTrack', 'None'] = None) -> Awaitable[RTCStatsReport]: ...
 
@@ -14397,11 +14553,11 @@ class RTCRtpEncodingParameters(TypedDict, RTCRtpCodingParameters):
 
 class RTCDataChannel(EventTarget):
     priority: RTCPriorityType
-    label: USVString
+    label: str
     ordered: bool
     maxPacketLifeTime: Union['int', 'None']
     maxRetransmits: Union['int', 'None']
-    protocol: USVString
+    protocol: str
     negotiated: bool
     id: Union['int', 'None']
     readyState: RTCDataChannelState
@@ -14416,7 +14572,7 @@ class RTCDataChannel(EventTarget):
     onmessage: EventHandler
     binaryType: BinaryType
     @overload
-    def send(self, data: USVString) -> None: ...
+    def send(self, data: str) -> None: ...
     @overload
     def send(self, data: Blob) -> None: ...
     @overload
@@ -14429,7 +14585,7 @@ class RTCDataChannelInit(TypedDict):
     ordered: NotRequired[bool]
     maxPacketLifeTime: NotRequired[int]
     maxRetransmits: NotRequired[int]
-    protocol: NotRequired[USVString]
+    protocol: NotRequired[str]
     negotiated: NotRequired[bool]
     id: NotRequired[int]
 
@@ -14475,6 +14631,7 @@ class RTCInboundRtpStreamStats(TypedDict, RTCReceivedRtpStreamStats):
     lastPacketReceivedTimestamp: NotRequired[DOMHighResTimeStamp]
     headerBytesReceived: NotRequired[int]
     packetsDiscarded: NotRequired[int]
+    fecBytesReceived: NotRequired[int]
     fecPacketsReceived: NotRequired[int]
     fecPacketsDiscarded: NotRequired[int]
     bytesReceived: NotRequired[int]
@@ -14730,14 +14887,14 @@ class RTCPeerConnectionIceErrorEvent(Event):
     port: Union['int', 'None']
     url: str
     errorCode: int
-    errorText: USVString
+    errorText: str
 
 class RTCPeerConnectionIceErrorEventInit(TypedDict, EventInit):
     address: NotRequired[Union['str', 'None']]
     port: NotRequired[Union['int', 'None']]
     url: NotRequired[str]
     errorCode: int
-    errorText: NotRequired[USVString]
+    errorText: NotRequired[str]
 
 class RTCCertificateExpiration(TypedDict):
     expires: NotRequired[int]
@@ -14787,6 +14944,8 @@ class RTCRtpCodecCapability(TypedDict, RTCRtpCodec): ...
 
 class RTCRtpHeaderExtensionCapability(TypedDict):
     uri: str
+
+class RTCSetParameterOptions(TypedDict): ...
 
 class RTCRtpContributingSource(TypedDict):
     timestamp: DOMHighResTimeStamp
@@ -14875,8 +15034,8 @@ class RTCErrorEventInit(TypedDict, EventInit):
     error: RTCError
 
 class WebSocket(EventTarget):
-    def New(self, url: USVString, protocols: Union['str', 'Sequence[str]', 'None'] = []) -> WebSocket: ...
-    url: USVString
+    def New(self, url: str, protocols: Union['str', 'Sequence[str]', 'None'] = []) -> WebSocket: ...
+    url: str
     CONNECTING = 0
     OPEN = 1
     CLOSING = 2
@@ -14888,21 +15047,21 @@ class WebSocket(EventTarget):
     onclose: EventHandler
     extensions: str
     protocol: str
-    def close(self, code: Union['int', 'None'] = None, reason: Union['USVString', 'None'] = None) -> None: ...
+    def close(self, code: Union['int', 'None'] = None, reason: Union['str', 'None'] = None) -> None: ...
     onmessage: EventHandler
     binaryType: BinaryType
-    def send(self, data: Union['BufferSource', 'Blob', 'USVString']) -> None: ...
+    def send(self, data: Union['BufferSource', 'Blob', 'str']) -> None: ...
 
 class CloseEvent(Event):
     def New(self, type: str, eventInitDict: Union['CloseEventInit', 'None'] = {}) -> CloseEvent: ...
     wasClean: bool
     code: int
-    reason: USVString
+    reason: str
 
 class CloseEventInit(TypedDict, EventInit):
     wasClean: NotRequired[bool]
     code: NotRequired[int]
-    reason: NotRequired[USVString]
+    reason: NotRequired[str]
 
 class WebTransportDatagramDuplexStream:
     readable: ReadableStream
@@ -14914,7 +15073,7 @@ class WebTransportDatagramDuplexStream:
     outgoingHighWaterMark: float
 
 class WebTransport:
-    def New(self, url: USVString, options: Union['WebTransportOptions', 'None'] = {}) -> WebTransport: ...
+    def New(self, url: str, options: Union['WebTransportOptions', 'None'] = {}) -> WebTransport: ...
     def getStats(self) -> Awaitable[WebTransportStats]: ...
     ready: Awaitable[None]
     reliability: WebTransportReliabilityMode
@@ -14940,7 +15099,7 @@ class WebTransportOptions(TypedDict):
 
 class WebTransportCloseInfo(TypedDict):
     closeCode: NotRequired[int]
-    reason: NotRequired[USVString]
+    reason: NotRequired[str]
 
 class WebTransportSendStreamOptions(TypedDict):
     sendOrder: NotRequired[Union['int', 'None']]
@@ -15007,6 +15166,7 @@ class USBDeviceFilter(TypedDict):
 
 class USBDeviceRequestOptions(TypedDict):
     filters: Sequence[USBDeviceFilter]
+    exclusionFilters: NotRequired[Sequence[USBDeviceFilter]]
 
 class USB(EventTarget):
     onconnect: EventHandler
@@ -15122,6 +15282,7 @@ class USBEndpoint:
 
 class USBPermissionDescriptor(TypedDict, PermissionDescriptor):
     filters: NotRequired[Sequence[USBDeviceFilter]]
+    exclusionFilters: NotRequired[Sequence[USBDeviceFilter]]
 
 class AllowedUSBDevice(TypedDict):
     vendorId: int
@@ -15544,6 +15705,25 @@ class ScreenDetailed(Screen):
     devicePixelRatio: float
     label: str
 
+class CreatorInfo(TypedDict):
+    type: NotRequired[Sequence[str]]
+    name: Sequence[LocalizableString]
+    id: NotRequired[str]
+    url: NotRequired[str]
+
+class LocalizableString(TypedDict):
+    value: str
+    language: NotRequired[str]
+
+class LinkedResource(TypedDict):
+    url: str
+    encodingFormat: NotRequired[str]
+    name: NotRequired[Sequence[LocalizableString]]
+    description: NotRequired[LocalizableString]
+    rel: NotRequired[Sequence[str]]
+    integrity: NotRequired[str]
+    length: NotRequired[float]
+
 class XMLHttpRequestEventTarget(EventTarget):
     onloadstart: EventHandler
     onprogress: EventHandler
@@ -15558,17 +15738,17 @@ class XMLHttpRequestUpload(XMLHttpRequestEventTarget): ...
 class FormData:
     def New(self, form: Union['HTMLFormElement', 'None'] = None, submitter: Union['HTMLElement', 'None'] = None) -> FormData: ...
     @overload
-    def append(self, name: USVString, value: USVString) -> None: ...
+    def append(self, name: str, value: str) -> None: ...
     @overload
-    def append(self, name: USVString, blobValue: Blob, filename: Union['USVString', 'None'] = None) -> None: ...
-    def delete(self, name: USVString) -> None: ...
-    def get(self, name: USVString) -> Union['FormDataEntryValue', 'None']: ...
-    def getAll(self, name: USVString) -> Sequence[FormDataEntryValue]: ...
-    def has(self, name: USVString) -> bool: ...
+    def append(self, name: str, blobValue: Blob, filename: Union['str', 'None'] = None) -> None: ...
+    def delete(self, name: str) -> None: ...
+    def get(self, name: str) -> Union['FormDataEntryValue', 'None']: ...
+    def getAll(self, name: str) -> Sequence[FormDataEntryValue]: ...
+    def has(self, name: str) -> bool: ...
     @overload
-    def set(self, name: USVString, value: USVString) -> None: ...
+    def set(self, name: str, value: str) -> None: ...
     @overload
-    def set(self, name: USVString, blobValue: Blob, filename: Union['USVString', 'None'] = None) -> None: ...
+    def set(self, name: str, blobValue: Blob, filename: Union['str', 'None'] = None) -> None: ...
 
 class ProgressEvent(Event):
     def New(self, type: str, eventInitDict: Union['ProgressEventInit', 'None'] = {}) -> ProgressEvent: ...

@@ -16,8 +16,6 @@ _head = """# @formatter:off
 
 from typing import overload, Any, Awaitable, Sequence, Literal, TypedDict, NotRequired, ByteString, Union, Callable
 from .ecmascript import *
-
-USVString = str
 """
 
 _tail = """

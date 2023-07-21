@@ -21,7 +21,10 @@ _types_dict = {
     'true': 'True',
     # generics
     'sequence': 'Sequence',
-    'Promise': 'Awaitable'
+    'Promise': 'Awaitable',
+    "USVString": "str",
+    "CSSOMString": "str",
+    "DOMString": "str"
 }
 
 
@@ -34,6 +37,8 @@ def to_py_type(s: str) -> str:
 
 _values_dict = {
     'null': 'None',
+    "false": "False",
+    "true": "True"
 }
 
 
