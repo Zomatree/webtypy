@@ -196,8 +196,6 @@ def i_interface_member(member: InterfaceMember):
 
 def i_interface(interface: Interface | Mixin, throw: bool):
     expect_isinstance(interface, Interface, Mixin)
-    if interface.name == "CSSRuleList":
-        breakpoint()
     members = [i_construct(construct, throw) for construct in interface.members]
     return GClass(interface.name, bases=interface_bases(interface), children=members)
 
