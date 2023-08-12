@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any
 
-from widlparser import Callback, Interface, InterfaceMember, Construct, TypeWithExtendedAttributes, Argument, UnionType, \
+from widlparser import Callback, Interface, InterfaceMember, Construct, SpecialOperation, TypeWithExtendedAttributes, Argument, UnionType, \
     Attribute, AttributeRest, SingleType, AnyType, NonAnyType, PrimitiveType, Symbol, TypeIdentifier, Default, Type, \
     TypeSuffix, Operation, UnionMemberType, Enum, EnumValue, \
     IncludesStatement, Typedef, ExtendedAttribute, Mixin, MixinMember, MixinAttribute, Constructor, Dictionary, \
@@ -196,6 +196,8 @@ def i_interface_member(member: InterfaceMember):
 
 def i_interface(interface: Interface | Mixin, throw: bool):
     expect_isinstance(interface, Interface, Mixin)
+    if interface.name == "CSSRuleList":
+        breakpoint()
     members = [i_construct(construct, throw) for construct in interface.members]
     return GClass(interface.name, bases=interface_bases(interface), children=members)
 
@@ -230,8 +232,9 @@ def i_enum(enum: Enum):
     return GEnum(enum.name, values=values)
 
 
-def i_operation(member: Operation | Constructor):
-    expect_isinstance(member, Operation, Constructor)
+def i_operation(member: Operation | SpecialOperation | Constructor):
+    expect_isinstance(member, Operation, Constructor, SpecialOperation)
+
     args = []
     for a in member.arguments:
         expect_isinstance(a, Argument)
@@ -250,7 +253,8 @@ def i_operation(member: Operation | Constructor):
         args.append(g_arg)
 
     g_method = GMethod(member.name, arguments=args)
-    if isinstance(member, Operation):
+
+    if isinstance(member, (Operation,  SpecialOperation)):
         returns = i_type(member.return_type)
         g_method.returns = returns
     return g_method
@@ -258,7 +262,7 @@ def i_operation(member: Operation | Constructor):
 
 def i_namespace_member(m: NamespaceMember):
     expect_isinstance(m, NamespaceMember)
-    if isinstance(m.member, Operation):
+    if isinstance(m.member, (Operation,  SpecialOperation)):
         return i_operation(m.member)
     unhandled(m)
 
