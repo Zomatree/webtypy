@@ -92,12 +92,10 @@ def s_type(a: GType | GNotRequired) -> str:
 
     from js_pyi.datamodel import GGeneric, GNotRequired
     if isinstance(a, GGeneric):
-        a: GGeneric
         ann = s_annotation(a.annotation)
         name = to_py_type(a.name)
         return f'{name}[{ann}]'
     if isinstance(a, GNotRequired):
-        a: GNotRequired
         ann = s_annotation(a.annotation)
         return f'NotRequired[{ann}]'
 
@@ -122,7 +120,7 @@ def s_enum(e: GEnum) -> str:
 
 
 def s_typedef(td: GTypedef) -> str:
-    return td.name + ' = ' + s_annotation(td.annotation)
+    return f"{td.name}: TypeAlias = {s_annotation(td.annotation)}"
 
 
 def s_unhandled(u: GUnhandled) -> str:

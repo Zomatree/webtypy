@@ -13,7 +13,8 @@ class GPythonProducer:
 
 
 class GStmt:
-    pass
+    def to_python(self):
+        raise NotImplementedError
 
 
 @dataclass()

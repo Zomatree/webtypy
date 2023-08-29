@@ -14,7 +14,7 @@ def main():
 
 _head = """# @formatter:off
 
-from typing import overload, Any, Awaitable, Sequence, Literal, TypedDict, NotRequired, ByteString, Union, Callable
+from typing import overload, Any, Awaitable, Sequence, Literal, TypedDict, NotRequired, ByteString, Union, Callable, TypeAlias
 from .ecmascript import *
 """
 
@@ -24,7 +24,7 @@ document: Document
 window: Window
 navigator: Navigator
 console: ConsoleNamespace
-
+WindowProxy: TypeAlias = Window
 """
 
 if __name__ == '__main__':

@@ -195,14 +195,16 @@ def i_interface_member(member: InterfaceMember):
 
 
 def i_interface(interface: Interface | Mixin, throw: bool):
-    expect_isinstance(interface, Interface, Mixin)
     members = [i_construct(construct, throw) for construct in interface.members]
     return GClass(interface.name, bases=interface_bases(interface), children=members)
 
 
 def i_dictionary(dictionary: Dictionary, throw: bool):
-    expect_isinstance(dictionary, Dictionary)
-    bases = ['TypedDict'] + i_inheritance(dictionary.inheritance)
+    bases = i_inheritance(dictionary.inheritance)
+
+    if not bases:
+        bases.append("TypedDict")
+
     members = [i_dictionary_member(construct) for construct in dictionary.members]
     members = list(filter(lambda s: s.name not in reserved_keywords, members))
     return GClass(dictionary.name, members, bases=bases)

@@ -8,7 +8,7 @@ from js_pyi.stringify import s_statements
 from js_pyi.webidls import find_all
 
 
-def unhandled(files: List[Path] | None = None) -> bool:
+def unhandled(files: List[Path] | None = None):
     if files is None:
         files = find_all()
 
