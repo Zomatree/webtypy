@@ -9,7 +9,7 @@ from js_pyi.assertions import unhandled
 from js_pyi.conversion import to_py_type, to_py_value, to_py_name, reserved_keywords
 
 if TYPE_CHECKING:
-    from js_pyi.datamodel import *
+    from .datamodel import *
 
 
 def s_attribute(a: GAttribute) -> str:
@@ -140,7 +140,8 @@ def s_ignored(i: GIgnoredStmt) -> str:
 def s_statements(statements: List[GStmt]) -> str:
     res = StringIO()
     for st in statements:
-        res.write(st.to_python() + '\n\n')
+        if should_write_statement(st):
+            res.write(st.to_python() + '\n\n')
     getvalue = res.getvalue()
     return getvalue
 
@@ -151,3 +152,9 @@ def s_callback(cb: GCallback) -> str:
         rt = "None"
 
     return f"{cb.name} = Callable[[{','.join(s_annotation(t) for t in cb.arguments)}], {rt}]"
+
+def should_write_statement(st: GStmt) -> bool:
+    if st.__class__.__name__ == "GCallback":
+        return st.name != "Function"  # type: ignore
+
+    return True

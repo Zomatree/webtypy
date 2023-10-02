@@ -24,7 +24,8 @@ _types_dict = {
     'Promise': 'Awaitable',
     "USVString": "str",
     "CSSOMString": "str",
-    "DOMString": "str"
+    "DOMString": "str",
+    "bigint": "BigInt"
 }
 
 

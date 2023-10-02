@@ -13,7 +13,7 @@ class GPythonProducer:
 
 
 class GStmt:
-    def to_python(self):
+    def to_python(self) -> str:
         raise NotImplementedError
 
 
