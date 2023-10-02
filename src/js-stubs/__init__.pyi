@@ -414,8 +414,6 @@ AuthenticatorTransport = Literal["usb", "nfc", "ble", "smart-card", "hybrid", "i
 
 UserVerificationRequirement = Literal["required", "preferred", "discouraged"]
 
-PublicKeyCredentialHints = Literal["security-key", "client-device", "hybrid"]
-
 LargeBlobSupport = Literal["required", "preferred"]
 
 AacBitstreamFormat = Literal["aac", "adts"]
@@ -1058,8 +1056,6 @@ BufferSource: TypeAlias = Union['ArrayBufferView', 'ArrayBuffer']
 
 AllowSharedBufferSource: TypeAlias = Union['ArrayBuffer', 'SharedArrayBuffer', 'ArrayBufferView']
 
-Function = Callable[[Any], Any]
-
 VoidFunction = Callable[[], None]
 
 MLNamedArrayBufferViews: TypeAlias = ArrayBufferView
@@ -1076,7 +1072,7 @@ RTCRtpTransform: TypeAlias = Union['SFrameTransform', 'RTCRtpScriptTransform']
 
 SmallCryptoKeyID: TypeAlias = int
 
-CryptoKeyID: TypeAlias = Union['SmallCryptoKeyID', 'bigint']
+CryptoKeyID: TypeAlias = Union['SmallCryptoKeyID', 'BigInt']
 
 GenerateAssertionCallback = Callable[[str,str,RTCIdentityProviderOptions], Awaitable[RTCIdentityAssertionResult]]
 
@@ -2186,7 +2182,7 @@ class CredentialRequestOptions(TypedDict):
     publicKey: NotRequired[PublicKeyCredentialRequestOptions]
 
 class IdentityCredentialRequestOptions(TypedDict):
-    providers: Sequence[IdentityProviderConfig]
+    providers: NotRequired[Sequence[IdentityProviderConfig]]
     context: NotRequired[IdentityCredentialRequestOptionsContext]
 
 class IdentityProviderConfig(TypedDict):
@@ -4416,7 +4412,6 @@ class Window(EventTarget, GlobalEventHandlers, WindowEventHandlers, WindowOrWork
     def cancelIdleCallback(self, handle: int) -> None: ...
 
     def getSelection(self) -> Union['Selection', 'None']: ...
-    sharedStorage: Union['WindowSharedStorage', 'None']
     speechSynthesis: SpeechSynthesis
     launchQueue: LaunchQueue
 
@@ -6564,16 +6559,22 @@ class TextUpdateEvent(Event):
 class TextFormatInit(TypedDict):
     rangeStart: NotRequired[int]
     rangeEnd: NotRequired[int]
+    textColor: NotRequired[str]
+    backgroundColor: NotRequired[str]
     underlineStyle: NotRequired[str]
     underlineThickness: NotRequired[str]
+    underlineColor: NotRequired[str]
 
 class TextFormat:
     @classmethod
     def new(cls, options: Union['TextFormatInit', 'None'] = {}) -> TextFormat: ...
     rangeStart: int
     rangeEnd: int
+    textColor: str
+    backgroundColor: str
     underlineStyle: str
     underlineThickness: str
+    underlineColor: str
 
 class TextFormatUpdateEventInit(EventInit):
     textFormats: NotRequired[Sequence[TextFormat]]
@@ -6594,11 +6595,9 @@ class CharacterBoundsUpdateEvent(Event):
     rangeStart: int
     rangeEnd: int
 
-class RestrictionTarget: ...
-
 class BrowserCaptureMediaStreamTrack(MediaStreamTrack):
 
-    def restrictTo(self, RestrictionTarget: Union['RestrictionTarget', 'None']) -> Awaitable[None]: ...
+    def restrictTo(self, cropTarget: Union['CropTarget', 'None']) -> Awaitable[None]: ...
 
     def cropTo(self, cropTarget: Union['CropTarget', 'None']) -> Awaitable[None]: ...
 
@@ -6932,7 +6931,6 @@ class FenceEvent(TypedDict):
     eventType: str
     eventData: str
     destination: Sequence[FenceReportingDestination]
-    once: NotRequired[bool]
 
 class Fence:
 
@@ -8972,16 +8970,6 @@ class UserActivation:
     hasBeenActive: bool
     isActive: bool
 
-class ToggleEvent(Event):
-    @classmethod
-    def new(cls, type: str, eventInitDict: Union['ToggleEventInit', 'None'] = {}) -> ToggleEvent: ...
-    oldState: str
-    newState: str
-
-class ToggleEventInit(EventInit):
-    oldState: NotRequired[str]
-    newState: NotRequired[str]
-
 class FocusOptions(TypedDict):
     preventScroll: NotRequired[bool]
     focusVisible: NotRequired[bool]
@@ -9034,6 +9022,16 @@ class DragEventInit(MouseEventInit):
 class PopoverInvokerElement:
     popoverTargetElement: Union['Element', 'None']
     popoverTargetAction: str
+
+class ToggleEvent(Event):
+    @classmethod
+    def new(cls, type: str, eventInitDict: Union['ToggleEventInit', 'None'] = {}) -> ToggleEvent: ...
+    oldState: str
+    newState: str
+
+class ToggleEventInit(EventInit):
+    oldState: NotRequired[str]
+    newState: NotRequired[str]
 
 class WindowPostMessageOptions(StructuredSerializeOptions):
     targetOrigin: NotRequired[str]
@@ -9142,7 +9140,6 @@ class NavigateEvent(Event):
     formData: Union['FormData', 'None']
     downloadRequest: Union['str', 'None']
     info: Any
-    hasUAVisualTransition: bool
 
     def intercept(self, options: Union['NavigationInterceptOptions', 'None'] = {}) -> None: ...
 
@@ -9158,7 +9155,6 @@ class NavigateEventInit(EventInit):
     formData: NotRequired[Union['FormData', 'None']]
     downloadRequest: NotRequired[Union['str', 'None']]
     info: NotRequired[Any]
-    hasUAVisualTransition: NotRequired[bool]
 
 class NavigationInterceptOptions(TypedDict):
     handler: NotRequired[NavigationInterceptHandler]
@@ -9187,11 +9183,9 @@ class PopStateEvent(Event):
     @classmethod
     def new(cls, type: str, eventInitDict: Union['PopStateEventInit', 'None'] = {}) -> PopStateEvent: ...
     state: Any
-    hasUAVisualTransition: bool
 
 class PopStateEventInit(EventInit):
     state: NotRequired[Any]
-    hasUAVisualTransition: NotRequired[bool]
 
 class HashChangeEvent(Event):
     @classmethod
@@ -10346,7 +10340,10 @@ class ConstrainDOMStringParameters(TypedDict):
     exact: NotRequired[Union['str', 'Sequence[str]']]
     ideal: NotRequired[Union['str', 'Sequence[str]']]
 
-class CameraDevicePermissionDescriptor(PermissionDescriptor):
+class DevicePermissionDescriptor(PermissionDescriptor):
+    deviceId: NotRequired[str]
+
+class CameraDevicePermissionDescriptor(DevicePermissionDescriptor):
     panTiltZoom: NotRequired[bool]
 
 class MediaStreamTrackProcessor:
@@ -11776,7 +11773,6 @@ class SharedStorageWorklet(Worklet): ...
 class SharedStorageWorkletGlobalScope(WorkletGlobalScope):
 
     def register(self, name: str, operationCtor: SharedStorageOperationConstructor) -> None: ...
-    sharedStorage: WorkletSharedStorage
 
 class SharedStorageOperation: ...
 
@@ -13909,7 +13905,6 @@ class AuthenticatorAssertionResponseJSON(TypedDict):
     authenticatorData: Base64URLString
     signature: Base64URLString
     userHandle: NotRequired[Base64URLString]
-    attestationObject: NotRequired[Base64URLString]
 
 class AuthenticationExtensionsClientOutputsJSON(TypedDict): ...
 
@@ -13921,9 +13916,7 @@ class PublicKeyCredentialCreationOptionsJSON(TypedDict):
     timeout: NotRequired[int]
     excludeCredentials: NotRequired[Sequence[PublicKeyCredentialDescriptorJSON]]
     authenticatorSelection: NotRequired[AuthenticatorSelectionCriteria]
-    hints: NotRequired[Sequence[str]]
     attestation: NotRequired[str]
-    attestationFormats: NotRequired[Sequence[str]]
     extensions: NotRequired[AuthenticationExtensionsClientInputsJSON]
 
 class PublicKeyCredentialUserEntityJSON(TypedDict):
@@ -13944,9 +13937,6 @@ class PublicKeyCredentialRequestOptionsJSON(TypedDict):
     rpId: NotRequired[str]
     allowCredentials: NotRequired[Sequence[PublicKeyCredentialDescriptorJSON]]
     userVerification: NotRequired[str]
-    hints: NotRequired[Sequence[str]]
-    attestation: NotRequired[str]
-    attestationFormats: NotRequired[Sequence[str]]
     extensions: NotRequired[AuthenticationExtensionsClientInputsJSON]
 
 class AuthenticatorResponse:
@@ -13981,7 +13971,6 @@ class PublicKeyCredentialCreationOptions(TypedDict):
     timeout: NotRequired[int]
     excludeCredentials: NotRequired[Sequence[PublicKeyCredentialDescriptor]]
     authenticatorSelection: NotRequired[AuthenticatorSelectionCriteria]
-    hints: NotRequired[Sequence[str]]
     attestation: NotRequired[str]
     attestationFormats: NotRequired[Sequence[str]]
     extensions: NotRequired[AuthenticationExtensionsClientInputs]
@@ -14008,7 +13997,6 @@ class PublicKeyCredentialRequestOptions(TypedDict):
     rpId: NotRequired[str]
     allowCredentials: NotRequired[Sequence[PublicKeyCredentialDescriptor]]
     userVerification: NotRequired[str]
-    hints: NotRequired[Sequence[str]]
     attestation: NotRequired[str]
     attestationFormats: NotRequired[Sequence[str]]
     extensions: NotRequired[AuthenticationExtensionsClientInputs]
